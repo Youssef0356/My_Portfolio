@@ -97,7 +97,7 @@ a:hover {
     }
 }
 .animation{
-    height: 5%;
+    object-fit: fill;
     width: 100%;
-    background-color: aqua;
+    height: 70vh;
 }
