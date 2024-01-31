@@ -48,7 +48,9 @@ i {
     list-style: none;
     font-weight: bold;
 }
-
+.rightgroup a{
+    font-size: 2.5vh;
+}
 .icon {
     display: none !important;
 
@@ -60,7 +62,7 @@ i {
 
 a:hover {
     text-decoration: underline cyan;
-    transition: 1s ease-in
+    transition: .01s ease-in
 }
 
 @media screen and (max-width: 600px) {
@@ -97,7 +99,7 @@ a:hover {
     }
 }
 .animation{
-    object-fit: fill;
+    object-fit: cover;
     width: 100%;
-    height: 70vh;
+    height: 60vh;
 }
