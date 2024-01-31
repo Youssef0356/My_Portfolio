@@ -7,7 +7,7 @@
 
 body {
     background-color: #140C20;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
 }
 
@@ -31,6 +31,7 @@ i {
     justify-content: space-between;
     align-items: center;
     padding: 3%;
+    vertical-align: baseline;
 }
 
 .leftgroup {
@@ -49,38 +50,41 @@ i {
     font-weight: bold;
 }
 .rightgroup a{
-    font-size: 2.5vh;
+    font-size: 2vh;
+    transition: all .5s ease-in-out;
 }
 .icon {
     display: none !important;
 
 }
-
 .NavBar .icon:hover {
     background-color: rgba(77, 77, 77, 0.313);
 }
 
-a:hover {
-    text-decoration: underline cyan;
-    transition: .01s ease-in
+.rightgroup a:hover {
+    text-decoration: underline pink solid 3px ;
+    transition: .01s ease-in;
 }
-
 @media screen and (max-width: 600px) {
     .topnav .rightgroup {
         display: none;
+        padding: 5%;
     }
-
     .topnav {
         justify-content: center;
         display: flex;
         gap: 50px;
     }
-
     .icon {
         display: block !important;
+        
+    }
+    .animation{
+        margin-top: 10%;
+        object-fit: cover;
+        width: 100%;
     }
 }
-
 @media screen and (max-width:600px) {
     .topnav.responsive {
         position: relative;
@@ -102,4 +106,48 @@ a:hover {
     object-fit: cover;
     width: 100%;
     height: 60vh;
+}
+
+
+
+
+@media screen and (max-width: 768px){
+.Container{
+    display: flex !important;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+}
+.Container h4{
+    text-align: start;
+}
+.Container h1{
+    font-size: larger;
+    font-weight: bold !important;
+    text-align: start;
+}
+.Container h3{
+    font-weight: lighter;
+    text-align: start;
+}
+
+}
+    
+
+.Container  h1{
+    font-weight: bolder;
+}
+
+.Container{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 5%;
+    padding: 5%;
+}
+.aboutme{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
