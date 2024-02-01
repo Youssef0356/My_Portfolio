@@ -40,7 +40,11 @@
     <section>
         <main>
             <div>
-                <video class="animation" loop autoplay muted  src="Videos/0001-0421.mp4">
+                <video class="animation" loop autoplay muted id="myvideo">
+                    <source src="Videos/0001-0421.mp4" type="video/mp4">
+                    Your browser does not support video
+                </video>
+                <script> document.getElementById('myvideo').play();  </script>
             </div>
     </section>
     <div class="Container">
