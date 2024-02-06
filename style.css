@@ -258,7 +258,9 @@ transition: 2s ease-in-out;
     padding-bottom: 5%;
 
 }
-
+.contact:hover {
+    background: rgb(216, 216, 216);
+}
 .Contact div a{
     color: black;
     background-color: white;
@@ -290,6 +292,10 @@ transition: 2s ease-in-out;
 .categories a{
     font-size: 20px;
     padding: 1%;
+}
+.categories a:hover{
+text-decoration: underline pink;
+transition: .5s linear ease-in-out;
 }
 .categories h1{
     font-size: 50px;
