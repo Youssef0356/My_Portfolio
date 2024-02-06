@@ -85,6 +85,23 @@ i {
         width: 100%;
         height: 40vh !important;
     }
+    .info h1{
+        font-size: 2.5vh !important;
+    }
+    .Skills_Container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 1%;
+    
+    
+    }
+    .info{
+        width: 100% !important;
+        margin: 5%;
+    }
 }
 @media screen and (max-width:600px) {
     .topnav.responsive {
@@ -182,7 +199,7 @@ i {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size:cover;
     object-fit: cover;
   }
 #parallax:hover{
@@ -193,4 +210,104 @@ transition: 2s ease-in-out;
     backdrop-filter: blur(16px) saturate(180%);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.125);
+    width: 500px;
+
+}
+.info:hover{
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.Skills_Container{
+    display: flex;
+    text-align: start;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+    
+}
+.info h1{
+    font-size: 4vh;
+    padding: 3%;
+    font-weight: bold ;
+}
+.info p{
+ font-size: 2.1vh;
+ padding: 3%;
+}
+.info a{
+    padding: 3%;
+}
+.Contact{
+    background:#20182B;
+    padding: 5%;
+    margin-top: 10%;
+    display: flex;
+    text-align: start;
+    align-items: start;
+    justify-content: space-between;
+    
+    
+}
+.Contact div h4{
+    font-size: 3vh;
+    font-weight: lighter;
+    padding: 1%;
+}
+.Contact div h1{
+    font-weight: bold;
+    font-size: 5vh;
+    padding-bottom: 5%;
+
+}
+
+.Contact div a{
+    color: black;
+    background-color: white;
+    list-style: none;
+    text-decoration: none;
+    font-size: 2.5vh;
+    padding: 2%;
+    border-radius: 2%;
+}
+.footerContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.footerContainer a{
+    list-style: none;
+    text-decoration: none;
+    color: white;
+}
+.categories{
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.categories a{
+    font-size: 20px;
+    padding: 1%;
+}
+.categories h1{
+    font-size: 50px;
+}
+.copyright{
+    color: gray;
+    font-size: 20px;
+    padding: 5%;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.icons{
+    display: flex;
+    align-self: flex-end;
+    
+}
+.icons a{
+    width: 30px;
 }
