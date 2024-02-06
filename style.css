@@ -56,6 +56,7 @@ i {
 .icon {
     display: none !important;
 
+
 }
 .NavBar .icon:hover {
     background-color: rgba(77, 77, 77, 0.313);
@@ -73,7 +74,7 @@ i {
     .topnav {
         justify-content: center;
         display: flex;
-        gap: 50px;
+        gap: 30px;
     }
     .icon {
         display: block !important;
@@ -87,19 +88,16 @@ i {
 }
 @media screen and (max-width:600px) {
     .topnav.responsive {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        transition: step-start ease-in-out;
+        display: block;
     }
-
     .topnav.responsive .icon {
         position: absolute;
+        
     }
 
     .topnav.responsive .rightgroup {
         display: flex;
-        gap: 20px;
+        flex: 100%;
     }
 }
 .animation{
@@ -175,4 +173,24 @@ i {
 .wordshighlight{
     color: #969CFF;
     font-weight: bold;
+}
+#parallax {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    background-image:url('Images/Introductiontoportfolio.0015.jpeg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+  }
+#parallax:hover{
+transition: 2s ease-in-out;
+}
+
+.info{
+    backdrop-filter: blur(16px) saturate(180%);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
 }
