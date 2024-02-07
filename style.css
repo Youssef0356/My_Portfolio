@@ -332,9 +332,22 @@ transition: .5s linear ease-in-out;
     font-size: 2.5vh;
     width:30%;
 }
+.projectcontainer{
+    display: grid;
+   width: 100%;
+}
 .VideosContainer{
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax("300px",1fr));
-    align-items: center;
+    grid-template-columns: repeat(3,1fr);
+    align-content: center;
     justify-content: center;
+    place-items: center;
+}
+.VideosContainer img{
+    width: 400px;
+    height: 300px;
+    border-radius: 15px;
+    object-fit: cover;
+
+    
 }
