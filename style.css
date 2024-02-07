@@ -372,3 +372,6 @@ transition: .5s linear ease-in-out;
     object-fit: cover;
 
 }
+#footer{
+    background:#20182B;
+}
