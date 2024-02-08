@@ -474,3 +474,33 @@ i {
 #footer {
     background: #20182B;
 }
+
+.Images-Container{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        justify-content: center;
+        place-self: center;
+        padding: 5%;
+        text-align: center;
+}
+.Images-Container div img{
+    width: 100% !important;
+    object-fit: cover;
+    padding: 5%;
+}
+.Images-Container div img:hover{
+    width: 100% !important;
+    filter: brightness(2);
+    border: #969CFF .5px solid;
+    object-fit: cover;
+    padding: 0;
+    transition: 1s linear ease-in-out;
+}
+.Images-Container a {
+    list-style: none;
+    text-decoration: none;
+    color: #969CFF;
+}
+.Images-Container a:hover {
+    text-decoration: underline;
+}
