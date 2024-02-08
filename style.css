@@ -573,4 +573,9 @@ i {
     width:200px;
     height: 50px;
     border-radius: 5px;
+    color: black;
+    font-weight: bold;
+}
+.submit:hover{
+    scale: 1.01;
 }
