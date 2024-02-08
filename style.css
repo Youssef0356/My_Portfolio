@@ -34,9 +34,14 @@ i {
 
     vertical-align: baseline;
 }
-.leftgroup p{
+.leftgroup a{
     font-weight: bold;
     font-size: x-large;
+    list-style: none;
+    text-decoration: none;
+}
+.leftgroup a:hover{
+    text-decoration: underline pink ;
 }
 .leftgroup {
     display: flex;
@@ -173,6 +178,10 @@ i {
         text-align: start;
     }
 
+    .Images-Container{
+        display: grid;
+        grid-template-columns: repeat(2,1fr) !important;
+    }
 }
 
 @media screen and (max-width:600px) {
@@ -260,10 +269,12 @@ i {
 
 .right-container {
     padding-top: 5%;
+    font-size: large !important;
 }
 
 .left-container {
     padding-bottom: 5%;
+    font-size: large !important;
 }
 
 .wordshighlight {
