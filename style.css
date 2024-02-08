@@ -527,3 +527,50 @@ i {
 .Images-Container a:hover {
     text-decoration: underline;
 }
+.contact-container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    padding: 5%;
+    
+}
+.contact-container h1{
+    font-size:7vh;
+    font-weight: bold ; 
+    
+}
+.contact-container h2{
+    font-size: 3vh;
+    width: 70%;
+    font-weight: lighter;
+    padding-top: 3%;
+}
+.contact-container p{
+    color: gray;
+    font-size: 2.5vh;
+    width: 70%;
+    font-weight: lighter;
+    padding-top: 3%;
+}
+.contact-container label{
+    
+    font-size: 3vh;
+    font-weight: lighter;   
+}
+.contact-container input{
+    background-color: #20182B;
+    text-decoration: none;
+    list-style: none;
+    border: 0;
+    width: 600px;
+    height: 50px;
+    padding-left: 1%;
+    color: white;
+    
+}
+.submit{
+    background: white;    
+    border: 0;
+    width:200px;
+    height: 50px;
+    border-radius: 5px;
+}
