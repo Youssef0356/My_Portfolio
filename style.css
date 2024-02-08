@@ -274,7 +274,7 @@ i {
 #parallax {
     position: relative;
     width: 100%;
-    height: 50vh;
+    height: 60vh;
     background-image: url('Images/marhbabik.png');
     background-attachment: fixed;
     background-position: center;
