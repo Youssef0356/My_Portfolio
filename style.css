@@ -83,7 +83,7 @@ i {
     transition: .01s ease-in;
 }
 
-@media screen and (min-width:300px )and (max-width: 700px) {
+@media screen and (min-width:300px )and (max-width: 670px) {
     .topnav .rightgroup {
         display: none;
         padding: 5%;
@@ -113,10 +113,9 @@ i {
     .Skills_Container {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: fit-content;
-        padding: 1%;
+        justify-content: space-around;
+        width: 100%;
+        padding: 3%;
 
 
     }
@@ -184,7 +183,7 @@ i {
     }
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:670px) {
     .topnav.responsive {
         display: block;
     }
@@ -215,6 +214,7 @@ i {
         width: 400px !important;
         height: 250px !important;
     }
+
 }
 @media screen and (min-width: 700px) and (max-width: 1366px) {
     .Container {
@@ -236,6 +236,10 @@ i {
     }
     .titledescription {
         width: 60% !important;
+    }
+    .Skills_Container{
+        font-size: large ;
+        padding: 5% !important;
     }
 }
 
@@ -269,7 +273,7 @@ i {
 
 .right-container {
     padding-top: 5%;
-    font-size: x-large !important;
+    font-size: large !important;
 }
 
 .left-container {
@@ -316,9 +320,13 @@ i {
     align-items: center;
     justify-content: center;
     gap: 5%;
+    font-size: larger !important;
 
 }
+.Skills_Container p{
+    font-size: 2.3vh !important;
 
+}
 .info h1 {
     font-size: 4vh;
     padding: 3%;
@@ -332,6 +340,10 @@ i {
 
 .info a {
     padding: 3%;
+
+}
+.info a:hover{
+    text-decoration: underline rgba(255, 192, 203, 0.624) 2px;
 }
 
 .Contact {
