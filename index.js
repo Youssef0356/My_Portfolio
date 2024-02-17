@@ -41,3 +41,6 @@ function myFunction() {
   sliderm.on('slide.end', () => {
     console.log('The slider is stopped.');
   });
+  function index(){
+    document.getElementById("about").style.animation = "about";
+  }

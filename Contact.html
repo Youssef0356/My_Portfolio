@@ -13,6 +13,11 @@
     <script src="node_modules/sliderm/dist/js/sliderm.js"></script>
     <link rel="stylesheet" href="https://sliderm.com/dist/1.0.8/sliderm.css">
     <script src="https://sliderm.com/dist/1.0.8/sliderm.js"></script>
+<style>
+    footer{
+        animation : scaleup 1s ease-in-out;
+    }
+</style>
 </head>
 
 <body>
@@ -44,7 +49,7 @@
     </section>
     <section>
         <div class="contact-container">
-            <div class="Left-group">
+            <div class="Left-group" id="left">
                 <h1>
                     Get in touch
                 </h1>
@@ -55,18 +60,18 @@
             </div>
             <div class="Right-group">
                 <form action="https://formsubmit.co/nejiyoussef081@gmail.com" method="POST" >
-                    <label for="Name">
+                    <label for="Name" id="home">
                         Name*
                     </label><br><br>
-                    <input type="text" name="name" placeholder="Name..." required><br>
-                    <label for="email"><br>
+                    <input type="text" name="name" placeholder="Name..." required id="right"><br>
+                    <label for="email" id="home"><br>
                         Email address*
                     </label><br><br>
-                    <input type="email" name="mail" placeholder="Email adress..." required><br><br>
-                    <label for="message">Message*</label><br><br>    
-                    <input type="text" placeholder="Enter your message..." name="comment" size="50"><br>
+                    <input type="email" name="mail" placeholder="Email adress..." required id="right"><br><br>
+                    <label for="message" id="home">Message*</label><br><br>    
+                    <input type="text" placeholder="Enter your message..." name="comment" size="50" id="right"><br>
                     <br>
-                    <button type="submit"  class="submit">Send message</button>
+                    <button type="submit"  class="submit" id="home">Send message</button>
                 </form>
             </div>
         </div>

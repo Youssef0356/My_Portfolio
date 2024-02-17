@@ -4,7 +4,11 @@
     box-sizing: border-box;
     /* Added */
 }
-
+html{
+    scroll-behavior: smooth;
+    scroll-padding: 10rem;
+    overflow-x: hidden;
+}
 body {
     background-color: #140C20;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -131,7 +135,9 @@ i {
         place-items: center !important;
         gap: 0;
         padding: 1%;
+
     }
+
     .VideosContainer div{
         padding: 5%;
         
@@ -140,7 +146,7 @@ i {
     .VideosContainer img {
         width: 300px !important;
         height: 200px !important;
-        
+       
     }
 
     .title {
@@ -151,6 +157,7 @@ i {
         font-size: 2.5vh;
         width: 100% !important;
         padding-top: 5%;
+        
     }
 
     .Container {
@@ -251,6 +258,9 @@ i {
         font-size: large ;
         padding: 5% !important;
     }
+    input{
+        width: 90% !important;
+    }
 }
 
 .Container h1 {
@@ -273,6 +283,40 @@ i {
     text-align: start;
 }
 
+
+#left {
+    animation: slideIn 1s ease-in-out both; 
+  }
+#right{
+    animation: slideright 1s ease-in-out both;  
+}
+#home{
+    animation: opacity 2s ease-in-out both;
+}
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
+    }
+  }
+@keyframes slideright {
+    0% {
+      transform: translateX(100%); 
+    }
+    100% {
+      transform: translateX(0); 
+    }
+  }
+@keyframes slideIn {
+    0% {
+      transform: translateX(-100%); 
+    }
+    100% {
+      transform: translateX(0); 
+    }
+  }
 .Greetings {
     list-style: none;
     text-decoration: none;
@@ -290,7 +334,14 @@ i {
     padding-bottom: 5%;
     font-size: large !important;
 }
-
+@keyframes scaleup{
+    0%{
+        transform: scale(0.5);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
 .wordshighlight {
     color: #969CFF;
     font-weight: bold;
@@ -306,8 +357,19 @@ i {
     background-repeat: no-repeat;
     background-size: cover;
     object-fit: cover;
+    animation: entry 2s ease-in-out;
 }
+@keyframes entry{
+    0%{
+        filter: grayscale(2);
+        filter: brightness(0.5);
+    }
+    100%{
+        filter: grayscale(0);
+        filter: brightness(1);
 
+    }
+}
 #parallax:hover {
     transition: 2s ease-in-out;
 }
