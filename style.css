@@ -290,9 +290,7 @@ i {
 #right{
     animation: slideright 1s ease-in-out both;  
 }
-#home{
-    animation: opacity 2s ease-in-out both;
-}
+
 @keyframes opacity {
     0% {
         opacity: 0;
