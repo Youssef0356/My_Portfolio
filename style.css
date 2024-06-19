@@ -16,8 +16,8 @@ body {
 }
 
 .logo {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 
@@ -195,7 +195,11 @@ i {
         display: flex !important;
         flex-direction: column !important;
         align-items: center;
-        flex-wrap: wrap;
+        gap: 1;
+        padding: 0;
+        margin: 0;
+        text-align: center !important;
+        width: 100%;
     }
     
 }
@@ -273,7 +277,9 @@ i {
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 5%;
     padding: 5%;
-    align-self: center;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 .aboutme {
@@ -324,12 +330,11 @@ i {
 }
 
 .right-container {
-    padding-top: 5%;
     font-size: large !important;
 }
 
 .left-container {
-    padding-bottom: 5%;
+    height: 100%;
     font-size: large !important;
 }
 @keyframes scaleup{
@@ -598,9 +603,13 @@ i {
     text-decoration: underline;
 }
 .contact-container{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
+    display: flex;
+
     padding: 5%;
+
+    gap: 2%;
+    align-items: center;
+    justify-content: space-between;
     
 }
 .contact-container h1{
@@ -610,14 +619,12 @@ i {
 }
 .contact-container h2{
     font-size: 3vh;
-    width: 70%;
     font-weight: lighter;
     padding-top: 3%;
 }
 .contact-container p{
     color: gray;
     font-size: 2.5vh;
-    width: 70%;
     font-weight: lighter;
     padding-top: 3%;
 }
