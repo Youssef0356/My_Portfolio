@@ -236,10 +236,11 @@ i {
     }
 
 }
-@media screen and (min-width: 700px) and (max-width: 1366px) {
+@media screen and (min-width: 700px) and (max-width: 1400px) {
     .Container {
         display: flex;
         justify-content: center;
+
     }
 
     .VideosContainer {
@@ -273,7 +274,6 @@ i {
 
 .Container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     padding: 5%;
     align-items: center;
     justify-content: center;
