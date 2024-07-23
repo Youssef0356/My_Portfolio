@@ -1,21 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Websites</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/6234cd1732.js" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
     <link rel="icon" href="Images/Yletter.jpg">
     <link rel="stylesheet" href="node_modules/sliderm/dist/css/sliderm.css">
     <script src="node_modules/sliderm/dist/js/sliderm.js"></script>
     <link rel="stylesheet" href="https://sliderm.com/dist/1.0.8/sliderm.css">
     <script src="https://sliderm.com/dist/1.0.8/sliderm.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    .blurred {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+    
+    .modal-content {
+        background: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        max-width: 80%;
+        max-height: 80vh;
+        overflow: hidden;
+        position: relative;
+        z-index: 1001;
+    }
+    
+    /* Modal Image */
+    .modal-content img {
+        max-width: 100%;
+        max-height: 70vh;
+        object-fit: contain;
+    }
+    
+    /* Arrows */
+    .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+        color: #fff; /* White arrow color */
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        font-size: 24px;
+        z-index: 1002;
+        border-radius: 50%;
+    }
+    
+    .arrow.left {
+        left: 10px;
+    }
+    
+    .arrow.right {
+        right: 10px;
+    }
+    
+    .arrow:focus {
+        outline: none;
+    }
+</style>    
 </head>
-
 <body>
     <section id="header">
         <header>
@@ -36,8 +94,7 @@
                         <a href="Contact.html">Contact</a>
                         |
                         <a href="https://www.instagram.com/youssef_neji0356/"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/youssef-neji-a13604279/"><i
-                                class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.linkedin.com/in/youssef-neji-a13604279/"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
                 </div>
             </nav>
@@ -46,88 +103,101 @@
     <br />
     <section class="flex min-h-screen items-center justify-center p-8">
         <div class="container grid grid-cols-1 gap-8 lg:grid-cols-2">
-            <div
-                class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none gap-8">
-                <div
-                    class="relative bg-clip-border rounded-xl overflow-hidden bg-white text-gray-700 shadow-lg m-0 transition-transform transform hover:scale-105">
-                    <img src="Images/wa3ini.png" alt="Revolutionizing Our Production Process"
-                        class="object-cover w-full h-64 shadow-lg" />
+            <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none gap-8">
+                <div class="relative bg-clip-border rounded-xl overflow-hidden bg-white text-gray-700 shadow-lg m-0 transition-transform transform hover:scale-105 cursor-pointer" onclick="openModal('wa3ini')">
+                    <img src="Images/wa3ini.png" alt="Revolutionizing Our Production Process" class="object-cover w-full h-64" />
                 </div>
                 <div class="p-6 text-center text-white">
-                    <p
-                        class="block antialiased font-sans text-sm font-light leading-normal text-inherit mb-4 !font-semibold">
-                        Educational</p>
-                    <a href="#" class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-white mb-2 normal-case transition-colors hover:text-gray-400">
-                    وعيني    
-                    </a>
-                    <p
-                        class="block antialiased font-sans text-base leading-relaxed text-inherit mb-8 font-normal !text-gray-300">
-                        Made using React - Tailwind Css Front end only  - Responsive</p>
-                   
+                    <p class="block antialiased font-sans text-sm font-light leading-normal text-inherit mb-4 !font-semibold">Educational</p>
+                    <a href="#" class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-white mb-2 normal-case transition-colors hover:text-gray-400">وعيني</a>
+                    <p class="block antialiased font-sans text-base leading-relaxed text-inherit mb-8 font-normal !text-gray-300">Made using React - Tailwind Css Front end only - Responsive</p>
                 </div>
             </div>
-            <div
-                class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none gap-8">
-                <div
-                    class="relative bg-clip-border rounded-xl overflow-hidden bg-white text-gray-700 shadow-lg m-0 transition-transform transform hover:scale-105">
-                    <img src="Images/myportfolio.png" alt="Expanding Our Service Network"
-                        class="object-cover w-full h-64 shadow-lg" />
+            <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none gap-8">
+                <div class="relative bg-clip-border rounded-xl overflow-hidden bg-white text-gray-700 shadow-lg m-0 transition-transform transform hover:scale-105 cursor-pointer" onclick="openModal('myportfolio')">
+                    <img src="Images/myportfolio.png" alt="Expanding Our Service Network" class="object-cover w-full h-64" />
                 </div>
                 <div class="p-6 text-center text-white">
-                    <p
-                        class="block antialiased font-sans text-sm font-light leading-normal text-inherit mb-4 !font-semibold">
-                        Promotional</p>
-                    <a href="#"
-                        class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-white mb-2 normal-case transition-colors hover:text-gray-400">
-                        Personal Portfolio</a>
-                    <p
-                        class="block antialiased font-sans text-base leading-relaxed text-inherit mb-8 font-normal !text-gray-300">
-                        Made using Html Css Js Only - Responsive</p>
-                    
+                    <p class="block antialiased font-sans text-sm font-light leading-normal text-inherit mb-4 !font-semibold">Promotional</p>
+                    <a href="#" class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-white mb-2 normal-case transition-colors hover:text-gray-400">Personal Portfolio</a>
+                    <p class="block antialiased font-sans text-base leading-relaxed text-inherit mb-8 font-normal !text-gray-300">Made using Html Css Js Only - Responsive</p>
                 </div>
             </div>
-            <div
-                class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none gap-8">
-                <div
-                    class="relative bg-clip-border rounded-xl overflow-hidden bg-white text-gray-700 shadow-lg m-0 transition-transform transform hover:scale-105">
-                    <img src="Images/PerfaxisCongé.png" alt="Sustainable Practices for a Greener Future"
-                        class="object-cover w-full h-64 shadow-lg" />
+            <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none gap-8">
+                <div class="relative bg-clip-border rounded-xl overflow-hidden bg-white text-gray-700 shadow-lg m-0 transition-transform transform hover:scale-105 cursor-pointer" onclick="openModal('PerfaxisCongé')">
+                    <img src="Images/PerfaxisCongé.png" alt="Sustainable Practices for a Greener Future" class="object-cover w-full h-64" />
                 </div>
                 <div class="p-6 text-center text-white">
-                    <p
-                        class="block antialiased font-sans text-sm font-light leading-normal text-inherit mb-4 !font-semibold">
-                        Entreprise</p>
-                    <a href="#"
-                        class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-white mb-2 normal-case transition-colors hover:text-gray-400">
-                        Systeme De Congé with auto mailing</a>
-                    <p
-                        class="block antialiased font-sans text-base leading-relaxed text-inherit mb-8 font-normal !text-gray-300">
-                        Asp Dot Net - Tailwind - Sql server</p>
-                    
+                    <p class="block antialiased font-sans text-sm font-light leading-normal text-inherit mb-4 !font-semibold">Entreprise</p>
+                    <a href="#" class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-white mb-2 normal-case transition-colors hover:text-gray-400">Systeme De Congé with auto mailing</a>
+                    <p class="block antialiased font-sans text-base leading-relaxed text-inherit mb-8 font-normal !text-gray-300">Asp Dot Net - Tailwind - Sql server</p>
                 </div>
             </div>
-            <div
-                class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none gap-8">
-                <div
-                    class="relative bg-clip-border rounded-xl overflow-hidden bg-white text-gray-700 shadow-lg m-0 transition-transform transform hover:scale-105">
-                    <img src="Images/myportfoliov2.png" alt="Sustainable Practices for a Greener Future"
-                        class="object-cover w-full h-64 shadow-lg" />
+            <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-none gap-8">
+                <div class="relative bg-clip-border rounded-xl overflow-hidden bg-white text-gray-700 shadow-lg m-0 transition-transform transform hover:scale-105 cursor-pointer" onclick="openModal('myportfoliov2')">
+                    <img src="Images/myportfoliov2.png" alt="My Personal Portfolio v2" class="object-cover w-full h-64" />
                 </div>
                 <div class="p-6 text-center text-white">
-                    <p
-                        class="block antialiased font-sans text-sm font-light leading-normal text-inherit mb-4 !font-semibold">
-                        Promotional</p>
-                    <a href="#"
-                        class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-white mb-2 normal-case transition-colors hover:text-gray-400">
-                    My personal Portfolio v2</a>
-                    <p
-                        class="block antialiased font-sans text-base leading-relaxed text-inherit mb-8 font-normal !text-gray-300">
-                        Made using Html Css Js tailwindcss </p>
-                    
+                    <p class="block antialiased font-sans text-sm font-light leading-normal text-inherit mb-4 !font-semibold">Promotional</p>
+                    <a href="#" class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-white mb-2 normal-case transition-colors hover:text-gray-400">My Personal Portfolio v2</a>
+                    <p class="block antialiased font-sans text-base leading-relaxed text-inherit mb-8 font-normal !text-gray-300">Made using Html Css Js tailwindcss</p>
                 </div>
             </div>
         </div>
     </section>
-</body>
 
+    <!-- Modal -->
+    <div id="modal" class="blurred" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="arrow left" onclick="prevImage()">&#10094;</button>
+            <img id="modal-image" src="" alt="Modal Image">
+            <button class="arrow right" onclick="nextImage()">&#10095;</button>
+        </div>
+    </div>
+</body>
 </html>
+
+<script>
+ const modal = document.getElementById('modal');
+const modalImage = document.getElementById('modal-image');
+const images = {
+    'wa3ini': ['Images/wa3ini/1.png', 'Images/wa3ini/2.png', 'Images/wa3ini/3.png'],
+    'myportfolio': ['Images/Portfoliov1/1.png', 'Images/Portfoliov1/2.png', 'Images/Portfoliov1/3.png'],
+    'PerfaxisCongé': ['Images/Perfaxis/1.png', 'Images/Perfaxis/2.png', 'Images/Perfaxis/3.png','Images/Perfaxis/4.png','Images/Perfaxis/5.png','Images/Perfaxis/6.png','Images/Perfaxis/7.png','Images/Perfaxis/8.png'],
+    'myportfoliov2': ['Images/myportfoliov2-1.png', 'Images/myportfoliov2-2.png', 'Images/myportfoliov2-3.png']
+};
+let currentImageIndex = 0;
+let currentImagesList = [];
+
+function openModal(imageKey) {
+    modal.style.display = 'flex';
+    currentImagesList = images[imageKey];
+    currentImageIndex = 0;
+    updateModalImage();
+}
+
+function closeModal() {
+    modal.style.display = 'none';
+}
+
+function updateModalImage() {
+    if (currentImagesList.length > 0) {
+        modalImage.src = currentImagesList[currentImageIndex];
+    }
+}
+
+function prevImage() {
+    if (currentImagesList.length > 0) {
+        currentImageIndex = (currentImageIndex - 1 + currentImagesList.length) % currentImagesList.length;
+        updateModalImage();
+    }
+}
+
+function nextImage() {
+    if (currentImagesList.length > 0) {
+        currentImageIndex = (currentImageIndex + 1) % currentImagesList.length;
+        updateModalImage();
+    }
+}
+
+</script>
