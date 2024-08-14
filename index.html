@@ -14,38 +14,127 @@
     <link rel="stylesheet" href="https://sliderm.com/dist/1.0.8/sliderm.css">
     <script src="https://sliderm.com/dist/1.0.8/sliderm.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+        integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
 
 <body>
 
-    <section id="header">
-        <header>
-            <nav>
-                <div class="topnav" id="myTopnav">
-                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                        <i class="fas fa-bars"></i>
-                    </a>
-                    <div class="leftgroup">
-                        <a href="index.html#"><img src="Images\Youssefv2.png" class="logo object-cover"></a>
-                        <a href="index.html#">Youssef Neji</a>
-                    </div>
 
-                    <div class="rightgroup">
-                        <a href="Websites.html">Websites</a>
-                        <a href="Projects.html" onclick="index()">Videos</a>
-                        <a href="Images.html">Images</a>
-                        <a href="index.html#aboutme" class="active">About</a>
-                        <a href="Contact.html">Contact</a>
-                        |
-                        <a href="https://www.instagram.com/youssef_neji0356/"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/youssef-neji-a13604279/"><i
-                                class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div>
-            </nav>
-        </header>
-    </section>
+    <style>
+        @media (min-width: 1024px) {
+            .top-navbar {
+                display: inline-flex !important;
+
+            }
+        }
+    </style>
+<nav class="fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full bg-[#181131]">
+    <a href="#" class="p-2 mr-4 inline-flex items-center">
+      <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
+    </a>
+    <button
+      class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
+      data-target="#mobile-navigation">
+      <i class="material-icons">menu</i>
+    </button>
+    <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg" id="desktop-navigation">
+      <a href="index.html" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+        <span>Home</span>
+      </a>
+      <a href="index.html#aboutme" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+        <span>About</span>
+      </a>
+      <a href="Projects.html" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+        <span>Videos</span>
+      </a>
+      <a href="Images.html" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+        <span>Images</span>
+      </a>
+      <a href="Websites.html" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+        <span>Websites</span>
+      </a>
+      <a href="Models.html" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+        <span>3D Models</span>
+      </a>
+      <a href="Contact.html" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+        <span>Contact Us</span>
+      </a>
+     
+      <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="text-sm px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank" class="text-sm px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+    <!-- Mobile menu -->
+    <div class="lg:hidden hidden flex-col items-start w-full text-lg overflow-x-auto whitespace-nowrap bg-[#181131]" id="mobile-navigation">
+      <a href="index.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+        <span>Home</span>
+      </a>
+      <a href="index.html#aboutme" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+        <span>About</span>
+      </a>
+      <a href="Projects.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+        <span>Videos</span>
+      </a>
+      <a href="Images.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+        <span>Images</span>
+      </a>
+      <a href="Websites.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+        <span>Websites</span>
+      </a>
+      <a href="Models.html"
+      class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+      <span>3D Models</span>
+  </a>
+      <a href="Contact.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+        <span>Contact Us</span>
+      </a>
+      <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="text-sm px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank" class="text-sm px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+  </nav>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggler = document.querySelector('.nav-toggler');
+      const mobileNavigation = document.querySelector('#mobile-navigation');
+  
+      navToggler.addEventListener('click', function() {
+        mobileNavigation.classList.toggle('hidden');
+      });
+    });
+  </script>
+  
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $(".nav-toggler").each(function (_, navToggler) {
+                var target = $(navToggler).data("target");
+                $(navToggler).on("click", function () {
+                    $(target).animate({
+                        height: "toggle"
+                    });
+                });
+            });
+        });
+
+    </script>
     <section>
         <main>
             <div>
@@ -75,7 +164,7 @@
             </h4>
             <br>
             <br>
-            <div class="aboutme">
+            <div class="aboutme" id="aboutme">
                 <div>
                     I am a <i class="wordshighlight">third-year Bachelor’s student at ISIMS</i>, passionate about
                     technology and innovation. My journey
@@ -102,95 +191,135 @@
             </div>
         </div>
     </div>
-    <section>
-        <div class="Skills_Container" id="home">
-            <div class="info">
-                <h1>
-                    3D experiences
-                </h1>
-                <p>
-                    A selection of side_projects exploring real-time 3D animations,3d models.
+    <section class="text-white py-16 services">
+        <div class="Skills_Container flex flex-col md:flex-row justify-center items-center gap-6 px-6">
+            <div class="info h-64 p-8  bg-opacity-90 rounded-xl text-center transform transition duration-500 hover:scale-105 hover:border-2 hover:border-indigo-700 hover:shadow-lg"
+                style="background-color: #181131;">
+                <h1 class="text-2xl md:text-3xl font-extrabold mb-4">3D Experiences</h1>
+                <p class="text-base md:text-lg mb-6">
+                    Explore a collection of side projects that showcase real-time 3D animations and intricate 3D models.
                 </p>
-                <a href="Projects.html" class="Greetings">View projects</a>
+                <a href="Projects.html"
+                    class="Greetings text-indigo-400 font-bold hover:underline hover:text-pink-400 transition duration-300">View
+                    Projects</a>
             </div>
-            <div class="info">
-                <h1>
-                    Pictures
-                </h1>
-                <p>
-                    Highlights from some of my creations manipulating images around the photoshop environment .
+            <div class="info h-64 p-8  bg-opacity-90 rounded-xl text-center transform transition duration-500 hover:scale-105 hover:border-2 hover:border-indigo-700 hover:shadow-lg"
+                style="background-color: #181131;">
+                <h1 class="text-2xl md:text-3xl font-extrabold mb-4">Photo Manipulation</h1>
+                <p class="text-base md:text-lg mb-6">
+                    Discover a curated gallery of my work, featuring creative image manipulations and stunning visuals
+                    crafted within Photoshop.
                 </p>
-                <a href="Images.html#" class="Greetings">Visit gallery</a>
+                <a href="Images.html"
+                    class="Greetings text-indigo-400 font-bold hover:underline hover:text-pink-400 transition duration-300">View
+                    Gallery</a>
+            </div>
+            <div class="info h-64 p-8 bg-opacity-90 rounded-xl text-center transform transition duration-500 hover:scale-105 hover:border-2 hover:border-indigo-700 hover:shadow-lg"
+                style="background-color: #181131;">
+                <h1 class="text-2xl md:text-3xl font-extrabold mb-4">Web Design</h1>
+                <p class="text-base md:text-lg mb-6">
+                    Explore a showcase of my web design projects, highlighting innovative layouts and responsive
+                    designs.
+                </p>
+                <a href="Websites.html"
+                    class="Greetings text-indigo-400 font-bold hover:underline hover:text-pink-400 transition duration-300">View
+                    Gallery</a>
             </div>
         </div>
     </section>
-    <section class="Contact" id="contact">
-        <div>
-            <h4>
-                Fancy a chat?
-            </h4>
-            <h1>
-                Let's talk about your product
-            </h1>
-            <a href="Contact.html" class="contact">Get in touch</a>
+
+
+    <section class="text-center flex justify-center items-center h-64 px-10 sm:px-16  ms:justify-center" id="contact"
+        style="background-color: #181131;">
+        <div class="flex flex-col text-center   gap-4">
+            <div class="mb-2 ">
+                <p class="text-gray-300 text-lg text-2xl">
+                    Fancy a chat?
+                </p>
+            </div>
+            <div class="mb-4">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-white">
+                    Let's talk about your product
+                </h1>
+            </div>
+            <div>
+                <a href="Contact.html"
+                    class="px-6 py-2 bg-gray-300 text-gray-900 font-semibold rounded text-2xl hover:bg-gray-400 transition">
+                    Get in touch
+                </a>
+            </div>
         </div>
     </section>
+
     <section class="footer">
         <footer class="bg-indigo-1000 ">
             <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8  ">
                 <div class="md:flex md:justify-between">
-                  <div class="mb-6 md:mb-0">
-                      <a href="index.html" class="flex items-center">
-                          <span class="self-center  font-semibold whitespace-nowrap text-white text-4xl">Portfolio</span>
-                      </a>
-                  </div>
-                  <div class="grid grid-cols-2 gap-10 sm:gap-6 sm:grid-cols-2 ">
-                      <div>
-                          <h2 class="mb-6  font-semibold  uppercase text-white text-2xl">My Carrer</h2>
-                          <ul class="text-gray-500 text-gray-400 font-medium">
-                              <li class="mb-4">
-                                  <a href="Images/CV_for_web_Youssef_neji.pdf" download="Images\CV_for_web_Youssef_neji.pdf" class="hover:underline text-xl">Download CV</a>
-                              </li>
-                          </ul>
-                      </div>
-                      <div>
-                          <h2 class="mb-6  font-semibold  uppercase text-white text-2xl">Follow me</h2>
-                          <ul class="text-gray-500 text-gray-400 font-medium">
-                              <li class="mb-4">
-                                  <a href="https://github.com/Youssef0356" class="hover:underline text-xl">Github</a>
-                              </li>
-                              <li>
-                                  <a href="https://www.linkedin.com/in/youssef-neji-a13604279/"  class="hover:underline text-xl">Linkedin</a>
-                              </li>
-                          </ul>
-                      </div>
-                      
-                  </div>
-              </div>
-              <hr class="my-6 border-gray-200 sm:mx-auto border-gray-700 lg:my-8"  />
-              <div class="sm:flex sm:items-center sm:justify-between">
-                  <span class="text-sm text-gray-500 sm:text-center text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Youssef Neji™</a>. All Rights Reserved.
-                  </span>
-                  <div class="flex mt-4 sm:justify-center sm:mt-0">
-                      <a href="https://www.facebook.com/youssef.dragonboll/" class="text-gray-500 hover:text-gray-900 hover:text-white">
-                          <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
-                                <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
+                    <div class="mb-6 md:mb-0">
+                        <a href="index.html" class="flex items-center">
+                            <span
+                                class="self-center  font-semibold whitespace-nowrap text-white text-4xl">Portfolio</span>
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 gap-10 sm:gap-6 sm:grid-cols-2 ">
+                        <div>
+                            <h2 class="mb-6  font-semibold  uppercase text-white text-2xl">My Carrer</h2>
+                            <ul class="text-gray-500 text-gray-400 font-medium">
+                                <li class="mb-4">
+                                    <a href="Images/CV_for_web_Youssef_neji.pdf"
+                                        download="Images\CV_for_web_Youssef_neji.pdf"
+                                        class="hover:underline text-xl">Download CV</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h2 class="mb-6  font-semibold  uppercase text-white text-2xl">Follow me</h2>
+                            <ul class="text-gray-500 text-gray-400 font-medium">
+                                <li class="mb-4">
+                                    <a href="https://github.com/Youssef0356" class="hover:underline text-xl">Github</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.linkedin.com/in/youssef-neji-a13604279/"
+                                        class="hover:underline text-xl">Linkedin</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <hr class="my-6 border-gray-200 sm:mx-auto border-gray-700 lg:my-8" />
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <span class="text-sm text-gray-500 sm:text-center text-gray-400">© 2023 <a
+                            href="https://flowbite.com/" class="hover:underline">Youssef Neji™</a>. All Rights Reserved.
+                    </span>
+                    <div class="flex mt-4 sm:justify-center sm:mt-0">
+                        <a href="https://www.facebook.com/youssef.dragonboll/"
+                            class="text-gray-500 hover:text-gray-900 hover:text-white">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 8 19">
+                                <path fill-rule="evenodd"
+                                    d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                                    clip-rule="evenodd" />
                             </svg>
-                          <span class="sr-only">Facebook page</span>
-                      </a>
-                      
-                      
-                      <a href="https://github.com/Youssef0356" class="text-gray-500 hover:text-gray-900 hover:text-white ms-5">
-                          <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z" clip-rule="evenodd"/>
-                          </svg>
-                          <span class="sr-only">GitHub account</span>
-                      </a>
-                     
-                  </div>
-              </div>
+                            <span class="sr-only">Facebook page</span>
+                        </a>
+
+
+                        <a href="https://github.com/Youssef0356"
+                            class="text-gray-500 hover:text-gray-900 hover:text-white ms-5">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="sr-only">GitHub account</span>
+                        </a>
+
+                    </div>
+                </div>
             </div>
-          </footer>
+        </footer>
     </section>
     </main>
 </body>

@@ -110,23 +110,9 @@ i {
         height: 40vh !important;
     }
 
-    .info h1 {
-        font-size: 2.5vh !important;
-    }
-
-    .Skills_Container {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        padding: 3%;
 
 
-    }
-
-    .info {
-        width: 100% !important;
-        margin: 5%;
-    }
+    
 
     .VideosContainer {
         display: grid !important;
@@ -183,23 +169,11 @@ i {
         text-align: start;
     }
 
-    .Images-Container{
-        display: grid;
-        grid-template-columns: repeat(2,1fr) !important;
-    }
+
     input{
         width: 100% !important;
     }
-    .contact-container{
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center;
-        gap: 1;
-        padding: 0;
-        margin: 0;
-        text-align: center !important;
-        width: 100%;
-    }
+
     
 }
 
@@ -257,16 +231,14 @@ i {
     .titledescription {
         width: 60% !important;
     }
-    .Skills_Container{
-        font-size: large ;
-        padding: 5% !important;
-        align-items:normal !important;
-    }
+
     input{
         width: 90% !important;
     }
 }
-
+.services{
+    background-color: #140C20;
+}
 .Container h1 {
     font-weight: bolder;
     font-size: 40px;
@@ -319,13 +291,7 @@ i {
       transform: translateX(0); 
     }
   }
-.Greetings {
-    list-style: none;
-    text-decoration: none;
-    color: #969CFF;
-    font-weight: bold;
-    float: left;
-}
+
 
 .right-container {
     font-size: large !important;
@@ -390,62 +356,12 @@ i {
     transition: 2s ease-in-out;
 }
 
-.info {
-    backdrop-filter: blur(16px) saturate(180%);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
-    width: 500px;
-
-}
-
-.info:hover {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.Skills_Container {
-    display: flex;
-    text-align: start;
-    justify-content: center;
-    width: 100%;
-    gap: 3%;
-    font-size: larger !important;
-    align-items: center;
-
-}
-.Skills_Container p{
-    font-size: 2.3vh !important;
-
-}
-.info h1 {
-    font-size: 4vh;
-    padding: 3%;
-    font-weight: bold;
-}
-
-.info p {
-    font-size: 2.1vh;
-    padding: 3%;
-}
-
-.info a {
-    padding: 3%;
-
-}
-.info a:hover{
-    text-decoration: underline rgba(255, 192, 203, 0.624) 2px;
-}
-
-.Contact {
-    background: #20182B;
-    padding: 5%;
-    margin-top: 10%;
-    display: flex;
-    text-align: start;
-    align-items: start;
-    justify-content: space-between;
 
 
-}
+
+
+
+
 
 .Contact div h4 {
     font-size: 3vh;
@@ -587,35 +503,9 @@ i {
     background: #20182B;
 }
 
-.Images-Container{
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        justify-content: center;
-        place-self: center;
-        padding: 5%;
-        text-align: center;
-}
-.Images-Container div img{
-    width: 100% !important;
-    object-fit: cover;
-    padding: 5%;
-}
-.Images-Container div img:hover{
-    width: 100% !important;
-    filter: brightness(2);
-    border: #969CFF .5px solid;
-    object-fit: cover;
-    padding: 0;
-    transition: 1s linear ease-in-out;
-}
-.Images-Container a {
-    list-style: none;
-    text-decoration: none;
-    color: #969CFF;
-}
-.Images-Container a:hover {
-    text-decoration: underline;
-}
+
+
+
 .contact-container{
     display: flex;
 
