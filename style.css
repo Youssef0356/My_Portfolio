@@ -29,7 +29,12 @@ body {
 i {
     color: white;
 }
+#myVideo{
+    width:100%;
+    height: screen;
+    z-index: -1;
 
+}
 .topnav {
     display: flex;
     justify-content: space-between;
