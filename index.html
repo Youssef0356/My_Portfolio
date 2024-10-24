@@ -20,12 +20,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <script src="index.js"></script>
 </head>
 
 <body>
-
-
     <style>
         @media (min-width: 1024px) {
             .top-navbar {
@@ -33,90 +31,170 @@
 
             }
         }
+
+        @keyframes scaleIn {
+            0% {
+                opacity: 0;
+                transform: opacity(0.5);
+            }
+
+            100% {
+                opacity: 1;
+                transform: opacity(1);
+            }
+        }
+
+        #animated-text {
+            color: #ffffff;
+            /* Base text color */
+            animation: glow 1.5s infinite alternate;
+            /* Animation for glowing effect */
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow:
+                    0 0 3px #ffffff,
+                    0 0 5px #ffffff,
+                    0 0 10px #969CFF;
+                color: #ffffff;
+                /* Base color */
+            }
+
+            100% {
+                text-shadow:
+                    0 0 5px #969CFF,
+                    0 0 10px #969CFF;
+                color: #ffffff;
+            }
+        }
+
+        .scale-in {
+            animation: scaleIn 1s ease forwards;
+        }
+
+        .Greetings {
+            display: inline-block;
+            /* Ensure the animation works */
+            animation: shake 1.5s infinite;
+            /* Animation for shaking effect */
+            animation-delay: 2s;
+            /* Small delay before starting the animation */
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                /* Start and end position */
+            }
+
+            10% {
+                transform: translateY(-5px);
+                /* Move up */
+            }
+
+            20% {
+                transform: translateY(5px);
+                /* Move down */
+            }
+
+            30% {
+                transform: translateY(-3px);
+                /* Move up again */
+            }
+
+            40% {
+                transform: translateY(3px);
+                /* Move down again */
+            }
+        }
     </style>
-<nav class="fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full bg-[#181131]">
-    <a href="#" class="p-2 mr-4 inline-flex items-center">
-      <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
-    </a>
-    <button
-      class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
-      data-target="#mobile-navigation">
-      <i class="material-icons">menu</i>
-    </button>
-    <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg" id="desktop-navigation">
-      <a href="index.html" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-        <span>Home</span>
-      </a>
-      <a href="index.html#aboutme" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-        <span>About</span>
-      </a>
-      <a href="Projects.html" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-        <span>Videos</span>
-      </a>
-      <a href="Images.html" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-        <span>Images</span>
-      </a>
-      <a href="Websites.html" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-        <span>Websites</span>
-      </a>
-      <a href="Models.html" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-        <span>3D Models</span>
-      </a>
-      <a href="Contact.html" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-        <span>Contact Us</span>
-      </a>
-     
-      <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="text-sm px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank" class="text-sm px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </div>
-    <!-- Mobile menu -->
-    <div class="lg:hidden hidden flex-col items-start w-full text-lg overflow-x-auto whitespace-nowrap bg-[#181131]" id="mobile-navigation">
-      <a href="index.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-        <span>Home</span>
-      </a>
-      <a href="index.html#aboutme" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-        <span>About</span>
-      </a>
-      <a href="Projects.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-        <span>Videos</span>
-      </a>
-      <a href="Images.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-        <span>Images</span>
-      </a>
-      <a href="Websites.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-        <span>Websites</span>
-      </a>
-      <a href="Models.html"
-      class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-      <span>3D Models</span>
-  </a>
-      <a href="Contact.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-        <span>Contact Us</span>
-      </a>
-      <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="text-sm px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank" class="text-sm px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </div>
-  </nav>
-  
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const navToggler = document.querySelector('.nav-toggler');
-      const mobileNavigation = document.querySelector('#mobile-navigation');
-  
-      navToggler.addEventListener('click', function() {
-        mobileNavigation.classList.toggle('hidden');
-      });
-    });
-  </script>
-  
+    <nav class="fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full bg-[#181131]">
+        <a href="#" class="p-2 mr-4 inline-flex items-center">
+            <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
+        </a>
+        <button
+            class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
+            data-target="#mobile-navigation">
+            <i class="material-icons">menu</i>
+        </button>
+        <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg"
+            id="desktop-navigation">
+            <a href="index.html"
+                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <span>Home</span>
+            </a>
+            <a href="index.html#aboutme"
+                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <span>About</span>
+            </a>
+            <a href="Projects.html"
+                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <span>Videos</span>
+            </a>
+            <a href="Images.html"
+                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <span>Images</span>
+            </a>
+
+            <a href="Contact.html"
+                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <span>Contact Us</span>
+            </a>
+
+            <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
+                class="text-sm px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
+                class="text-sm px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+        <!-- Mobile menu -->
+        <div class="lg:hidden hidden flex-col items-start w-full text-lg overflow-x-auto whitespace-nowrap bg-[#181131]"
+            id="mobile-navigation">
+            <a href="index.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <span>Home</span>
+            </a>
+            <a href="index.html#aboutme" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <span>About</span>
+            </a>
+            <a href="Projects.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <span>Videos</span>
+            </a>
+            <a href="Images.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <span>Images</span>
+            </a>
+
+
+            <a href="Contact.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <span>Contact Us</span>
+            </a>
+            <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
+                class="text-sm px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
+                class="text-sm px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navToggler = document.querySelector('.nav-toggler');
+            const mobileNavigation = document.querySelector('#mobile-navigation');
+
+            navToggler.addEventListener('click', function () {
+                mobileNavigation.classList.toggle('hidden');
+            });
+        });
+    </script>
+
 
 
 
@@ -135,26 +213,26 @@
         });
 
     </script>
-    <section>
+    <section class="scale-in initial">
         <main>
             <div>
                 <div id="parallax">
-
+                   
                 </div>
             </div>
     </section>
-    <div class="Container lg:grid-cols-3">
+    <div class="Container lg:grid-cols-3 scale-in initial">
         <div class="left-container" id="left">
             <h4 style="color: gray;">HOWDY</h4>
             <br>
             <br>
-            <h1>I'm a Developer with a passion for 3D and Game Development.</h1>
+            <h1 id="animated-text">I'm a Developer with a passion for 3D and Game Development.</h1>
             <br>
             <br>
             <h3>I love working with dedicated teams to nurture great ideas into beautiful , functional , profitable
                 digital products.</h3>
             <br>
-            <a href="#contact" class="Greetings">Say hello!</a>
+            <a href="#contact" class="Greetings text-xl wordshighlight">Say hello!</a>
         </div>
         <br>
         <br>
@@ -166,32 +244,31 @@
             <br>
             <div class="aboutme" id="aboutme">
                 <div>
-                    I am a <i class="wordshighlight">third-year Bachelor’s student at ISIMS</i>, passionate about
-                    technology and innovation. My journey
-                    into game development began during a summer break, resulting in the release of two successful games.
-                    To
-                    broaden my knowledge, I enrolled in a Big Data program at my faculty.
+                    I am a third-year Bachelor’s student at ISIMS, pursuing a degree in technology and innovation.
+                    Alongside my studies, I work as a freelance <i class="wordshighlight">3D modeler</i> and <i
+                        class="wordshighlight">animator</i>, collaborating with a diverse range of clients, including
+                    companies, educators, and students. My expertise encompasses <i class="wordshighlight">3D
+                        animation</i>, <i class="wordshighlight">video editing</i>, <i class="wordshighlight">augmented
+                        reality development</i>, and <i class="wordshighlight">image editing</i>. I have a proven track
+                    record of creating impactful 3D animations for event marketing and providing high-quality video
+                    editing services.
                 </div>
-                As an active member of the tech community, I contributed to the Google Students Club at ISIMS as a game
-                developer and later led the game development team. I organized three events with the Google Developer
-                Students Club and Google Developer Group, fostering collaboration and innovation.
                 <div>
-                    I work as a freelance <i class="wordshighlight">3D modeler</i> and <i
-                        class="wordshighlight">animator</i>, assisting students with their end-of-year projects. My
-                    skills include <i class="wordshighlight">web development (React, Tailwind for frontend, .NET for
-                        backend)</i>, <i class="wordshighlight">video editing</i>,
-                    <i class="wordshighlight">augmented reality development</i>, and <i class="wordshighlight">image
-                        editing</i>. I have also created a detailed 3D model of my faculty,
-                    leading to a part-time role at a startup where I crafted 3D animations for event marketing.
+                    Currently, I am a member of the <i class="wordshighlight">Virtual Exhibition Space for Technical
+                        Historical Objects</i>, collaborating with institutions such as ISIMS, HKA Germany, University
+                    Malaysia Pahang, and GUTECH. This project allows me to contribute to the preservation and
+                    presentation of historical artifacts through innovative digital solutions.
                 </div>
-                One notable project was developing a tournament game, demonstrating my ability to create interactive and
-                engaging experiences. My dedication to both technical and creative aspects has allowed me to excel in
-                various roles, from game development to 3D modeling and animation. I am excited about the endless
-                possibilities in technology and eager to continue contributing to its advancement.
+                <div>
+                    I am dedicated to delivering engaging content that helps clients bring their ideas to life through
+                    cutting-edge design and animation techniques. My focus on quality and creativity drives my work,
+                    allowing me to excel in various aspects of visual storytelling and design.
+                </div>
             </div>
         </div>
     </div>
-    <section class="text-white py-16 services">
+    </div>
+    <section class="text-white py-16 services scale-in initial">
         <div class="Skills_Container flex flex-col md:flex-row justify-center items-center gap-6 px-6">
             <div class="info h-64 p-8  bg-opacity-90 rounded-xl text-center transform transition duration-500 hover:scale-105 hover:border-2 hover:border-indigo-700 hover:shadow-lg"
                 style="background-color: #181131;">
@@ -200,7 +277,7 @@
                     Explore a collection of side projects that showcase real-time 3D animations and intricate 3D models.
                 </p>
                 <a href="Projects.html"
-                    class="Greetings text-indigo-400 font-bold hover:underline hover:text-pink-400 transition duration-300">View
+                    class=" text-indigo-400 font-bold hover:underline hover:text-pink-400 transition duration-300">View
                     Projects</a>
             </div>
             <div class="info h-64 p-8  bg-opacity-90 rounded-xl text-center transform transition duration-500 hover:scale-105 hover:border-2 hover:border-indigo-700 hover:shadow-lg"
@@ -211,7 +288,7 @@
                     crafted within Photoshop.
                 </p>
                 <a href="Images.html"
-                    class="Greetings text-indigo-400 font-bold hover:underline hover:text-pink-400 transition duration-300">View
+                    class=" text-indigo-400 font-bold hover:underline hover:text-pink-400 transition duration-300">View
                     Gallery</a>
             </div>
             <div class="info h-64 p-8 bg-opacity-90 rounded-xl text-center transform transition duration-500 hover:scale-105 hover:border-2 hover:border-indigo-700 hover:shadow-lg"
@@ -222,15 +299,16 @@
                     designs.
                 </p>
                 <a href="Websites.html"
-                    class="Greetings text-indigo-400 font-bold hover:underline hover:text-pink-400 transition duration-300">View
+                    class=" text-indigo-400 font-bold hover:underline hover:text-pink-400 transition duration-300">View
                     Gallery</a>
             </div>
         </div>
     </section>
 
 
-    <section class="text-center flex justify-center items-center h-64 px-10 sm:px-16  ms:justify-center" id="contact"
-        style="background-color: #181131;">
+    <section
+        class="text-center flex justify-center items-center h-64 px-10 sm:px-16  ms:justify-center scale-in initial"
+        id="contact" style="background-color: #181131;">
         <div class="flex flex-col text-center   gap-4">
             <div class="mb-2 ">
                 <p class="text-gray-300 text-lg text-2xl">
@@ -250,49 +328,53 @@
             </div>
         </div>
     </section>
-
-    <section class="footer">
-        <footer class="bg-indigo-1000 ">
-            <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8  ">
+    <section class="footer px-4 md:px-16 scale-in initial"> <!-- Changed padding for smaller screens -->
+        <footer class="bg-indigo-1000 w-full">
+            <div class="mx-auto w-full p-4 lg:p-6">
                 <div class="md:flex md:justify-between">
-                    <div class="mb-6 md:mb-0">
+                    <div class="mb-4 md:mb-0">
                         <a href="index.html" class="flex items-center">
                             <span
-                                class="self-center  font-semibold whitespace-nowrap text-white text-4xl">Portfolio</span>
+                                class="self-center font-semibold whitespace-nowrap text-white text-3xl md:text-4xl">Portfolio</span>
+                            <!-- Adjusted font size -->
                         </a>
                     </div>
-                    <div class="grid grid-cols-2 gap-10 sm:gap-6 sm:grid-cols-2 ">
+                    <div class="grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-2">
+                        <!-- Reduced gap for smaller screens -->
                         <div>
-                            <h2 class="mb-6  font-semibold  uppercase text-white text-2xl">My Carrer</h2>
-                            <ul class="text-gray-500 text-gray-400 font-medium">
-                                <li class="mb-4">
-                                    <a href="Images\CV version 8_16_2024.pdf"
-                                        download="Images\CV version 8_16_2024.pdf"
-                                        class="hover:underline text-xl">Download CV</a>
+                            <h2 class="mb-2 font-semibold uppercase text-white text-xl md:text-2xl">My Career</h2>
+                            <!-- Adjusted font size -->
+                            <ul class="text-gray-400 font-medium">
+                                <li class="mb-1">
+                                    <a href="Images/CV version 8_16_2024.pdf" download="Images/CV version 8_16_2024.pdf"
+                                        class="hover:underline text-lg md:text-xl">Download CV</a>
+                                    <!-- Adjusted font size -->
                                 </li>
                             </ul>
                         </div>
                         <div>
-                            <h2 class="mb-6  font-semibold  uppercase text-white text-2xl">Follow me</h2>
-                            <ul class="text-gray-500 text-gray-400 font-medium">
-                                <li class="mb-4">
-                                    <a href="https://github.com/Youssef0356" class="hover:underline text-xl">Github</a>
+                            <h2 class="mb-2 font-semibold uppercase text-white text-xl md:text-2xl">Follow me</h2>
+                            <!-- Adjusted font size -->
+                            <ul class="text-gray-400 font-medium">
+                                <li class="mb-1">
+                                    <a href="https://github.com/Youssef0356"
+                                        class="hover:underline text-lg md:text-xl">Github</a>
+                                    <!-- Adjusted font size -->
                                 </li>
                                 <li>
                                     <a href="https://www.linkedin.com/in/youssef-neji-a13604279/"
-                                        class="hover:underline text-xl">Linkedin</a>
+                                        class="hover:underline text-lg md:text-xl">LinkedIn</a>
+                                    <!-- Adjusted font size -->
                                 </li>
                             </ul>
                         </div>
-
                     </div>
                 </div>
-                <hr class="my-6 border-gray-200 sm:mx-auto border-gray-700 lg:my-8" />
+                <hr class="my-4 border-gray-200 sm:mx-auto border-gray-700 lg:my-4" />
                 <div class="sm:flex sm:items-center sm:justify-between">
-                    <span class="text-sm text-gray-500 sm:text-center text-gray-400">© 2023 <a
-                            href="https://flowbite.com/" class="hover:underline">Youssef Neji™</a>. All Rights Reserved.
-                    </span>
-                    <div class="flex mt-4 sm:justify-center sm:mt-0">
+                    <span class="text-sm text-gray-400 sm:text-center">© 2023 <a href="https://flowbite.com/"
+                            class="hover:underline">Youssef Neji™</a>. All Rights Reserved.</span>
+                    <div class="flex mt-2 sm:justify-center sm:mt-0">
                         <a href="https://www.facebook.com/youssef.dragonboll/"
                             class="text-gray-500 hover:text-gray-900 hover:text-white">
                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -304,9 +386,8 @@
                             <span class="sr-only">Facebook page</span>
                         </a>
 
-
                         <a href="https://github.com/Youssef0356"
-                            class="text-gray-500 hover:text-gray-900 hover:text-white ms-5">
+                            class="text-gray-500 hover:text-gray-900 hover:text-white ms-4">
                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd"
@@ -315,12 +396,12 @@
                             </svg>
                             <span class="sr-only">GitHub account</span>
                         </a>
-
                     </div>
                 </div>
             </div>
         </footer>
     </section>
+
     </main>
 </body>
 
