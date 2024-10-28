@@ -21,24 +21,23 @@ document.addEventListener("DOMContentLoaded", function () {
       observer.observe(image);
     });
   });
-  const text = "I'm a Developer with a passion for 3D and Game Development.";
-const animatedTextElement = document.getElementById('animated-text');
+  document.addEventListener('DOMContentLoaded', function () {
+    const categoryFilter = document.getElementById('categoryFilter');
+    const projectGrid = document.getElementById('projectGrid');
+    const projects = projectGrid.children;
 
-let index = 0;
+    categoryFilter.addEventListener('change', function () {
+        const selectedCategory = this.value;
 
-function typeText() {
-  if (index < text.length) {
-    animatedTextElement.textContent += text.charAt(index);
-    index++;
-    setTimeout(typeText, 100); // Adjust the speed here (in milliseconds)
-  } else {
-    setTimeout(() => {
-      // Clear the text after finishing typing
-      animatedTextElement.textContent = '';
-      index = 0;
-      typeText(); // Restart typing
-    }, 2000); // Time to wait before restarting
-  }
-}
+        for (let i = 0; i < projects.length; i++) {
+            const project = projects[i];
+            const projectCategory = project.getAttribute('data-category');
 
-typeText();
+            if (selectedCategory === 'all' || projectCategory === selectedCategory) {
+                project.style.display = 'flex'; 
+            } else {
+                project.style.display = 'none'; 
+            }
+        }
+    });
+});

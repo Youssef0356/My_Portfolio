@@ -8,10 +8,6 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/6234cd1732.js" crossorigin="anonymous"></script>
   <link rel="icon" href="Images\Yletter.jpg">
-  <link rel="stylesheet" href="node_modules/sliderm/dist/css/sliderm.css">
-  <script src="node_modules/sliderm/dist/js/sliderm.js"></script>
-  <link rel="stylesheet" href="https://sliderm.com/dist/1.0.8/sliderm.css">
-  <script src="https://sliderm.com/dist/1.0.8/sliderm.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -36,8 +32,27 @@
   animation: scaleIn 0.5s ease forwards; 
 }
 
-
-
+.filter-container {
+            background-color: #201743;
+            color: #FFFFFF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            font-size: 1.125rem; /* Makes both icon and select a bit larger */
+        }
+        .filter-icon {
+            color: #C4B5FD;
+            margin-right: 8px;
+        }
+        .category-select {
+            background-color: #201743;
+            color: #FFFFFF;
+            border: none;
+            outline: none;
+            font-size: inherit;
+            cursor: pointer;
+        }
   </style>
 </head>
 
@@ -132,8 +147,25 @@
         <p class="titledescription">
           A selection of projects exploring 3D animations Video Editings and magnificent Games.
         </p>
-        <div class="grid grid-cols-1 gap-7 mt-8 md:mt-16 md:grid-cols-2">
-          <div class="lg:flex scale-in initial">
+        <div class="py-8 flex items-center justify-start">
+          <div class="filter-container shadow-md">
+              <i class="fas fa-filter filter-icon"></i>
+              <select id="categoryFilter" class="category-select pl-2 pr-8 rounded-md">
+                  <option value="all">All Categories</option>
+                  <option value="architecture">Architecture</option>
+                  <option value="game-development">Game Development</option>
+                  <option value="vfx">VFX</option>
+                  <option value="videoediting">Video Editing</option>
+                  <option value="animation">Animation</option>
+                  <option value="horror">Horror</option>
+                  <option value="other">Other</option>
+
+              </select>
+          </div>
+      </div>
+        
+        <div id="projectGrid" class="grid grid-cols-1 gap-7 mt-8 md:mt-16 md:grid-cols-2">
+          <div class="lg:flex scale-in initial" data-category="horror">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64 " src="Images\Isims Monster.jpg"  alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -146,7 +178,7 @@
             </div>
           </div>
 
-          <div class="lg:flex scale-in initial ">
+          <div class="lg:flex scale-in initial " data-category="architecture">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64 " src="Images\IsimsProject.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -159,7 +191,7 @@
             </div>
           </div>
 
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="architecture">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\IsimsProjectDayv1.jpg"  alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -172,7 +204,7 @@
             </div>
           </div>
 
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="architecture">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/vlcsnap-2024-02-08-23h50m07s299.png" 
               alt="">
 
@@ -186,7 +218,7 @@
             </div>
           </div>
 
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="architecture">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\Screenshot 2024-10-04 202155.jpg" 
               alt="">
 
@@ -199,7 +231,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 08 October 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="vfx">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-10-24-19h12m45s421.jpg"
               alt="">
 
@@ -212,7 +244,7 @@
               <span class="text-sm text-gray-300">On: 24 October 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="animation">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-10-22-20h15m17s965.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -224,7 +256,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 19 August 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="other">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\Ar.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -236,7 +268,7 @@
               <span class="text-sm text-gray-300">On: 10 October 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="animation">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\ArtiDev2.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -248,7 +280,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 19 August 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="vfx">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\0163.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -260,7 +292,7 @@
               <span class="text-sm text-gray-300">On: 22 October 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="vfx">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vfx.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -272,7 +304,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 14 February 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="animation">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-04-20-00h02m38s666.png"
               alt="">
 
@@ -285,7 +317,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 April 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="vfx">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\PoseidonFootagePicture.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -297,7 +329,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 26 April 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="vfx">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-04-19-23h59m17s372.png"
               alt="">
 
@@ -310,7 +342,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 19 April 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="horror">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Tentacles.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -321,7 +353,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 28 February 2023</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="animation">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Devfest.jpg" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -333,7 +365,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 15 December 2023</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="horror">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/CreatingFrom0Blender.jpg" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -345,7 +377,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 28 February 2023</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="architecture">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Utopia.jpg" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -357,7 +389,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 December 2023</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="game-development">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/CyberClashGame.jpg" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -369,7 +401,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 16 November 2023</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="animation">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\Backrooms.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -381,7 +413,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 05 March 2023</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="architecture">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\MallEntrance.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -393,7 +425,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 10 March 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="game-development">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Asmodea'sschool.jpg" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -405,7 +437,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 13 juin 2023</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="animation">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Winner.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -417,7 +449,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 December 2023</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="game-development">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Googleit.jpg" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -429,7 +461,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 30 September 2023</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="game-development">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/TheNightSeeker.jpg" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -441,7 +473,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 06 April 2023</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="animation">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\0006.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -453,7 +485,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 17 March 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="game-development">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/CyberClashVLOG.jpg" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -465,7 +497,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 December 2023</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="architecture">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/GamingRoomPart5.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -477,7 +509,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 14 January 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="animation">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-03-24-01h09m14s034.png"
               alt="">
 
@@ -490,7 +522,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 24 March 2024</span>
             </div>
           </div>
-          <div class="lg:flex scale-in initial">
+          <div class="lg:flex scale-in initial" data-category="vfx">
             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Dragonball vfx.png" alt="">
 
             <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -502,7 +534,7 @@
               <span class="text-sm text-gray-500 dark:text-gray-300">On: 14 January 2024</span>
             </div>
           </div>
-            <div class="lg:flex scale-in initial">
+            <div class="lg:flex scale-in initial" data-category="videoediting">
               <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Gamfest.png" alt="">
 
               <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -513,7 +545,7 @@
                 <span class="text-sm text-gray-500 dark:text-gray-300">On: 02 December 2023</span>
               </div>
             </div>
-            <div class="lg:flex scale-in initial">
+            <div class="lg:flex scale-in initial" data-category="animation">
               <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-02-22-20h09m11s531.png"
                 alt="">
 
@@ -525,7 +557,7 @@
                 <span class="text-sm text-gray-500 dark:text-gray-300">On: 22 February 2024</span>
               </div>
             </div>
-            <div class="lg:flex scale-in initial">
+            <div class="lg:flex scale-in initial" data-category="animation">
               <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/MasterFasteranim.png" alt="">
 
               <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -536,7 +568,7 @@
                 <span class="text-sm text-gray-500 dark:text-gray-300">On: 07 December 2023</span>
               </div>
             </div>
-            <div class="lg:flex scale-in initial">
+            <div class="lg:flex scale-in initial" data-category="animation">
               <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/IGSC .png" alt="">
 
               <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -547,7 +579,7 @@
                 <span class="text-sm text-gray-500 dark:text-gray-300">On: 14 January 2024</span>
               </div>
             </div>
-            <div class="lg:flex scale-in initial">
+            <div class="lg:flex scale-in initial" data-category="animation">
               <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\DroneShot.png" alt="">
 
               <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -558,7 +590,7 @@
                 <span class="text-sm text-gray-500 dark:text-gray-300">On: 08 February 2024</span>
               </div>
             </div>
-            <div class="lg:flex scale-in initial">
+            <div class="lg:flex scale-in initial" data-category="animation">
               <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-05-23-21h00m16s523.jpg"
                 alt="">
 
@@ -629,8 +661,12 @@
     
     
   </main>
-
+  <script src="index.js">
+   
+    </script>
+    
 </body>
-<script src="index.js"></script>
+
+
 
 </html>
