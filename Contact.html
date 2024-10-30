@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/6234cd1732.js" crossorigin="anonymous"></script>
     <script src="index.js"></script>
-    <link rel="icon" href="Images\Yletter.jpg">
+    <link rel="icon" href="Images\ProfilePicturev3.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -47,7 +47,7 @@
 
 
               <a href="Contact.html" class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <span>Contact Us</span>
+                <span>Contact</span>
               </a>
               <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="text-sm px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
                 <i class="fab fa-facebook-f"></i>
@@ -72,7 +72,7 @@
               </a>
 
               <a href="Contact.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <span>Contact Us</span>
+                <span>Contact</span>
               </a>
               <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="text-sm px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
                 <i class="fab fa-facebook-f"></i>
@@ -95,35 +95,36 @@
           </script>
           
     </section>
-    <section>
-        <div class="contact-container">
-            <div class="Left-group" id="left">
-                <h1>
-                    Get in touch
-                </h1>
-                <h2>Let's hear about your product,timeline and what brought you this way.</h2>
-                <p>
-                    Every message is read so , thanks in advance for sending a good one.
-                </p>
-            </div>
-            <div class="Right-group">
-                <form action="https://formsubmit.co/nejiyoussef081@gmail.com" method="POST" >
-                    <label for="Name" id="home">
-                        Name*
-                    </label><br><br>
-                    <input type="text" name="name" placeholder="Name..." required id="right"><br>
-                    <label for="email" id="home"><br>
-                        Email address*
-                    </label><br><br>
-                    <input type="email" name="mail" placeholder="Email adress..." required id="right"><br><br>
-                    <label for="message" id="home">Message*</label><br><br>    
-                    <input type="text" placeholder="Enter your message..." name="comment" size="50" id="right"><br>
-                    <br>
-                    <button type="submit"  class="submit" id="home">Send message</button>
-                </form>
-            </div>
-        </div>
-    </section>
+    <section class="py-48 px-4 md:px-24">
+      <div class="flex flex-col md:flex-row items-center justify-between p-5 gap-2">
+          <!-- Left Group -->
+          <div class="space-y-6">
+              <h1 class="text-4xl md:text-8xl font-bold  md:px-4">Get in touch</h1>
+              <h2 class="text-xl md:text-3xl font-light pt-3 md:px-4">Let's hear about your product, timeline, and what brought you this way.</h2>
+              <p class="text-lg text-gray-500 md:text-2xl font-light pt-3 md:px-4">Every message is read, so thanks in advance for sending a good one.</p>
+          </div>
+          <!-- Right Group -->
+          <div class="right-group w-full md:w-96">
+              <form action="https://formsubmit.co/nejiyoussef081@gmail.com" method="POST" class="space-y-6">
+                  <div>
+                      <label for="Name" class="block text-xl md:text-3xl font-light">Name*</label>
+                      <input type="text" name="name" placeholder="Name..." required class="w-full h-12 bg-[#20182B] rounded pl-3 text-white focus:outline-none">
+                  </div>
+                  <div>
+                      <label for="email" class="block text-xl md:text-3xl font-light">Email address*</label>
+                      <input type="email" name="mail" placeholder="Email address..." required class="w-full h-12 rounded bg-[#20182B] pl-3 text-white focus:outline-none">
+                  </div>
+                  <div>
+                      <label for="message" class="block text-xl md:text-3xl font-light">Message*</label>
+                      <input type="text" placeholder="Enter your message..." name="comment" class="w-full h-12 rounded bg-[#20182B] pl-3 text-white focus:outline-none">
+                  </div>
+                  <button type="submit" class="mt-4 px-4 py-2 hover:bg-[#20182B] bg-[#20182B] text-white font-bold rounded w-full">Send message</button>
+              </form>
+          </div>
+      </div>
+  </section>
+  
+  
     <section class="footer px-4 md:px-16"> <!-- Changed padding for smaller screens -->
       <footer class="bg-indigo-1000 w-full">
         <div class="mx-auto w-full p-4 lg:p-6">

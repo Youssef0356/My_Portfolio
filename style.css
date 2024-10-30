@@ -511,16 +511,7 @@ i {
 
 
 
-.contact-container{
-    display: flex;
 
-    padding: 5%;
-
-    gap: 2%;
-    align-items: center;
-    justify-content: space-between;
-    
-}
 .contact-container h1{
     font-size:7vh;
     font-weight: bold ; 
