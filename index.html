@@ -7,10 +7,7 @@
     <title>Youssef Neji</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/6234cd1732.js" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
-    <link rel="icon" href="Images\Yletter.jpg">
-    <script src="index.js"></script>
-    <link rel="icon" href="Images\Yletter.jpg">
+    <link rel="icon" href="Images/Yletter.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
@@ -18,8 +15,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="index.js"></script>
-    <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" />
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+
     <style>
         #loading {
             position: fixed;
@@ -34,358 +34,197 @@
             z-index: 9999;
         }
 
-        .spin {
-            border: 8px solid #f3f3f3; 
-            border-top: 8px solid #3498db; 
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            animation: spin 1s linear infinite;
-            z-index: 9999;
-
-        }
-
-        body {
+        #mySection {
             opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        body.loaded {
-            opacity: 1;
-        }
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-@media (min-width: 1024px) {
-    .top-navbar {
-        display: inline-flex !important;
-        .spin {
-            border: 8px solid #f3f3f3; 
-            border-top: 8px solid #3498db; 
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            animation: spin 1s linear infinite;
-            z-index: 9999;
-
+            /* Initially hidden */
         }
 
-        body {
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        body.loaded {
-            opacity: 1;
-        }
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-@media (min-width: 1024px) {
-    .top-navbar {
-        display: inline-flex !important;
 
-    }
-}
-    }
-}
 
-        @keyframes slide-in-right {
+        @keyframes spin {
             0% {
-                transform: translateX(100%);
-                opacity: 0;
+                transform: rotate(0deg);
             }
+
             100% {
-                transform: translateX(0);
-                opacity: 1;
+                transform: rotate(360deg);
             }
         }
 
-        /* Container for timeline */
-        .timeline-container {
-            display: flex;
-            flex-direction: column;
-            margin: 40px 0;
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .timeline-item {
-            margin: 20px 0;
+        /* Container for positioning the video */
+        /* Container for positioning the video */
+        /* Container for positioning the video */
+        .video-container {
+            position: fixed;
+            z-index: -10;
+            transform: rotate(0) translateX(0);
+            /* Start off-screen */
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            /* Smooth transition */
         }
 
-        /* Optional: Style for separating items with lines */
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 10px;
-            width: 2px;
-            height: 100%;
-            background-color: gray;
-            z-index: -1;
+        /* Styling when the video is in view */
+        .video-container.in-view {
+            transform: translateX(-150px) translateY(600px) rotate(-90deg);
+            /* Translate into view */
+            height: 120vh;
+            /* Full height when in view */
+            width: 70vh;
         }
 
-        .timeline-item > div {
-            position: relative;
-            width: 45%;
-            padding: 10px;
-            background-color: #fff;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+        /* Wrapper for shadow and styling */
+        .video-wrapper {
+            border-radius: 8px;
+            overflow: hidden;
         }
 
-        /* Adjust left and right placement of timeline items */
-        .left-timeline {
-            margin-left: 10%;
-        }
-
-        .right-timeline {
-            margin-right: 10%;
+        /* Video styling */
+        .rotated-video {
+            height: 60vh;
+            pointer-events: none;
+            outline: none;
         }
     </style>
-    <script>
-        // Register GSAP plugin
-        gsap.registerPlugin(ScrollTrigger);
-    
-        document.addEventListener("DOMContentLoaded", function () {
-            // Timeline items
-            const timelineElements = document.querySelectorAll('.timeline-item');
 
-            timelineElements.forEach((el) => {
+    <script>
+        document.addEventListener('scroll', function () {
+            const videoContainer = document.querySelector('.video-container');
+            const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+            // Adjust the scroll threshold as needed
+            if (scrollPosition > 200) { // Change 200 to your desired scroll trigger point
+                videoContainer.classList.add('in-view');
+            } else {
+                videoContainer.classList.remove('in-view');
+            }
+        });
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        window.addEventListener('load', function () {
+            // Set up GSAP animations for elements
+            const elements = document.querySelectorAll('.timeline-element');
+            elements.forEach((el) => {
                 gsap.from(el, {
                     scrollTrigger: {
                         trigger: el,
-                        start: "top bottom", // When the top of the element reaches the bottom of the viewport
-                        end: "top center", // When the top of the element reaches the center of the viewport
-                        scrub: true, // Smooth transition effect
-                        toggleActions: "play reverse play reverse", // Reverse when scrolling back up
+                        start: "top bottom",
+                        end: "top center",
+                        scrub: true,
                     },
                     opacity: 0,
-                    x: 100, // Slide effect from right (or adjust based on your needs)
+                    y: 50,
                     duration: 0.6,
-                    ease: "power2.out", // Smooth easing
                 });
+            });
+
+            AOS.init({
+                duration: 800,
             });
         });
     </script>
 </head>
 
 <body>
-    <div id="loading">
-        <div class="spin"></div>
-    </div>
- 
-    <nav class="fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full bg-[#181131]">
-        <a href="#" class="p-2 mr-4 inline-flex items-center">
-            <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
-        </a>
-        <button
-            class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
-            data-target="#mobile-navigation">
-            <i class="material-icons">menu</i>
-        </button>
-        <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg"
-            id="desktop-navigation">
-            <a href="index.html"
-                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <span>Home</span>
+    <section>
+        <nav class="fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full bg-[#181131] lg:px-64">
+            <a href="#" class="p-2 mr-4 inline-flex items-center lg:mr-0">
+                <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
             </a>
-            <a href="index.html#aboutme"
-                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <span>About</span>
-            </a>
-            <a href="Projects.html"
-                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <span>Videos</span>
-            </a>
-            <a href="Images.html"
-                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <span>Images</span>
-            </a>
-
-            <a href="Contact.html"
-                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <span>Contact</span>
-            </a>
-
-            <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
-                class="text-sm px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
-                class="text-sm px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-        </div>
-        <!-- Mobile menu -->
-        <div class="lg:hidden hidden flex-col items-start w-full text-lg overflow-x-auto whitespace-nowrap bg-[#181131]"
-            id="mobile-navigation">
-            <a href="index.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <span>Home</span>
-            </a>
-            <a href="index.html#aboutme" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <span>About</span>
-            </a>
-            <a href="Projects.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <span>Videos</span>
-            </a>
-            <a href="Images.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <span>Images</span>
-            </a>
-
-
-            <a href="Contact.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <span>Contact</span>
-            </a>
-            <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
-                class="text-sm px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
-                class="text-sm px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-        </div>
-    </nav>
-    <div id="loading">
-        <div class="spin"></div>
-    </div>
- 
-    <nav class="fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full bg-[#181131]">
-        <a href="#" class="p-2 mr-4 inline-flex items-center">
-            <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
-        </a>
-        <button
-            class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
-            data-target="#mobile-navigation">
-            <i class="material-icons">menu</i>
-        </button>
-        <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg"
-            id="desktop-navigation">
-            <a href="index.html"
-                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <span>Home</span>
-            </a>
-            <a href="index.html#aboutme"
-                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <span>About</span>
-            </a>
-            <a href="Projects.html"
-                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <span>Videos</span>
-            </a>
-            <a href="Images.html"
-                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <span>Images</span>
-            </a>
-
-            <a href="Contact.html"
-                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <span>Contact</span>
-            </a>
-
-            <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
-                class="text-sm px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
-                class="text-sm px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-        </div>
-        <!-- Mobile menu -->
-        <div class="lg:hidden hidden flex-col items-start w-full text-lg overflow-x-auto whitespace-nowrap bg-[#181131]"
-            id="mobile-navigation">
-            <a href="index.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <span>Home</span>
-            </a>
-            <a href="index.html#aboutme" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <span>About</span>
-            </a>
-            <a href="Projects.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <span>Videos</span>
-            </a>
-            <a href="Images.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <span>Images</span>
-            </a>
-
-
-            <a href="Contact.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <span>Contact</span>
-            </a>
-            <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
-                class="text-sm px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
-                class="text-sm px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-        </div>
-    </nav>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const navToggler = document.querySelector('.nav-toggler');
-            const mobileNavigation = document.querySelector('#mobile-navigation');
-
-            navToggler.addEventListener('click', function () {
-                mobileNavigation.classList.toggle('hidden');
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button
+                class="text-white inline-flex p-3 rounded lg:hidden ml-auto hover:bg-gray-900 nav-toggler"
+                id="nav-toggle">
+                <i class="material-icons">menu</i>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg" id="desktop-navigation">
+                <a href="#" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
+                    <span>About</span>
+                </a>
+                <a href="Projects.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
+                    <span>Videos</span>
+                </a>
+                <a href="Images.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
+                    <span>Images</span>
+                </a>
+                <a href="Contact.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
+                    <span>Contact</span>
+                </a>
+                <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
+                    class="text-sm px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
+                    class="text-sm px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        
+            <!-- Mobile Navigation -->
+            <div class="lg:hidden hidden flex-col items-center text-center w-full text-md sm:text-lg bg-[#181131] overflow-hidden transition-all duration-300 ease-in-out" id="mobile-navigation">
+                <a href="#" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
+                    <span>About</span>
+                </a>
+                <a href="Projects.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
+                    <span>Videos</span>
+                </a>
+                <a href="Images.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
+                    <span>Images</span>
+                </a>
+                <a href="Contact.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
+                    <span>Contact</span>
+                </a>
+                <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
+                    class="text-sm px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
+                    class="text-sm px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </nav>
+        <!-- Add this script to handle the toggle -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const video = document.querySelector('.rotated-video');
+                video.playbackRate = 2.0; // Set this to your desired speed (e.g., 2.0 for double speed)
             });
-        });
-    </script>
 
+            document.addEventListener('DOMContentLoaded', function () {
+                // Get the toggle button and the mobile navigation menu
+                const toggleButton = document.getElementById('nav-toggle');
+                const mobileNav = document.getElementById('mobile-navigation');
 
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
-        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function () {
-            $(".nav-toggler").each(function (_, navToggler) {
-                var target = $(navToggler).data("target");
-                $(navToggler).on("click", function () {
-                    $(target).animate({
-                        height: "toggle"
-                    });
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const navToggler = document.querySelector('.nav-toggler');
-            const mobileNavigation = document.querySelector('#mobile-navigation');
-
-            navToggler.addEventListener('click', function () {
-                mobileNavigation.classList.toggle('hidden');
-            });
-        });
-    </script>
-
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
-        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function () {
-            $(".nav-toggler").each(function (_, navToggler) {
-                var target = $(navToggler).data("target");
-                $(navToggler).on("click", function () {
-                    $(target).animate({
-                        height: "toggle"
-                    });
+                // Add event listener to the toggle button
+                toggleButton.addEventListener('click', function () {
+                    // Toggle the visibility of the mobile navigation
+                    mobileNav.classList.toggle('hidden');
                 });
             });
-        });
-
-    </script>
-    <section class="scale-in initial">
-        });
-
-    </script>
-    <section class="scale-in initial">
+        </script>
+    </section>
+    <!-- <section class="scale-in initial">
         <main>
             <div>
                 <div id="parallax">
-                   
-                   
+
                 </div>
             </div>
     </section> -->
@@ -393,7 +232,7 @@
 
 
     <section class="pt-24 md:pt-12 lg:px-44">
-        <div class="Container lg:grid-cols-3 scale-in initial text-sm md:text-lg grid p-16">
+        <div class="Container lg:grid-cols-3 grid scale-in initial text-sm md:text-lg">
             <div class="left-container" id="left">
                 <h4 style="color: gray;" class="text-center md:text-left">HOWDY</h4>
                 <br>
@@ -418,7 +257,7 @@
 
             </div>
             <br>
-            <div class="text-center md:text-left" id="right">
+            <div class="right-container" id="right">
                 <h4 style="color:gray" id="about">ABOUT ME</h4>
                 <br>
                 <div class="aboutme text-center md:text-left text-sm md:text-lg" id="aboutme">
@@ -448,27 +287,32 @@
             </div>
         </div>
     </section>
-    <section class="relative overflow-y-hidden">
+
+
+
+    <section class="relative overflow-y-hidden" >
         <!-- Background Image with Opacity and Animation -->
         <div class="fade-in">
             <img src="Images/ProfilePictureweb-min.png"
-                class="absolute opacity-0 lg:opacity-5 h-full object-cover fade-in sm:h-[75%] md:h-[85%] lg:h-full sm:opacity-20 md:opacity-15 lg:opacity-10">
+                 class="absolute z-0 h-full object-cover opacity-5 fade-in 
+                         sm:h-[75%] md:h-[85%] lg:h-full sm:opacity-20 md:opacity-15 lg:opacity-10">
         </div>
     
         <!-- Content Overlay -->
         <div class="text-white py-8 relative z-10">
             <div class="container mx-auto flex flex-col items-start md:flex-row my-12 md:my-24">
+                
                 <!-- Left Column -->
                 <div class="flex flex-col w-full sticky md:top-36 lg:w-1/3 mt-2 md:mt-12 px-8 fade-in" data-aos="fade-up">
                     <p class="ml-2 text-purple-300 uppercase tracking-loose text-xs md:text-base">My Journey</p>
                     <p class="text-2xl md:text-4xl leading-normal md:leading-relaxed mb-2">Milestones in My Professional Growth</p>
                     <p class="text-sm md:text-base text-gray-50 mb-4">
-                        Explore the journey that has shaped my expertise, from my early days in computer science to
+                        Explore the journey that has shaped my expertise, from my early days in computer science to 
                         collaborative projects with international teams.
                     </p>
                     <a href="Projects.html"
-                        class="bg-transparent mr-auto hover:bg-purple-300 text-purple-300 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-purple-300 hover:border-transparent">
-                        Discover More
+                       class="bg-transparent mr-auto hover:bg-purple-300 text-purple-300 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-purple-300 hover:border-transparent">
+                       Discover More
                     </a>
                 </div>
     
@@ -476,133 +320,77 @@
                 <div class="ml-0 md:ml-12 lg:w-2/3 sticky">
                     <div class="container mx-auto w-full h-full">
                         <div class="relative wrap overflow-hidden p-10 h-full">
+                            
                             <!-- Left Timeline Border -->
                             <div class="border-1 md:border-2 border-purple-555 absolute h-full"
-                                style="right: 50%; border: 2px solid; border-radius: 1%;"></div>
+                                 style="right: 50%; border: 2px solid; border-radius: 1%;"></div>
     
                             <!-- Right Timeline Border -->
                             <div class="border-1 md:border-2 border-purple-555 absolute h-full"
-                                style="left: 50%; border: 0px solid; border-radius: 1%;"></div>
+                                 style="left: 50%; border: 0px solid; border-radius: 1%;"></div>
     
                             <!-- Timeline Content -->
     
                             <!-- Timeline Item 1 -->
-                            <div class="timeline-element mb-8 flex justify-between items-center w-full right-timeline">
+                            <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left">
                                 <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                 <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4">
                                     <p class="mb-3 text-base text-purple-300">November, 2022 - 2023</p>
                                     <h4 class="mb-3 font-bold text-lg md:text-2xl">Joining University</h4>
                                     <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                                        Started my studies in Computer Science at ISIMS, Sfax. Developed two horror games
+                                        Started my studies in Computer Science at ISIMS, Sfax. Developed two horror games 
                                         and explored 3D modeling in Blender, experimenting with Unreal Engine.
                                     </p>
                                 </div>
                             </div>
     
                             <!-- Timeline Item 2 -->
-                            <div class="timeline-element mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                            <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right">
                                 <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                 <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-right md:px-4 md:py-4 mr-2 sm:mr-0">
                                     <p class="mb-3 text-base text-purple-300">September, 2023</p>
                                     <h4 class="mb-3 font-bold text-lg md:text-2xl">Joining Google Students Club at ISIMS</h4>
                                     <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                                        Joined as a game developer and team leader. Led the creation of Cyber Clash and
+                                        Joined as a game developer and team leader. Led the creation of Cyber Clash and 
                                         Google It, collaborating with Google Developer Group and Google FSS.
                                     </p>
                                 </div>
                             </div>
-    
-                            <!-- Timeline Item 3 -->
-                            <div class="timeline-element mb-8 flex justify-between items-center w-full right-timeline">
+                            <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left">
                                 <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                 <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4">
                                     <p class="mb-3 text-base text-purple-300">July, 2024</p>
                                     <h4 class="mb-3 font-bold text-lg md:text-2xl">Internship At Perfaxis</h4>
                                     <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                                        I had a summer internship at PERFAXIS Learning ASP.NET for one month, gaining
-                                        valuable backend insights and developed the entire system of annual leave.
+                                        I had a summmer internship at PERFAXIS Learning ASP.NET for one month, gaining valuable backend insights and managed to develop whole system of annual leave . 
                                     </p>
                                 </div>
                             </div>
-    
                             <!-- Timeline Item 4 -->
-                            <div class="timeline-element mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                            <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right">
                                 <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                 <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-right md:px-4 md:py-4 mr-2 sm:mr-0">
                                     <p class="mb-3 text-base text-purple-300">March, 2024 - 2025</p>
                                     <h4 class="mb-3 font-bold text-lg md:text-2xl">Joining the Virtual Exhibition</h4>
                                     <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                                        Collaboration with ISIMS, HKA Germany, and University Malaysia Pahang for a
-                                        historical technical exhibition in virtual space.
+                                        Contributed to the Virtual Exhibition for Technical Historical Objects, working on 
+                                        3D modeling, AR apps, and VR/AR experiences with international teams in Malaysia, Oman, Tunisia, and Germany.
                                     </p>
                                 </div>
                             </div>
+                            
+                            
+    
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    
 
 
-    <section
-        class="text-center flex justify-center items-center h-64 px-10 sm:px-16  ms:justify-center scale-in initial"
-        id="contact" style="background-color: #181131;">
-        <div class="flex flex-col text-center   gap-4">
-            <div class="mb-2 ">
-                <p class="text-gray-300 text-lg text-2xl">
-                    Fancy a chat?
-                </p>
-            </div>
-            <div class="mb-4">
-                <h1 class="text-3xl md:text-4xl font-extrabold text-white">
-                    Let's talk about your product
-                </h1>
-            </div>
-            <div>
-                <a href="Contact.html"
-                    class="px-6 py-2 bg-gray-300 text-gray-900 font-semibold rounded text-2xl hover:bg-gray-400 transition">
-                    Get in touch
-                </a>
-            </div>
-        </div>
-    </section>
-    <section class="footer px-4 md:px-16 scale-in initial"> <!-- Changed padding for smaller screens -->
-        <footer class="bg-indigo-1000 w-full">
-            <div class="mx-auto w-full p-4 lg:p-6">
-                <div class="md:flex md:justify-between">
-                    <div class="mb-4 md:mb-0">
-                        <a href="index.html" class="flex items-center">
-                            <span
-                                class="self-center font-semibold whitespace-nowrap text-white text-3xl md:text-4xl">Portfolio</span>
-                            <!-- Adjusted font size -->
-    
-    <script>
-        // Register ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
-    
-        document.addEventListener("DOMContentLoaded", function () {
-            // Timeline items
-            const timelineElements = document.querySelectorAll('.timeline-element');
-    
-            timelineElements.forEach((el) => {
-                gsap.from(el, {
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top bottom", // When the top of the element hits the bottom of the viewport
-                        end: "top center", // When the top of the element hits the center of the viewport
-                        scrub: true,
-                        toggleActions: "play reverse play reverse",
-                    },
-                    opacity: 0,  // Start with opacity 0
-                    y: 100, // Start with the element 100px below
-                    duration: 0.6,
-                    ease: "power2.out",
-                });
-            });
-        });
-    </script>
-    
+
     <section class="footer px-6 md:px-16 lg:px-44 py-8 ">
         <footer class="w-full text-white">
             <div class="mx-auto w-full p-4 md:p-6">
@@ -613,20 +401,11 @@
                             <span class="self-center font-semibold text-4xl md:text-5xl text-white">Portfolio</span>
                         </a>
                     </div>
-                    <div class="grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-2">
-                        <!-- Reduced gap for smaller screens -->
 
                     <!-- Links Section -->
                     <div class="grid grid-cols-2 sm:grid-cols-2 gap-8 sm:gap-6 md:gap-12 text-center md:text-left">
                         <!-- My Career -->
                         <div>
-                            <h2 class="mb-2 font-semibold uppercase text-white text-xl md:text-2xl">My Career</h2>
-                            <!-- Adjusted font size -->
-                            <ul class="text-gray-400 font-medium">
-                                <li class="mb-1">
-                                    <a href="Images/CV version 8_16_2024.pdf" download="Images/CV version 8_16_2024.pdf"
-                                        class="hover:underline text-lg md:text-xl">Download CV</a>
-                                    <!-- Adjusted font size -->
                             <h2 class="text-xl md:text-2xl font-semibold uppercase text-white mb-3">My Career</h2>
                             <ul class="text-gray-400">
                                 <li class="mb-2">
@@ -670,8 +449,7 @@
                                     d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span class="sr-only">Facebook page</span>
-                            <span class="sr-only">Facebook page</span>
+                            <span class="sr-only">Facebook</span>
                         </a>
 
                         <a href="https://github.com/Youssef0356"
@@ -681,15 +459,13 @@
                                     d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span class="sr-only">GitHub account</span>
-                            <span class="sr-only">GitHub account</span>
+                            <span class="sr-only">GitHub</span>
                         </a>
                     </div>
                 </div>
             </div>
         </footer>
     </section>
-
 
     </main>
 </body>
