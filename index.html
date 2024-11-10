@@ -84,7 +84,16 @@
             /* Full height when in view */
             width: 70vh;
         }
-
+        @media screen and (min-width: 350px) and (max-width: 650px) {
+            .video-container.in-view {
+            transform: translateX(-150px) translateY(600px) rotate(-90deg);
+            /* Translate into view */
+            height: 30vh;
+            /* Full height when in view */
+            width: 17.5vh;
+        }
+    
+}
         /* Wrapper for shadow and styling */
         .video-wrapper {
             border-radius: 8px;
@@ -231,7 +240,7 @@
     <!-- Rotated Video Section -->
 
 
-    <section class="pt-24 md:pt-12 lg:px-44">
+    <section class="pt-28 px-8 md:pt-12 md:px-22 lg:px-44">
         <div class="Container lg:grid-cols-3 grid scale-in initial text-sm md:text-lg">
             <div class="left-container" id="left">
                 <h4 style="color: gray;" class="text-center md:text-left">HOWDY</h4>
@@ -247,7 +256,7 @@
                     <a href="#contact" class="Greetings text-md md:text-xl wordshighlight hover:text-white">Say
                         hello!</a>
                 </div>
-                <section class="video-container display-none lg:display-block opacity-0 lg:opacity-100">
+                <section class="video-container w-full display-none lg:display-block opacity-0 lg:opacity-100">
                     <div class="video-wrapper">
                         <video autoplay loop muted playsinline class="rotated-video">
                             <source src="Images/WelcomeToMyPortfolio3.mp4" type="video/mp4">
@@ -290,9 +299,9 @@
 
 
 
-    <section class="relative overflow-y-hidden" >
+    <section class="relative" >
         <!-- Background Image with Opacity and Animation -->
-        <div class="fade-in">
+        <div class="fade-in" >
             <img src="Images/ProfilePictureweb-min.png"
                  class="absolute z-0 h-full object-cover opacity-5 fade-in 
                          sm:h-[75%] md:h-[85%] lg:h-full sm:opacity-20 md:opacity-15 lg:opacity-10">
@@ -332,7 +341,7 @@
                             <!-- Timeline Content -->
     
                             <!-- Timeline Item 1 -->
-                            <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left">
+                            <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left" data-aos="fade-up">
                                 <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                 <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4">
                                     <p class="mb-3 text-base text-purple-300">November, 2022 - 2023</p>
@@ -345,7 +354,7 @@
                             </div>
     
                             <!-- Timeline Item 2 -->
-                            <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right">
+                            <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right" data-aos="fade-up">
                                 <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                 <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-right md:px-4 md:py-4 mr-2 sm:mr-0">
                                     <p class="mb-3 text-base text-purple-300">September, 2023</p>
@@ -356,7 +365,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left">
+                            <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left" data-aos="fade-up">
                                 <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                 <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4">
                                     <p class="mb-3 text-base text-purple-300">July, 2024</p>
@@ -367,7 +376,7 @@
                                 </div>
                             </div>
                             <!-- Timeline Item 4 -->
-                            <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right">
+                            <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right" data-aos="fade-up">
                                 <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                 <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-right md:px-4 md:py-4 mr-2 sm:mr-0">
                                     <p class="mb-3 text-base text-purple-300">March, 2024 - 2025</p>
