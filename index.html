@@ -146,26 +146,27 @@
             <a href="#" class="p-2 mr-4 inline-flex items-center lg:mr-0">
                 <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
             </a>
-            
-            <!-- Mobile Menu Toggle Button -->
             <button
-                class="text-white inline-flex p-3 rounded lg:hidden ml-auto hover:bg-[#181150] nav-toggler"
+                class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
                 id="nav-toggle">
                 <i class="material-icons">menu</i>
             </button>
-            
-            <!-- Desktop Navigation -->
-            <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg" id="desktop-navigation">
+            <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg"
+                id="desktop-navigation">
+
                 <a href="#" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
                     <span>About</span>
                 </a>
-                <a href="Projects.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
+                <a href="Projects.html"
+                    class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
                     <span>Videos</span>
                 </a>
-                <a href="Images.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
+                <a href="Images.html"
+                    class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
                     <span>Images</span>
                 </a>
-                <a href="Contact.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
+                <a href="Contact.html"
+                    class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
                     <span>Contact</span>
                 </a>
                 <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
@@ -177,9 +178,10 @@
                     <i class="fab fa-linkedin-in"></i>
                 </a>
             </div>
-        
-            <!-- Mobile Navigation -->
-            <div class="lg:hidden hidden flex-col items-center text-center w-full text-md sm:text-lg bg-[#181131] overflow-hidden transition-all duration-300 ease-in-out" id="mobile-navigation">
+
+            <!-- Mobile menu -->
+            <div class="lg:hidden hidden flex-col items-center text-center w-full text-lg overflow-x-auto whitespace-nowrap bg-[#181131]"
+                id="mobile-navigation">
                 <a href="#" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
                     <span>About</span>
                 </a>
@@ -202,13 +204,9 @@
                 </a>
             </div>
         </nav>
+
         <!-- Add this script to handle the toggle -->
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const video = document.querySelector('.rotated-video');
-                video.playbackRate = 2.0; // Set this to your desired speed (e.g., 2.0 for double speed)
-            });
-
             document.addEventListener('DOMContentLoaded', function () {
                 // Get the toggle button and the mobile navigation menu
                 const toggleButton = document.getElementById('nav-toggle');
