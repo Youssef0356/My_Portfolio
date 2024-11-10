@@ -19,167 +19,110 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" />
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/ScrollTrigger.min.js"></script>
     <style>
-        #loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
+        /* Basic Styling for Timeline */
+        .timeline-element {
+            opacity: 0; /* Start hidden */
+            transform: translateY(50px); /* Start from below */
         }
 
-        /* Removed the erroneous equals sign */
-        #mySection {
-            opacity: 0;
+        /* Slide-in from left */
+        .slide-in-left {
+            animation: slide-in-left 0.8s ease-out forwards;
         }
 
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
+        /* Slide-in from right */
+        .slide-in-right {
+            animation: slide-in-right 0.8s ease-out forwards;
         }
 
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .video-container {
-            position: fixed;
-            z-index: -10;
-            transform: rotate(0) translateX(0);
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .video-container.in-view {
-            transform: translateX(-150px) translateY(600px) rotate(-90deg);
-            height: 120vh;
-            width: 70vh;
-        }
-
-        .video-wrapper {
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .rotated-video {
-            height: 60vh;
-            pointer-events: none;
-            outline: none;
-        }
-        /* Slide In Left Animation */
         @keyframes slide-in-left {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.slide-in-left {
-  animation: slide-in-left 0.8s ease-out forwards;
-}
-
-/* Slide In Right Animation */
-@keyframes slide-in-right {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.slide-in-right {
-  animation: slide-in-right 0.8s ease-out forwards;
-}
-    </style>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-  const elements = document.querySelectorAll('.timeline-element'); // Select all timeline items
-
-  function handleScroll() {
-    elements.forEach(element => {
-      // Get the position of the element
-      const rect = element.getBoundingClientRect();
-      
-      // Check if the element is in the viewport
-      if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-        // If the element is in the viewport, add the animation class
-        if (element.classList.contains('left-timeline')) {
-          element.classList.add('slide-in-left');
-        } else if (element.classList.contains('right-timeline')) {
-          element.classList.add('slide-in-right');
-        }
-      }
-    });
-  }
-
-  // Listen for the scroll event
-  window.addEventListener('scroll', handleScroll);
-
-  // Run the function initially in case elements are already in the viewport
-  handleScroll();
-});
-        gsap.registerPlugin(ScrollTrigger);
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const videoContainer = document.querySelector('.video-container');
-            if (videoContainer) {
-                document.addEventListener('scroll', function () {
-                    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-
-                    // Adjust the scroll threshold as needed
-                    if (scrollPosition > 200) { // Change 200 to your desired scroll trigger point
-                        videoContainer.classList.add('in-view');
-                    } else {
-                        videoContainer.classList.remove('in-view');
-                    }
-                });
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
             }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
 
-            // Set up GSAP animations for elements
-            const elements = document.querySelectorAll('.timeline-element');
-            elements.forEach((el) => {
+        @keyframes slide-in-right {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Container for timeline */
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            margin: 40px 0;
+        }
+
+        .timeline-item {
+            margin: 20px 0;
+        }
+
+        /* Optional: Style for separating items with lines */
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 10px;
+            width: 2px;
+            height: 100%;
+            background-color: gray;
+            z-index: -1;
+        }
+
+        .timeline-item > div {
+            position: relative;
+            width: 45%;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Adjust left and right placement of timeline items */
+        .left-timeline {
+            margin-left: 10%;
+        }
+
+        .right-timeline {
+            margin-right: 10%;
+        }
+    </style>
+    <script>
+        // Register GSAP plugin
+        gsap.registerPlugin(ScrollTrigger);
+    
+        document.addEventListener("DOMContentLoaded", function () {
+            // Timeline items
+            const timelineElements = document.querySelectorAll('.timeline-item');
+
+            timelineElements.forEach((el) => {
                 gsap.from(el, {
                     scrollTrigger: {
                         trigger: el,
-                        start: "top bottom",
-                        end: "top center",
-                        scrub: true,
+                        start: "top bottom", // When the top of the element reaches the bottom of the viewport
+                        end: "top center", // When the top of the element reaches the center of the viewport
+                        scrub: true, // Smooth transition effect
+                        toggleActions: "play reverse play reverse", // Reverse when scrolling back up
                     },
                     opacity: 0,
-                    y: 50,
+                    x: 100, // Slide effect from right (or adjust based on your needs)
                     duration: 0.6,
+                    ease: "power2.out", // Smooth easing
                 });
-            });
-
-            AOS.init({
-                duration: 800,
             });
         });
     </script>
@@ -332,9 +275,6 @@
             </div>
         </div>
     </section>
-
-
-
     <section class="relative overflow-y-hidden">
         <!-- Background Image with Opacity and Animation -->
         <div class="fade-in">
@@ -374,7 +314,7 @@
                             <!-- Timeline Content -->
     
                             <!-- Timeline Item 1 -->
-                            <div class="timeline-element mb-8 flex justify-between items-center w-full right-timeline slide-in-left">
+                            <div class="timeline-element mb-8 flex justify-between items-center w-full right-timeline">
                                 <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                 <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4">
                                     <p class="mb-3 text-base text-purple-300">November, 2022 - 2023</p>
@@ -387,7 +327,7 @@
                             </div>
     
                             <!-- Timeline Item 2 -->
-                            <div class="timeline-element mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right">
+                            <div class="timeline-element mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
                                 <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                 <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-right md:px-4 md:py-4 mr-2 sm:mr-0">
                                     <p class="mb-3 text-base text-purple-300">September, 2023</p>
@@ -400,7 +340,7 @@
                             </div>
     
                             <!-- Timeline Item 3 -->
-                            <div class="timeline-element mb-8 flex justify-between items-center w-full right-timeline slide-in-left">
+                            <div class="timeline-element mb-8 flex justify-between items-center w-full right-timeline">
                                 <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                 <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4">
                                     <p class="mb-3 text-base text-purple-300">July, 2024</p>
@@ -413,20 +353,17 @@
                             </div>
     
                             <!-- Timeline Item 4 -->
-                            <div class="timeline-element mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right">
+                            <div class="timeline-element mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
                                 <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                 <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-right md:px-4 md:py-4 mr-2 sm:mr-0">
                                     <p class="mb-3 text-base text-purple-300">March, 2024 - 2025</p>
                                     <h4 class="mb-3 font-bold text-lg md:text-2xl">Joining the Virtual Exhibition</h4>
                                     <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                                        Contributed to the Virtual Exhibition for Technical Historical Objects, working
-                                        on
-                                        3D modeling, AR apps, and VR/AR experiences with international teams in
-                                        Malaysia, Oman, Tunisia, and Germany.
+                                        Collaboration with ISIMS, HKA Germany, and University Malaysia Pahang for a
+                                        historical technical exhibition in virtual space.
                                     </p>
                                 </div>
                             </div>
-    
                         </div>
                     </div>
                 </div>
@@ -434,8 +371,32 @@
         </div>
     </section>
     
-
-
+    <script>
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+    
+        document.addEventListener("DOMContentLoaded", function () {
+            // Timeline items
+            const timelineElements = document.querySelectorAll('.timeline-element');
+    
+            timelineElements.forEach((el) => {
+                gsap.from(el, {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top bottom", // When the top of the element hits the bottom of the viewport
+                        end: "top center", // When the top of the element hits the center of the viewport
+                        scrub: true,
+                        toggleActions: "play reverse play reverse",
+                    },
+                    opacity: 0,  // Start with opacity 0
+                    y: 100, // Start with the element 100px below
+                    duration: 0.6,
+                    ease: "power2.out",
+                });
+            });
+        });
+    </script>
+    
     <section class="footer px-6 md:px-16 lg:px-44 py-8 ">
         <footer class="w-full text-white">
             <div class="mx-auto w-full p-4 md:p-6">
