@@ -21,19 +21,21 @@
 </head>
 
 <body>
-    <section id="header">
-      <nav class="fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full bg-[#181131] lg:px-64">
+  <section>
+    <nav class="fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full bg-[#181131] lg:px-64">
         <a href="#" class="p-2 mr-4 inline-flex items-center lg:mr-0">
             <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
         </a>
+        
+        <!-- Mobile Menu Toggle Button -->
         <button
-            class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
+            class="text-white inline-flex p-3 rounded lg:hidden ml-auto hover:bg-[#181150] nav-toggler"
             id="nav-toggle">
             <i class="material-icons">menu</i>
         </button>
-        <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg"
-            id="desktop-navigation">
-
+        
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg" id="desktop-navigation">
             <a href="index.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
                 <span>About</span>
             </a>
@@ -46,16 +48,18 @@
             <a href="Contact.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
                 <span>Contact</span>
             </a>
-            <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="text-sm px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
+            <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
+                class="text-sm px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
                 <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank" class="text-sm px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
+            <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
+                class="text-sm px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
                 <i class="fab fa-linkedin-in"></i>
             </a>
         </div>
     
-        <!-- Mobile menu -->
-        <div class="lg:hidden hidden flex-col items-center text-center w-full text-lg overflow-x-auto whitespace-nowrap bg-[#181131]" id="mobile-navigation">
+        <!-- Mobile Navigation -->
+        <div class="lg:hidden hidden flex-col items-center text-center w-full text-md sm:text-lg bg-[#181131] overflow-hidden transition-all duration-300 ease-in-out" id="mobile-navigation">
             <a href="index.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
                 <span>About</span>
             </a>
@@ -68,98 +72,179 @@
             <a href="Contact.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
                 <span>Contact</span>
             </a>
-            <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="text-sm px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
+            <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
+                class="text-sm px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
                 <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank" class="text-sm px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
+            <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
+                class="text-sm px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
                 <i class="fab fa-linkedin-in"></i>
             </a>
         </div>
     </nav>
-    </section>
-    <section class="py-48 px-4 md:px-24">
-      <div class="flex flex-col md:flex-row items-center justify-between p-5 gap-2">
-          <!-- Left Group -->
-          <div class="space-y-6">
-              <h1 class="text-4xl md:text-8xl font-bold  md:px-4">Get in touch</h1>
-              <h2 class="text-xl md:text-3xl font-light pt-3 md:px-4">Let's hear about your product, timeline, and what brought you this way.</h2>
-              <p class="text-lg text-gray-500 md:text-2xl font-light pt-3 md:px-4">Every message is read, so thanks in advance for sending a good one.</p>
-          </div>
-          <!-- Right Group -->
-          <div class="right-group w-full md:w-96">
-              <form action="https://formsubmit.co/nejiyoussef081@gmail.com" method="POST" class="space-y-6">
-                  <div>
-                      <label for="Name" class="block text-xl md:text-3xl font-light">Name*</label>
-                      <input type="text" name="name" placeholder="Name..." required class="w-full h-12 bg-[#20182B] rounded pl-3 text-white focus:outline-none">
+    <!-- Add this script to handle the toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const video = document.querySelector('.rotated-video');
+            video.playbackRate = 2.0; // Set this to your desired speed (e.g., 2.0 for double speed)
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the toggle button and the mobile navigation menu
+            const toggleButton = document.getElementById('nav-toggle');
+            const mobileNav = document.getElementById('mobile-navigation');
+
+            // Add event listener to the toggle button
+            toggleButton.addEventListener('click', function () {
+                // Toggle the visibility of the mobile navigation
+                mobileNav.classList.toggle('hidden');
+            });
+        });
+    </script>
+</section>
+<!-- component -->
+<div class="relative flex items-top justify-center min-h-screen sm:items-center sm:pt-0">
+  <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+      <div class="mt-8 overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 ">
+              <div class="p-6 mr-2  bg-[#20182B] sm:rounded-lg ">
+                  <h1 class="text-4xl sm:text-5xl text-gray-800 dark:text-white font-extrabold tracking-tight">
+                      Get in touch
+                  </h1>
+                  <p class="text-normal text-lg sm:text-2xl font-medium text-gray-600 dark:text-gray-400 mt-2">
+                      Fill in the form to start a conversation
+                  </p>
+
+                  <div class="flex items-center mt-8 text-white">
+                      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      </svg>
+                      <div class="ml-4 text-md tracking-wide font-semibold w-40">
+                          Tunisia, Sfax, Saltnia,
+                          
+                      </div>
                   </div>
-                  <div>
-                      <label for="email" class="block text-xl md:text-3xl font-light">Email address*</label>
-                      <input type="email" name="mail" placeholder="Email address..." required class="w-full h-12 rounded bg-[#20182B] pl-3 text-white focus:outline-none">
+
+                  <div class="flex items-center mt-4 text-white">
+                      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                      </svg>
+                      <div class="ml-4 text-md tracking-wide font-semibold w-40">
+                          +216 94730853
+                      </div>
                   </div>
-                  <div>
-                      <label for="message" class="block text-xl md:text-3xl font-light">Message*</label>
-                      <input type="text" placeholder="Enter your message..." name="comment" class="w-full h-12 rounded bg-[#20182B] pl-3 text-white focus:outline-none">
+
+                  <div class="flex items-center mt-2 text-white">
+                      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                      </svg>
+                      <div class="ml-4 text-md tracking-wide font-semibold w-40">
+                          nejiyoussef081@gmail.com
+                      </div>
                   </div>
-                  <button type="submit" class="mt-4 px-4 py-2 hover:bg-[#20182B] bg-[#20182B] text-white font-bold rounded w-full">Send message</button>
+              </div>
+
+              <form class="p-6 flex flex-col justify-center" action="https://formsubmit.co/nejiyoussef081@gmail.com" method="POST">
+                  <div class="flex flex-col">
+                      <label for="name" class="hidden">Full Name</label>
+                      <input type="name" name="name" id="name" placeholder="Full Name" class="w-100 mt-2 py-3 px-3 rounded-lg bg-[#20182B] border border-gray-400 dark:border-gray-700 text-white font-semibold focus:border-indigo-500 focus:outline-none">
+                  </div>
+
+                  <div class="flex flex-col mt-2">
+                      <label for="email" class="hidden">Email</label>
+                      <input type="email" name="email" id="email" placeholder="Email" class="w-100 mt-2 py-3 px-3 rounded-lg bg-[#20182B] border border-gray-400 dark:border-gray-700 text-white font-semibold focus:border-indigo-500 focus:outline-none">
+                  </div>
+
+                  <div class="flex flex-col mt-2">
+                      <label for="tel" class="hidden">Number</label>
+                      <input type="tel" name="tel" id="tel" placeholder="Telephone Number" class="w-100 mt-2 py-3 px-3 rounded-lg bg-[#20182B] border border-gray-400 dark:border-gray-700 text-white font-semibold focus:border-indigo-500 focus:outline-none">
+                  </div>
+
+                  <button type="submit" class="md:w-32 bg-indigo-600 hover:bg-blue-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-indigo-500 transition ease-in-out duration-300">
+                      Submit
+                  </button>
               </form>
           </div>
       </div>
-  </section>
-  
-  
-    <section class="footer px-4 md:px-16"> <!-- Changed padding for smaller screens -->
-      <footer class="bg-indigo-1000 w-full">
-        <div class="mx-auto w-full p-4 lg:p-6">
-          <div class="md:flex md:justify-between">
-            <div class="mb-4 md:mb-0">
-              <a href="index.html" class="flex items-center">
-                <span class="self-center font-semibold whitespace-nowrap text-white text-3xl md:text-4xl">Portfolio</span> <!-- Adjusted font size -->
-              </a>
+  </div>
+</div>
+
+  <section class="footer px-6 md:px-16 lg:px-44 py-8 ">
+    <footer class="w-full text-white">
+        <div class="mx-auto w-full p-4 md:p-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <!-- Logo and Brand Name -->
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <span class="self-center font-semibold text-4xl md:text-5xl text-white">Portfolio</span>
+                    </a>
+                </div>
+
+                <!-- Links Section -->
+                <div class="grid grid-cols-2 sm:grid-cols-2 gap-8 sm:gap-6 md:gap-12 text-center md:text-left">
+                    <!-- My Career -->
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-semibold uppercase text-white mb-3">My Career</h2>
+                        <ul class="text-gray-400">
+                            <li class="mb-2">
+                                <a href="Images/CV version 8_16_2024.pdf" download="CV version 8_16_2024.pdf"
+                                    class="text-lg hover:text-purple-300">Download CV</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Follow Me -->
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-semibold uppercase text-purple-white mb-3">Follow Me
+                        </h2>
+                        <ul class="text-gray-400">
+                            <li class="mb-2">
+                                <a href="https://github.com/Youssef0356"
+                                    class="text-lg hover:text-purple-300">GitHub</a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/youssef-neji-a13604279/"
+                                    class="text-lg hover:text-purple-300">LinkedIn</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-2"> <!-- Reduced gap for smaller screens -->
-              <div>
-                <h2 class="mb-2 font-semibold uppercase text-white text-xl md:text-2xl">My Career</h2> <!-- Adjusted font size -->
-                <ul class="text-gray-400 font-medium">
-                  <li class="mb-1">
-                    <a href="Images/CV version 8_16_2024.pdf" download="Images/CV version 8_16_2024.pdf" class="hover:underline text-lg md:text-xl">Download CV</a> <!-- Adjusted font size -->
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h2 class="mb-2 font-semibold uppercase text-white text-xl md:text-2xl">Follow me</h2> <!-- Adjusted font size -->
-                <ul class="text-gray-400 font-medium">
-                  <li class="mb-1">
-                    <a href="https://github.com/Youssef0356" class="hover:underline text-lg md:text-xl">Github</a> <!-- Adjusted font size -->
-                  </li>
-                  <li>
-                    <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" class="hover:underline text-lg md:text-xl">LinkedIn</a> <!-- Adjusted font size -->
-                  </li>
-                </ul>
-              </div>
+
+            <!-- Divider -->
+            <hr class="my-4 border-gray-600" />
+
+            <!-- Bottom Section -->
+            <div class="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
+                <span class="text-sm text-gray-400">© 2023 <a href="https://flowbite.com/"
+                        class="hover:underline">Youssef Neji™</a>. All Rights Reserved.</span>
+                <div class="flex space-x-4 mt-2 sm:mt-0">
+                    <!-- Social Icons -->
+                    <a href="https://www.facebook.com/youssef.dragonboll/"
+                        class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 8 19">
+                            <path fill-rule="evenodd"
+                                d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span class="sr-only">Facebook</span>
+                    </a>
+
+                    <a href="https://github.com/Youssef0356"
+                        class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span class="sr-only">GitHub</span>
+                    </a>
+                </div>
             </div>
-          </div>
-          <hr class="my-4 border-gray-200 sm:mx-auto border-gray-700 lg:my-4" />
-          <div class="sm:flex sm:items-center sm:justify-between">
-            <span class="text-sm text-gray-400 sm:text-center">© 2023 <a href="https://flowbite.com/" class="hover:underline">Youssef Neji™</a>. All Rights Reserved.</span>
-            <div class="flex mt-2 sm:justify-center sm:mt-0">
-              <a href="https://www.facebook.com/youssef.dragonboll/" class="text-gray-500 hover:text-gray-900 hover:text-white">
-                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
-                  <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd" />
-                </svg>
-                <span class="sr-only">Facebook page</span>
-              </a>
-    
-              <a href="https://github.com/Youssef0356" class="text-gray-500 hover:text-gray-900 hover:text-white ms-4">
-                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z" clip-rule="evenodd" />
-                </svg>
-                <span class="sr-only">GitHub account</span>
-              </a>
-            </div>
-          </div>
         </div>
-      </footer>
-    </section>
+    </footer>
+</section>
     
 </body>
 

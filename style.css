@@ -150,14 +150,7 @@ i {
         
     }
 
-    .Container {
-        display: flex !important;
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        padding: 10%;
-    }
+    
 
 
     input{
@@ -201,11 +194,7 @@ i {
 
 }
 @media screen and (min-width: 700px) and (max-width: 1400px) {
-    .Container {
-        display: flex;
-        justify-content: center;
 
-    }
 
     .VideosContainer {
         display: grid !important;
@@ -229,18 +218,9 @@ i {
 .services{
     background-color: #140C20;
 }
-.Container h1 {
-    font-weight: bolder;
-    font-size: 40px;
-}
 
-.Container {
-    display: grid;
-    padding: 5%;
-    align-items: center;
-    justify-content: center;
-    
-}
+
+
 
 .aboutme {
     display: flex;
@@ -282,13 +262,7 @@ i {
   }
 
 
-.right-container {
-    font-size: large !important;
-}
 
-.left-container {
-    height: 100%;
-}
 @keyframes scaleup{
     0%{
         transform: scale(0.5);
