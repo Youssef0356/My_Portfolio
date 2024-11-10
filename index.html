@@ -7,7 +7,8 @@
     <title>Youssef Neji</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/6234cd1732.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="Images/Yletter.jpg">
+    <script src="index.js"></script>
+    <link rel="icon" href="Images\Yletter.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
@@ -15,39 +16,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" />
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/ScrollTrigger.min.js"></script>
+    <script src="index.js"></script>
     <style>
-        /* Basic Styling for Timeline */
-        .timeline-element {
-            opacity: 0; /* Start hidden */
-            transform: translateY(50px); /* Start from below */
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
         }
 
-        /* Slide-in from left */
-        .slide-in-left {
-            animation: slide-in-left 0.8s ease-out forwards;
+        .spin {
+            border: 8px solid #f3f3f3; 
+            border-top: 8px solid #3498db; 
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 1s linear infinite;
+            z-index: 9999;
+
         }
 
-        /* Slide-in from right */
-        .slide-in-right {
-            animation: slide-in-right 0.8s ease-out forwards;
+        body {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
+        body.loaded {
+            opacity: 1;
+        }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@media (min-width: 1024px) {
+    .top-navbar {
+        display: inline-flex !important;
 
-        @keyframes slide-in-left {
-            0% {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
+    }
+}
 
         @keyframes slide-in-right {
             0% {
@@ -129,90 +140,117 @@
 </head>
 
 <body>
-    <section>
-        <nav class="fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full bg-[#181131] lg:px-64">
-            <a href="#" class="p-2 mr-4 inline-flex items-center lg:mr-0">
-                <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
+    <div id="loading">
+        <div class="spin"></div>
+    </div>
+ 
+    <nav class="fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full bg-[#181131]">
+        <a href="#" class="p-2 mr-4 inline-flex items-center">
+            <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
+        </a>
+        <button
+            class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
+            data-target="#mobile-navigation">
+            <i class="material-icons">menu</i>
+        </button>
+        <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg"
+            id="desktop-navigation">
+            <a href="index.html"
+                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <span>Home</span>
             </a>
-            <button
-                class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
-                id="nav-toggle">
-                <i class="material-icons">menu</i>
-            </button>
-            <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg"
-                id="desktop-navigation">
+            <a href="index.html#aboutme"
+                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <span>About</span>
+            </a>
+            <a href="Projects.html"
+                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <span>Videos</span>
+            </a>
+            <a href="Images.html"
+                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <span>Images</span>
+            </a>
 
-                <a href="#" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-                    <span>About</span>
-                </a>
-                <a href="Projects.html"
-                    class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-                    <span>Videos</span>
-                </a>
-                <a href="Images.html"
-                    class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-                    <span>Images</span>
-                </a>
-                <a href="Contact.html"
-                    class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-                    <span>Contact</span>
-                </a>
-                <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
-                    class="text-sm px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
-                    class="text-sm px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-            </div>
+            <a href="Contact.html"
+                class="px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <span>Contact</span>
+            </a>
 
-            <!-- Mobile menu -->
-            <div class="lg:hidden hidden flex-col items-center text-center w-full text-lg overflow-x-auto whitespace-nowrap bg-[#181131]"
-                id="mobile-navigation">
-                <a href="#" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-                    <span>About</span>
-                </a>
-                <a href="Projects.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-                    <span>Videos</span>
-                </a>
-                <a href="Images.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-                    <span>Images</span>
-                </a>
-                <a href="Contact.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-                    <span>Contact</span>
-                </a>
-                <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
-                    class="text-sm px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
-                    class="text-sm px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-            </div>
-        </nav>
+            <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
+                class="text-sm px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
+                class="text-sm px-3 py-2 rounded items-center justify-center hover:bg-gray-900 hover:text-white">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+        <!-- Mobile menu -->
+        <div class="lg:hidden hidden flex-col items-start w-full text-lg overflow-x-auto whitespace-nowrap bg-[#181131]"
+            id="mobile-navigation">
+            <a href="index.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <span>Home</span>
+            </a>
+            <a href="index.html#aboutme" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <span>About</span>
+            </a>
+            <a href="Projects.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <span>Videos</span>
+            </a>
+            <a href="Images.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <span>Images</span>
+            </a>
 
-        <!-- Add this script to handle the toggle -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Get the toggle button and the mobile navigation menu
-                const toggleButton = document.getElementById('nav-toggle');
-                const mobileNav = document.getElementById('mobile-navigation');
 
-                // Add event listener to the toggle button
-                toggleButton.addEventListener('click', function () {
-                    // Toggle the visibility of the mobile navigation
-                    mobileNav.classList.toggle('hidden');
+            <a href="Contact.html" class="px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <span>Contact</span>
+            </a>
+            <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
+                class="text-sm px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
+                class="text-sm px-3 py-2 rounded inline-block hover:bg-gray-900 hover:text-white">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navToggler = document.querySelector('.nav-toggler');
+            const mobileNavigation = document.querySelector('#mobile-navigation');
+
+            navToggler.addEventListener('click', function () {
+                mobileNavigation.classList.toggle('hidden');
+            });
+        });
+    </script>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $(".nav-toggler").each(function (_, navToggler) {
+                var target = $(navToggler).data("target");
+                $(navToggler).on("click", function () {
+                    $(target).animate({
+                        height: "toggle"
+                    });
                 });
             });
-        </script>
-    </section>
-    <!-- <section class="scale-in initial">
+        });
+
+    </script>
+    <section class="scale-in initial">
         <main>
             <div>
                 <div id="parallax">
-
+                   
                 </div>
             </div>
     </section> -->
@@ -370,6 +408,39 @@
             </div>
         </div>
     </section>
+
+
+    <section
+        class="text-center flex justify-center items-center h-64 px-10 sm:px-16  ms:justify-center scale-in initial"
+        id="contact" style="background-color: #181131;">
+        <div class="flex flex-col text-center   gap-4">
+            <div class="mb-2 ">
+                <p class="text-gray-300 text-lg text-2xl">
+                    Fancy a chat?
+                </p>
+            </div>
+            <div class="mb-4">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-white">
+                    Let's talk about your product
+                </h1>
+            </div>
+            <div>
+                <a href="Contact.html"
+                    class="px-6 py-2 bg-gray-300 text-gray-900 font-semibold rounded text-2xl hover:bg-gray-400 transition">
+                    Get in touch
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="footer px-4 md:px-16 scale-in initial"> <!-- Changed padding for smaller screens -->
+        <footer class="bg-indigo-1000 w-full">
+            <div class="mx-auto w-full p-4 lg:p-6">
+                <div class="md:flex md:justify-between">
+                    <div class="mb-4 md:mb-0">
+                        <a href="index.html" class="flex items-center">
+                            <span
+                                class="self-center font-semibold whitespace-nowrap text-white text-3xl md:text-4xl">Portfolio</span>
+                            <!-- Adjusted font size -->
     
     <script>
         // Register ScrollTrigger
@@ -407,11 +478,20 @@
                             <span class="self-center font-semibold text-4xl md:text-5xl text-white">Portfolio</span>
                         </a>
                     </div>
+                    <div class="grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-2">
+                        <!-- Reduced gap for smaller screens -->
 
                     <!-- Links Section -->
                     <div class="grid grid-cols-2 sm:grid-cols-2 gap-8 sm:gap-6 md:gap-12 text-center md:text-left">
                         <!-- My Career -->
                         <div>
+                            <h2 class="mb-2 font-semibold uppercase text-white text-xl md:text-2xl">My Career</h2>
+                            <!-- Adjusted font size -->
+                            <ul class="text-gray-400 font-medium">
+                                <li class="mb-1">
+                                    <a href="Images/CV version 8_16_2024.pdf" download="Images/CV version 8_16_2024.pdf"
+                                        class="hover:underline text-lg md:text-xl">Download CV</a>
+                                    <!-- Adjusted font size -->
                             <h2 class="text-xl md:text-2xl font-semibold uppercase text-white mb-3">My Career</h2>
                             <ul class="text-gray-400">
                                 <li class="mb-2">
@@ -455,7 +535,7 @@
                                     d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span class="sr-only">Facebook</span>
+                            <span class="sr-only">Facebook page</span>
                         </a>
 
                         <a href="https://github.com/Youssef0356"
@@ -465,13 +545,14 @@
                                     d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <span class="sr-only">GitHub</span>
+                            <span class="sr-only">GitHub account</span>
                         </a>
                     </div>
                 </div>
             </div>
         </footer>
     </section>
+
 
     </main>
 </body>

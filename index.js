@@ -41,23 +41,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-gsap.registerPlugin(ScrollTrigger);
-
-window.addEventListener('load', function () {
-    // Apply animation to the section
-    gsap.from("#mySection", {
-        scrollTrigger: {
-            trigger: "#mySection",  // The section with id="mySection"
-            start: "top bottom",    // Start when the top of the section hits the bottom of the viewport
-            end: "top center",      // End when the top of the section hits the center of the viewport
-            scrub: true,            // Scrubs the animation based on scroll position
-        },
-        opacity: 0,  // Start with opacity 0
-        duration: 1, // Duration of the animation
-    });
-
-    // Initialize AOS for other animations if needed
-    AOS.init({
-        duration: 800,
-    });
-});
