@@ -84,6 +84,19 @@
             /* Full height when in view */
             width: 70vh;
         }
+        .feather-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: radial-gradient(circle, rgba(20, 12, 32, 0) 60%, rgba(20, 12, 32, 1) 100%);
+    pointer-events: none;
+}
+
+
         @media screen and (min-width: 350px) and (max-width: 650px) {
             .video-container.in-view {
             transform: translateX(-150px) translateY(600px) rotate(-90deg);
@@ -301,11 +314,12 @@
 
     <section class="relative" >
         <!-- Background Image with Opacity and Animation -->
-        <div class="fade-in" >
-            <img src="Images/ProfilePictureweb-min.png"
-                 class="absolute z-0 h-full object-cover opacity-5 fade-in 
-                         sm:h-[75%] md:h-[85%] lg:h-full sm:opacity-20 md:opacity-15 lg:opacity-10">
+        <div class="fade-in ">
+            <img src="Images/ProfilePictureweb.jpg"
+                 class=" absolute z-0 h-full object-cover opacity-5 fade-in 
+                        sm:h-[75%] md:h-[85%] lg:h-full sm:opacity-20 md:opacity-15 lg:opacity-10 feather-effect">
         </div>
+        
     
         <!-- Content Overlay -->
         <div class="text-white py-8 relative z-10">
