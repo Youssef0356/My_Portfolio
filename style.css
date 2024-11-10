@@ -309,14 +309,6 @@ i {
 
 
 
-<<<<<<< HEAD
-
-=======
-.left-container {
-    height: 100%;
-    font-size: large !important;
-}
->>>>>>> parent of a0df31d (VERY BIG UPDATE)
 @keyframes scaleup{
     0%{
         transform: scale(0.5);
