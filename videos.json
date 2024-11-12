@@ -175,10 +175,31 @@
         "description": "Trailer for the horror game 'The Night Seeker' in UE5."
     },
     {
-        "category": "animation",
+        "category": "game-development",
         "title": "Hydraulic Turbine Blender 4.0 Cycles",
-        "date": "17 March 2024",
+        "date": "20 December 2023",
         "url": "https://www.youtube.com/embed/sR592ggHgh4",
-        "description": "3D animation of a hydraulic turbine created using Blender 4.0."
+        "description": "Dev Vlog Of Cyber Clash | The Local-Multiplayer Game That Made In Just One Month"
+    },
+    {
+        "category": "animation",
+        "title": "Dev Vlog Of Cyber Clash | The Local-Multiplayer Game That Made In Just One Month",
+        "date": "17 March 2024",
+        "url": "https://www.youtube.com/embed/O82WF39V3SA",
+        "description": "Dev Vlog Of Cyber Clash | The Local-Multiplayer Game That Made In Just One Month"
+    },
+    {
+        "category": "architecture",
+        "title": "Making an interior design in 3D blender",
+        "date": "14 January 2024",
+        "url": "https://www.youtube.com/embed/-drWWHq5_ZI",
+        "description": "Making an interior design in 3D blender"
+    },
+    {
+        "category": "animation",
+        "title": "Wheel Chair Animation Blender 4.0",
+        "date": "24 March 2024",
+        "url": "https://www.youtube.com/embed/0cKQzPmFa58",
+        "description": "Wheel Chair Animation Blender 4.0"
     }
 ]
