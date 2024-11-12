@@ -9,7 +9,6 @@
   <script src="https://kit.fontawesome.com/6234cd1732.js" crossorigin="anonymous"></script>
   <link rel="icon" href="Images\Yletter.jpg">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -147,662 +146,190 @@
       });
     </script>
   </section>
-  <main>
-    <section style="background-color: 140C20;">
-      <div class="container px-16 py-10 mx-auto flex flex-col justify-center ">
-        <div class="introduction">
-        </div>
-        <h1 class="text-3xl font-semibold  capitalize lg:text-4xl text-white ">My 3D Projects</h1>
-        <p class="titledescription">
-          A selection of projects exploring 3D animations Video Editings and magnificent Games.
-        </p>
-        <div class="py-8 flex items-center justify-start">
-          <div class="filter-container shadow-md">
-            <i class="fas fa-filter filter-icon"></i>
-            <select id="categoryFilter" class="category-select pl-2 pr-8 rounded-md">
-              <option value="all">All Categories</option>
-              <option value="architecture">Architecture</option>
-              <option value="game-development">Game Development</option>
-              <option value="vfx">VFX</option>
-              <option value="videoediting">Video Editing</option>
-              <option value="animation">Animation</option>
-              <option value="horror">Horror</option>
-              <option value="other">Other</option>
+  <!-- component -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+    // Fetch and display videos from the JSON file
+    fetch('videos.json')
+      .then(response => response.json())
+      .then(data => {
+        const gallery = document.getElementById('video-gallery'); // Container for video gallery
+        const categoryFilter = document.getElementById('categoryFilter'); // Category dropdown
+  
+        // Function to display videos based on selected category
+        function displayVideos(filterCategory = 'all') {
+          gallery.innerHTML = ''; // Clear the current gallery
+  
+          // Filter videos based on selected category
+          const filteredVideos = filterCategory === 'all' 
+            ? data 
+            : data.filter(video => video.category === filterCategory);
+  
+          // Loop through filtered videos and create HTML for each one
+          filteredVideos.forEach(video => {
+            const videoDiv = document.createElement('div');
+            videoDiv.classList.add('w-full', 'mb-6', 'video-item');
+            videoDiv.setAttribute('data-category', video.category); // Add data-category for later filtering
+  
+            const iframe = document.createElement('iframe');
+            iframe.classList.add('object-cover', 'h-96', 'w-full', 'bg-black');
+            iframe.setAttribute('width', '560');
+            iframe.setAttribute('height', '315');
+            iframe.setAttribute('src', video.url);
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+            iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+            iframe.setAttribute('allowfullscreen', '');
+            iframe.setAttribute('loading', 'lazy');
+  
+            const titleDiv = document.createElement('div');
+            titleDiv.classList.add('pt-4');
+            
+            const title = document.createElement('span');
+            title.classList.add('font-bold', 'text-lg', 'text-white', 'uppercase', 'font-mono');
+            title.textContent = video.title;
+  
+            const date = document.createElement('span');
+            date.classList.add('block', 'text-sm', 'text-slate-500', 'uppercase', 'font-mono');
+            date.textContent = 'On: ' + new Date(video.date).toLocaleDateString();
+  
+            const category = document.createElement('span');
+            category.classList.add('block', 'text-sm', 'text-slate-400', 'uppercase', 'font-mono');
+            category.textContent = 'Category: ' + video.category;
+  
+            titleDiv.appendChild(title);
+            titleDiv.appendChild(date);
+            titleDiv.appendChild(category);
+  
+            videoDiv.appendChild(iframe);
+            videoDiv.appendChild(titleDiv);
+            gallery.appendChild(videoDiv);
+          });
+        }
+  
+        // Initially display all videos
+        displayVideos();
+  
+        // Add event listener for category filter change
+        categoryFilter.addEventListener('change', (event) => {
+          const selectedCategory = event.target.value;
+          displayVideos(selectedCategory); // Display videos based on selected category
+        });
+      })
+      .catch(error => console.error('Error loading JSON:', error));
+  </script>
+  
 
-            </select>
-          </div>
-        </div>
 
-        <div id="projectGrid" class="grid grid-cols-1 gap-7 mt-8 md:mt-16 md:grid-cols-2">
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="horror">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64 " src="Images\Isims Monster.jpg" alt="">
 
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://www.instagram.com/p/DAdfy7Ft7IL/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-                class="text-xl  font-semibold   hover:underline text-white ">
-                ISIMS: Where the Darkness Lurks
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 28 September 2024</span>
+  <section>
+    <div class="relative flex min-h-screen flex-col bg-[#140C20] sm:px-16">
+      <div class="min-h-28">
+        <div class="mx-auto py-4">
+          <div class="container px-16 py-10 mx-auto flex flex-col justify-center">
+            <div class="introduction"></div>
+            <h1 class="text-3xl font-semibold capitalize lg:text-4xl text-white">My 3D Projects</h1>
+            <p class="titledescription">
+              A selection of projects exploring 3D animations, video editing, and magnificent games.
+            </p>
+            <div class="py-8 flex items-center justify-start">
+              <div class="filter-container shadow-md">
+                <i class="fas fa-filter filter-icon"></i>
+                <select id="categoryFilter" class="category-select pl-2 pr-8 rounded-md">
+                  <option value="all">All Categories</option>
+                  <option value="architecture">Architecture</option>
+                  <option value="game-development">Game Development</option>
+                  <option value="vfx">VFX</option>
+                  <option value="videoediting">Video Editing</option>
+                  <option value="animation">Animation</option>
+                  <option value="horror">Horror</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
             </div>
-          </div>
+            <div id="video-gallery" class="mt-8 mx-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
 
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial "
-            data-category="architecture">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64 " src="Images\IsimsProject.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/HTGQwchiAdk" class="text-xl  font-semibold hover:underline text-white ">
-                ISIMS 3D modeling (part1)
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 December 2023</span>
             </div>
-          </div>
-
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="architecture">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\IsimsProjectDayv1.jpg" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/FQZcbNZDCyE" class="text-xl font-semibold hover:underline text-white ">
-                ISIMS 3D modeling (part2)
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 11 Febriary 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial" data-category="vfx">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-11-09-11h40m08s726.jpg"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/s98yHjQOcMc" class="text-xl font-semibold hover:underline text-white ">
-                I tried out a 3D billboard concept at Mall of Sfax for Redragon! 🎮✨
-                Made using after effects and blender 🔥
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 09 November 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial" data-category="vfx">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-11-01-19h05m44s229.jpg"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/bGb3xDsmZ4Y" class="text-xl font-semibold hover:underline text-white ">
-                Created an epic 3D CGI Video for Godzilla at the Mall of sfax
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 01 November 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="videoediting">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-11-08-00h15m44s091.png"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/TNHoW8xV6h4" class="text-xl font-semibold hover:underline text-white ">
-                Bubble Tea After Effects Edit </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 08 November 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="architecture">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/vlcsnap-2024-02-08-23h50m07s299.png"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/zgUSEUWF6J4" class="text-xl font-semibold hover:underline text-white ">
-                Mall of sfax 3D virtual tour (Made in blender)
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 18 February 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="architecture">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\Screenshot 2024-10-04 202155.jpg"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://www.instagram.com/p/DAoZWNqyW2Q/?hl=fr"
-                class="text-xl  font-semibold hover:underline text-white ">
-                Virtual Mall Navigation Prototype (Made in Unreal Engine 5)
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 08 October 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial" data-category="vfx">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-10-24-19h12m45s421.jpg"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/airNQ1ifOuk" class="text-xl font-semibold hover:underline text-white ">
-                BOYCOTT || CGI Video (Made in after effects)
-              </a>
-
-              <span class="text-sm text-gray-300">On: 24 October 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="animation">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-10-22-20h15m17s965.png"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/Bu9neyBcl1U" class="text-xl font-semibold hover:underline text-white ">
-                🌧️ 3D Animation for Building Safety (Made in blender)
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 19 August 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial" data-category="vfx">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-10-31-14h40m48s189.png"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtube.com/shorts/qkvAnR-UJLI?feature=share"
-                class="text-xl  font-semibold hover:underline text-white ">
-                3D CGI for Flutter Fest Event by Google Developer Club | Faculty of Science sfax
-              </a>
-
-              <span class="text-sm text-gray-300">On: 10 November 2024</span>
-            </div>
-          </div>
-
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="other">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\Ar.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://www.instagram.com/reel/DA33WUdo3so/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-                class="text-xl  font-semibold hover:underline text-white ">
-                Augmented Reality Portfolio
-              </a>
-
-              <span class="text-sm text-gray-300">On: 10 October 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="animation">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\ArtiDev2.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/WYe2t9A6RGE" class="text-xl  font-semibold hover:underline text-white ">
-                A Logo Animation For ArtiDev Company
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 19 August 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial" data-category="vfx">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\0163.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtube.com/shorts/4R2UqvzBoG0?feature=share"
-                class="text-xl  font-semibold hover:underline text-white ">
-                Exist Parfum VFX
-              </a>
-
-              <span class="text-sm text-gray-300">On: 22 October 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial" data-category="vfx">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vfx.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/BbNQl0rltZ8" class="text-xl font-semibold hover:underline text-white ">
-                Mall of sfax VFX
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 14 February 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="animation">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-04-20-00h02m38s666.png"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/hE2wCCuV-cQ" class="text-xl font-semibold hover:underline text-white">
-                Old roman vertical water turbine 3D animation (made in blender)
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 April 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial" data-category="vfx">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\PoseidonFootagePicture.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/HzvqDCrWQ6g" class="text-xl  font-semibold hover:underline text-white ">
-                My 3D VFX work on "Escape of Atlantis" (Made in blender - after effects)
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 26 April 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial" data-category="vfx">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-04-19-23h59m17s372.png"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/0ESGGLAY5bs" class="text-xl   font-semibold hover:underline text-white ">
-                Flutter Fest CGI VFX
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 19 April 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="horror">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Tentacles.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/3486FFTVMtU" class="text-xl  font-semibold hover:underline text-white ">
-                A hospital where it got invated by creepy octopus | Made With Blender </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 28 February 2023</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="animation">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Devfest.jpg" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://www.youtube.com/watch?v=YdlFCVIk-aE&feature=youtu.be"
-                class="text-xl  font-semibold hover:underline text-white ">
-                My DevFest Animation For Explanation Of Large Langage Models
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 15 December 2023</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="horror">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/CreatingFrom0Blender.jpg" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/3486FFTVMtU" class="text-xl font-semibold hover:underline text-white ">
-                Horror movie footage
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 28 February 2023</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="architecture">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Utopia.jpg" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/A8V4Vzlt0x8" class="text-xl  font-semibold hover:underline text-white ">
-                UTOPIA | level design for VR UE5
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 December 2023</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="game-development">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/CyberClashGame.jpg" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/QteKyv1j4WQ" class="text-xl  font-semibold hover:underline text-white ">
-                CyberClash Trailer| Local-Multiplayer Game UE5
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 16 November 2023</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="animation">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\Backrooms.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/fUWk_ideN6Q" class="text-xl  font-semibold hover:underline text-white ">
-                My first blender footage [the backrooms]
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 05 March 2023</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="architecture">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\MallEntrance.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://www.facebook.com/100007859146191/videos/2557075597809334/"
-                class="text-xl  font-semibold hover:underline text-white ">
-                We brought Mall of Sfax to life in 3D! | Blender 4.0
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 10 March 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="game-development">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Asmodea'sschool.jpg" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/8DyhZsLOMEk" class="text-xl  font-semibold hover:underline text-white ">
-                Asmodea's School Trailer| Horror Single-Player Game UE5
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 13 juin 2023</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="animation">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Winner.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/LVO6N2b4590" class="text-xl  font-semibold hover:underline text-white ">
-                Master Faster Event Animation For The Winners
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 December 2023</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="game-development">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Googleit.jpg" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/7wCCJRx92wk" class="text-xl font-semibold hover:underline text-white ">
-                Google It Trailer|Platformer Single-Player Game UE5
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 30 September 2023</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="game-development">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/TheNightSeeker.jpg" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/0pT0Y2QxC1w" class="text-xl   font-semibold hover:underline text-white ">
-                The Night Seeker Trailer|Horror Single-Player Game UE5
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 06 April 2023</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="animation">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\0006.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/sR592ggHgh4" class="text-xl   font-semibold hover:underline text-white ">
-                Hydrolic turbine Blender 4.0 cycles
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 17 March 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="game-development">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/CyberClashVLOG.jpg" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/O82WF39V3SA" class="text-xl  font-semibold hover:underline text-white ">
-                Dev Vlog Of Cyber Clash | The Local-Multiplayer Game That Made In Just One Month
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 December 2023</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="architecture">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/GamingRoomPart5.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/-drWWHq5_ZI" class="text-xl font-semibold hover:underline text-white ">
-                Making an interior design in 3D blender
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 14 January 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="animation">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-03-24-01h09m14s034.png"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/0cKQzPmFa58" class="text-xl  font-semibold  hover:underline text-white ">
-                Wheel Chair Animation Blender 4.0
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 24 March 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial" data-category="vfx">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Dragonball vfx.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/kWNr0yG960Q" class="text-xl  font-semibold hover:underline text-white ">
-                My First VFX Project Using Blender
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 14 January 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="videoediting">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-10-31-18h12m00s083.png"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/tyvORfe_pG4" class="text-xl  font-semibold hover:underline text-white ">
-                Flutter Fest Event Trailer || FSS Google Developer Group
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 13 June 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="videoediting">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-10-31-17h56m39s805.png"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/25UnTok84cY" class="text-xl  font-semibold hover:underline text-white ">
-                A video editing for an Ai Day event
-              </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 13 January 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="videoediting">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-10-28-14h28m25s007.png"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/AOFHnGAse8w" class="text-xl  font-semibold hover:underline text-white ">
-                Unforgettable Moments in Tabarka | VES Project Vlogs (part 1) </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 21 October 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="videoediting">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-10-28-14h33m24s202.png"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/X6o-PkMAXIs" class="text-xl  font-semibold hover:underline text-white ">
-                Chemtou's Visit | VES Project Vlogs (part 2 ) </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 22 October 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="videoediting">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-10-28-14h43m49s175.png"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/WtU61IxJg2k" class="text-xl  font-semibold hover:underline text-white ">
-                Final Day in Tabarka: Showcasing Our Projects! | VES Project Vlogs </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 23 October 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="videoediting">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/Gamfest.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://fb.watch/pztPL0pEvN/" class="text-xl  font-semibold hover:underline text-white ">
-                My After Event Video Editing For Game Fest </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 02 December 2023</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="animation">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-02-22-20h09m11s531.png"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://www.facebook.com/100007859146191/videos/1094498898361247/"
-                class="text-xl  font-semibold  hover:underline text-white ">
-                Mesmerizing product animation I made for the iPhone 12 mini </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 22 February 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="animation">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/MasterFasteranim.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://fb.watch/pztZQwUThh/" class="text-xl  font-semibold hover:underline text-white ">
-                My Animation For The Master Faster Event Announcement </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 07 December 2023</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="animation">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images/IGSC .png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/GhIolALXmvA" class="text-xl  font-semibold hover:underline text-white ">
-                My First Animation For Isims Google Students Club</a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 14 January 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="animation">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\DroneShot.png" alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/z3YdTIanKvY" class="text-xl  font-semibold hover:underline text-white ">
-                Drone shot over earth (Made in unreal engine 5)</a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 08 February 2024</span>
-            </div>
-          </div>
-          <div class="flex flex-col text-center lg:flex-row lg:text-left lg:flex scale-in initial"
-            data-category="animation">
-            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="Images\vlcsnap-2024-05-23-21h00m16s523.jpg"
-              alt="">
-
-            <div class="flex flex-col justify-between py-6 lg:mx-6">
-              <a href="https://youtu.be/XBi5RXO7W4I" class="text-xl  font-semibold hover:underline text-white ">
-                Intelligent shoes || A 3D work to a client </a>
-
-              <span class="text-sm text-gray-500 dark:text-gray-300">On: 23 May 2024</span>
-            </div>
+            
           </div>
         </div>
       </div>
-    </section>
-    <section class="footer px-6 md:px-16 lg:px-44 py-8 ">
-      <footer class="w-full text-white">
-        <div class="mx-auto w-full p-4 md:p-6">
-          <div class="flex flex-col md:flex-row justify-between items-center">
-            <!-- Logo and Brand Name -->
-            <div class="mb-4 md:mb-0 text-center md:text-left">
-              <a href="index.html" class="flex items-center space-x-2">
-                <span class="self-center font-semibold text-4xl md:text-5xl text-white">Portfolio</span>
-              </a>
-            </div>
+    </div>
+  </section>
 
-            <!-- Links Section -->
-            <div class="grid grid-cols-2 sm:grid-cols-2 gap-8 sm:gap-6 md:gap-12 text-center md:text-left">
-              <!-- My Career -->
-              <div>
-                <h2 class="text-xl md:text-2xl font-semibold uppercase text-white mb-3">My Career</h2>
-                <ul class="text-gray-400">
-                  <li class="mb-2">
-                    <a href="Images/CV version 8_16_2024.pdf" download="CV version 8_16_2024.pdf"
-                      class="text-lg hover:text-purple-300">Download CV</a>
-                  </li>
-                </ul>
-              </div>
-
-              <!-- Follow Me -->
-              <div>
-                <h2 class="text-xl md:text-2xl font-semibold uppercase text-purple-white mb-3">Follow Me
-                </h2>
-                <ul class="text-gray-400">
-                  <li class="mb-2">
-                    <a href="https://github.com/Youssef0356" class="text-lg hover:text-purple-300">GitHub</a>
-                  </li>
-                  <li>
-                    <a href="https://www.linkedin.com/in/youssef-neji-a13604279/"
-                      class="text-lg hover:text-purple-300">LinkedIn</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+  <section class="footer px-6 md:px-16 lg:px-44 py-8 ">
+    <footer class="w-full text-white">
+      <div class="mx-auto w-full p-4 md:p-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <!-- Logo and Brand Name -->
+          <div class="mb-4 md:mb-0 text-center md:text-left">
+            <a href="index.html" class="flex items-center space-x-2">
+              <span class="self-center font-semibold text-4xl md:text-5xl text-white">Portfolio</span>
+            </a>
           </div>
 
-          <!-- Divider -->
-          <hr class="my-4 border-gray-600" />
+          <!-- Links Section -->
+          <div class="grid grid-cols-2 sm:grid-cols-2 gap-8 sm:gap-6 md:gap-12 text-center md:text-left">
+            <!-- My Career -->
+            <div>
+              <h2 class="text-xl md:text-2xl font-semibold uppercase text-white mb-3">My Career</h2>
+              <ul class="text-gray-400">
+                <li class="mb-2">
+                  <a href="Images/CV version 8_16_2024.pdf" download="CV version 8_16_2024.pdf"
+                    class="text-lg hover:text-purple-300">Download CV</a>
+                </li>
+              </ul>
+            </div>
 
-          <!-- Bottom Section -->
-          <div class="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
-            <span class="text-sm text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Youssef
-                Neji™</a>. All Rights Reserved.</span>
-            <div class="flex space-x-4 mt-2 sm:mt-0">
-              <!-- Social Icons -->
-              <a href="https://www.facebook.com/youssef.dragonboll/"
-                class="text-gray-400 hover:text-white transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 8 19">
-                  <path fill-rule="evenodd"
-                    d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
-                    clip-rule="evenodd" />
-                </svg>
-                <span class="sr-only">Facebook</span>
-              </a>
-
-              <a href="https://github.com/Youssef0356" class="text-gray-400 hover:text-white transition-colors">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
-                    clip-rule="evenodd" />
-                </svg>
-                <span class="sr-only">GitHub</span>
-              </a>
+            <!-- Follow Me -->
+            <div>
+              <h2 class="text-xl md:text-2xl font-semibold uppercase text-purple-white mb-3">Follow Me
+              </h2>
+              <ul class="text-gray-400">
+                <li class="mb-2">
+                  <a href="https://github.com/Youssef0356" class="text-lg hover:text-purple-300">GitHub</a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/youssef-neji-a13604279/"
+                    class="text-lg hover:text-purple-300">LinkedIn</a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-      </footer>
-    </section>
 
+        <!-- Divider -->
+        <hr class="my-4 border-gray-600" />
 
-  </main>
+        <!-- Bottom Section -->
+        <div class="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
+          <span class="text-sm text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Youssef
+              Neji™</a>. All Rights Reserved.</span>
+          <div class="flex space-x-4 mt-2 sm:mt-0">
+            <!-- Social Icons -->
+            <a href="https://www.facebook.com/youssef.dragonboll/"
+              class="text-gray-400 hover:text-white transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 8 19">
+                <path fill-rule="evenodd"
+                  d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                  clip-rule="evenodd" />
+              </svg>
+              <span class="sr-only">Facebook</span>
+            </a>
+
+            <a href="https://github.com/Youssef0356" class="text-gray-400 hover:text-white transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                  d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+                  clip-rule="evenodd" />
+              </svg>
+              <span class="sr-only">GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
   <script src="index.js">
 
   </script>
