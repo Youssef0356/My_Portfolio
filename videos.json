@@ -1,6 +1,6 @@
 [
     {
-        "category": "horror",
+        "category": "animation",
         "title": "ISIMS: Where the Darkness Lurks",
         "date": "28 September 2024",
         "url": "https://www.youtube.com/embed/dWFdxOEMlO0",
@@ -70,6 +70,13 @@
         "description": "A 3D animation focused on building safety, made in Blender."
     },
     {
+        "category": "animation",
+        "title": "Old roman vertical water turbine 3D animation",
+        "date": "20 April 2024",
+        "url": "https://www.youtube.com/embed/hE2wCCuV-cQ",
+        "description": "Old roman vertical water turbine 3D animation"
+    },
+    {
         "category": "vfx",
         "title": "3D CGI for Flutter Fest Event by Google Developer Club | Faculty of Science Sfax",
         "date": "10 November 2024",
@@ -98,11 +105,32 @@
         "description": "CGI VFX showcase for the Flutter Fest event."
     },
     {
-        "category": "horror",
+        "category": "animation",
+        "title": "Intelligent shoes || A 3D work to a client",
+        "date": "23 May 2024",
+        "url": "https://www.youtube.com/embed/XBi5RXO7W4I",
+        "description": "Intelligent shoes || A 3D work to a client"
+    },
+    {
+        "category": "animation",
+        "title": "A logo Animation For ArtiDev IT Company",
+        "date": "19 August 2024",
+        "url": "https://www.youtube.com/embed/WYe2t9A6RGE",
+        "description": "Intelligent shoes || A 3D work to a client"
+    },
+    {
+        "category": "animation",
         "title": "A hospital where it got invaded by creepy octopus | Made With Blender",
         "date": "28 February 2023",
         "url": "https://www.youtube.com/embed/lbWH1xlfekg",
         "description": "A chilling horror scene in a hospital, featuring creepy octopuses."
+    },
+    {
+        "category": "videoediting",
+        "title": "Ai Day Trailer (video editing)",
+        "date": "29 September 2024",
+        "url": "https://www.youtube.com/embed/25UnTok84cY",
+        "description": "Ai Day Trailer (video editing)"
     },
     {
         "category": "animation",
@@ -112,7 +140,7 @@
         "description": "An animated explanation of large language models for DevFest."
     },
     {
-        "category": "horror",
+        "category": "animation",
         "title": "Horror movie footage",
         "date": "28 February 2023",
         "url": "https://www.youtube.com/embed/3486FFTVMtU",
@@ -148,10 +176,31 @@
     },
     {
         "category": "game-development",
-        "title": "Asmodea's School Trailer | Horror Single-Player Game UE5",
+        "title": "Asmodea's School Trailer | Horror. Single-Player Game UE5",
         "date": "13 June 2023",
         "url": "https://www.youtube.com/embed/8DyhZsLOMEk",
         "description": "Horror game trailer for 'Asmodea's School' in UE5."
+    },
+    {
+        "category": "videoediting",
+        "title": "Final Day in Tabarka: Showcasing Our Projects! | VES Project Vlogs (part 3)",
+        "date": "28 October 2024",
+        "url": "https://www.youtube.com/embed/WtU61IxJg2k",
+        "description": "Final Day in Tabarka: Showcasing Our Projects! | VES Project Vlogs (part 3)"
+    },
+    {
+        "category": "videoediting",
+        "title": "Chemtou's Visit | VES Project Vlogs (part 2 )",
+        "date": "28 October 2024",
+        "url": "https://www.youtube.com/embed/X6o-PkMAXIs",
+        "description": "Chemtou's Visit | VES Project Vlogs (part 2 )"
+    },
+    {
+        "category": "videoediting",
+        "title": "Unforgettable Moments in Tabarka | VES Project Vlogs (part 1)",
+        "date": "28 October 2024",
+        "url": "https://www.youtube.com/embed/AOFHnGAse8w",
+        "description": "Unforgettable Moments in Tabarka | VES Project Vlogs (part 1)"
     },
     {
         "category": "animation",
@@ -189,6 +238,13 @@
         "description": "Dev Vlog Of Cyber Clash | The Local-Multiplayer Game That Made In Just One Month"
     },
     {
+        "category": "videoediting",
+        "title": "Flutter Fest Event Trailer || FSS Google Developer Group",
+        "date": "24 February 2024",
+        "url": "https://www.youtube.com/embed/tyvORfe_pG4",
+        "description": "Flutter Fest Event Trailer || FSS Google Developer Group"
+    },
+    {
         "category": "architecture",
         "title": "Making an interior design in 3D blender",
         "date": "14 January 2024",
@@ -201,5 +257,68 @@
         "date": "24 March 2024",
         "url": "https://www.youtube.com/embed/0cKQzPmFa58",
         "description": "Wheel Chair Animation Blender 4.0"
+    },
+    {
+        "category": "animation",
+        "title": "Goku Transformation vfx || Made with blender",
+        "date": "14 Febriary 2024",
+        "url": "https://www.youtube.com/embed/Q8zHOzRpp58",
+        "description": "Wheel Chair Animation Blender 4.0"
+    },
+    {
+        "category": "vfx",
+        "title": "Mall of sfax Gets a VFX Makeover🌟",
+        "date": "05 March 2023",
+        "url": "https://www.youtube.com/embed/4R2UqvzBoG0",
+        "description": "Wheel Chair Animation Blender 4.0"
+    },
+    {
+        "category": "vfx",
+        "title": "Advertising Exist's New Product",
+        "date": "03 March 2024",
+        "url": "https://www.youtube.com/embed/BbNQl0rltZ8",
+        "description": "Wheel Chair Animation Blender 4.0"
+    },
+    {
+        "category": "animation",
+        "title": "My First Blender Animation [Backrooms]",
+        "date": "05 March 2024",
+        "url": "https://www.youtube.com/embed/fUWk_ideN6Q",
+        "description": "Wheel Chair Animation Blender 4.0"
+    },
+    {
+        "category": "videoediting",
+        "title": "My After Event Video Editing For Game Fest",
+        "date": "01 December 2023",
+        "url": "https://www.youtube.com/embed/Fhe2OVp9ILQ",
+        "description": "My After Event Video Editing For Game Fest"
+    },
+    {
+        "category": "animation",
+        "title": "Mesmerizing product animation I made for the iPhone 12 mini",
+        "date": "12 November 2024",
+        "url": "https://www.youtube.com/embed/MPKd33asddE",
+        "description": "Mesmerizing product animation I made for the iPhone 12 mini"
+    },
+    {
+        "category": "animation",
+        "title": "A logo animation for IGSC using unreal engine 5",
+        "date": "14 January 2024",
+        "url": "https://www.youtube.com/embed/GhIolALXmvA",
+        "description": "A logo animation for IGSC using unreal engine 5"
+    },
+    {
+        "category": "animation",
+        "title": "Master Faster Event Animation As A Story Part 1",
+        "date": "14 January 2024",
+        "url": "https://www.youtube.com/embed/fd5Hqo9g4Ok",
+        "description": "Master Faster Event Animation As A Story "
+    },
+    {
+        "category": "animation",
+        "title": "Flutter Fest Event Animation As A Story Part 2 ",
+        "date": "19 February 2024",
+        "url": "https://www.youtube.com/embed/CGRq-aCh-cE",
+        "description": "Master Faster Event Animation As A Story "
     }
 ]
