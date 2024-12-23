@@ -41,7 +41,7 @@
 
 <body>
   <section>
-    <nav class="fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full bg-[#181131] lg:px-64">
+    <nav class="glass fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full  lg:px-64">
       <a href="index.html" class="p-2 mr-4 inline-flex items-center lg:mr-0">
         <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
       </a>
@@ -79,7 +79,7 @@
 
       <!-- Mobile Navigation -->
       <div
-        class="lg:hidden hidden flex-col items-center text-center w-full text-md sm:text-lg bg-[#181131] overflow-hidden transition-all duration-300 ease-in-out"
+        class="glass lg:hidden hidden flex-col items-center text-center w-full text-md sm:text-lg bg-[#181131] overflow-hidden transition-all duration-300 ease-in-out"
         id="mobile-navigation">
         <a href="index.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
           <span>About</span>
@@ -123,84 +123,85 @@
   </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script>
-  fetch('videos.json')
-  .then(response => response.json())
-  .then(data => {
-    const gallery = document.getElementById('video-gallery');
-    const filterItems = document.querySelectorAll('.filter-item'); // Select all filter items
-
-    // Function to display videos based on category
-    function displayVideos(filterCategory = 'all') {
-      gallery.innerHTML = ''; // Clear the gallery
-
-      // Filter videos based on the selected category
-      const filteredVideos = filterCategory === 'all'
-        ? data
-        : data.filter(video => video.category === filterCategory);
-
-      // Generate HTML for filtered videos
-      filteredVideos.forEach(video => {
-        const videoDiv = document.createElement('div');
-        videoDiv.classList.add('w-full', 'mb-6', 'video-item');
-        videoDiv.setAttribute('data-category', video.category);
-
-        const iframe = document.createElement('iframe');
-        iframe.classList.add('object-cover', 'h-96', 'w-full', 'bg-black');
-        iframe.setAttribute('width', '560');
-        iframe.setAttribute('height', '315');
-        iframe.setAttribute('src', video.url);
-        iframe.setAttribute('frameborder', '0');
-        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-        iframe.setAttribute('allowfullscreen', '');
-        iframe.setAttribute('loading', 'lazy');
-
-        const titleDiv = document.createElement('div');
-        titleDiv.classList.add('pt-4');
-
-        const title = document.createElement('span');
-        title.classList.add('font-bold', 'text-lg', 'text-white', 'uppercase', 'font-mono');
-        title.textContent = video.title;
-
-        const date = document.createElement('span');
-        date.classList.add('block', 'text-sm', 'text-slate-500', 'uppercase', 'font-mono');
-        date.textContent = 'On: ' + new Date(video.date).toLocaleDateString();
-
-        const category = document.createElement('span');
-        category.classList.add('block', 'text-sm', 'text-slate-400', 'uppercase', 'font-mono');
-        category.textContent = 'Category: ' + video.category;
-
-        titleDiv.appendChild(title);
-        titleDiv.appendChild(date);
-        titleDiv.appendChild(category);
-
-        videoDiv.appendChild(iframe);
-        videoDiv.appendChild(titleDiv);
-        gallery.appendChild(videoDiv);
-      });
-    }
-
-    // Initial display of all videos
-    displayVideos();
-
-    // Add click event listeners to filter items
-    filterItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const selectedCategory = item.getAttribute('data-category');
-
-        // Remove the 'active' class from all filter items
-        filterItems.forEach(filter => filter.classList.remove('hover:bg-gray-800'));
-
-        // Add the 'active' class to the clicked item
-        item.classList.add('hover:bg-gray-800');
-
-        // Display filtered videos
-        displayVideos(selectedCategory);
-      });
-    });
-  })
-  .catch(error => console.error('Error loading JSON:', error));
-</script>
+    fetch('videos.json')
+      .then(response => response.json())
+      .then(data => {
+        const gallery = document.getElementById('video-gallery');
+        const filterItems = document.querySelectorAll('.filter-item'); // Select all filter items
+  
+        // Function to display videos based on category
+        function displayVideos(filterCategory = 'all') {
+          gallery.innerHTML = ''; // Clear the gallery
+  
+          // Filter videos based on the selected category
+          const filteredVideos = filterCategory === 'all'
+            ? data
+            : data.filter(video => video.category === filterCategory);
+  
+          // Generate HTML for filtered videos
+          filteredVideos.forEach(video => {
+            const videoDiv = document.createElement('div');
+            videoDiv.classList.add('w-full', 'mb-6', 'video-item');
+            videoDiv.setAttribute('data-category', video.category);
+  
+            const iframe = document.createElement('iframe');
+            iframe.classList.add('object-cover', 'h-96', 'w-full', 'bg-black');
+            iframe.setAttribute('width', '560');
+            iframe.setAttribute('height', '315');
+            iframe.setAttribute('src', video.url);
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+            iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+            iframe.setAttribute('allowfullscreen', '');
+            iframe.setAttribute('loading', 'lazy');
+  
+            const titleDiv = document.createElement('div');
+            titleDiv.classList.add('pt-4');
+  
+            const title = document.createElement('span');
+            title.classList.add('font-bold', 'text-lg', 'text-white', 'uppercase', 'font-mono');
+            title.textContent = video.title;
+  
+            const date = document.createElement('span');
+            date.classList.add('block', 'text-sm', 'text-slate-500', 'uppercase', 'font-mono');
+            date.textContent = 'On: ' + new Date(video.date).toLocaleDateString();
+  
+            const category = document.createElement('span');
+            category.classList.add('block', 'text-sm', 'text-slate-400', 'uppercase', 'font-mono');
+            category.textContent = 'Category: ' + video.category;
+  
+            titleDiv.appendChild(title);
+            titleDiv.appendChild(date);
+            titleDiv.appendChild(category);
+  
+            videoDiv.appendChild(iframe);
+            videoDiv.appendChild(titleDiv);
+            gallery.appendChild(videoDiv);
+          });
+        }
+  
+        // Initial display of all videos
+        displayVideos();
+  
+        // Add click event listeners to filter items
+        filterItems.forEach(item => {
+          item.addEventListener('click', () => {
+            const selectedCategory = item.getAttribute('data-category');
+  
+            // Remove the 'active' class from all filter items
+            filterItems.forEach(filter => filter.classList.remove('hover:bg-gray-800'));
+  
+            // Add the 'active' class to the clicked item
+            item.classList.add('hover:bg-gray-800');
+  
+            // Display filtered videos
+            displayVideos(selectedCategory);
+          });
+        });
+      })
+      .catch(error => console.error('Error loading JSON:', error));
+  </script>
+  
 <section class="flex items-center justify-center ">
   <style>
     .fade {
@@ -223,17 +224,16 @@
 
   <script>
     var ImageList = [
-    "Images/vlcsnap-2024-11-16-11h48m48s419.jpg",
-      "Images/IGSC .png",
-      "Images/vlcsnap-2024-02-08-23h50m07s299.png",
+    "Images/marhbabik.png",
       "Images/vlcsnap-2024-02-19-11h30m00s780.png",
-      "Images/vlcsnap-2024-04-20-00h02m38s666.png",
-      "Images/ArtiDev2.png",
-      "Images/GamingRoomPart5.png",
-      "Images/IsimsProjectDayv1.jpg",
+      "Images/CyberClashGame.jpg",
+      "Images/HighresScreenshot00022.jpg",
+      "Images/PoseidonFootagePicture.png",
       "Images/MasterFasteranim.png",
-      "Images/vlcsnap-2024-11-09-11h40m08s726.jpg",
-      "Images/TheNightSeeker.jpg"
+      "Images/IsimsProjectDayv1.jpg",
+      "Images/GamingRoomPart5.png",
+      "Images/Devfest.jpg",
+      "Images/Asmodea'sschool.jpg"
     ];
     var delay = 4000; 
     var currentIndex = 0;
@@ -253,7 +253,7 @@
       setInterval(updateImage, delay); 
     });
   </script>
-<div class="image-box w-full h-[50vh] sm:h-[40vh] relative bg-[#140C20] overflow-hidden flex justify-center items-center">
+<div class="image-box w-full h-[50vh] sm:h-[50vh] relative bg-[#140C20] overflow-hidden flex justify-center items-center">
   <img src="" alt="Slideshow Image" class="object-cover w-full h-full ">
 </div>
 
