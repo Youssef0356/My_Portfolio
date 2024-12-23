@@ -48,6 +48,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Call filterVideos on page load to show the initial category
   filterVideos();
-
-
-
