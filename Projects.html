@@ -7,9 +7,18 @@
   <title>Youssef Neji</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/6234cd1732.js" crossorigin="anonymous"></script>
-  <link rel="icon" href="Images\Yletter.jpg">
+  <link rel="icon" href="Images/Yletter.jpg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+    integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" />
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
@@ -33,9 +42,10 @@
       animation: scaleIn 0.5s ease forwards;
     }
 
-
-
-    
+    section {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      color: white;
+    }
   </style>
 </head>
 
@@ -47,19 +57,23 @@
       </a>
 
       <!-- Mobile Menu Toggle Button -->
-      <button class="text-white inline-flex p-3 rounded lg:hidden ml-auto hover:bg-[#181150] nav-toggler" id="nav-toggle">
+      <button class="text-white inline-flex p-3 rounded lg:hidden ml-auto hover:bg-[#181150] nav-toggler"
+        id="nav-toggle">
         <i class="material-icons">menu</i>
       </button>
 
       <!-- Desktop Navigation -->
-      <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg" id="desktop-navigation">
+      <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg"
+        id="desktop-navigation">
         <a href="index.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
           <span>About</span>
         </a>
-        <a href="Projects.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
+        <a href="Projects.html"
+          class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
           <span>Videos</span>
         </a>
-        <a href="Contact.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
+        <a href="Contact.html"
+          class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
           <span>Contact</span>
         </a>
         <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
@@ -95,7 +109,7 @@
         </a>
       </div>
     </nav>
-    
+
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         const video = document.querySelector('.rotated-video');
@@ -121,22 +135,22 @@
       .then(data => {
         const gallery = document.getElementById('video-gallery');
         const filterItems = document.querySelectorAll('.filter-item'); // Select all filter items
-  
+
         // Function to display videos based on category
         function displayVideos(filterCategory = 'all') {
           gallery.innerHTML = ''; // Clear the gallery
-  
+
           // Filter videos based on the selected category
           const filteredVideos = filterCategory === 'all'
             ? data
             : data.filter(video => video.category === filterCategory);
-  
+
           // Generate HTML for filtered videos
           filteredVideos.forEach(video => {
             const videoDiv = document.createElement('div');
             videoDiv.classList.add('w-full', 'mb-6', 'video-item');
             videoDiv.setAttribute('data-category', video.category);
-  
+
             const iframe = document.createElement('iframe');
             iframe.classList.add('object-cover', 'h-96', 'w-full', 'bg-black');
             iframe.setAttribute('width', '560');
@@ -147,46 +161,46 @@
             iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
             iframe.setAttribute('allowfullscreen', '');
             iframe.setAttribute('loading', 'lazy');
-  
+
             const titleDiv = document.createElement('div');
             titleDiv.classList.add('pt-4');
-  
+
             const title = document.createElement('span');
             title.classList.add('font-bold', 'text-lg', 'text-white', 'uppercase', 'font-mono');
             title.textContent = video.title;
-  
+
             const date = document.createElement('span');
             date.classList.add('block', 'text-sm', 'text-slate-500', 'uppercase', 'font-mono');
             date.textContent = 'On: ' + new Date(video.date).toLocaleDateString();
-  
+
             const category = document.createElement('span');
             category.classList.add('block', 'text-sm', 'text-slate-400', 'uppercase', 'font-mono');
             category.textContent = 'Category: ' + video.category;
-  
+
             titleDiv.appendChild(title);
             titleDiv.appendChild(date);
             titleDiv.appendChild(category);
-  
+
             videoDiv.appendChild(iframe);
             videoDiv.appendChild(titleDiv);
             gallery.appendChild(videoDiv);
           });
         }
-  
+
         // Initial display of all videos
         displayVideos();
-  
+
         // Add click event listeners to filter items
         filterItems.forEach(item => {
           item.addEventListener('click', () => {
             const selectedCategory = item.getAttribute('data-category');
-  
+
             // Remove the 'active' class from all filter items
             filterItems.forEach(filter => filter.classList.remove('hover:bg-gray-800'));
-  
+
             // Add the 'active' class to the clicked item
             item.classList.add('hover:bg-gray-800');
-  
+
             // Display filtered videos
             displayVideos(selectedCategory);
           });
@@ -194,136 +208,122 @@
       })
       .catch(error => console.error('Error loading JSON:', error));
   </script>
-  
-<section class="flex items-center justify-center ">
-  <style>
-    .fade {
-      animation: fadeEffect 1.5s ease-in;
-    }
 
-    @keyframes fadeEffect {
-      0% {
-        opacity: 0;
+  <section class="flex items-center justify-center ">
+    <style>
+      .fade {
+        animation: fadeEffect 1.5s ease-in;
       }
 
-      100% {
-        opacity: 1;
+      @keyframes fadeEffect {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
       }
-    }
+    </style>
 
-
-  </style>
-
-  <script>
-    var ImageList = [
-    "Images/marhbabik.png",
-      "Images/vlcsnap-2024-02-19-11h30m00s780.png",
-      "Images/CyberClashGame.jpg",
-      "Images/HighresScreenshot00022.jpg",
-      "Images/PoseidonFootagePicture.png",
-      "Images/MasterFasteranim.png",
-      "Images/IsimsProjectDayv1.jpg",
-      "Images/GamingRoomPart5.png",
-      "Images/Devfest.jpg",
-      "Images/Asmodea'sschool.jpg"
-    ];
-    var delay = 4000; 
-    var currentIndex = 0;
-    function updateImage() {
-      var imageContainer = document.querySelector(".image-box img");
-      if (imageContainer) {
-        imageContainer.classList.remove("fade");
-        void imageContainer.offsetWidth;
-        imageContainer.src = ImageList[currentIndex];
-        imageContainer.classList.add("fade");
-        currentIndex = (currentIndex + 1) % ImageList.length;
+    <script>
+      var ImageList = [
+        "Images/marhbabik.png",
+        "Images/vlcsnap-2024-02-19-11h30m00s780.png",
+        "Images/CyberClashGame.jpg",
+        "Images/HighresScreenshot00022.jpg",
+        "Images/PoseidonFootagePicture.png",
+        "Images/MasterFasteranim.png",
+        "Images/IsimsProjectDayv1.jpg",
+        "Images/GamingRoomPart5.png",
+        "Images/Devfest.jpg",
+        "Images/Asmodea'sschool.jpg"
+      ];
+      var delay = 4000;
+      var currentIndex = 0;
+      function updateImage() {
+        var imageContainer = document.querySelector(".image-box img");
+        if (imageContainer) {
+          imageContainer.classList.remove("fade");
+          void imageContainer.offsetWidth;
+          imageContainer.src = ImageList[currentIndex];
+          imageContainer.classList.add("fade");
+          currentIndex = (currentIndex + 1) % ImageList.length;
+        }
       }
-    }
-    document.addEventListener("DOMContentLoaded", function () {
-      var imageContainer = document.querySelector(".image-box img");
-      if (imageContainer) imageContainer.src = ImageList[currentIndex];
-      setInterval(updateImage, delay); 
-    });
-  </script>
-<div class="image-box w-full h-[50vh] sm:h-[50vh] relative bg-[#140C20] overflow-hidden flex justify-center items-center">
-  <img src="" alt="Slideshow Image" class="object-cover w-full h-full ">
-</div>
+      document.addEventListener("DOMContentLoaded", function () {
+        var imageContainer = document.querySelector(".image-box img");
+        if (imageContainer) imageContainer.src = ImageList[currentIndex];
+        setInterval(updateImage, delay);
+      });
+    </script>
+    <div
+      class="image-box w-full h-[50vh] sm:h-[50vh] relative bg-[#140C20] overflow-hidden flex justify-center items-center">
+      <img src="" alt="Slideshow Image" class="object-cover w-full h-full ">
+    </div>
 
-</section>
+  </section>
 
-<section class="relative flex min-h-screen flex-col bg-gradient-to-b from-[#140C20] to-[#0D0615] px-6 sm:px-16">
-  <div class="min-h-28">
-    <div class="mx-auto py-8">
-      <div class="container mx-auto flex flex-col justify-center text-center">
-        <!-- Heading -->
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold capitalize text-white bg-clip-text ">
-          My Projects
-        </h1>
-        <!-- Description -->
-        <p class="text-base md:text-lg lg:text-xl font-light pt-4 text-white opacity-90">
-          A selection of projects exploring 3D animations, video editing, and magnificent games.
-        </p>
+  <section class="relative flex min-h-screen flex-col bg-gradient-to-b from-[#140C20] to-[#0D0615] px-6 sm:px-16">
+    <div class="min-h-28">
+      <div class="mx-auto py-8">
+        <div class="container mx-auto flex flex-col justify-center text-center">
+          <!-- Heading -->
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold capitalize text-white bg-clip-text ">
+            My Projects
+          </h1>
+          <!-- Description -->
+          <p class="text-base md:text-lg lg:text-xl font-light pt-4 text-white opacity-90">
+            A selection of projects exploring 3D animations, video editing, and magnificent games.
+          </p>
 
-        <!-- Filters -->
-        <div class="py-8 flex items-center justify-center">
-          <ul class="filter-container shadow-lg flex flex-wrap justify-center gap-4 text-center items-center text-sm sm:text-base md:text-lg lg:text-xl">
-            <li
-              data-category="all"
-              class="filter-item cursor-pointer sm:px-6 px-2 rounded py-2 bg-[#140C20] text-white font-bold  hover:bg-[#969CFF] hover:text-white transition duration-300"
-            >
-              All Categories
-            </li>
-            <li
-              data-category="architecture"
-              class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300"
-            >
-            Architecture
-            </li>
-            <li
-              data-category="game-development"
-              class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300"
-            >
-              Game Development
-            </li>
-            <li
-              data-category="vfx"
-              class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300"
-            >
-              CGI
-            </li>
-            <li
-              data-category="videoediting"
-              class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300"
-            >
-            Video Editing
-            </li>
-            <li
-              data-category="animation"
-              class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300"
-            >
-              Animation
-            </li>
-            <li
-              data-category="other"
-              class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300"
-            >
-              Other
-            </li>
-          </ul>
-        </div>
+          <!-- Filters -->
+          <div class="py-8 flex items-center justify-center">
+            <ul
+              class="filter-container shadow-lg flex flex-wrap justify-center gap-4 text-center items-center text-sm sm:text-base md:text-lg lg:text-xl">
+              <li data-category="all"
+                class="filter-item cursor-pointer sm:px-6 px-2 rounded py-2 bg-[#140C20] text-white font-bold  hover:bg-[#969CFF] hover:text-white transition duration-300">
+                All Categories
+              </li>
+              <li data-category="architecture"
+                class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300">
+                Architecture
+              </li>
+              <li data-category="game-development"
+                class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300">
+                Game Development
+              </li>
+              <li data-category="vfx"
+                class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300">
+                CGI
+              </li>
+              <li data-category="videoediting"
+                class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300">
+                Video Editing
+              </li>
+              <li data-category="animation"
+                class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300">
+                Animation
+              </li>
+              <li data-category="other"
+                class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300">
+                Other
+              </li>
+            </ul>
+          </div>
 
-        <!-- Divider -->
-        <div class="w-full h-[2px] bg-gradient-to-r from-[#969CFF] via-[#140C20] to-[#969CFF] my-8"></div>
-        <!-- Video Gallery -->
-        <div id="video-gallery" class="mt-8 mx-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-          <!-- Video gallery remains unchanged -->
+          <!-- Divider -->
+          <div class="w-full h-[2px] bg-gradient-to-r from-[#969CFF] via-[#140C20] to-[#969CFF] my-8"></div>
+          <!-- Video Gallery -->
+          <div id="video-gallery" class="mt-8 mx-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+            <!-- Video gallery remains unchanged -->
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-  <section class="footer px-6 md:px-16 lg:px-44 py-8 ">
+  <section class="footer px-6 md:px-16 lg:px-44 py-8 bg-[#140C20]">
     <footer class="w-full text-white">
       <div class="mx-auto w-full p-4 md:p-6">
         <div class="flex flex-col md:flex-row justify-between items-center">
