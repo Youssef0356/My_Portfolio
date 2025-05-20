@@ -28,6 +28,21 @@
         "description": "Continuing the 3D modeling of ISIMS architecture in Part 2."
     },
     {
+        "category": "other",
+        "title": "You and Ai an accessible ai game for everyone",
+        "date": "11 March 2025",
+        "url": "https://www.youtube.com/embed/iNFjHrLZKWY",
+        "description": "Continuing the 3D modeling of ISIMS architecture in Part 2."
+    },
+    {
+        "category": "vfx",
+        "title": "CGI Project for Metal 2000",
+        "date": "21 mai 2025",
+        "url": "https://www.youtube.com/embed/mXQh2WbTVpg",
+        "description": "Continuing the 3D modeling of ISIMS architecture in Part 2."
+    },
+
+    {
         "category": "animation",
         "title": "Motion Graphics Made In Blender And After Effects",
         "date": "09/02 February 2025",
@@ -216,6 +231,27 @@
         "date": "10 March 2024",
         "url": "https://www.youtube.com/embed/GBkqUzn86jw",
         "description": "3D recreation of Mall of Sfax using Blender 4.0."
+    },
+    {
+        "category": "animation",
+        "title": "Mon Plaisir  Motion Graphics Showcase ",
+        "date": "20 December 2025",
+        "url": "https://www.youtube.com/embed/q72urc3q03w",
+        "description": "Mon Plaisir  Motion Graphics Showcase "
+    },
+    {
+        "category": "vfx",
+        "title": "MonPlaisir 3d VFX with Farhat Hnena ",
+        "date": "08 April 2025",
+        "url": "https://www.youtube.com/embed/PidmFQASpCM",
+        "description": "Mon Plaisir  Motion Graphics Showcase "
+    },
+        {
+        "category": "vfx",
+        "title": "The Story of a Split Identity",
+        "date": "03 february 2025",
+        "url": "https://www.youtube.com/embed/WHcqdBGAp70",
+        "description": "The Story of a Split Identity"
     },
     {
         "category": "game-development",
