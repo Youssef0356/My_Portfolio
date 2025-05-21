@@ -17,10 +17,20 @@
     footer{
         animation : scaleup 1s ease-in-out;
     }
+    
+body {
+  background: radial-gradient(circle at center, #1f1133 0%, #130B1F 100%);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: white;
+  position: absolute;
+  inset: 0;
+  place-content: center;
+  align-items: center;
+}
 </style>
 </head>
 
-<body>
+<body class="relative bg-gray-900">
   <section>
     <nav class="glass fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full lg:px-64">
         <a href="index.html" class="p-2 mr-4 inline-flex items-center lg:mr-0">
@@ -80,7 +90,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const video = document.querySelector('.rotated-video');
-            video.playbackRate = 2.0; // Set this to your desired speed (e.g., 2.0 for double speed)
+            if (video) {
+                video.playbackRate = 2.0;
+            }
         });
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -97,7 +109,40 @@
     </script>
 </section>
 <section>
-    <div class="relative flex items-top justify-center min-h-screen sm:items-center pt-24 sm:pt-0">
+    <div class='lines'>
+        <div class='light x3'></div>
+        <div class='light x7'></div>
+        <div class='light x8'></div>
+    </div>
+    <style>
+        .lines {
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
+        position: relative;
+        z-index: 1;
+        }
+        .lines.fade-out {
+        opacity: 0;
+        pointer-events: none;
+        }
+    </style>
+    <script>
+        window.addEventListener('scroll', () => {
+        const linesElement = document.querySelector('.lines');
+        if (linesElement) {
+            const scrollPosition = window.scrollY;
+            const opacity = Math.max(0, 1 - (scrollPosition / 500));
+            linesElement.style.opacity = opacity;
+
+            if (scrollPosition > 500) {
+                linesElement.classList.add('fade-out');
+            } else {
+                linesElement.classList.remove('fade-out');
+            }
+        }
+        });
+    </script>
+    <div class="relative z-10 flex items-top justify-center min-h-screen sm:items-center pt-24 sm:pt-0">
   <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
       <div class="mt-8 overflow-hidden">
           <div class="grid grid-cols-1 md:grid-cols-2 ">
