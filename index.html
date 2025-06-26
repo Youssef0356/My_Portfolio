@@ -19,13 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" />
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/FontLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/geometries/TextGeometry.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/fonts/helvetiker_regular.typeface.json"></script>
-    <!-- Add Roboto font for Three.js -->
-    <script src="https://cdn.jsdelivr.net/gh/7dir/json-fonts/fonts/latin/roboto/Roboto_Regular.json"></script>
+    <!-- Removed all Three.js scripts -->
 
     <style>
         #content-section {
@@ -39,25 +33,20 @@
 
         #mySection {
             opacity: 0;
-            /* Initially hidden */
         }
 
         .aboutme {
             transform: scale3d(0, 1, 0);
-            /* Start at scale 0 for all axes */
             animation: scale3dEffect 0.5s ease-in-out forwards;
-            /* Apply animation */
         }
 
         @keyframes scale3dEffect {
             from {
                 transform: scale3d(1.5, 1.5, 0);
-                /* Scale down in 3D */
             }
 
             to {
                 transform: scale3d(1, 1, 1);
-                /* Full scale in 3D */
             }
         }
 
@@ -101,9 +90,7 @@
                 height: 30vh;
                 width: 17.5vh;
                 opacity: 0;
-
             }
-
         }
 
         .video-container {
@@ -113,7 +100,6 @@
         .video-wrapper {
             border-radius: 8px;
             overflow: hidden;
-
         }
 
         .rotated-video {
@@ -122,39 +108,13 @@
             outline: none;
         }
 
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0; /* Ensures canvas is behind content but visible */
-        }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 1; /* Ensures content is above canvas */
-        }
-
-        #hero-3d {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            background: transparent; /* Make hero background transparent to show Three.js background */
-            overflow: hidden;
-            z-index: 10;
-            transition: opacity 0.7s;
-        }
-        #hero-3d.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
+        /* Removed #canvas-container and #hero-3d styles */
         .content-wrapper {
             position: relative;
             z-index: 1;
         }
         body {
-            background: transparent; /* Make body background transparent to show Three.js background */
+            background: #1a0a2e;
         }
     </style>
 
@@ -163,22 +123,16 @@
             const videoSection = document.getElementById("video-section");
             const contentSection = document.getElementById("content-section");
 
-            // Wait for 2 seconds after the page loads
             setTimeout(() => {
-                // Add the 'loaded' class to fade in the second section
                 contentSection.classList.add("loaded");
-
-                // Smoothly scroll to the second section
                 contentSection.scrollIntoView({ behavior: "smooth" });
-            }, 2000); // 2000ms = 2 seconds
+            }, 2000);
         });
 
         document.addEventListener('scroll', function () {
             const videoContainer = document.querySelector('.video-container');
             const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-
-            // Adjust the scroll threshold as needed
-            if (scrollPosition > 200) { // Change 200 to your desired scroll trigger point
+            if (scrollPosition > 200) {
                 videoContainer.classList.add('in-view');
             } else {
                 videoContainer.classList.remove('in-view');
@@ -188,7 +142,6 @@
         gsap.registerPlugin(ScrollTrigger);
 
         window.addEventListener('load', function () {
-            // Set up GSAP animations for elements
             const elements = document.querySelectorAll('.timeline-element');
             elements.forEach((el) => {
                 gsap.from(el, {
@@ -208,252 +161,11 @@
                 duration: 800,
             });
         });
-
-        // Three.js setup
-        let scene, camera, renderer, controls, stars;
-        let textMeshes = [];
-        let currentSection = 0;
-        let mouse = new THREE.Vector2(); // Declare mouse globally
-        let isMouseOverCanvas = false; // Declare isMouseOverCanvas globally
-        const sections = [
-            { text: "HOWDY!", font: "roboto" },
-            { text: "I'm a multifaceted developer and artist with my own style." },
-            { text: "I love stepping beyond the norm and crafting innovative, creative solutions." },
-            { text: "I am a Graduated Bachelor's student at ISIMS, pursuing a degree in Big Data and Data analysis. Alongside my studies, I work as a freelance 3D modeler and animator, collaborating with a diverse range of clients, including companies, educators, and students. My expertise encompasses 3D animation, video editing, augmented reality development, and image editing. I have a proven track record of creating impactful 3D animations for event marketing and providing high-quality video editing services." },
-            { text: "In 2024, I completed my work as a member of the Virtual Exhibition Space for Technical Historical Objects, where I collaborated with institutions such as ISIMS, HKA Germany, University Malaysia Pahang, and GUTECH. This project allowed me to contribute to the preservation and presentation of historical artifacts through innovative digital solutions." },
-            { text: "In 2025, I worked with the University of Sfax on a large-scale project that integrates artificial intelligence, game development, data analysis, and virtual reality. I am deeply interested in AI and its applications. I am dedicated to delivering engaging content that helps clients bring their ideas to life through design and animation techniques. My focus on quality and creativity drives my work, allowing me to excel in various aspects of visual storytelling and design." }
-        ];
-
-        function addStars() {
-            const starGeometry = new THREE.BufferGeometry();
-            const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.5, sizeAttenuation: true });
-            const starVertices = [];
-            for (let i = 0; i < 1500; i++) {
-                const x = (Math.random() - 0.5) * 200;
-                const y = (Math.random() - 0.5) * 200;
-                const z = (Math.random() - 0.5) * 200;
-                starVertices.push(x, y, z);
-            }
-            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-            stars = new THREE.Points(starGeometry, starMaterial);
-            stars.rotation.x = Math.random() * Math.PI;
-            stars.rotation.y = Math.random() * Math.PI;
-            stars.rotation.z = Math.random() * Math.PI;
-            scene.add(stars);
-        }
-
-        function init() {
-            // Create scene
-            scene = new THREE.Scene();
-            scene.background = new THREE.Color(0x1a0a2e); // Darker purple background for depth
-
-            // Create camera
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 5;
-
-            // Create renderer
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-            // Add event listeners for mouse interaction
-            renderer.domElement.addEventListener('mousemove', (event) => {
-                mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-                mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-                isMouseOverCanvas = true;
-            });
-
-            renderer.domElement.addEventListener('mouseleave', () => {
-                isMouseOverCanvas = false;
-            });
-
-            // Add stars/particles
-            addStars();
-
-            // Add lights
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-            scene.add(ambientLight);
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
-            directionalLight.position.set(0, 1, 1);
-            scene.add(directionalLight);
-
-            // Create text geometries
-            const fontLoader = new THREE.FontLoader();
-            // Load helvetiker_bold first for fallback for all texts, then try roboto
-            fontLoader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', function(helvetikerBoldFont) {
-                fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function(helvetikerFont) {
-                    fontLoader.load('https://cdn.jsdelivr.net/gh/7dir/json-fonts/fonts/latin/roboto/Roboto_Regular.json', function(robotoFont) {
-                        sections.forEach((section, index) => {
-                            let font = helvetikerFont; // Default to regular for general text
-                            let color = 0xffffff;
-                            let size = 0.35; // Increased size for general text to ensure visibility
-                            let height = 0.03; // Increased height for better 3D effect
-                            let bevel = true;
-
-                            if (section.font === "roboto" && index === 0) {
-                                font = robotoFont || helvetikerBoldFont; // Use Roboto if available, else helvetiker_bold for HOWDY!
-                                color = 0xa370f7; // A more vibrant purple for HOWDY
-                                size = 0.85; // Increased size for HOWDY
-                                height = 0.06; // Increased height for HOWDY
-                                bevel = true;
-                            }
-                            // Ensure a font is always set
-                            if (!font) {
-                                font = helvetikerBoldFont; // Fallback to helvetiker_bold if somehow no font is loaded
-                                console.warn('Ultimate fallback to helvetiker_bold font!');
-                            }
-                            const geometry = new THREE.TextGeometry(section.text, {
-                                font: font,
-                                size: size,
-                                height: height,
-                                curveSegments: 12,
-                                bevelEnabled: bevel,
-                                bevelThickness: 0.005,
-                                bevelSize: 0.008,
-                                bevelOffset: 0,
-                                bevelSegments: 3
-                            });
-                            geometry.computeBoundingBox();
-                            const bbox = geometry.boundingBox;
-                            const textWidth = bbox.max.x - bbox.min.x;
-                            const materials = [
-                                new THREE.MeshPhongMaterial({ color: color, shininess: 80, specular: 0x969cff }),
-                                new THREE.MeshPhongMaterial({ color: 0x18151f })
-                            ];
-                            const textMesh = new THREE.Mesh(geometry, materials);
-                            textMesh.position.x = -textWidth / 2;
-                            textMesh.position.y = (sections.length - 1) * 1.7 / 2 - index * 1.7; // Adjusted padding for better visibility and paragraph style
-                            textMesh.position.z = 0;
-                            textMesh.castShadow = true;
-                            scene.add(textMesh);
-                            textMeshes.push(textMesh);
-                        });
-                    }, undefined, function(err) {
-                        console.error('Failed to load Roboto font:', err); // Changed console.warn to console.error
-                        // If Roboto fails, still proceed with other fonts loaded
-                        sections.forEach((section, index) => {
-                            let font = helvetikerFont; // Default to regular for general text
-                            let color = 0xffffff;
-                            let size = 0.35; // Increased size for general text to ensure visibility
-                            let height = 0.03; // Increased height
-                            let bevel = true;
-
-                            if (section.font === "roboto" && index === 0) {
-                                font = helvetikerBoldFont; // Fallback for HOWDY!
-                                color = 0xa370f7;
-                                size = 0.85; // Increased size for HOWDY
-                                height = 0.06;
-                                bevel = true;
-                            }
-                            const geometry = new THREE.TextGeometry(section.text, {
-                                font: font,
-                                size: size,
-                                height: height,
-                                curveSegments: 12,
-                                bevelEnabled: bevel,
-                                bevelThickness: 0.005,
-                                bevelSize: 0.008,
-                                bevelOffset: 0,
-                                bevelSegments: 3
-                            });
-                            geometry.computeBoundingBox();
-                            const bbox = geometry.boundingBox;
-                            const textWidth = bbox.max.x - bbox.min.x;
-                            const materials = [
-                                new THREE.MeshPhongMaterial({ color: color, shininess: 80, specular: 0x969cff }),
-                                new THREE.MeshPhongMaterial({ color: 0x18151f })
-                            ];
-                            const textMesh = new THREE.Mesh(geometry, materials);
-                            textMesh.position.x = -textWidth / 2;
-                            textMesh.position.y = (sections.length - 1) * 1.7 / 2 - index * 1.7; // Adjusted padding
-                            textMesh.position.z = 0;
-                            textMesh.castShadow = true;
-                            scene.add(textMesh);
-                            textMeshes.push(textMesh);
-                        });
-                    });
-                });
-            });
-
-            // Add scroll event listener
-            window.addEventListener('scroll', onScroll);
-            window.addEventListener('resize', onWindowResize);
-
-            animate();
-        }
-
-        function animate() { // Move animate function outside init
-            requestAnimationFrame(animate);
-
-            // Animate stars
-            if (stars) {
-                stars.rotation.y += 0.0007;
-                stars.rotation.z += 0.0002;
-            }
-
-            // Animate text rotation with cursor or idle animation
-            textMeshes.forEach((mesh, index) => {
-                if (isMouseOverCanvas) {
-                    // Rotate based on mouse position
-                    const targetRotationX = mouse.y * 0.2;
-                    const targetRotationY = -mouse.x * 0.2;
-
-                    mesh.rotation.x += (targetRotationX - mesh.rotation.x) * 0.05;
-                    mesh.rotation.y += (targetRotationY - mesh.rotation.y) * 0.05;
-                } else {
-                    // Idle animation
-                    mesh.rotation.x += Math.sin(Date.now() * 0.0003 + index) * 0.0001;
-                    mesh.rotation.y += Math.cos(Date.now() * 0.0002 + index) * 0.0002;
-                }
-            });
-
-            renderer.render(scene, camera);
-        }
-
-        function onScroll() {
-            // Fade out hero section on scroll
-            const hero = document.getElementById('hero-3d');
-            if (window.scrollY > window.innerHeight * 0.5) {
-                hero.classList.add('fade-out');
-            } else {
-                hero.classList.remove('fade-out');
-            }
-
-            // Animate camera position (optional, can be removed if not needed)
-            const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const sectionHeight = windowHeight / 3;
-            currentSection = Math.floor(scrollPosition / sectionHeight);
-            const targetPosition = new THREE.Vector3(0, -currentSection * 2, 5 + currentSection * 0.5);
-            gsap.to(camera.position, {
-                x: targetPosition.x,
-                y: targetPosition.y,
-                z: targetPosition.z,
-                duration: 1,
-                ease: "power2.inOut"
-            });
-            // Add subtle camera rotation
-            gsap.to(camera.rotation, {
-                x: -currentSection * 0.05, // Slight rotation on X-axis
-                duration: 1,
-                ease: "power2.inOut"
-            });
-            // Removed textMeshes rotation from onScroll to prevent conflicts
-        }
-
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        // Initialize Three.js when the page loads
-        window.addEventListener('load', init);
     </script>
 </head>
 
 <body class="relative bg-gray-900">
-    <nav id="main-navbar" class="glass fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full lg:px-64 transition-opacity duration-700 opacity-0 pointer-events-none">
+    <nav id="main-navbar" class="glass fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full lg:px-64 transition-opacity duration-700 opacity-100">
         <a href="index.html" class="p-2 mr-4 inline-flex items-center lg:mr-0">
             <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
         </a>
@@ -499,18 +211,6 @@
         </div>
     </nav>
     <script>
-        // Navbar show/hide on scroll past hero
-        window.addEventListener('scroll', function () {
-            const hero = document.getElementById('hero-3d');
-            const navbar = document.getElementById('main-navbar');
-            if (window.scrollY > hero.offsetHeight - 60) {
-                navbar.classList.remove('opacity-0', 'pointer-events-none');
-                navbar.classList.add('opacity-100');
-            } else {
-                navbar.classList.add('opacity-0', 'pointer-events-none');
-                navbar.classList.remove('opacity-100');
-            }
-        });
         // Mobile nav toggle
         document.addEventListener('DOMContentLoaded', function () {
             const toggleButton = document.getElementById('nav-toggle');
@@ -520,9 +220,8 @@
             });
         });
     </script>
-    <section id="hero-3d">
-        <div id="canvas-container"></div>
-    </section>
+    <!-- Removed <section id="hero-3d"><div id="canvas-container"></div></section> -->
+
     <div class="content-wrapper">
         <section class="pt-28 px-8 md:pt-12 md:px-22 lg:pt-24 lg:px-44 ">
             <div class='lines'>
