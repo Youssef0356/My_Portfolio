@@ -70,7 +70,7 @@ html{
 
 
 body {
-  background: radial-gradient(circle at center, #1f1133 0%, #130B1F 100%);
+  background: #130B1F;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
   position: absolute;
