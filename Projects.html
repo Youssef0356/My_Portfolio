@@ -46,6 +46,131 @@
       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       color: white;
     }
+
+    .project-card {
+      transition: transform 0.3s cubic-bezier(.4,2,.3,1), box-shadow 0.3s, border-color 0.3s;
+      box-shadow: 0 4px 32px 0 rgba(150,156,255,0.10), 0 1.5px 8px 0 rgba(150,156,255,0.10);
+      border: 2px solid transparent;
+      background: rgba(20,12,32,0.95);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card:hover {
+      transform: scale(1.035) translateY(-4px) rotateZ(-0.5deg);
+      box-shadow: 0 8px 40px 0 #969cff44, 0 2px 16px 0 #969cff33;
+      border-color: #969CFF;
+      z-index: 2;
+    }
+    
+    .filter-item.active, .filter-item:active {
+      background: linear-gradient(90deg, #969CFF 60%, #6D28D9 100%) !important;
+      color: #fff !important;
+      transform: scale(1.08);
+      box-shadow: 0 2px 12px #969cff55;
+    }
+
+    @keyframes glowMove {
+      0% { left: 48%; top: 52%; }
+      100% { left: 52%; top: 48%; }
+    }
+    .fade {
+      animation: fadeEffect 1.5s ease-in;
+    }
+    @keyframes fadeEffect {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    .kenburns {
+      animation: kenburnsZoom 4s ease-in-out forwards;
+      will-change: transform;
+    }
+    @keyframes kenburnsZoom {
+      0% {
+        transform: scale(1) translateY(0px);
+      }
+      100% {
+        transform: scale(1.08) translateY(-10px);
+      }
+    }
+    .slideshow-hero {
+      position: relative;
+      width: 100%;
+      height: 50vh;
+      min-height: 300px;
+      max-height: 60vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #140C20;
+    }
+    .slideshow-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      opacity: 1;
+      transition: opacity 0.8s;
+    }
+    .slideshow-gradient {
+      position: absolute;
+      left: 0; top: 0; width: 100%; height: 100%;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(120deg, rgba(150,156,255,0.18) 0%, rgba(109,40,217,0.18) 100%);
+      animation: gradientMove 8s ease-in-out infinite alternate;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    .slideshow-tagline {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 700;
+      text-shadow: 0 4px 32px #140C20, 0 1.5px 8px #969cff;
+      opacity: 0;
+      animation: taglineFadeIn 1.2s 0.5s forwards;
+      letter-spacing: 0.04em;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    @keyframes taglineFadeIn {
+      0% { opacity: 0; transform: translate(-50%, -60%); }
+      100% { opacity: 1; transform: translate(-50%, -50%); }
+    }
+    .glow-hero-effect {
+      pointer-events: none;
+    }
+    .glow-hero-blob {
+      width: 420px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 60% 40%, #969cff55 0%, #6D28D9 60%, transparent 100%);
+      filter: blur(32px) brightness(1.2);
+      opacity: 0.7;
+      animation: heroGlowMove 7s ease-in-out infinite alternate, heroGlowColor 12s ease-in-out infinite alternate;
+      transition: transform 0.5s cubic-bezier(.4,2,.3,1);
+      will-change: transform;
+    }
+    @keyframes heroGlowMove {
+      0% { transform: translateY(0) scaleX(1); }
+      50% { transform: translateY(10px) scaleX(1.08); }
+      100% { transform: translateY(-8px) scaleX(0.96); }
+    }
+    @keyframes heroGlowColor {
+      0% { background: radial-gradient(circle at 60% 40%, #969cff55 0%, #6D28D9 60%, transparent 100%); }
+      50% { background: radial-gradient(circle at 40% 60%, #6D28D9 0%, #969cff55 60%, transparent 100%); }
+      100% { background: radial-gradient(circle at 60% 40%, #969cff55 0%, #6D28D9 60%, transparent 100%); }
+    }
   </style>
 </head>
 
@@ -148,7 +273,7 @@
           // Generate HTML for filtered videos
           filteredVideos.forEach(video => {
             const videoDiv = document.createElement('div');
-            videoDiv.classList.add('w-full', 'mb-6', 'video-item');
+            videoDiv.classList.add('w-full', 'mb-6', 'video-item', 'project-card', 'rounded-2xl', 'shadow-lg', 'p-4', 'relative', 'overflow-hidden', 'bg-[#140C20]');
             videoDiv.setAttribute('data-category', video.category);
 
             const iframe = document.createElement('iframe');
@@ -181,6 +306,11 @@
             titleDiv.appendChild(date);
             titleDiv.appendChild(category);
 
+            const badge = document.createElement('span');
+            badge.className = 'category-badge';
+            badge.textContent = video.category.charAt(0).toUpperCase() + video.category.slice(1);
+            titleDiv.appendChild(badge);
+
             videoDiv.appendChild(iframe);
             videoDiv.appendChild(titleDiv);
             gallery.appendChild(videoDiv);
@@ -210,22 +340,6 @@
   </script>
 
   <section class="flex items-center justify-center ">
-    <style>
-      .fade {
-        animation: fadeEffect 1.5s ease-in;
-      }
-
-      @keyframes fadeEffect {
-        0% {
-          opacity: 0;
-        }
-
-        100% {
-          opacity: 1;
-        }
-      }
-    </style>
-
     <script>
       var ImageList = [
         "Images/marhbabik.png",
@@ -242,27 +356,90 @@
       var delay = 4000;
       var currentIndex = 0;
       function updateImage() {
-        var imageContainer = document.querySelector(".image-box img");
+        var imageContainer = document.querySelector(".slideshow-hero img");
         if (imageContainer) {
-          imageContainer.classList.remove("fade");
+          imageContainer.classList.remove("fade", "kenburns");
           void imageContainer.offsetWidth;
           imageContainer.src = ImageList[currentIndex];
-          imageContainer.classList.add("fade");
+          imageContainer.classList.add("fade", "kenburns");
           currentIndex = (currentIndex + 1) % ImageList.length;
         }
       }
       document.addEventListener("DOMContentLoaded", function () {
-        var imageContainer = document.querySelector(".image-box img");
+        var imageContainer = document.querySelector(".slideshow-hero img");
         if (imageContainer) imageContainer.src = ImageList[currentIndex];
         setInterval(updateImage, delay);
       });
     </script>
-    <div
-      class="image-box w-full h-[50vh] sm:h-[50vh] relative bg-[#140C20] overflow-hidden flex justify-center items-center">
-      <img src="" alt="Slideshow Image" class="object-cover w-full h-full ">
+    <div class="slideshow-hero w-full h-[50vh] sm:h-[50vh] relative bg-[#140C20] overflow-hidden flex justify-center items-center">
+      <img src="" alt="Slideshow Image" class="object-cover w-full h-full fade kenburns">
+      <div class="slideshow-gradient"></div>
+      <div class="slideshow-tagline">Explore My Creative World</div>
     </div>
-
   </section>
+
+  <!-- Animated particle background (canvas) -->
+  <canvas id="particle-bg" style="position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:-1; pointer-events:none;"></canvas>
+  <script>
+  (function() {
+    const canvas = document.getElementById('particle-bg');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = 38;
+    const colors = ['#969cff44', '#6D28D955', '#fff2', '#969cff33'];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      createParticles();
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function random(min, max) { return Math.random() * (max - min) + min; }
+
+    function createParticles() {
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: random(0, canvas.width),
+          y: random(0, canvas.height),
+          r: random(16, 38),
+          dx: random(-0.15, 0.15),
+          dy: random(-0.08, 0.08),
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: random(0.18, 0.38)
+        });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let p of particles) {
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 18;
+        ctx.fill();
+        ctx.restore();
+        p.x += p.dx;
+        p.y += p.dy;
+        // Wrap around edges
+        if (p.x < -p.r) p.x = canvas.width + p.r;
+        if (p.x > canvas.width + p.r) p.x = -p.r;
+        if (p.y < -p.r) p.y = canvas.height + p.r;
+        if (p.y > canvas.height + p.r) p.y = -p.r;
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+  })();
+  </script>
 
   <section class="relative flex min-h-screen flex-col bg-gradient-to-b from-[#140C20] to-[#0D0615] px-6 sm:px-16">
     <div class="min-h-28">
@@ -400,8 +577,42 @@
 
   </script>
 
+  <div class="glow-bg"></div>
+
+  <script>
+    // Parallax effect for the glow on scroll
+    document.addEventListener('scroll', function () {
+      var blob = document.getElementById('glow-hero-blob');
+      var projectsSection = document.querySelector('.relative.flex.min-h-screen');
+      if (blob && projectsSection) {
+        var rect = projectsSection.getBoundingClientRect();
+        var windowHeight = window.innerHeight;
+        // Only animate if projects section is in view
+        if (rect.top < windowHeight && rect.bottom > 0) {
+          var scrollPercent = Math.min(1, Math.max(0, (windowHeight - rect.top) / (windowHeight + rect.height)));
+          var translateY = 0 + scrollPercent * 40; // move down as you scroll
+          var translateX = 0 + scrollPercent * 30; // move right as you scroll
+          blob.style.transform = `translateY(${translateY}px) translateX(${translateX}px)`;
+        }
+      }
+    });
+  </script>
+
+  <!-- Enhance project card entrance with AOS: fade-up, slight tilt/scale -->
+  <style>
+    [data-aos="fade-up"] {
+      transform: translateY(40px) scale(0.97) rotateZ(-2deg);
+      opacity: 0;
+      transition-property: transform, opacity;
+    }
+    [data-aos="fade-up"].aos-animate {
+      transform: translateY(0) scale(1.03) rotateZ(0.5deg);
+      opacity: 1;
+      box-shadow: 0 8px 40px 0 #969cff33, 0 2px 16px 0 #969cff22;
+      z-index: 2;
+    }
+  </style>
+
 </body>
-
-
 
 </html>

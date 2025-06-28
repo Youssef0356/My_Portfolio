@@ -116,6 +116,38 @@
         body {
             background: #1a0a2e;
         }
+
+        .hero-float {
+            position: absolute;
+            width: 8rem;
+            height: 8rem;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, #a78bfa22 0%, #f472b622 100%);
+            filter: blur(0.5px);
+            pointer-events: none;
+            z-index: 1;
+            transition: transform 0.1s ease-out;
+        }
+        @keyframes float-0 { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-20px) rotate(180deg);} }
+        @keyframes float-1 { 0%,100%{transform:translateY(-10px) rotate(45deg);} 50%{transform:translateY(-30px) rotate(225deg);} }
+        @keyframes float-2 { 0%,100%{transform:translateY(-5px) rotate(90deg);} 50%{transform:translateY(-25px) rotate(270deg);} }
+        @keyframes float-3 { 0%,100%{transform:translateY(-15px) rotate(135deg);} 50%{transform:translateY(-35px) rotate(315deg);} }
+        @keyframes float-4 { 0%,100%{transform:translateY(-8px) rotate(180deg);} 50%{transform:translateY(-28px) rotate(360deg);} }
+        @keyframes float-5 { 0%,100%{transform:translateY(-12px) rotate(270deg);} 50%{transform:translateY(-32px) rotate(450deg);} }
+        .float-0 { animation: float-0 6s ease-in-out infinite; }
+        .float-1 { animation: float-1 7s ease-in-out infinite; }
+        .float-2 { animation: float-2 8s ease-in-out infinite; }
+        .float-3 { animation: float-3 7.5s ease-in-out infinite; }
+        .float-4 { animation: float-4 6.5s ease-in-out infinite; }
+        .float-5 { animation: float-5 8.5s ease-in-out infinite; }
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.9;
+            z-index: 10;
+        }
     </style>
 
     <script>
@@ -223,6 +255,36 @@
     <!-- Removed <section id="hero-3d"><div id="canvas-container"></div></section> -->
 
     <div class="content-wrapper">
+        <!-- Modern Hero Section -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="hero-float float-0" style="left:20%;top:30%"></div>
+                <div class="hero-float float-1" style="left:35%;top:70%"></div>
+                <div class="hero-float float-2" style="left:50%;top:40%"></div>
+                <div class="hero-float float-3" style="left:65%;top:60%"></div>
+                <div class="hero-float float-4" style="left:30%;top:50%"></div>
+                <div class="hero-float float-5" style="left:60%;top:25%"></div>
+            </div>
+            <div class="relative z-10 text-center max-w-4xl mx-auto px-6">
+                <h1 class="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
+                    Digital Artist
+                </h1>
+                <p class="text-xl md:text-2xl text-purple-200 mb-8 leading-relaxed">
+                    Creating immersive digital worlds through cutting-edge 3D design and visualization
+                </p>
+                <a href="#about" class="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-semibold hover:from-purple-500 hover:to-pink-500 transition-all duration-300">
+                    See More
+                    <span class="material-icons ml-2 group-hover:translate-y-1 transition-transform">expand_more</span>
+                </a>
+            </div>
+            <div class="hero-scroll-indicator">
+                <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center animate-pulse">
+                    <div class="w-1 h-3 bg-white/50 rounded-full mt-2 animate-bounce"></div>
+                </div>
+            </div>
+        </section>
+        <!-- End Hero Section -->
+
         <section class="pt-28 px-8 md:pt-12 md:px-22 lg:pt-24 lg:px-44 ">
             <div class='lines'>
                 <div class='light x3'></div>
@@ -254,7 +316,7 @@
                 }
                 });
             </script>
-            <div class="Container text-center md:text-start lg:grid-cols-3 grid scale-in initial text-sm md:text-lg">
+            <div class="Container text-center md:text-start lg:grid-cols-3 grid scale-in initial text-sm md:text-lg" id="about">
                 <div class="left-container" id="left">
                     <h4 style="color: gray;" class="text-center md:text-left">HOWDY</h4>
                     <br>
@@ -403,8 +465,7 @@
                                         <p class="mb-3 text-base text-purple-300">July, 2024</p>
                                         <h4 class="mb-3 font-bold text-lg md:text-2xl">Internship At Perfaxis</h4>
                                         <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
-                                            I had a summmer internship at PERFAXIS Learning ASP.NET for one month,
-                                            gaining
+                                            I had a summmer internship at PERFAXIS Learning ASP.NET for one month, gaining
                                             valuable backend insights and managed to develop whole system of annual
                                             leave .
                                         </p>
