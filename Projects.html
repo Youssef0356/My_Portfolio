@@ -373,8 +373,6 @@
     </script>
     <div class="slideshow-hero w-full h-[50vh] sm:h-[50vh] relative bg-[#140C20] overflow-hidden flex justify-center items-center">
       <img src="" alt="Slideshow Image" class="object-cover w-full h-full fade kenburns">
-      <div class="slideshow-gradient"></div>
-      <div class="slideshow-tagline">Explore My Creative World</div>
     </div>
   </section>
 
@@ -441,62 +439,37 @@
   })();
   </script>
 
-  <section class="relative flex min-h-screen flex-col bg-gradient-to-b from-[#140C20] to-[#0D0615] px-6 sm:px-16">
-    <div class="min-h-28">
-      <div class="mx-auto py-8">
-        <div class="container mx-auto flex flex-col justify-center text-center">
-          <!-- Heading -->
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold capitalize text-white bg-clip-text ">
-            My Projects
-          </h1>
-          <!-- Description -->
-          <p class="text-base md:text-lg lg:text-xl font-light pt-4 text-white opacity-90">
-            A selection of projects exploring 3D animations, video editing, and magnificent games.
-          </p>
-
-          <!-- Filters -->
-          <div class="py-8 flex items-center justify-center">
-            <ul
-              class="filter-container shadow-lg flex flex-wrap justify-center gap-4 text-center items-center text-sm sm:text-base md:text-lg lg:text-xl">
-              <li data-category="all"
-                class="filter-item cursor-pointer sm:px-6 px-2 rounded py-2 bg-[#140C20] text-white font-bold  hover:bg-[#969CFF] hover:text-white transition duration-300">
-                All Categories
-              </li>
-              <li data-category="architecture"
-                class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300">
-                Architecture
-              </li>
-              <li data-category="game-development"
-                class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300">
-                Game Development
-              </li>
-              <li data-category="vfx"
-                class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300">
-                CGI
-              </li>
-              <li data-category="videoediting"
-                class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300">
-                Video Editing
-              </li>
-              <li data-category="animation"
-                class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300">
-                Animation
-              </li>
-              <li data-category="other"
-                class="filter-item cursor-pointer sm:px-6 px-2 py-2 rounded bg-[#140C20] text-white font-bold  hover:bg-[#969CFF]  transition duration-300">
-                Other
-              </li>
-            </ul>
-          </div>
-
-          <!-- Divider -->
-          <div class="w-full h-[2px] bg-gradient-to-r from-[#969CFF] via-[#140C20] to-[#969CFF] my-8"></div>
-          <!-- Video Gallery -->
-          <div id="video-gallery" class="mt-8 mx-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-            <!-- Video gallery remains unchanged -->
-          </div>
-        </div>
+  <!-- Projects Section (Modern Carousel + Grid with Filtering and Arrows) -->
+  <section class="py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          Featured Projects
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
       </div>
+      <!-- Filter Bar -->
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="all">All</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="architecture">Architecture</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="game-development">Game Development</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="vfx">CGI</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="videoediting">Video Editing</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="animation">Animation</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="other">Other</button>
+      </div>
+      <!-- Carousel Main Project Area -->
+      <div class="relative mb-12">
+        <button id="carousel-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-purple-500/30 text-white rounded-full p-3 shadow-lg transition"><span class="material-icons">chevron_left</span></button>
+        <div class="overflow-hidden" id="project-carousel">
+          <div id="carousel-track" class="flex transition-transform duration-700 ease-out"></div>
+        </div>
+        <button id="carousel-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-purple-500/30 text-white rounded-full p-3 shadow-lg transition"><span class="material-icons">chevron_right</span></button>
+        <!-- Carousel Navigation Dots -->
+        <div id="carousel-dots" class="flex justify-center mt-8 space-x-2"></div>
+      </div>
+      <!-- Project Grid for Featured Projects -->
+      <div id="project-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16"></div>
     </div>
   </section>
 
@@ -612,6 +585,165 @@
       z-index: 2;
     }
   </style>
+
+  <script>
+  let allProjects = [];
+  let filteredProjects = [];
+  let currentProject = 0;
+  let autoSwitchInterval = null;
+  let isCarouselHovered = false;
+
+  fetch('videos.json')
+    .then(response => response.json())
+    .then(data => {
+      allProjects = data;
+      filteredProjects = allProjects;
+      renderCarousel(filteredProjects);
+      renderGrid(filteredProjects);
+      setupFilters();
+      setupCarouselArrows();
+      setupAutoSwitch();
+    });
+
+  function renderCarousel(data) {
+    const track = document.getElementById('carousel-track');
+    const dots = document.getElementById('carousel-dots');
+    if (!track || !dots) return;
+    track.innerHTML = '';
+    dots.innerHTML = '';
+    data.forEach((project, idx) => {
+      // Carousel Card
+      const card = document.createElement('div');
+      card.className = 'w-full flex-shrink-0 px-4';
+      card.innerHTML = `
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500" style="box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
+          <div class="relative h-96 overflow-hidden">
+            ${project.url ?
+              `<iframe class="w-full h-full object-cover bg-black" src="${project.url}" frameborder="0" allowfullscreen loading="lazy"></iframe>` :
+              `<img src="${project.image || ''}" alt="${project.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />`
+            }
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 bg-purple-600/80 backdrop-blur-sm rounded-full text-sm font-medium">
+                ${project.category || ''}
+              </span>
+            </div>
+          </div>
+          <div class="p-8">
+            <h3 class="text-2xl font-semibold mb-3">${project.title || ''}</h3>
+            <p class="text-purple-200 mb-6 leading-relaxed">${project.description || ''}</p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              ${(project.tools || []).map(tool => `<span class="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20">${tool}</span>`).join('')}
+            </div>
+            <div class="flex space-x-4">
+              ${project.link ? `<a href="${project.link}" target="_blank" class="flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg hover:from-purple-500 hover:to-pink-500 transition-all duration-300 text-white font-semibold">View Project</a>` : ''}
+              ${project.github ? `<a href="${project.github}" target="_blank" class="flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-colors border border-white/20 text-white font-semibold">Code</a>` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+      track.appendChild(card);
+      // Dot
+      const dot = document.createElement('button');
+      dot.className = `w-3 h-3 rounded-full transition-all duration-300 ${idx === 0 ? 'bg-purple-400 w-8' : 'bg-white/30 hover:bg-white/50'}`;
+      dot.onclick = () => setCarousel(idx, data.length);
+      dots.appendChild(dot);
+    });
+    setCarousel(0, data.length);
+    setupCarouselHover();
+  }
+  function setCarousel(idx, total) {
+    currentProject = idx;
+    const track = document.getElementById('carousel-track');
+    if (track) track.style.transform = `translateX(-${currentProject * 100}%)`;
+    const dots = document.getElementById('carousel-dots').children;
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].className = `w-3 h-3 rounded-full transition-all duration-300 ${i === idx ? 'bg-purple-400 w-8' : 'bg-white/30 hover:bg-white/50'}`;
+    }
+  }
+  function renderGrid(data) {
+    const grid = document.getElementById('project-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    data.forEach((project, index) => {
+      const card = document.createElement('div');
+      card.className = 'group relative bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500';
+      card.style = `box-shadow: 0 10px 30px -5px rgba(0,0,0,0.3);`;
+      card.innerHTML = `
+        <div class="relative h-48 overflow-hidden">
+          ${project.url ?
+            `<iframe class="w-full h-full object-cover bg-black" src="${project.url}" frameborder="0" allowfullscreen loading="lazy"></iframe>` :
+            `<img src="${project.image || ''}" alt="${project.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />`
+          }
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="p-6">
+          <h4 class="text-lg font-semibold mb-2">${project.title || ''}</h4>
+          <p class="text-purple-200 text-sm mb-4 line-clamp-2">${project.description || ''}</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xs text-purple-300">${project.category || ''}</span>
+            ${project.url ? `<button onclick="openGridVideo(${index})" class="text-purple-400 hover:text-purple-300 transition-colors">View</button>` : ''}
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+  function openGridVideo(idx) {
+    setCarousel(idx, filteredProjects.length);
+    scrollToCarousel();
+  }
+  function scrollToCarousel() {
+    const carousel = document.getElementById('project-carousel');
+    if (carousel) carousel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  function setupFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+      btn.onclick = () => {
+        filterBtns.forEach(b => b.classList.remove('bg-purple-600', 'text-white'));
+        btn.classList.add('bg-purple-600', 'text-white');
+        const cat = btn.getAttribute('data-category');
+        if (cat === 'all') {
+          filteredProjects = allProjects;
+        } else {
+          filteredProjects = allProjects.filter(p => (p.category || '').toLowerCase().replace(/\s/g,'-') === cat);
+        }
+        renderCarousel(filteredProjects);
+        renderGrid(filteredProjects);
+      };
+    });
+  }
+  function setupCarouselArrows() {
+    document.getElementById('carousel-left').onclick = () => {
+      currentProject = (currentProject - 1 + filteredProjects.length) % filteredProjects.length;
+      setCarousel(currentProject, filteredProjects.length);
+      resetAutoSwitch();
+    };
+    document.getElementById('carousel-right').onclick = () => {
+      currentProject = (currentProject + 1) % filteredProjects.length;
+      setCarousel(currentProject, filteredProjects.length);
+      resetAutoSwitch();
+    };
+  }
+  function setupAutoSwitch() {
+    if (autoSwitchInterval) clearInterval(autoSwitchInterval);
+    autoSwitchInterval = setInterval(() => {
+      if (!isCarouselHovered) {
+        currentProject = (currentProject + 1) % filteredProjects.length;
+        setCarousel(currentProject, filteredProjects.length);
+      }
+    }, 3000);
+  }
+  function resetAutoSwitch() {
+    setupAutoSwitch();
+  }
+  function setupCarouselHover() {
+    const carousel = document.getElementById('project-carousel');
+    if (!carousel) return;
+    carousel.onmouseenter = () => { isCarouselHovered = true; };
+    carousel.onmouseleave = () => { isCarouselHovered = false; };
+  }
+  </script>
 
 </body>
 
