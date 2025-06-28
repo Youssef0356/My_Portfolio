@@ -175,6 +175,7 @@
 </head>
 
 <body>
+  <div id="scroll-animated-bg"></div>
   <section>
     <nav class="glass fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full lg:px-64">
       <a href="index.html" class="p-2 mr-4 inline-flex items-center lg:mr-0">
@@ -743,6 +744,115 @@
     carousel.onmouseenter = () => { isCarouselHovered = true; };
     carousel.onmouseleave = () => { isCarouselHovered = false; };
   }
+  </script>
+
+  <script>
+// --- Scroll Animated Background ---
+(function() {
+  const bg = document.getElementById('scroll-animated-bg');
+  bg.style.position = 'fixed';
+  bg.style.inset = '0';
+  bg.style.zIndex = '0';
+  bg.style.pointerEvents = 'none';
+  bg.style.overflow = 'hidden';
+
+  // Geometric shapes
+  const geoCount = 8;
+  const geos = [];
+  for (let i = 0; i < geoCount; i++) {
+    const d = document.createElement('div');
+    d.className = 'bg-geo';
+    d.style.position = 'absolute';
+    d.style.opacity = '0.18';
+    d.style.left = (10 + i * 11) + '%';
+    d.style.top = (18 + (i % 3) * 28) + '%';
+    d.style.width = (60 + (i % 3) * 40) + 'px';
+    d.style.height = (60 + (i % 3) * 40) + 'px';
+    d.style.borderRadius = i % 3 === 0 ? '50%' : i % 3 === 1 ? '20%' : '0%';
+    d.style.background = i % 4 === 0
+      ? 'linear-gradient(45deg, rgba(150,156,255,0.28), rgba(109,40,217,0.22))'
+      : i % 4 === 1
+      ? 'linear-gradient(135deg, rgba(236,72,153,0.22), rgba(150,156,255,0.22))'
+      : i % 4 === 2
+      ? 'linear-gradient(225deg, rgba(59,130,246,0.22), rgba(16,185,129,0.22))'
+      : 'linear-gradient(315deg, rgba(245,101,101,0.22), rgba(150,156,255,0.22))';
+    d.style.boxShadow = '0 20px 40px rgba(0,0,0,0.18)';
+    d.style.border = '1px solid rgba(255,255,255,0.08)';
+    d.style.transition = 'transform 0.1s';
+    bg.appendChild(d);
+    geos.push(d);
+  }
+  // Wireframes
+  const wireCount = 5;
+  const wires = [];
+  for (let i = 0; i < wireCount; i++) {
+    const d = document.createElement('div');
+    d.className = 'bg-wire';
+    d.style.position = 'absolute';
+    d.style.left = (20 + i * 16) + '%';
+    d.style.top = (30 + (i % 2) * 40) + '%';
+    d.style.width = (80 + i * 20) + 'px';
+    d.style.height = (80 + i * 20) + 'px';
+    d.style.borderRadius = i % 2 === 0 ? '50%' : '20%';
+    d.style.border = '2px dashed rgba(150,156,255,0.18)';
+    d.style.opacity = '0.18';
+    d.style.transition = 'transform 0.1s';
+    bg.appendChild(d);
+    wires.push(d);
+  }
+  // Floating particles
+  const particleCount = 18;
+  const particles = [];
+  for (let i = 0; i < particleCount; i++) {
+    const d = document.createElement('div');
+    d.className = 'bg-particle';
+    d.style.position = 'absolute';
+    d.style.left = (Math.random() * 100) + '%';
+    d.style.top = (Math.random() * 100) + '%';
+    const size = 6 + Math.random() * 10;
+    d.style.width = d.style.height = size + 'px';
+    d.style.borderRadius = '50%';
+    d.style.background = `radial-gradient(circle, rgba(${139 + Math.random()*100|0},${92 + Math.random()*100|0},246,0.7), transparent)`;
+    d.style.boxShadow = '0 0 20px rgba(150,156,255,0.18)';
+    d.style.opacity = '0.22';
+    d._baseLeft = parseFloat(d.style.left);
+    d._baseTop = parseFloat(d.style.top);
+    d._size = size;
+    d._phase = Math.random() * Math.PI * 2;
+    bg.appendChild(d);
+    particles.push(d);
+  }
+  // Animate on scroll
+  function animateBg() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    geos.forEach((d, i) => {
+      d.style.transform =
+        `perspective(1000px) ` +
+        `rotateX(${scrollY * 0.09 + i * 45}deg) ` +
+        `rotateY(${scrollY * 0.13 + i * 60}deg) ` +
+        `rotateZ(${scrollY * 0.05 + i * 30}deg) ` +
+        `translateZ(${Math.sin(scrollY * 0.01 + i) * 80}px) ` +
+        `translateY(${scrollY * -0.22 + Math.cos(scrollY * 0.008 + i) * 40}px)`;
+    });
+    wires.forEach((d, i) => {
+      d.style.transform =
+        `perspective(1000px) ` +
+        `rotateX(${scrollY * 0.18 + i * 72}deg) ` +
+        `rotateY(${scrollY * 0.22 + i * 72}deg) ` +
+        `translateZ(${scrollY * -0.4 + i * 50}px) ` +
+        `translateY(${scrollY * -0.13}px)`;
+    });
+    const now = Date.now() / 1000;
+    particles.forEach((d, i) => {
+      d.style.transform =
+        `translateY(${Math.sin(now * 0.7 + i) * 18 + scrollY * -(0.08 + (i % 3) * 0.13)}px) ` +
+        `translateX(${Math.sin(scrollY * 0.01 + i) * 18}px) ` +
+        `scale(${1 + Math.sin(now * 0.8 + i) * 0.3})`;
+    });
+    requestAnimationFrame(animateBg);
+  }
+  animateBg();
+})();
   </script>
 
 </body>
