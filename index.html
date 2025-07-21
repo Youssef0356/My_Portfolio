@@ -22,6 +22,152 @@
     <!-- Removed all Three.js scripts -->
 
     <style>
+        /* Animated Background Particles */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(150, 156, 255, 0.1), rgba(236, 72, 153, 0.1));
+            animation: floatParticle var(--duration, 8s) ease-in-out infinite;
+            opacity: 0.6;
+            backdrop-filter: blur(1px);
+        }
+
+        .bg-particle:nth-child(odd) {
+            background: linear-gradient(135deg, rgba(109, 40, 217, 0.1), rgba(59, 130, 246, 0.1));
+        }
+
+        .bg-geometric {
+            position: absolute;
+            border: 1px solid rgba(150, 156, 255, 0.15);
+            animation: rotateFloat var(--duration, 12s) linear infinite;
+            opacity: 0.4;
+        }
+
+        .bg-geometric.triangle {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 26px solid rgba(150, 156, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .bg-geometric.square {
+            width: 20px;
+            height: 20px;
+            background: rgba(236, 72, 153, 0.1);
+            border-radius: 4px;
+        }
+
+        .bg-geometric.diamond {
+            width: 16px;
+            height: 16px;
+            background: rgba(59, 130, 246, 0.1);
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.6;
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px) scale(1.1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-15px) scale(0.9);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-30px) translateX(5px) scale(1.05);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes rotateFloat {
+            0% {
+                transform: rotate(0deg) translateY(0px);
+                opacity: 0.4;
+            }
+            25% {
+                transform: rotate(90deg) translateY(-15px);
+                opacity: 0.6;
+            }
+            50% {
+                transform: rotate(180deg) translateY(-5px);
+                opacity: 0.3;
+            }
+            75% {
+                transform: rotate(270deg) translateY(-20px);
+                opacity: 0.5;
+            }
+            100% {
+                transform: rotate(360deg) translateY(0px);
+                opacity: 0.4;
+            }
+        }
+
+        /* Gradient Background Animation */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(19, 11, 31, 1) 0%,
+                rgba(26, 15, 46, 1) 25%,
+                rgba(19, 11, 31, 1) 50%,
+                rgba(32, 20, 58, 1) 75%,
+                rgba(19, 11, 31, 1) 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Accessibility: Respect prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            .bg-particle,
+            .bg-geometric,
+            .gradient-bg {
+                animation: none;
+            }
+            .hero-float {
+                animation: none;
+            }
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .bg-particle {
+                animation-duration: 10s;
+            }
+            .bg-geometric {
+                animation-duration: 15s;
+            }
+        }
+
         #content-section {
             opacity: 0;
             transition: opacity 1s ease-in-out;
@@ -197,6 +343,10 @@
 </head>
 
 <body >
+    <!-- Animated Background -->
+    <div class="gradient-bg"></div>
+    <div class="animated-bg" id="animated-bg"></div>
+
     <nav id="main-navbar" class="glass fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full lg:px-64 transition-opacity duration-700 opacity-100">
         <a href="index.html" class="p-2 mr-4 inline-flex items-center lg:mr-0">
             <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
@@ -252,7 +402,6 @@
             });
         });
     </script>
-    <!-- Removed <section id="hero-3d"><div id="canvas-container"></div></section> -->
 
     <div class="content-wrapper">
         <!-- Modern Hero Section -->
@@ -629,6 +778,123 @@
             </footer>
         </section>
     </div>
+
+    <!-- Background Animation Script -->
+    <script>
+        // Enhanced Background Animation System
+        class BackgroundAnimator {
+            constructor() {
+                this.container = document.getElementById('animated-bg');
+                this.particles = [];
+                this.geometrics = [];
+                this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                
+                if (!this.isReducedMotion) {
+                    this.init();
+                }
+            }
+
+            init() {
+                this.createParticles();
+                this.createGeometrics();
+                this.handleResize();
+                window.addEventListener('resize', () => this.handleResize());
+            }
+
+            createParticles() {
+                const particleCount = window.innerWidth < 768 ? 15 : 25;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'bg-particle';
+                    
+                    // Random size between 8px and 24px
+                    const size = Math.random() * 16 + 8;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    
+                    // Random position
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    
+                    // Random animation duration between 6-12 seconds
+                    const duration = Math.random() * 6 + 6;
+                    particle.style.setProperty('--duration', `${duration}s`);
+                    
+                    // Random animation delay
+                    particle.style.animationDelay = `${Math.random() * 4}s`;
+                    
+                    this.container.appendChild(particle);
+                    this.particles.push(particle);
+                }
+            }
+
+            createGeometrics() {
+                const geometricCount = window.innerWidth < 768 ? 8 : 15;
+                const shapes = ['triangle', 'square', 'diamond'];
+                
+                for (let i = 0; i < geometricCount; i++) {
+                    const geometric = document.createElement('div');
+                    const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
+                    geometric.className = `bg-geometric ${shapeType}`;
+                    
+                    // Random position
+                    geometric.style.left = `${Math.random() * 100}%`;
+                    geometric.style.top = `${Math.random() * 100}%`;
+                    
+                    // Random animation duration between 10-20 seconds
+                    const duration = Math.random() * 10 + 10;
+                    geometric.style.setProperty('--duration', `${duration}s`);
+                    
+                    // Random animation delay
+                    geometric.style.animationDelay = `${Math.random() * 6}s`;
+                    
+                    this.container.appendChild(geometric);
+                    this.geometrics.push(geometric);
+                }
+            }
+
+            handleResize() {
+                // Adjust particle count based on screen size
+                const currentParticleCount = this.particles.length;
+                const targetParticleCount = window.innerWidth < 768 ? 15 : 25;
+                
+                if (currentParticleCount !== targetParticleCount) {
+                    this.clearElements();
+                    this.createParticles();
+                    this.createGeometrics();
+                }
+            }
+
+            clearElements() {
+                this.particles.forEach(particle => particle.remove());
+                this.geometrics.forEach(geometric => geometric.remove());
+                this.particles = [];
+                this.geometrics = [];
+            }
+        }
+
+        // Initialize background animation when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new BackgroundAnimator();
+        });
+
+        // Performance optimization: Pause animations when page is not visible
+        document.addEventListener('visibilitychange', () => {
+            const animatedBg = document.getElementById('animated-bg');
+            if (document.hidden) {
+                animatedBg.style.animationPlayState = 'paused';
+                animatedBg.querySelectorAll('.bg-particle, .bg-geometric').forEach(el => {
+                    el.style.animationPlayState = 'paused';
+                });
+            } else {
+                animatedBg.style.animationPlayState = 'running';
+                animatedBg.querySelectorAll('.bg-particle, .bg-geometric').forEach(el => {
+                    el.style.animationPlayState = 'running';
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
