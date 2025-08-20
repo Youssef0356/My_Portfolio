@@ -1,0 +1,580 @@
+/**
+ * Futuristic 2077 Design System
+ * Advanced visual effects and animations for next-gen web experience
+ */
+
+/* ===== FUTURISTIC COLOR PALETTE ===== */
+:root {
+  /* Primary Neon Colors */
+  --neon-cyan: #00ffff;
+  --neon-magenta: #ff00ff;
+  --neon-yellow: #ffff00;
+  --neon-green: #00ff41;
+  --neon-orange: #ff6600;
+  --neon-purple: #8a2be2;
+  
+  /* Holographic Gradients */
+  --holo-gradient-1: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
+  --holo-gradient-2: linear-gradient(135deg, #ff00ff, #00ff41, #00ffff);
+  --holo-gradient-3: linear-gradient(90deg, #8a2be2, #00ffff, #ff6600);
+  
+  /* Dark Cyber Backgrounds */
+  --cyber-dark-1: #0a0a0f;
+  --cyber-dark-2: #1a1a2e;
+  --cyber-dark-3: #16213e;
+  --cyber-dark-4: #0f0f23;
+  
+  /* Glass Morphism */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  
+  /* Spacing System */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  
+  /* Typography Scale */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 4rem;
+}
+
+/* ===== FUTURISTIC TYPOGRAPHY ===== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+.cyber-font-primary {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cyber-font-secondary {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.cyber-font-mono {
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* ===== HOLOGRAPHIC TEXT EFFECTS ===== */
+.holo-text {
+  background: var(--holo-gradient-1);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: holoShift 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+}
+
+@keyframes holoShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.glitch-text {
+  position: relative;
+  color: var(--neon-cyan);
+  font-weight: 700;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  animation: glitch-1 0.5s infinite;
+  color: var(--neon-magenta);
+  z-index: -1;
+}
+
+.glitch-text::after {
+  animation: glitch-2 0.5s infinite;
+  color: var(--neon-yellow);
+  z-index: -2;
+}
+
+@keyframes glitch-1 {
+  0%, 14%, 15%, 49%, 50%, 99%, 100% { transform: translate(0); }
+  15%, 49% { transform: translate(-2px, -1px); }
+}
+
+@keyframes glitch-2 {
+  0%, 20%, 21%, 62%, 63%, 99%, 100% { transform: translate(0); }
+  21%, 62% { transform: translate(2px, 1px); }
+}
+
+/* ===== NEON GLOW EFFECTS ===== */
+.neon-glow {
+  box-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor,
+    0 0 20px currentColor;
+  animation: neonPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+  from {
+    box-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px currentColor;
+  }
+  to {
+    box-shadow: 
+      0 0 2px currentColor,
+      0 0 5px currentColor,
+      0 0 8px currentColor,
+      0 0 12px currentColor;
+  }
+}
+
+/* ===== GLASS MORPHISM COMPONENTS ===== */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+/* ===== FUTURISTIC BUTTONS ===== */
+.cyber-button {
+  position: relative;
+  padding: 12px 32px;
+  background: transparent;
+  border: 2px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  font-family: 'Orbitron', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 100%, 20px 100%);
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.cyber-button:hover {
+  color: var(--cyber-dark-1);
+  background: var(--neon-cyan);
+  box-shadow: 
+    0 0 20px var(--neon-cyan),
+    inset 0 0 20px rgba(0, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.cyber-button:hover::before {
+  left: 100%;
+}
+
+.cyber-button:active {
+  transform: translateY(0);
+}
+
+/* ===== HOLOGRAPHIC CARDS ===== */
+.holo-card {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: var(--space-lg);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  cursor: pointer;
+}
+
+.holo-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--holo-gradient-1);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.holo-card::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  background: var(--cyber-dark-2);
+  border-radius: 19px;
+  z-index: -1;
+}
+
+.holo-card:hover {
+  transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+.holo-card:hover::before {
+  opacity: 1;
+}
+
+/* ===== PARTICLE SYSTEM BACKGROUND ===== */
+.particle-field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--neon-cyan);
+  border-radius: 50%;
+  animation: particleFloat 10s linear infinite;
+  opacity: 0.6;
+}
+
+.particle:nth-child(odd) {
+  background: var(--neon-magenta);
+  animation-duration: 15s;
+}
+
+.particle:nth-child(3n) {
+  background: var(--neon-yellow);
+  animation-duration: 12s;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(100px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* ===== CYBER GRID SYSTEM ===== */
+.cyber-grid {
+  display: grid;
+  gap: var(--space-lg);
+  position: relative;
+}
+
+.cyber-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* ===== LOADING ANIMATIONS ===== */
+.cyber-loader {
+  width: 60px;
+  height: 60px;
+  border: 3px solid transparent;
+  border-top: 3px solid var(--neon-cyan);
+  border-right: 3px solid var(--neon-magenta);
+  border-radius: 50%;
+  animation: cyberSpin 1s linear infinite;
+  position: relative;
+}
+
+.cyber-loader::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 3px solid transparent;
+  border-bottom: 3px solid var(--neon-yellow);
+  border-left: 3px solid var(--neon-green);
+  border-radius: 50%;
+  animation: cyberSpin 1.5s linear infinite reverse;
+}
+
+@keyframes cyberSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== PROGRESS BARS ===== */
+.cyber-progress {
+  width: 100%;
+  height: 8px;
+  background: var(--cyber-dark-3);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cyber-progress-bar {
+  height: 100%;
+  background: var(--holo-gradient-1);
+  background-size: 200% 100%;
+  animation: progressFlow 2s ease-in-out infinite;
+  transition: width 0.3s ease;
+}
+
+@keyframes progressFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ===== NAVIGATION ENHANCEMENTS ===== */
+.cyber-nav {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  position: relative;
+}
+
+.cyber-nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--holo-gradient-1);
+  background-size: 200% 100%;
+  animation: navGlow 3s ease-in-out infinite;
+}
+
+@keyframes navGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.cyber-nav-item {
+  position: relative;
+  padding: var(--space-md) var(--space-lg);
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.cyber-nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.cyber-nav-item:hover {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.cyber-nav-item:hover::before {
+  left: 100%;
+}
+
+/* ===== FORM ELEMENTS ===== */
+.cyber-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+  color: white;
+  padding: var(--space-md) 0;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: var(--font-size-lg);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.cyber-input:focus {
+  outline: none;
+  border-bottom-color: var(--neon-cyan);
+  box-shadow: 0 2px 10px rgba(0, 255, 255, 0.3);
+}
+
+.cyber-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  font-style: italic;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .cyber-button {
+    padding: 10px 24px;
+    font-size: var(--font-size-sm);
+  }
+  
+  .holo-card {
+    padding: var(--space-md);
+  }
+  
+  .cyber-grid {
+    gap: var(--space-md);
+  }
+  
+  .particle {
+    display: none; /* Reduce particles on mobile for performance */
+  }
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  :root {
+    --neon-cyan: #ffffff;
+    --neon-magenta: #ffffff;
+    --glass-bg: rgba(0, 0, 0, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* ===== SCROLL EFFECTS ===== */
+.parallax-element {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== DATA VISUALIZATION ===== */
+.data-viz-container {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: var(--space-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.data-viz-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.stat-bar {
+  height: 4px;
+  background: var(--cyber-dark-3);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: var(--space-sm) 0;
+}
+
+.stat-fill {
+  height: 100%;
+  background: var(--holo-gradient-1);
+  background-size: 200% 100%;
+  animation: statGlow 2s ease-in-out infinite;
+  transform-origin: left;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes statGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}

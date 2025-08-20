@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" />
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
     
+    <!-- Futuristic 2077 Styles and Components -->
+    <link rel="stylesheet" href="src/styles/futuristic-2077.css">
+    
     <!-- Mouse Chaser Game Styles -->
     <link rel="stylesheet" href="src/styles/mouse-chaser.css">
     <!-- Removed all Three.js scripts -->
@@ -265,6 +268,29 @@
         body {
             background: #1a0a2e;
         }
+        
+        /* Enhanced 2077 Body Styling */
+        body {
+            background: var(--cyber-dark-1);
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Cyber Grid Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -2;
+        }
 
         .hero-float {
             position: absolute;
@@ -352,21 +378,21 @@
 
     <nav id="main-navbar" class="glass fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full lg:px-64 transition-opacity duration-700 opacity-100">
         <a href="index.html" class="p-2 mr-4 inline-flex items-center lg:mr-0">
-            <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
+            <span class="text-white font-bold uppercase tracking-wide text-xl cyber-font-primary holo-text" data-text="Youssef Neji">Youssef Neji</span>
         </a>
         <!-- Mobile Menu Toggle Button -->
-        <button class="text-white inline-flex p-3 rounded lg:hidden ml-auto hover:bg-gray-900 nav-toggler" id="nav-toggle">
+        <button class="text-white inline-flex p-3 rounded lg:hidden ml-auto hover:bg-gray-900 nav-toggler cyber-button" id="nav-toggle">
             <i class="material-icons">menu</i>
         </button>
         <!-- Desktop Navigation -->
         <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg" id="desktop-navigation">
-            <a href="index.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white transition-all duration-300 ease-in-out">
+            <a href="index.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white transition-all duration-300 ease-in-out cyber-nav-item cyber-font-secondary">
                 <span>About</span>
             </a>
-            <a href="Projects.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white transition-all duration-300 ease-in-out">
+            <a href="Projects.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white transition-all duration-300 ease-in-out cyber-nav-item cyber-font-secondary">
                 <span>Videos</span>
             </a>
-            <a href="Contact.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white transition-all duration-300 ease-in-out">
+            <a href="Contact.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white transition-all duration-300 ease-in-out cyber-nav-item cyber-font-secondary">
                 <span>Contact</span>
             </a>
             <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="text-sm px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white transition-all duration-300 ease-in-out">
@@ -418,15 +444,15 @@
                 <div class="hero-float float-5" style="left:60%;top:25%"></div>
             </div>
             <div class="relative z-10 text-center max-w-4xl mx-auto px-6">
-                <h1 class="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
+                <h1 class="text-6xl md:text-8xl font-bold mb-6 cyber-font-primary holo-text glitch-text" data-text="Digital Artist">
                     Digital Artist
                 </h1>
-                <p class="text-xl md:text-2xl text-purple-200 mb-8 leading-relaxed">
+                <p class="text-xl md:text-2xl text-purple-200 mb-8 leading-relaxed cyber-font-secondary">
                     Creating immersive digital worlds through cutting-edge 3D design and visualization
                 </p>
-                <a href="#about" class="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-semibold hover:from-purple-500 hover:to-pink-500 transition-all duration-300">
+                <a href="#about" class="cyber-button neon-glow" style="color: var(--neon-cyan); border-color: var(--neon-cyan);">
                     See More
-                    <span class="material-icons ml-2 group-hover:translate-y-1 transition-transform">expand_more</span>
+                    <span class="material-icons ml-2">expand_more</span>
                 </a>
             </div>
             <div class="hero-scroll-indicator">
@@ -470,17 +496,17 @@
             </script>
             <div class="Container text-center md:text-start lg:grid-cols-3 grid scale-in initial text-sm md:text-lg" id="about">
                 <div class="left-container" id="left">
-                    <h4 style="color: gray;" class="text-center md:text-left">HOWDY</h4>
+                    <h4 style="color: var(--neon-cyan);" class="text-center md:text-left cyber-font-mono glitch-text" data-text="HOWDY">HOWDY</h4>
                     <br>
-                    <h2 id="animated-text" class="text-2xl md:text-3xl lg:text-4xl font-bold w-full">
+                    <h2 id="animated-text" class="text-2xl md:text-3xl lg:text-4xl font-bold w-full cyber-font-primary holo-text">
                         I'm a multifaceted developer and artist with my own style.
                     </h2>
                     <br>
-                    <h3 class="text-md md:text-xl">
+                    <h3 class="text-md md:text-xl cyber-font-secondary">
                         I love stepping beyond the norm and crafting innovative, creative solutions.
                     </h3>
                     <div class="mt-4">
-                        <a href="Projects.html" class="Greetings text-md md:text-xl wordshighlight hover:text-white">
+                        <a href="Projects.html" class="cyber-button text-md md:text-xl" style="color: var(--neon-magenta); border-color: var(--neon-magenta);">
                             See My Projects</a>
                     </div>
                     <section class="pt-12 md:pt-24">
@@ -518,11 +544,11 @@
                 </div>
                 <br>
                 <div class="text-left md:text-start " id="right">
-                    <h4 style="color:gray" id="about">ABOUT ME</h4>
+                    <h4 style="color: var(--neon-yellow);" id="about" class="cyber-font-mono glitch-text" data-text="ABOUT ME">ABOUT ME</h4>
                     <br>
-                    <div class="aboutme  text-left text-sm md:text-lg" id="aboutme">
+                    <div class="aboutme text-left text-sm md:text-lg glass-panel p-6" id="aboutme">
                         <div>
-                            I am a Graduated Bachelor's student at ISIMS, pursuing a degree in Big Data and Data analysis.
+                            <span class="cyber-font-secondary">I am a Graduated Bachelor's student at ISIMS, pursuing a degree in Big Data and Data analysis.
                             Alongside my studies, I work as a freelance <i class="wordshighlight">3D modeler</i> and <i
                                 class="wordshighlight">animator</i>, collaborating with a diverse range of clients,
                             including companies, educators, and students. My expertise encompasses <i
@@ -530,7 +556,7 @@
                                 class="wordshighlight">augmented reality development</i>, and <i
                                 class="wordshighlight">image editing</i>. I have a proven track record of creating
                             impactful
-                            3D animations for event marketing and providing high-quality video editing services.
+                            3D animations for event marketing and providing high-quality video editing services.</span>
                         </div>
                         <br>
                         <div>
@@ -663,20 +689,20 @@
         <!-- Contact Section (Call to Action) -->
         <section class="py-20 px-6">
             <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 cyber-font-primary holo-text">
                     Let's Create Together
                 </h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full mb-8"></div>
-                <p class="text-xl text-purple-200 mb-12 leading-relaxed">
+                <div class="w-24 h-1 mx-auto rounded-full mb-8 neon-glow" style="background: var(--holo-gradient-1);"></div>
+                <p class="text-xl text-purple-200 mb-12 leading-relaxed cyber-font-secondary">
                     Ready to bring your vision to life? Let's discuss your next 3D project and create something extraordinary together.
                 </p>
                 <div class="flex justify-center space-x-6 mb-12">
                     <a
                         href="Contact.html"
-                        class="group flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full hover:from-purple-500 hover:to-pink-500 transition-all duration-300 text-lg font-semibold text-white shadow-lg"
-                        style="box-shadow: 0 10px 30px -5px rgba(139, 92, 246, 0.3);"
+                        class="cyber-button neon-glow flex items-center text-lg font-semibold"
+                        style="color: var(--neon-green); border-color: var(--neon-green);"
                     >
-                        <span class="material-icons mr-3 group-hover:rotate-12 transition-transform">mail</span>
+                        <span class="material-icons mr-3">mail</span>
                         Get In Touch
                     </a>
                 </div>
@@ -902,6 +928,93 @@
     <!-- Mouse Chaser Game Scripts -->
     <script src="src/components/MouseChaser.js"></script>
     <script src="src/mouse-chaser-init.js"></script>
+    
+    <!-- Futuristic 2077 Components -->
+    <script src="src/components/ParticleSystem.js"></script>
+    <script src="src/components/HolographicEffects.js"></script>
+    <script src="src/components/CyberNavigation.js"></script>
+    
+    <!-- Initialize 2077 Effects -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Particle System
+            const particleSystem = new ParticleSystem({
+                particleCount: 30,
+                colors: ['#00ffff', '#ff00ff', '#ffff00', '#00ff41'],
+                interactive: true,
+                showConnections: true
+            });
+            
+            // Initialize Holographic Effects
+            const holoEffects = new HolographicEffects();
+            
+            // Initialize Cyber Navigation
+            const cyberNav = new CyberNavigation({
+                selector: '#main-navbar',
+                glitchEffect: true,
+                soundEffects: false, // Disabled for better UX
+                particleTrail: true
+            });
+            
+            // Add scroll-based parallax effects
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.parallax-element');
+                
+                parallaxElements.forEach(element => {
+                    const speed = element.dataset.speed || 0.5;
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+            
+            // Add intersection observer for fade-in effects
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Add cyber loading effect
+            const loadingScreen = document.createElement('div');
+            loadingScreen.className = 'cyber-loading-screen';
+            loadingScreen.innerHTML = `
+                <div class="cyber-loader"></div>
+                <p class="cyber-font-mono" style="color: var(--neon-cyan); margin-top: 2rem;">INITIALIZING NEURAL INTERFACE...</p>
+            `;
+            loadingScreen.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--cyber-dark-1);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                transition: opacity 1s ease-out;
+            `;
+            
+            document.body.appendChild(loadingScreen);
+            
+            // Remove loading screen after page load
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.remove();
+                    }, 1000);
+                }, 1500);
+            });
+        });
+    </script>
 </body>
 
 </html>
