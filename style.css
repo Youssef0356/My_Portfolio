@@ -258,3 +258,18 @@ nav.cyber-nav {
   pointer-events: none;
 }
 
+/* Deployment-safe: ensure any AOS default hidden styles do not apply to timeline */
+.timeline-section .aos-init,
+.timeline-section [data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Extra safety: make sure timeline text color is visible on dark background */
+.timeline-section .text-gray-50,
+.timeline-section .text-purple-300,
+.timeline-section h4,
+.timeline-section p {
+  color: inherit;
+}
+
