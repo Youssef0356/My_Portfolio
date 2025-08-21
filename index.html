@@ -351,17 +351,20 @@
         window.addEventListener('load', function () {
             const elements = document.querySelectorAll('.timeline-element');
             elements.forEach((el) => {
-                gsap.from(el, {
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top bottom",
-                        end: "top center",
-                        scrub: true,
-                    },
-                    opacity: 0,
-                    y: 50,
-                    duration: 0.6,
-                });
+                gsap.fromTo(
+                    el,
+                    { y: 30 },
+                    {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse",
+                        },
+                        y: 0,
+                        duration: 0.6,
+                        ease: "power2.out",
+                    }
+                );
             });
 
             AOS.init({
@@ -371,7 +374,7 @@
     </script>
 </head>
 
-<body >
+<body class="cyber-bg-2077">
     <!-- Animated Background -->
     <div class="gradient-bg"></div>
     <div class="animated-bg" id="animated-bg"></div>
@@ -474,7 +477,8 @@
                 opacity: 1;
                 transition: opacity 1s ease-in-out;
                 position: relative;
-                z-index: 1;
+                z-index: 0;
+                pointer-events: none;
                 }
                 .lines.fade-out {
                 opacity: 0;
@@ -494,7 +498,7 @@
                 }
                 });
             </script>
-            <div class="Container text-center md:text-start lg:grid-cols-3 grid scale-in initial text-sm md:text-lg" id="about">
+            <div class="Container text-center md:text-start lg:grid-cols-3 grid scale-in initial text-sm md:text-lg" id="about" style="position: relative; z-index: 2;">
                 <div class="left-container" id="left">
                     <h4 style="color: var(--neon-cyan);" class="text-center md:text-left cyber-font-mono glitch-text" data-text="HOWDY">HOWDY</h4>
                     <br>
@@ -580,10 +584,9 @@
         </section>
 
         <section class="relative">
-            <div class="text-white py-8 relative z-10">
+            <div class="text-white py-8 relative z-20">
                 <div class="container mx-auto flex flex-col items-start md:flex-row my-12 md:my-24">
-                    <div class="flex flex-col w-full sticky md:top-36 lg:w-1/3 mt-2 md:mt-12 px-8 fade-in"
-                        data-aos="fade-up">
+                    <div class="flex flex-col w-full sticky md:top-36 lg:w-1/3 mt-2 md:mt-12 px-8 fade-in timeline-sticky-left">
                         <p class="ml-2 text-purple-300 uppercase tracking-loose text-xs md:text-base">My Journey</p>
                         <p class="text-2xl md:text-4xl leading-normal md:leading-relaxed mb-2">Milestones in My
                             Professional
@@ -597,17 +600,17 @@
                             Discover More
                         </a>
                     </div>
-                    <div class="ml-0 md:ml-12 lg:w-2/3 sticky">
+                    <div class="ml-0 md:ml-12 lg:w-2/3 sticky timeline-sticky-right">
                         <div class="container mx-auto w-full h-full">
                             <div class="relative wrap overflow-hidden p-10 h-full">
                                 <div class="border-1 md:border-2 border-purple-555 absolute h-full"
-                                    style="right: 50%; border: 2px solid; border-radius: 1%;"></div>
+                                    style="right: 50%; border: 2px solid; border-radius: 1%; pointer-events: none;"></div>
 
                                 <div class="border-1 md:border-2 border-purple-555 absolute h-full"
-                                    style="left: 50%; border: 0px solid; border-radius: 1%;"></div>
+                                    style="left: 50%; border: 0px solid; border-radius: 1%; pointer-events: none;"></div>
 
 
-                                <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left"
+                                <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left timeline-element"
                                     data-aos="fade-up">
                                     <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                     <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4">
@@ -621,7 +624,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right"
+                                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right timeline-element"
                                     data-aos="fade-up">
                                     <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                     <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-right md:px-4 md:py-4 mr-2 sm:mr-0">
@@ -636,7 +639,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left"
+                                <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left timeline-element"
                                     data-aos="fade-up">
                                     <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                     <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4">
@@ -649,7 +652,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right"
+                                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right timeline-element"
                                     data-aos="fade-up">
                                     <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                     <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-right md:px-4 md:py-4 mr-2 sm:mr-0">
@@ -665,7 +668,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left"
+                                <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left timeline-element"
                                 data-aos="fade-up">
                                     <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                     <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4 mr-2 sm:mr-0">
@@ -687,42 +690,31 @@
         </section>
 
         <!-- Contact Section (Call to Action) -->
-        <section class="py-20 px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 cyber-font-primary holo-text">
+        <section class="py-24 px-6 relative">
+            <div class="max-w-5xl mx-auto text-center relative">
+                <div class="cyber-grid absolute inset-0 -z-10"></div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 cyber-font-primary holo-text" data-text="Contact">
                     Let's Create Together
                 </h2>
-                <div class="w-24 h-1 mx-auto rounded-full mb-8 neon-glow" style="background: var(--holo-gradient-1);"></div>
+                <div class="w-24 h-1 mx-auto rounded-full mb-8 neon-glow" style="color: var(--neon-yellow);"></div>
                 <p class="text-xl text-purple-200 mb-12 leading-relaxed cyber-font-secondary">
                     Ready to bring your vision to life? Let's discuss your next 3D project and create something extraordinary together.
                 </p>
-                <div class="flex justify-center space-x-6 mb-12">
-                    <a
-                        href="Contact.html"
-                        class="cyber-button neon-glow flex items-center text-lg font-semibold"
-                        style="color: var(--neon-green); border-color: var(--neon-green);"
-                    >
+                <div class="flex justify-center gap-6 mb-12">
+                    <a href="Contact.html" class="cyber-button neon-glow flex items-center text-lg font-semibold" style="color: var(--neon-green); border-color: var(--neon-green);">
                         <span class="material-icons mr-3">mail</span>
                         Get In Touch
                     </a>
+                    <a href="Images/Youssef Neji CV.pdf" download class="cyber-button text-lg font-semibold" style="color: var(--neon-cyan); border-color: var(--neon-cyan);">
+                        <span class="material-icons mr-3">download</span>
+                        Download CV
+                    </a>
                 </div>
                 <div class="flex justify-center space-x-8">
-                    <a
-                        href="https://github.com/Youssef0356"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="p-4 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 border border-white/20"
-                        style="transform: perspective(1000px) rotateY(-10deg);"
-                    >
+                    <a href="https://github.com/Youssef0356" target="_blank" rel="noopener noreferrer" class="p-4 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 border border-white/20">
                         <i class="fab fa-github fa-lg"></i>
                     </a>
-                    <a
-                        href="https://www.linkedin.com/in/youssef-neji-a13604279/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="p-4 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 border border-white/20"
-                        style="transform: perspective(1000px) rotateY(10deg);"
-                    >
+                    <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank" rel="noopener noreferrer" class="p-4 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 border border-white/20">
                         <i class="fab fa-linkedin-in fa-lg"></i>
                     </a>
                 </div>
@@ -951,7 +943,7 @@
             // Initialize Cyber Navigation
             const cyberNav = new CyberNavigation({
                 selector: '#main-navbar',
-                glitchEffect: true,
+                glitchEffect: false,
                 soundEffects: false, // Disabled for better UX
                 particleTrail: true
             });

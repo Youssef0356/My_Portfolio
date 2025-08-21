@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" />
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Futuristic 2077 Styles -->
+  <link rel="stylesheet" href="src/styles/futuristic-2077.css">
 
   <style>
     #left {
@@ -171,10 +173,78 @@
       50% { background: radial-gradient(circle at 40% 60%, #6D28D9 0%, #969cff55 60%, transparent 100%); }
       100% { background: radial-gradient(circle at 60% 40%, #969cff55 0%, #6D28D9 60%, transparent 100%); }
     }
+    /* 2077-styled filter buttons */
+    .filter-btn {
+      border: 2px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      background: transparent;
+      font-family: 'Orbitron', monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+    .filter-btn.active,
+    .filter-btn:hover {
+      color: var(--cyber-dark-1);
+      background: var(--neon-cyan);
+      box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 12px rgba(0,255,255,0.2);
+    }
+
+    /* 2077 Project Grid Cards */
+    .project-card-2077 {
+      position: relative;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.320, 1), box-shadow 0.4s ease;
+      box-shadow: var(--glass-shadow);
+    }
+    .project-card-2077:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 30px rgba(0,255,255,0.25);
+    }
+    .project-card-2077 .thumb {
+      position: relative;
+      height: 12rem;
+      overflow: hidden;
+      background: #000;
+    }
+    .project-card-2077 .thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%);
+      pointer-events: none;
+    }
+    .card-scanline {
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,255,255,0.18), transparent);
+      filter: blur(4px);
+      animation: cardScan 3.2s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes cardScan {
+      0% { left: -100%; }
+      50% { left: 120%; }
+      100% { left: 120%; }
+    }
+    .corner-accent {
+      position: absolute;
+      width: 22px; height: 22px;
+      border: 2px solid var(--neon-cyan);
+      opacity: 0.6;
+    }
+    .corner-accent.tl { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+    .corner-accent.br { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+    .project-card-2077 h4 { font-family: 'Orbitron', monospace; letter-spacing: 0.06em; }
+    .project-card-2077 p { font-family: 'Rajdhani', sans-serif; }
   </style>
 </head>
 
-<body>
+<body class="cyber-bg-2077">
   <div id="scroll-animated-bg"></div>
   <section>
     <nav class="glass fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full lg:px-64">
@@ -256,88 +326,86 @@
   </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script>
+    // Legacy gallery loader guard: only run if #video-gallery exists
     fetch('videos.json')
       .then(response => response.json())
       .then(data => {
         const gallery = document.getElementById('video-gallery');
-        const filterItems = document.querySelectorAll('.filter-item'); // Select all filter items
+        if (!gallery) return; // No legacy gallery on this page
+        const filterItems = document.querySelectorAll('.filter-item');
 
-        // Function to display videos based on category
+        function normalizeUrl(url) {
+          if (!url) return '';
+          url = url.trim();
+          // YouTube short → embed
+          if (url.includes('youtu.be/')) {
+            const id = url.split('youtu.be/')[1].split(/[?&]/)[0];
+            return `https://www.youtube.com/embed/${id}`;
+          }
+          // YouTube watch → embed
+          if (url.includes('watch?v=')) {
+            const id = url.split('watch?v=')[1].split('&')[0];
+            return `https://www.youtube.com/embed/${id}`;
+          }
+          // Google Drive view → preview
+          if (url.includes('/view')) {
+            return url.replace('/view', '/preview');
+          }
+          return url;
+        }
+
         function displayVideos(filterCategory = 'all') {
-          gallery.innerHTML = ''; // Clear the gallery
-
-          // Filter videos based on the selected category
-          const filteredVideos = filterCategory === 'all'
-            ? data
-            : data.filter(video => video.category === filterCategory);
-
-          // Generate HTML for filtered videos
+          gallery.innerHTML = '';
+          const filteredVideos = filterCategory === 'all' ? data : data.filter(video => video.category === filterCategory);
           filteredVideos.forEach(video => {
             const videoDiv = document.createElement('div');
-            videoDiv.classList.add('w-full', 'mb-6', 'video-item', 'project-card', 'rounded-2xl', 'shadow-lg', 'p-4', 'relative', 'overflow-hidden', 'bg-[#140C20]');
+            videoDiv.className = 'w-full mb-6 video-item project-card rounded-2xl shadow-lg p-4 relative overflow-hidden bg-[#140C20]';
             videoDiv.setAttribute('data-category', video.category);
-
             const iframe = document.createElement('iframe');
-            iframe.classList.add('object-cover', 'h-96', 'w-full', 'bg-black');
-            iframe.setAttribute('width', '560');
-            iframe.setAttribute('height', '315');
-            iframe.setAttribute('src', video.url);
-            iframe.setAttribute('frameborder', '0');
-            iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-            iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-            iframe.setAttribute('allowfullscreen', '');
-            iframe.setAttribute('loading', 'lazy');
-
+            iframe.className = 'object-cover h-96 w-full bg-black';
+            iframe.width = '560';
+            iframe.height = '315';
+            iframe.src = normalizeUrl(video.url);
+            iframe.frameBorder = '0';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+            iframe.allowFullscreen = true;
+            iframe.loading = 'lazy';
             const titleDiv = document.createElement('div');
-            titleDiv.classList.add('pt-4');
-
+            titleDiv.className = 'pt-4';
             const title = document.createElement('span');
-            title.classList.add('font-bold', 'text-lg', 'text-white', 'uppercase', 'font-mono');
+            title.className = 'font-bold text-lg text-white uppercase font-mono';
             title.textContent = video.title;
-
             const date = document.createElement('span');
-            date.classList.add('block', 'text-sm', 'text-slate-500', 'uppercase', 'font-mono');
+            date.className = 'block text-sm text-slate-500 uppercase font-mono';
             date.textContent = 'On: ' + new Date(video.date).toLocaleDateString();
-
             const category = document.createElement('span');
-            category.classList.add('block', 'text-sm', 'text-slate-400', 'uppercase', 'font-mono');
+            category.className = 'block text-sm text-slate-400 uppercase font-mono';
             category.textContent = 'Category: ' + video.category;
-
             titleDiv.appendChild(title);
             titleDiv.appendChild(date);
             titleDiv.appendChild(category);
-
             const badge = document.createElement('span');
             badge.className = 'category-badge';
             badge.textContent = video.category.charAt(0).toUpperCase() + video.category.slice(1);
             titleDiv.appendChild(badge);
-
             videoDiv.appendChild(iframe);
             videoDiv.appendChild(titleDiv);
             gallery.appendChild(videoDiv);
           });
         }
-
-        // Initial display of all videos
         displayVideos();
-
-        // Add click event listeners to filter items
+        const filterItems = document.querySelectorAll('.filter-item');
         filterItems.forEach(item => {
           item.addEventListener('click', () => {
             const selectedCategory = item.getAttribute('data-category');
-
-            // Remove the 'active' class from all filter items
             filterItems.forEach(filter => filter.classList.remove('hover:bg-gray-800'));
-
-            // Add the 'active' class to the clicked item
             item.classList.add('hover:bg-gray-800');
-
-            // Display filtered videos
             displayVideos(selectedCategory);
           });
         });
       })
-      .catch(error => console.error('Error loading JSON:', error));
+      .catch(() => {});
   </script>
 
   <section class="flex items-center justify-center ">
@@ -441,36 +509,38 @@
   </script>
 
   <!-- Projects Section (Modern Carousel + Grid with Filtering and Arrows) -->
-  <section class="py-20 px-6">
-    <div class="max-w-7xl mx-auto">
+  <section class="py-24 px-6 relative">
+    <div class="max-w-7xl mx-auto relative">
+      <!-- Cyber grid backdrop -->
+      <div class="cyber-grid absolute inset-0 -z-10"></div>
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-          Featured Projects
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 cyber-font-primary holo-text" data-text="Projects">
+          Projects
         </h2>
-        <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+        <div class="w-24 h-1 mx-auto rounded-full neon-glow" style="color: var(--neon-magenta);"></div>
       </div>
       <!-- Filter Bar -->
-      <div class="flex flex-wrap justify-center gap-4 mb-8">
-        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="all">All</button>
-        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="architecture">Architecture</button>
-        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="game-development">Game Development</button>
-        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="vfx">CGI</button>
-        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="videoediting">Video Editing</button>
-        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="animation">Animation</button>
-        <button class="filter-btn px-4 py-2 rounded-full bg-white/10 text-white font-semibold hover:bg-purple-500/30 transition" data-category="other">Other</button>
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <button class="filter-btn px-6 py-2 rounded-md" data-category="all">All</button>
+        <button class="filter-btn px-6 py-2 rounded-md" data-category="architecture">Architecture</button>
+        <button class="filter-btn px-6 py-2 rounded-md" data-category="game-development">Game Development</button>
+        <button class="filter-btn px-6 py-2 rounded-md" data-category="vfx">CGI</button>
+        <button class="filter-btn px-6 py-2 rounded-md" data-category="videoediting">Video Editing</button>
+        <button class="filter-btn px-6 py-2 rounded-md" data-category="animation">Animation</button>
+        <button class="filter-btn px-6 py-2 rounded-md" data-category="other">Other</button>
       </div>
-      <!-- Carousel Main Project Area -->
-      <div class="relative mb-12">
-        <button id="carousel-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-purple-500/30 text-white rounded-full p-3 shadow-lg transition"><span class="material-icons">chevron_left</span></button>
-        <div class="overflow-hidden" id="project-carousel">
+      <!-- Carousel Main Project Area (2077 card style) -->
+      <div class="relative mb-16">
+        <button id="carousel-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 cyber-button" style="color: var(--neon-cyan); border-color: var(--neon-cyan);"><span class="material-icons">chevron_left</span></button>
+        <div class="overflow-hidden holo-card" id="project-carousel">
           <div id="carousel-track" class="flex transition-transform duration-700 ease-out"></div>
         </div>
-        <button id="carousel-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-purple-500/30 text-white rounded-full p-3 shadow-lg transition"><span class="material-icons">chevron_right</span></button>
+        <button id="carousel-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 cyber-button" style="color: var(--neon-cyan); border-color: var(--neon-cyan);"><span class="material-icons">chevron_right</span></button>
         <!-- Carousel Navigation Dots -->
         <div id="carousel-dots" class="flex justify-center mt-8 space-x-2"></div>
       </div>
       <!-- Project Grid for Featured Projects -->
-      <div id="project-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16"></div>
+      <div id="project-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16"></div>
     </div>
   </section>
 
@@ -606,6 +676,23 @@
       setupAutoSwitch();
     });
 
+  function normalizeUrl(url) {
+    if (!url) return '';
+    url = url.trim();
+    if (url.includes('youtu.be/')) {
+      const id = url.split('youtu.be/')[1].split(/[?&]/)[0];
+      return `https://www.youtube.com/embed/${id}`;
+    }
+    if (url.includes('watch?v=')) {
+      const id = url.split('watch?v=')[1].split('&')[0];
+      return `https://www.youtube.com/embed/${id}`;
+    }
+    if (url.includes('/view')) {
+      return url.replace('/view', '/preview');
+    }
+    return url;
+  }
+
   function renderCarousel(data) {
     const track = document.getElementById('carousel-track');
     const dots = document.getElementById('carousel-dots');
@@ -620,7 +707,7 @@
         <div class="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500" style="box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
           <div class="relative h-96 overflow-hidden">
             ${project.url ?
-              `<iframe class="w-full h-full object-cover bg-black" src="${project.url}" frameborder="0" allowfullscreen loading="lazy"></iframe>` :
+              `<iframe class="w-full h-full object-cover bg-black" src="${normalizeUrl(project.url)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>` :
               `<img src="${project.image || ''}" alt="${project.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />`
             }
             <div class="absolute top-4 left-4">
@@ -667,22 +754,23 @@
     grid.innerHTML = '';
     data.forEach((project, index) => {
       const card = document.createElement('div');
-      card.className = 'group relative bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500';
-      card.style = `box-shadow: 0 10px 30px -5px rgba(0,0,0,0.3);`;
+      card.className = 'project-card-2077 group';
       card.innerHTML = `
-        <div class="relative h-48 overflow-hidden">
+        <div class="thumb">
           ${project.url ?
-            `<iframe class="w-full h-full object-cover bg-black" src="${project.url}" frameborder="0" allowfullscreen loading="lazy"></iframe>` :
+            `<iframe class="w-full h-full object-cover bg-black" src="${normalizeUrl(project.url)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>` :
             `<img src="${project.image || ''}" alt="${project.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />`
           }
-          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          <div class="card-scanline"></div>
+          <span class="corner-accent tl"></span>
+          <span class="corner-accent br"></span>
         </div>
         <div class="p-6">
-          <h4 class="text-lg font-semibold mb-2">${project.title || ''}</h4>
+          <h4 class="text-xl font-semibold mb-2 holo-text" data-text="${(project.title || '').replace(/"/g,'&quot;')}">${project.title || ''}</h4>
           <p class="text-purple-200 text-sm mb-4 line-clamp-2">${project.description || ''}</p>
           <div class="flex justify-between items-center">
             <span class="text-xs text-purple-300">${project.category || ''}</span>
-            ${project.url ? `<button onclick="openGridVideo(${index})" class="text-purple-400 hover:text-purple-300 transition-colors">View</button>` : ''}
+            ${project.url ? `<button onclick="openGridVideo(${index})" class="cyber-button" style="color: var(--neon-magenta); border-color: var(--neon-magenta);">View</button>` : ''}
           </div>
         </div>
       `;

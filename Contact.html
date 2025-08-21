@@ -12,6 +12,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="src/styles/futuristic-2077.css">
 
 <style>
     footer{
@@ -21,53 +22,18 @@
     /* Contact Page Specific Styles */
     .contact-container {
         min-height: 100vh;
-        background: linear-gradient(135deg, #130B1F 0%, #1a0f2e 100%);
+        background: transparent;
         position: relative;
         overflow: hidden;
     }
 
-    .contact-container::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at 20% 80%, rgba(150, 156, 255, 0.1) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(150, 156, 255, 0.1) 0%, transparent 50%);
-        pointer-events: none;
-    }
+    .contact-container::before { display: none; }
 
-    .contact-card {
-        background: rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(150, 156, 255, 0.2);
-        border-radius: 24px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
+    .contact-card { /* visuals via glass-panel */ }
 
-    .contact-input {
-        background: rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(150, 156, 255, 0.2);
-        transition: all 0.3s ease;
-    }
+    /* use .cyber-input */
 
-    .contact-input:focus {
-        border-color: #969CFF;
-        box-shadow: 0 0 0 3px rgba(150, 156, 255, 0.1);
-        outline: none;
-    }
-
-    .contact-button {
-        background: linear-gradient(135deg, #969CFF 0%, #7c3aed 100%);
-        transition: all 0.3s ease;
-    }
-
-    .contact-button:hover {
-        background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(150, 156, 255, 0.3);
-    }
+    /* use .cyber-button */
 
     .contact-icon {
         background: rgba(150, 156, 255, 0.2);
@@ -100,7 +66,7 @@
 </style>
 </head>
 
-<body>
+<body class="cyber-bg-2077">
   <section>
     <nav class="glass fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full lg:px-64">
         <a href="index.html" class="p-2 mr-4 inline-flex items-center lg:mr-0">
@@ -178,14 +144,15 @@
 </section>
 
 <!-- Contact Section -->
-<section class="contact-container flex items-center justify-center p-6 pt-24">
-  <div class="contact-card max-w-6xl w-full p-8 fade-in">
+<section class="contact-container flex items-center justify-center p-6 pt-24 relative">
+  <div class="cyber-grid absolute inset-0 -z-10"></div>
+  <div class="glass-panel max-w-6xl w-full p-8 fade-in">
     <div class="grid md:grid-cols-2 gap-12">
       
       <!-- Contact Information -->
       <div class="space-y-8">
         <div>
-          <h2 class="text-4xl font-bold text-white mb-4">Get In Touch</h2>
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 cyber-font-primary holo-text" data-text="Get In Touch">Get In Touch</h2>
           <p class="text-purple-200 text-lg leading-relaxed">
             Let's create something amazing together. Reach out and let's start a conversation.
           </p>
@@ -252,7 +219,7 @@
               id="name"
               name="name"
               required
-              class="contact-input w-full px-4 py-3 rounded-xl text-white placeholder-purple-300"
+              class="cyber-input w-full px-4 py-3 rounded-xl text-white placeholder-purple-300"
               placeholder="Your name"
             />
           </div>
@@ -266,7 +233,7 @@
               id="email"
               name="email"
               required
-              class="contact-input w-full px-4 py-3 rounded-xl text-white placeholder-purple-300"
+              class="cyber-input w-full px-4 py-3 rounded-xl text-white placeholder-purple-300"
               placeholder="your@email.com"
             />
           </div>
@@ -279,7 +246,7 @@
               type="tel"
               id="tel"
               name="tel"
-              class="contact-input w-full px-4 py-3 rounded-xl text-white placeholder-purple-300"
+              class="cyber-input w-full px-4 py-3 rounded-xl text-white placeholder-purple-300"
               placeholder="Your phone number"
             />
           </div>
@@ -293,7 +260,7 @@
               name="message"
               required
               rows="5"
-              class="contact-input w-full px-4 py-3 rounded-xl text-white placeholder-purple-300 resize-none"
+              class="cyber-input w-full px-4 py-3 rounded-xl text-white placeholder-purple-300 resize-none"
               placeholder="Tell me about your project..."
             ></textarea>
           </div>
@@ -307,7 +274,8 @@
           <button
             type="submit"
             id="submitBtn"
-            class="contact-button w-full text-white py-3 px-6 rounded-xl font-semibold flex items-center justify-center space-x-2"
+            class="cyber-button w-full text-white py-3 px-6 rounded-xl font-semibold flex items-center justify-center space-x-2"
+            style="color: var(--neon-cyan); border-color: var(--neon-cyan);"
           >
             <i class="fas fa-paper-plane"></i>
             <span>Send Message</span>

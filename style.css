@@ -163,3 +163,98 @@ body {
     border: 1px solid var(--glass-border);
   }
 
+/* ===== TIMELINE COMPONENT ===== */
+.wrap {
+  position: relative;
+}
+
+.left-timeline,
+.right-timeline {
+  position: relative;
+}
+
+.left-timeline::before,
+.right-timeline::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: var(--neon-cyan);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.4);
+  z-index: 10;
+}
+
+/* Utility to color the center line */
+.border-purple-555 {
+  border-color: rgba(150, 156, 255, 0.45) !important;
+}
+
+/* Ensure timeline items are visible and above backgrounds */
+.timeline-element {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+}
+
+/* Override AOS initial hidden state for timeline */
+.timeline-element[data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Explicitly force the left sticky column visible */
+.timeline-sticky-left {
+  opacity: 1 !important;
+}
+
+/* Fix timeline sticky columns being covered */
+.timeline-sticky-left,
+.timeline-sticky-right {
+  position: sticky;
+  z-index: 30;
+}
+
+/* Ensure particle canvases stay behind content */
+.particle-canvas {
+  z-index: -1 !important;
+  pointer-events: none !important;
+}
+
+/* Navbar hover stability fix */
+nav.cyber-nav {
+  position: relative;
+  z-index: 50;
+  overflow: visible;
+}
+
+.cyber-nav .nav-indicator,
+.cyber-nav .nav-glitch-container,
+.cyber-nav .logo-holo-effect {
+  pointer-events: none;
+}
+
+.cyber-nav a.cyber-nav-item {
+  white-space: nowrap;
+}
+
+/* The scrolling light streaks should never cover content */
+.lines {
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+.light {
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* Center timeline guides shouldn't intercept clicks */
+.wrap > .absolute {
+  pointer-events: none;
+}
+

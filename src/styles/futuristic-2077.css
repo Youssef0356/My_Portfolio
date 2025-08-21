@@ -544,6 +544,50 @@
   overflow: hidden;
 }
 
+/* ===== CYBER 2077 BACKGROUND V2 ===== */
+.cyber-bg-2077 {
+  position: relative;
+  background: radial-gradient(1200px 800px at 20% 20%, #140c20 0%, var(--cyber-dark-1) 60%), var(--cyber-dark-1);
+}
+
+.cyber-bg-2077::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background: conic-gradient(from 180deg at 50% 50%, rgba(0,255,255,0.15), rgba(255,0,255,0.12), rgba(255,255,0,0.10), rgba(0,255,255,0.15));
+  filter: blur(60px) saturate(1.2);
+  animation: bgRotate 28s linear infinite;
+  opacity: 0.35;
+}
+
+.cyber-bg-2077::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 255, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+}
+
+@keyframes bgRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.05); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Hide older background layers when V2 is active */
+.cyber-bg-2077 .gradient-bg,
+.cyber-bg-2077 #animated-bg,
+.cyber-bg-2077 #particle-bg,
+.cyber-bg-2077 #scroll-animated-bg {
+  display: none !important;
+}
+
 .data-viz-container::before {
   content: '';
   position: absolute;
