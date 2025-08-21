@@ -1,9 +1,13 @@
-![4](https://github.com/user-attachments/assets/7b900ed8-3a6a-4634-bef3-80d2091706ff)
-![3](https://github.com/user-attachments/assets/9438cbfd-fb93-4c74-bf9c-be6f8f36c1b4)
-![2](https://github.com/user-attachments/assets/f2cb5e7a-ef32-453b-bea8-2008ea4743f6)
-![5](https://github.com/user-attachments/assets/c408b3c7-92f8-402c-83db-255d601b8a18)
 
-## Interactive Mouse-Chasing Game Feature
+
+## Pictures from my portfolio <img width="1892" height="891" alt="6" src="https://github.com/user-attachments/assets/cca9b6d1-0dbe-4066-b3ed-bab23507776d" />
+<img width="1898" height="917" alt="5" src="https://github.com/user-attachments/assets/fa359ea8-fe13-49bb-a68c-908ceb768378" />
+<img width="1891" height="907" alt="4" src="https://github.com/user-attachments/assets/7f79a173-2ae1-4689-93ea-7451bfee18f0" />
+<img width="1877" height="912" alt="3" src="https://github.com/user-attachments/assets/a0c2e19f-a382-45bd-a7bc-4e877620762e" />
+<img width="1887" height="903" alt="2" src="https://github.com/user-attachments/assets/de5f4486-4c74-4e32-ae91-e5d655f11199" />
+<img width="1883" height="912" alt="1" src="https://github.com/user-attachments/assets/de9d0ea4-92de-46b0-ac11-a2045b03f5e8" />
+<img width="1860" height="896" alt="7" src="https://github.com/user-attachments/assets/68794572-0de4-4d08-9522-9b50e09779a6" />
+
 
 This portfolio includes a playful interactive element - a floating bubble that moves around the screen and reacts to mouse proximity.
 
