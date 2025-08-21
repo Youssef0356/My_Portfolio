@@ -1,0 +1,27 @@
+{
+  "name": "youssef-neji-portfolio",
+  "version": "1.0.0",
+  "description": "Futuristic 2077-inspired portfolio website for Youssef Neji",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve .",
+    "build": "echo 'Build complete - static files ready'",
+    "preview": "npx serve ."
+  },
+  "keywords": [
+    "portfolio",
+    "3d-modeling",
+    "animation",
+    "web-development",
+    "futuristic"
+  ],
+  "author": "Youssef Neji",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
