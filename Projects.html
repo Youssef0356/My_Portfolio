@@ -325,88 +325,7 @@
     </script>
   </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script>
-    // Legacy gallery loader guard: only run if #video-gallery exists
-    fetch('videos.json')
-      .then(response => response.json())
-      .then(data => {
-        const gallery = document.getElementById('video-gallery');
-        if (!gallery) return; // No legacy gallery on this page
-        const filterItems = document.querySelectorAll('.filter-item');
 
-        function normalizeUrl(url) {
-          if (!url) return '';
-          url = url.trim();
-          // YouTube short → embed
-          if (url.includes('youtu.be/')) {
-            const id = url.split('youtu.be/')[1].split(/[?&]/)[0];
-            return `https://www.youtube.com/embed/${id}`;
-          }
-          // YouTube watch → embed
-          if (url.includes('watch?v=')) {
-            const id = url.split('watch?v=')[1].split('&')[0];
-            return `https://www.youtube.com/embed/${id}`;
-          }
-          // Google Drive view → preview
-          if (url.includes('/view')) {
-            return url.replace('/view', '/preview');
-          }
-          return url;
-        }
-
-        function displayVideos(filterCategory = 'all') {
-          gallery.innerHTML = '';
-          const filteredVideos = filterCategory === 'all' ? data : data.filter(video => video.category === filterCategory);
-          filteredVideos.forEach(video => {
-            const videoDiv = document.createElement('div');
-            videoDiv.className = 'w-full mb-6 video-item project-card rounded-2xl shadow-lg p-4 relative overflow-hidden bg-[#140C20]';
-            videoDiv.setAttribute('data-category', video.category);
-            const iframe = document.createElement('iframe');
-            iframe.className = 'object-cover h-96 w-full bg-black';
-            iframe.width = '560';
-            iframe.height = '315';
-            iframe.src = normalizeUrl(video.url);
-            iframe.frameBorder = '0';
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-            iframe.allowFullscreen = true;
-            iframe.loading = 'lazy';
-            const titleDiv = document.createElement('div');
-            titleDiv.className = 'pt-4';
-            const title = document.createElement('span');
-            title.className = 'font-bold text-lg text-white uppercase font-mono';
-            title.textContent = video.title;
-            const date = document.createElement('span');
-            date.className = 'block text-sm text-slate-500 uppercase font-mono';
-            date.textContent = 'On: ' + new Date(video.date).toLocaleDateString();
-            const category = document.createElement('span');
-            category.className = 'block text-sm text-slate-400 uppercase font-mono';
-            category.textContent = 'Category: ' + video.category;
-            titleDiv.appendChild(title);
-            titleDiv.appendChild(date);
-            titleDiv.appendChild(category);
-            const badge = document.createElement('span');
-            badge.className = 'category-badge';
-            badge.textContent = video.category.charAt(0).toUpperCase() + video.category.slice(1);
-            titleDiv.appendChild(badge);
-            videoDiv.appendChild(iframe);
-            videoDiv.appendChild(titleDiv);
-            gallery.appendChild(videoDiv);
-          });
-        }
-        displayVideos();
-        const filterItems = document.querySelectorAll('.filter-item');
-        filterItems.forEach(item => {
-          item.addEventListener('click', () => {
-            const selectedCategory = item.getAttribute('data-category');
-            filterItems.forEach(filter => filter.classList.remove('hover:bg-gray-800'));
-            item.classList.add('hover:bg-gray-800');
-            displayVideos(selectedCategory);
-          });
-        });
-      })
-      .catch(() => {});
-  </script>
 
   <section class="flex items-center justify-center ">
     <script>
@@ -522,6 +441,7 @@
       <!-- Filter Bar -->
       <div class="flex flex-wrap justify-center gap-4 mb-12">
         <button class="filter-btn px-6 py-2 rounded-md" data-category="all">All</button>
+        <button class="filter-btn px-6 py-2 rounded-md" data-category="recent">Recent</button>
         <button class="filter-btn px-6 py-2 rounded-md" data-category="architecture">Architecture</button>
         <button class="filter-btn px-6 py-2 rounded-md" data-category="game-development">Game Development</button>
         <button class="filter-btn px-6 py-2 rounded-md" data-category="vfx">CGI</button>
@@ -664,11 +584,111 @@
   let autoSwitchInterval = null;
   let isCarouselHovered = false;
 
+  // Helper function to parse various date formats from the JSON
+  function parseDate(dateString) {
+    if (!dateString) return new Date(0);
+    
+    try {
+      // Handle different date formats found in the JSON
+      const date = dateString.trim();
+      
+      // Format: "29 September 2024"
+      if (/^\d{1,2}\s+[A-Za-z]+\s+\d{4}$/.test(date)) {
+        return new Date(date);
+      }
+      
+      // Format: "11 March 2025"
+      if (/^\d{1,2}\s+[A-Za-z]+\s+\d{4}$/.test(date)) {
+        return new Date(date);
+      }
+      
+      // Format: "21 mai 2025" (French month)
+      if (/^\d{1,2}\s+[A-Za-z]+\s+\d{4}$/.test(date)) {
+        // Replace French month names with English equivalents
+        const frenchToEnglish = {
+          'janvier': 'January', 'février': 'February', 'mars': 'March', 'avril': 'April',
+          'mai': 'May', 'juin': 'June', 'juillet': 'July', 'août': 'August',
+          'septembre': 'September', 'octobre': 'October', 'novembre': 'November', 'décembre': 'December'
+        };
+        
+        let englishDate = date;
+        for (const [french, english] of Object.entries(frenchToEnglish)) {
+          englishDate = englishDate.replace(new RegExp(french, 'i'), english);
+        }
+        return new Date(englishDate);
+      }
+      
+      // Format: "09/02 February 2025"
+      if (/^\d{2}\/\d{2}\s+[A-Za-z]+\s+\d{4}$/.test(date)) {
+        const parts = date.split(' ');
+        const dayMonth = parts[0].split('/');
+        return new Date(parts[2], getMonthIndex(parts[1]), dayMonth[0]);
+      }
+      
+      // Format: "07 07 2025"
+      if (/^\d{2}\s+\d{2}\s+\d{4}$/.test(date)) {
+        const parts = date.split(' ');
+        return new Date(parts[2], parts[1] - 1, parts[0]);
+      }
+      
+      // Format: "20 january 2025" (lowercase month)
+      if (/^\d{1,2}\s+[a-z]+\s+\d{4}$/.test(date)) {
+        return new Date(date);
+      }
+      
+      // Format: "03 february 2025" (lowercase month)
+      if (/^\d{1,2}\s+[a-z]+\s+\d{4}$/.test(date)) {
+        return new Date(date);
+      }
+      
+      // Format: "14 Febriary 2024" (typo in month name)
+      if (/^\d{1,2}\s+[A-Za-z]+\s+\d{4}$/.test(date)) {
+        const correctedDate = date.replace('Febriary', 'February');
+        return new Date(correctedDate);
+      }
+      
+      // Default fallback
+      const parsedDate = new Date(date);
+      if (isNaN(parsedDate.getTime())) {
+        console.warn(`Could not parse date: "${dateString}"`);
+        return new Date(0);
+      }
+      return parsedDate;
+    } catch (error) {
+      console.error(`Error parsing date "${dateString}":`, error);
+      return new Date(0);
+    }
+  }
+  
+  // Helper function to get month index (0-11)
+  function getMonthIndex(monthName) {
+    const months = {
+      'January': 0, 'February': 1, 'March': 2, 'April': 3, 'May': 4, 'June': 5,
+      'July': 6, 'August': 7, 'September': 8, 'October': 9, 'November': 10, 'December': 11
+    };
+    return months[monthName] || 0;
+  }
+  
+  // Helper function to sort projects by date (newest first)
+  function sortByDate(a, b) {
+    const dateA = parseDate(a.date);
+    const dateB = parseDate(b.date);
+    return dateB - dateA;
+  }
+
   fetch('videos.json')
     .then(response => response.json())
     .then(data => {
       allProjects = data;
-      filteredProjects = allProjects;
+      console.log(`Loaded ${allProjects.length} projects`);
+      
+      // Sort all projects by date (newest first) initially
+      filteredProjects = [...allProjects].sort(sortByDate);
+      console.log('Projects sorted by date (newest first):');
+      filteredProjects.slice(0, 5).forEach((p, i) => {
+        console.log(`${i + 1}. ${p.title} - ${p.date} (${parseDate(p.date).toDateString()})`);
+      });
+      
       renderCarousel(filteredProjects);
       renderGrid(filteredProjects);
       setupFilters();
@@ -718,7 +738,10 @@
           </div>
           <div class="p-8">
             <h3 class="text-2xl font-semibold mb-3">${project.title || ''}</h3>
-            <p class="text-purple-200 mb-6 leading-relaxed">${project.description || ''}</p>
+            <p class="text-purple-200 mb-4 leading-relaxed">${project.description || ''}</p>
+            <div class="text-sm text-purple-300 mb-4">
+              📅 ${project.date || ''}
+            </div>
             <div class="flex flex-wrap gap-2 mb-6">
               ${(project.tools || []).map(tool => `<span class="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20">${tool}</span>`).join('')}
             </div>
@@ -768,9 +791,12 @@
         <div class="p-6">
           <h4 class="text-xl font-semibold mb-2 holo-text" data-text="${(project.title || '').replace(/"/g,'&quot;')}">${project.title || ''}</h4>
           <p class="text-purple-200 text-sm mb-4 line-clamp-2">${project.description || ''}</p>
-          <div class="flex justify-between items-center">
+          <div class="flex justify-between items-center mb-3">
             <span class="text-xs text-purple-300">${project.category || ''}</span>
             ${project.url ? `<button onclick="openGridVideo(${index})" class="cyber-button" style="color: var(--neon-magenta); border-color: var(--neon-magenta);">View</button>` : ''}
+          </div>
+          <div class="text-xs text-purple-400 opacity-75">
+            ${project.date ? `📅 ${project.date}` : ''}
           </div>
         </div>
       `;
@@ -792,15 +818,36 @@
         filterBtns.forEach(b => b.classList.remove('bg-purple-600', 'text-white'));
         btn.classList.add('bg-purple-600', 'text-white');
         const cat = btn.getAttribute('data-category');
+        
         if (cat === 'all') {
-          filteredProjects = allProjects;
+          filteredProjects = [...allProjects].sort(sortByDate);
+        } else if (cat === 'recent') {
+          // Get videos from the last 6 months
+          const sixMonthsAgo = new Date();
+          sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+          console.log('Recent filter: Videos from', sixMonthsAgo.toDateString(), 'and newer');
+          filteredProjects = allProjects.filter(p => {
+            const videoDate = parseDate(p.date);
+            const isRecent = videoDate >= sixMonthsAgo;
+            console.log(`${p.title}: ${p.date} -> ${videoDate.toDateString()} (${isRecent ? 'Recent' : 'Old'})`);
+            return isRecent;
+          }).sort(sortByDate);
+          console.log(`Found ${filteredProjects.length} recent videos`);
         } else {
-          filteredProjects = allProjects.filter(p => (p.category || '').toLowerCase().replace(/\s/g,'-') === cat);
+          filteredProjects = allProjects.filter(p => (p.category || '').toLowerCase().replace(/\s/g,'-') === cat)
+            .sort(sortByDate);
         }
+        
         renderCarousel(filteredProjects);
         renderGrid(filteredProjects);
       };
     });
+    
+    // Set initial active state for "All" button
+    const allBtn = document.querySelector('[data-category="all"]');
+    if (allBtn) {
+      allBtn.classList.add('bg-purple-600', 'text-white');
+    }
   }
   function setupCarouselArrows() {
     document.getElementById('carousel-left').onclick = () => {
