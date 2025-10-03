@@ -25,6 +25,8 @@
     
     <!-- Mouse Chaser Game Styles -->
     <link rel="stylesheet" href="src/styles/mouse-chaser.css">
+    <!-- 3D Morph Scroll Effect Styles -->
+    <link rel="stylesheet" href="src/styles/morph-scroll.css">
     <!-- Removed all Three.js scripts -->
 
     <style>
@@ -236,6 +238,239 @@
             pointer-events: none;
         }
 
+        /* Morph effect global positioning */
+        .morph-scroll-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .spiral-container {
+            pointer-events: none;
+        }
+
+        .morph-item {
+            pointer-events: auto;
+        }
+
+        /* Restored Background Animations */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -3;
+            overflow: hidden;
+        }
+
+        .bg-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(150, 156, 255, 0.1), rgba(236, 72, 153, 0.1));
+            animation: floatParticle var(--duration, 8s) ease-in-out infinite;
+            opacity: 0.6;
+            backdrop-filter: blur(1px);
+        }
+
+        .bg-particle:nth-child(odd) {
+            background: linear-gradient(135deg, rgba(109, 40, 217, 0.1), rgba(59, 130, 246, 0.1));
+        }
+
+        .bg-geometric {
+            position: absolute;
+            border: 1px solid rgba(150, 156, 255, 0.15);
+            animation: rotateFloat var(--duration, 12s) linear infinite;
+            opacity: 0.4;
+        }
+
+        .bg-geometric.triangle {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 26px solid rgba(150, 156, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .bg-geometric.square {
+            width: 20px;
+            height: 20px;
+            background: rgba(236, 72, 153, 0.1);
+            border-radius: 4px;
+        }
+
+        .bg-geometric.diamond {
+            width: 16px;
+            height: 16px;
+            background: rgba(59, 130, 246, 0.1);
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.6;
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px) scale(1.1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-15px) scale(0.9);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-30px) translateX(5px) scale(1.05);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes rotateFloat {
+            0% {
+                transform: rotate(0deg) translateY(0px);
+                opacity: 0.4;
+            }
+            25% {
+                transform: rotate(90deg) translateY(-15px);
+                opacity: 0.6;
+            }
+            50% {
+                transform: rotate(180deg) translateY(-5px);
+                opacity: 0.3;
+            }
+            75% {
+                transform: rotate(270deg) translateY(-20px);
+                opacity: 0.5;
+            }
+            100% {
+                transform: rotate(360deg) translateY(0px);
+                opacity: 0.4;
+            }
+        }
+
+        /* Gradient Background Animation */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(19, 11, 31, 1) 0%,
+                rgba(26, 15, 46, 1) 25%,
+                rgba(19, 11, 31, 1) 50%,
+                rgba(32, 20, 58, 1) 75%,
+                rgba(19, 11, 31, 1) 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -4;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Cyber Grid Lines */
+        .light {
+            position: fixed;
+            width: 1px;
+            height: 100vh;
+            background-color: #969CFF;
+            box-shadow: #969CFF 0px 0px 20px 2px;
+            opacity: 0;
+            top: 0;
+            margin: auto;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .x3 { 
+            animation: scrollDown 8s 0s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.1) translateZ(15px);
+            left: calc(100% * var(--random-x3, 0.4));
+        }
+
+        .x4 { 
+            animation: scrollDown 8s 3s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.1) translateZ(60px);
+            left: calc(100% * var(--random-x4, 0.5));
+        }
+
+        .x5 { 
+            animation: scrollDown 8s 6s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.1) translateZ(45px);
+            left: calc(100% * var(--random-x5, 0.6));
+        }
+
+        @keyframes scrollDown {
+            0% {
+                top: 0;
+                opacity: 0;
+                transform: translateX(0) translateZ(30px) rotateY(0deg) scale(1);
+            }
+            50%{
+                opacity: 0.6;
+            }
+            100% {
+                top: 100vh;
+                opacity: 0;
+                transform: translateX(0) translateZ(30px) rotateY(0deg) scale(1);
+            }
+        }
+
+        /* Enhanced Cyber Grid Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -2;
+            animation: gridPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Accessibility: Respect prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            .bg-particle,
+            .bg-geometric,
+            .gradient-bg,
+            body::before {
+                animation: none;
+            }
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .bg-particle {
+                animation-duration: 10s;
+            }
+            .bg-geometric {
+                animation-duration: 15s;
+            }
+        }
+
         @media screen and (min-width: 350px) and (max-width: 650px) {
             .video-container.in-view {
                 transform: translateX(-150px) translateY(600px) rotate(-90deg);
@@ -375,6 +610,20 @@
 </head>
 
 <body class="cyber-bg-2077">
+    <!-- 3D Morph Background Effect (Global) -->
+    <div class="morph-scroll-section" id="morph-experience">
+        <!-- Main Spiral Container -->
+        <div class="spiral-container">
+            <div class="morph-track">
+                <!-- Morph items will be dynamically added here -->
+            </div>
+            <!-- Central Text Display -->
+            <div class="soft-skills-morph">
+                <h2 class="morph-text">My Journey</h2>
+                <!-- Skill orbs will be dynamically added here -->
+            </div>
+        </div>
+    </div>
     <!-- Animated Background -->
     <div class="gradient-bg"></div>
     <div class="animated-bg" id="animated-bg"></div>
@@ -465,6 +714,7 @@
             </div>
         </section>
         <!-- End Hero Section -->
+
 
         <section class="pt-28 px-8 md:pt-12 md:px-22 lg:pt-24 lg:px-44 ">
             <div class='lines'>
@@ -652,7 +902,7 @@
                                 <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right timeline-element">
                                     <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                     <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-right md:px-4 md:py-4 mr-2 sm:mr-0">
-                                        <p class="mb-3 text-base text-purple-300">March, 2024 - 2025</p>
+                                        <p class="mb-3 text-base text-purple-300">March, 2024 </p>
                                         <h4 class="mb-3 font-bold text-lg md:text-2xl">Joining the Virtual Exhibition
                                         </h4>
                                         <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
@@ -664,18 +914,28 @@
                                         </p>
                                     </div>
                                 </div>
+                                
                                 <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left timeline-element">
                                     <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
                                     <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4 mr-2 sm:mr-0">
-                                        <p class="mb-3 text-base text-purple-300">February, 2025 - 2026</p>
-                                        <h4 class="mb-3 font-bold text-lg md:text-2xl">Internship at University of sfax
+                                        <p class="mb-3 text-base text-purple-300">February, 2025 </p>
+                                        <h4 class="mb-3 font-bold text-lg md:text-2xl">PFE Internship at University of sfax
                                         </h4>
                                         <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
                                             Started my end-of-study internship at the <i class="wordshighlight">University of Sfax</i>, working on a large-scale project that combines <i class="wordshighlight">virtual reality</i>, <i class="wordshighlight">artificial intelligence</i>, <i class="wordshighlight">game development</i>, and <i class="wordshighlight">data analysis</i>.
                                         </p>
                                     </div>
                                 </div>
-
+                                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full right-timeline slide-in-right timeline-element">
+                                    <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
+                                    <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-right md:px-4 md:py-4 mr-2 sm:mr-0">
+                                        <p class="mb-3 text-base text-purple-300">2025 - Present</p>
+                                        <h4 class="mb-3 font-bold text-lg md:text-2xl">AR Developer at TDS Company</h4>
+                                        <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
+                                            Started my journey as an <i class="wordshighlight">AR developer</i> at TDS Company, merging <i class="wordshighlight">augmented reality</i> with the industrial world. Developed a comprehensive <i class="wordshighlight">maintenance system</i> using AR technology to assist workers with machine problems, connecting them with administration and creating AR objects to help with interventions and inspections.
+                                        </p>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -765,28 +1025,26 @@
 
                     <!-- Bottom Section -->
                     <div class="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
-                        <span class="text-sm text-gray-400">© 2023 <a href="#" class="hover:underline">Youssef Neji™</a>.
+                        <span class="text-sm text-gray-400"> 2023 <a href="#" class="hover:underline">Youssef Neji</a>.
                             All Rights Reserved.</span>
-                        <div class="flex space-x-4 mt-2 sm:mt-0">
-                            <!-- Social Icons -->
-                            <a href="https://www.facebook.com/youssef.dragonboll/"
-                                class="text-gray-400 hover:text-white transition-colors">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 8 19">
+                        <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
+                            <a href="https://www.facebook.com/youssef.dragonboll/" class="text-gray-500 hover:text-gray-900 dark:hover:text-purple-white">
+                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    viewBox="0 0 8 19">
                                     <path fill-rule="evenodd"
                                         d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
                                         clip-rule="evenodd" />
                                 </svg>
-                                <span class="sr-only">Facebook</span>
+                                <span class="sr-only">Facebook page</span>
                             </a>
-
-                            <a href="https://github.com/Youssef0356"
-                                class="text-gray-400 hover:text-white transition-colors">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <a href="https://github.com/Youssef0356" class="text-gray-500 hover:text-gray-900 dark:hover:text-purple-white">
+                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                    viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
                                         d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
                                         clip-rule="evenodd" />
                                 </svg>
-                                <span class="sr-only">GitHub</span>
+                                <span class="sr-only">GitHub account</span>
                             </a>
                         </div>
                     </div>
@@ -795,213 +1053,17 @@
         </section>
     </div>
 
-    <!-- Background Animation Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
+    <script src="src/js/animations-init.js"></script>
+    <script src="mouse-chaser-init.js"></script>
+    <script src="index.js"></script>
     <script>
-        // Enhanced Background Animation System
-        class BackgroundAnimator {
-            constructor() {
-                this.container = document.getElementById('animated-bg');
-                this.particles = [];
-                this.geometrics = [];
-                this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                
-                if (!this.isReducedMotion) {
-                    this.init();
-                }
-            }
-
-            init() {
-                this.createParticles();
-                this.createGeometrics();
-                this.handleResize();
-                window.addEventListener('resize', () => this.handleResize());
-            }
-
-            createParticles() {
-                const particleCount = window.innerWidth < 768 ? 15 : 25;
-                
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'bg-particle';
-                    
-                    // Random size between 8px and 24px
-                    const size = Math.random() * 16 + 8;
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    
-                    // Random position
-                    particle.style.left = `${Math.random() * 100}%`;
-                    particle.style.top = `${Math.random() * 100}%`;
-                    
-                    // Random animation duration between 6-12 seconds
-                    const duration = Math.random() * 6 + 6;
-                    particle.style.setProperty('--duration', `${duration}s`);
-                    
-                    // Random animation delay
-                    particle.style.animationDelay = `${Math.random() * 4}s`;
-                    
-                    this.container.appendChild(particle);
-                    this.particles.push(particle);
-                }
-            }
-
-            createGeometrics() {
-                const geometricCount = window.innerWidth < 768 ? 8 : 15;
-                const shapes = ['triangle', 'square', 'diamond'];
-                
-                for (let i = 0; i < geometricCount; i++) {
-                    const geometric = document.createElement('div');
-                    const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
-                    geometric.className = `bg-geometric ${shapeType}`;
-                    
-                    // Random position
-                    geometric.style.left = `${Math.random() * 100}%`;
-                    geometric.style.top = `${Math.random() * 100}%`;
-                    
-                    // Random animation duration between 10-20 seconds
-                    const duration = Math.random() * 10 + 10;
-                    geometric.style.setProperty('--duration', `${duration}s`);
-                    
-                    // Random animation delay
-                    geometric.style.animationDelay = `${Math.random() * 6}s`;
-                    
-                    this.container.appendChild(geometric);
-                    this.geometrics.push(geometric);
-                }
-            }
-
-            handleResize() {
-                // Adjust particle count based on screen size
-                const currentParticleCount = this.particles.length;
-                const targetParticleCount = window.innerWidth < 768 ? 15 : 25;
-                
-                if (currentParticleCount !== targetParticleCount) {
-                    this.clearElements();
-                    this.createParticles();
-                    this.createGeometrics();
-                }
-            }
-
-            clearElements() {
-                this.particles.forEach(particle => particle.remove());
-                this.geometrics.forEach(geometric => geometric.remove());
-                this.particles = [];
-                this.geometrics = [];
-            }
-        }
-
-        // Initialize background animation when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            new BackgroundAnimator();
-        });
-
-        // Performance optimization: Pause animations when page is not visible
-        document.addEventListener('visibilitychange', () => {
-            const animatedBg = document.getElementById('animated-bg');
-            if (document.hidden) {
-                animatedBg.style.animationPlayState = 'paused';
-                animatedBg.querySelectorAll('.bg-particle, .bg-geometric').forEach(el => {
-                    el.style.animationPlayState = 'paused';
-                });
-            } else {
-                animatedBg.style.animationPlayState = 'running';
-                animatedBg.querySelectorAll('.bg-particle, .bg-geometric').forEach(el => {
-                    el.style.animationPlayState = 'running';
-                });
-            }
+        AOS.init({
+            duration: 800,
         });
     </script>
-    
-    <!-- Mouse Chaser Game Scripts -->
-    <script src="src/components/MouseChaser.js"></script>
-    <script src="src/mouse-chaser-init.js"></script>
-    
-    <!-- Futuristic 2077 Components -->
-    <script src="src/components/ParticleSystem.js"></script>
-    <script src="src/components/HolographicEffects.js"></script>
-    <script src="src/components/CyberNavigation.js"></script>
-    
-    <!-- Initialize 2077 Effects -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize Particle System
-            const particleSystem = new ParticleSystem({
-                particleCount: 30,
-                colors: ['#00ffff', '#ff00ff', '#ffff00', '#00ff41'],
-                interactive: true,
-                showConnections: true
-            });
-            
-            // Initialize Holographic Effects
-            const holoEffects = new HolographicEffects();
-            
-            // Initialize Cyber Navigation
-            const cyberNav = new CyberNavigation({
-                selector: '#main-navbar',
-                glitchEffect: false,
-                soundEffects: false, // Disabled for better UX
-                particleTrail: true
-            });
-            
-            // Add scroll-based parallax effects
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const parallaxElements = document.querySelectorAll('.parallax-element');
-                
-                parallaxElements.forEach(element => {
-                    const speed = element.dataset.speed || 0.5;
-                    element.style.transform = `translateY(${scrolled * speed}px)`;
-                });
-            });
-            
-            // Add intersection observer for fade-in effects
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            document.querySelectorAll('.fade-in-up').forEach(el => {
-                observer.observe(el);
-            });
-            
-            // Add cyber loading effect
-            const loadingScreen = document.createElement('div');
-            loadingScreen.className = 'cyber-loading-screen';
-            loadingScreen.innerHTML = `
-                <div class="cyber-loader"></div>
-                <p class="cyber-font-mono" style="color: var(--neon-cyan); margin-top: 2rem;">INITIALIZING NEURAL INTERFACE...</p>
-            `;
-            loadingScreen.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: var(--cyber-dark-1);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                z-index: 9999;
-                transition: opacity 1s ease-out;
-            `;
-            
-            document.body.appendChild(loadingScreen);
-            
-            // Remove loading screen after page load
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.remove();
-                    }, 1000);
-                }, 1500);
-            });
-        });
-    </script>
+    <!-- 3D Morph Scroll Effect Script -->
+    <script src="src/js/morph-scroll.js"></script>
 </body>
 
 </html>
