@@ -190,6 +190,201 @@
       box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 12px rgba(0,255,255,0.2);
     }
 
+    /* ===== FUTURISTIC PROJECTS HEADER STYLES ===== */
+    .projects-hero-section {
+      position: relative;
+      background: radial-gradient(ellipse at center, rgba(150,156,255,0.1) 0%, transparent 70%),
+                  linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+    }
+
+    /* Floating Geometric Shapes */
+    .floating-shape {
+      position: absolute;
+      opacity: 0.6;
+      animation: floatShape 8s ease-in-out infinite;
+    }
+    
+    .shape-1 {
+      top: 20%;
+      left: 10%;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, var(--neon-cyan), transparent);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      animation-delay: 0s;
+    }
+    
+    .shape-2 {
+      top: 60%;
+      right: 15%;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(45deg, var(--neon-magenta), transparent);
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      animation-delay: 2s;
+    }
+    
+    .shape-3 {
+      top: 30%;
+      right: 25%;
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(45deg, var(--neon-yellow), transparent);
+      border-radius: 50%;
+      animation-delay: 4s;
+    }
+    
+    .shape-4 {
+      bottom: 25%;
+      left: 20%;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, var(--neon-green), transparent);
+      clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%);
+      animation-delay: 6s;
+    }
+
+    @keyframes floatShape {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      25% { transform: translateY(-20px) rotate(90deg); }
+      50% { transform: translateY(-10px) rotate(180deg); }
+      75% { transform: translateY(-30px) rotate(270deg); }
+    }
+
+    /* Cyber Grid Overlay */
+    .cyber-grid-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      opacity: 0.3;
+      animation: gridPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes gridPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    /* Scanning Lines */
+    .scan-line {
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+      opacity: 0.8;
+    }
+    
+    .scan-line-1 {
+      top: 30%;
+      animation: scanMove 3s linear infinite;
+    }
+    
+    .scan-line-2 {
+      bottom: 40%;
+      animation: scanMove 4s linear infinite reverse;
+      background: linear-gradient(90deg, transparent, var(--neon-magenta), transparent);
+    }
+
+    @keyframes scanMove {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Main Title Animations */
+    .projects-main-title {
+      animation: titleReveal 2s ease-out forwards;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    @keyframes titleReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Typewriter Effect */
+    .typewriter-text {
+      border-right: 2px solid var(--neon-cyan);
+      animation: typewriter 4s steps(40) 1s forwards;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+    }
+
+    .typewriter-cursor {
+      animation: blink 1s infinite;
+      color: var(--neon-cyan);
+    }
+
+    @keyframes typewriter {
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    /* Stats Animation */
+    .stat-item {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: statReveal 1s ease-out forwards;
+    }
+
+    .stat-item:nth-child(1) { animation-delay: 2.5s; }
+    .stat-item:nth-child(2) { animation-delay: 3s; }
+    .stat-item:nth-child(3) { animation-delay: 3.5s; }
+
+    @keyframes statReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .stat-number {
+      text-shadow: 0 0 10px currentColor;
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      opacity: 0;
+      animation: scrollIndicatorReveal 1s ease-out 4s forwards;
+    }
+
+    .scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid var(--neon-cyan);
+      border-bottom: 2px solid var(--neon-cyan);
+      transform: rotate(45deg);
+      margin: 0 auto 10px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes scrollIndicatorReveal {
+      to { opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: rotate(45deg) translateY(0); }
+      40% { transform: rotate(45deg) translateY(-10px); }
+      60% { transform: rotate(45deg) translateY(-5px); }
+    }
+
     /* 2077 Project Grid Cards */
     .project-card-2077 {
       position: relative;
@@ -322,48 +517,154 @@
           mobileNav.classList.toggle('hidden');
         });
       });
+
+      // Futuristic Projects Header Animations
+      document.addEventListener('DOMContentLoaded', function() {
+        // Typewriter Effect
+        const typewriterText = document.querySelector('.typewriter-text');
+        const messages = [
+          "Innovative Digital Experiences",
+          "Cutting-Edge 3D Creations", 
+          "Interactive Web Solutions",
+          "Immersive Visual Stories"
+        ];
+        let messageIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeWriter() {
+          const currentMessage = messages[messageIndex];
+          
+          if (isDeleting) {
+            typewriterText.textContent = currentMessage.substring(0, charIndex - 1);
+            charIndex--;
+          } else {
+            typewriterText.textContent = currentMessage.substring(0, charIndex + 1);
+            charIndex++;
+          }
+
+          let typeSpeed = isDeleting ? 50 : 100;
+
+          if (!isDeleting && charIndex === currentMessage.length) {
+            typeSpeed = 2000; // Pause at end
+            isDeleting = true;
+          } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            messageIndex = (messageIndex + 1) % messages.length;
+            typeSpeed = 500; // Pause before next message
+          }
+
+          setTimeout(typeWriter, typeSpeed);
+        }
+
+        // Start typewriter after initial delay
+        setTimeout(typeWriter, 1500);
+
+        // Animated Number Counters
+        function animateCounter(element, target, duration = 2000) {
+          let start = 0;
+          const increment = target / (duration / 16);
+          
+          function updateCounter() {
+            start += increment;
+            if (start < target) {
+              element.textContent = Math.floor(start);
+              requestAnimationFrame(updateCounter);
+            } else {
+              element.textContent = target;
+            }
+          }
+          updateCounter();
+        }
+
+        // Start counters with delays
+        setTimeout(() => {
+          const counters = document.querySelectorAll('.stat-number');
+          counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            animateCounter(counter, target);
+          });
+        }, 2500);
+
+        // Add glow effect on hover for stats
+        const statItems = document.querySelectorAll('.stat-item');
+        statItems.forEach(item => {
+          item.addEventListener('mouseenter', function() {
+            const number = this.querySelector('.stat-number');
+            number.style.textShadow = '0 0 20px currentColor, 0 0 40px currentColor';
+            number.style.transform = 'scale(1.1)';
+            number.style.transition = 'all 0.3s ease';
+          });
+          
+          item.addEventListener('mouseleave', function() {
+            const number = this.querySelector('.stat-number');
+            number.style.textShadow = '0 0 10px currentColor';
+            number.style.transform = 'scale(1)';
+          });
+        });
+      });
     </script>
   </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+  <!-- Futuristic Projects Header Section -->
+  <section class="projects-hero-section relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a0a0f] via-[#1a1a2e] to-[#16213e]">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 pointer-events-none">
+      <!-- Floating geometric shapes -->
+      <div class="floating-shape shape-1"></div>
+      <div class="floating-shape shape-2"></div>
+      <div class="floating-shape shape-3"></div>
+      <div class="floating-shape shape-4"></div>
+      
+      <!-- Grid overlay -->
+      <div class="cyber-grid-overlay"></div>
+      
+      <!-- Scanning lines -->
+      <div class="scan-line scan-line-1"></div>
+      <div class="scan-line scan-line-2"></div>
+    </div>
 
-  <section class="flex items-center justify-center ">
-    <script>
-      var ImageList = [
-        "Images/marhbabik.png",
-        "Images/vlcsnap-2024-02-19-11h30m00s780.png",
-        "Images/CyberClashGame.jpg",
-        "Images/HighresScreenshot00022.jpg",
-        "Images/PoseidonFootagePicture.png",
-        "Images/MasterFasteranim.png",
-        "Images/IsimsProjectDayv1.jpg",
-        "Images/GamingRoomPart5.png",
-        "Images/Devfest.jpg",
-        "Images/Asmodea'sschool.jpg"
-      ];
-      var delay = 4000;
-      var currentIndex = 0;
-      function updateImage() {
-        var imageContainer = document.querySelector(".slideshow-hero img");
-        if (imageContainer) {
-          imageContainer.classList.remove("fade", "kenburns");
-          void imageContainer.offsetWidth;
-          imageContainer.src = ImageList[currentIndex];
-          imageContainer.classList.add("fade", "kenburns");
-          currentIndex = (currentIndex + 1) % ImageList.length;
-        }
-      }
-      document.addEventListener("DOMContentLoaded", function () {
-        var imageContainer = document.querySelector(".slideshow-hero img");
-        if (imageContainer) imageContainer.src = ImageList[currentIndex];
-        setInterval(updateImage, delay);
-      });
-    </script>
-    <div class="slideshow-hero w-full h-[50vh] sm:h-[50vh] relative bg-[#140C20] overflow-hidden flex justify-center items-center">
-      <img src="" alt="Slideshow Image" class="object-cover w-full h-full fade kenburns">
+    <!-- Main Content -->
+    <div class="relative z-10 text-center max-w-6xl mx-auto px-6">
+      <!-- Main Title with Glitch Effect -->
+      <h1 class="projects-main-title cyber-font-primary text-6xl md:text-8xl font-bold mb-6 holo-text glitch-text" data-text="PROJECTS">
+        PROJECTS
+      </h1>
+      
+      <!-- Subtitle with Typewriter Effect -->
+      <div class="projects-subtitle-container mb-8">
+        <p class="projects-subtitle cyber-font-secondary text-xl md:text-2xl text-purple-200 leading-relaxed">
+          <span class="typewriter-text"></span>
+          <span class="typewriter-cursor">|</span>
+        </p>
+      </div>
+      
+      <!-- Animated Stats -->
+      <div class="projects-stats flex justify-center gap-8 md:gap-12 mb-8">
+        <div class="stat-item">
+          <div class="stat-number cyber-font-primary text-3xl md:text-4xl font-bold text-neon-cyan" data-target="50">0</div>
+          <div class="stat-label cyber-font-secondary text-sm text-purple-300">Projects</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number cyber-font-primary text-3xl md:text-4xl font-bold text-neon-magenta" data-target="5">0</div>
+          <div class="stat-label cyber-font-secondary text-sm text-purple-300">Categories</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number cyber-font-primary text-3xl md:text-4xl font-bold text-neon-yellow" data-target="100">0</div>
+          <div class="stat-label cyber-font-secondary text-sm text-purple-300">Hours</div>
+        </div>
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator">
+        <div class="scroll-arrow"></div>
+        <span class="scroll-text cyber-font-secondary text-sm text-purple-400">Explore Projects</span>
+      </div>
     </div>
   </section>
 
+  
   <!-- Animated particle background (canvas) -->
   <canvas id="particle-bg" style="position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:-1; pointer-events:none;"></canvas>
   <script>
@@ -432,12 +733,7 @@
     <div class="max-w-7xl mx-auto relative">
       <!-- Cyber grid backdrop -->
       <div class="cyber-grid absolute inset-0 -z-10"></div>
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 cyber-font-primary holo-text" data-text="Projects">
-          Projects
-        </h2>
-        <div class="w-24 h-1 mx-auto rounded-full neon-glow" style="color: var(--neon-magenta);"></div>
-      </div>
+      
       <!-- Filter Bar -->
       <div class="flex flex-wrap justify-center gap-4 mb-12">
         <button class="filter-btn px-6 py-2 rounded-md" data-category="all">All</button>

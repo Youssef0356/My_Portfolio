@@ -19,6 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" />
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
     
     <!-- Futuristic 2077 Styles and Components -->
     <link rel="stylesheet" href="src/styles/futuristic-2077.css">
@@ -323,6 +324,20 @@
             opacity: 0.9;
             z-index: 10;
         }
+        /* Anime.js helpers */
+        .will-animate { opacity: 0; }
+        .hero-char, .hero-word { display: inline-block; white-space: pre; }
+        /* Ensure split spans are visible even if parent uses gradient transparent text fill */
+        .holo-text .hero-char,
+        .holo-text .hero-word,
+        .glitch-text .hero-char,
+        .glitch-text .hero-word {
+            color: #ffffff;
+            -webkit-text-fill-color: #ffffff;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .will-animate { opacity: 1 !important; }
+        }
     </style>
 
     <script>
@@ -446,14 +461,14 @@
                 <div class="hero-float float-4" style="left:30%;top:50%"></div>
                 <div class="hero-float float-5" style="left:60%;top:25%"></div>
             </div>
-            <div class="relative z-10 text-center max-w-4xl mx-auto px-6">
-                <h1 class="text-6xl md:text-8xl font-bold mb-6 cyber-font-primary holo-text glitch-text" data-text="Digital Artist">
+            <div class="relative z-10 text-center max-w-6xl mx-auto px-6">
+                <h1 id="hero-title" class="text-6xl md:text-8xl font-bold mb-6 cyber-font-primary holo-text glitch-text will-animate" data-text="Digital Artist">
                     Digital Artist
                 </h1>
-                <p class="text-xl md:text-2xl text-purple-200 mb-8 leading-relaxed cyber-font-secondary">
+                <p id="hero-subtitle" class="text-xl md:text-2xl text-purple-200 mb-8 leading-relaxed cyber-font-secondary will-animate">
                     Creating immersive digital worlds through cutting-edge 3D design and visualization
                 </p>
-                <a href="#about" class="cyber-button neon-glow" style="color: var(--neon-cyan); border-color: var(--neon-cyan);">
+                <a id="hero-cta" href="#about" class="cyber-button neon-glow will-animate" style="color: var(--neon-cyan); border-color: var(--neon-cyan);">
                     See More
                     <span class="material-icons ml-2">expand_more</span>
                 </a>
@@ -464,58 +479,166 @@
                 </div>
             </div>
         </section>
+        <script>
+            // Anime.js hero intro with safe fallback and loader sync
+            (function() {
+              function runHeroAnimation() {
+                const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                const urlForce = /anim=on/.test(location.hash);
+                const titleEl = document.getElementById('hero-title');
+                const subtitleEl = document.getElementById('hero-subtitle');
+                const ctaEl = document.getElementById('hero-cta');
+
+                if (!titleEl || !subtitleEl || !ctaEl) return;
+
+                // Ensure not invisible if anything fails
+                titleEl.style.opacity = '1';
+                subtitleEl.style.opacity = '1';
+                ctaEl.style.opacity = '1';
+
+                function simpleReveal() {
+                  [titleEl, subtitleEl, ctaEl].forEach((el, i) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(8px)';
+                    el.style.transition = 'opacity 500ms ease, transform 500ms ease';
+                    setTimeout(() => {
+                      el.style.opacity = '1';
+                      el.style.transform = 'translateY(0)';
+                    }, 150 + i * 150);
+                  });
+                }
+
+                if ((reduceMotion && !urlForce) || typeof window.anime === 'undefined') {
+                  simpleReveal();
+                  return;
+                }
+
+                function splitToChars(el) {
+                  const text = el.textContent.trim();
+                  el.innerHTML = '';
+                  const frag = document.createDocumentFragment();
+                  for (const ch of text) {
+                    const span = document.createElement('span');
+                    span.className = 'hero-char';
+                    span.textContent = ch;
+                    frag.appendChild(span);
+                  }
+                  el.appendChild(frag);
+                }
+
+                function splitToWords(el) {
+                  const words = el.textContent.trim().split(/(\s+)/);
+                  el.innerHTML = '';
+                  const frag = document.createDocumentFragment();
+                  words.forEach(w => {
+                    if (/\s+/.test(w)) {
+                      const space = document.createTextNode(w);
+                      frag.appendChild(space);
+                    } else {
+                      const span = document.createElement('span');
+                      span.className = 'hero-word';
+                      span.textContent = w;
+                      frag.appendChild(span);
+                    }
+                  });
+                  el.appendChild(frag);
+                }
+
+                try {
+                  // Prepare splitting
+                  splitToChars(titleEl);
+                  splitToWords(subtitleEl);
+
+                  const tl = anime.timeline({ autoplay: true, easing: 'easeOutExpo' });
+
+                  // Title letters pop-up with slight rotation
+                  tl.add({
+                    targets: '#hero-title .hero-char',
+                    translateY: [60, 0],
+                    rotateX: [90, 0],
+                    opacity: [0, 1],
+                    scale: [0.8, 1],
+                    duration: 1100,
+                    delay: anime.stagger(24),
+                    begin: () => { titleEl.style.opacity = '1'; }
+                  })
+                  // Subtitle words soft blur fade
+                  .add({
+                    targets: '#hero-subtitle .hero-word',
+                    translateY: [28, 0],
+                    opacity: [0, 1],
+                    duration: 900,
+                    delay: anime.stagger(70),
+                    begin: () => { subtitleEl.style.opacity = '1'; },
+                  }, '-=250')
+                  // CTA button pop with slight bounce
+                  .add({
+                    targets: '#hero-cta',
+                    opacity: [0, 1],
+                    translateY: [20, 0],
+                    scale: [0.92, 1],
+                    duration: 700
+                  }, '-=200');
+
+                  // Micro-interaction on hover
+                  ctaEl.addEventListener('mouseenter', () => {
+                    anime.remove(ctaEl);
+                    anime({ targets: ctaEl, scale: 1.04, duration: 180, easing: 'easeOutSine' });
+                  });
+                  ctaEl.addEventListener('mouseleave', () => {
+                    anime.remove(ctaEl);
+                    anime({ targets: ctaEl, scale: 1.0, duration: 200, easing: 'easeOutSine' });
+                  });
+                } catch (e) {
+                  // Any error -> simple reveal so content is visible
+                  simpleReveal();
+                }
+              }
+
+              // Wait for custom event from loader; run immediately if already finished
+              if (window.__loadingFinished) {
+                runHeroAnimation();
+              } else {
+                window.addEventListener('cyber-loading-finished', runHeroAnimation, { once: true });
+              }
+            })();
+        </script>
         <!-- End Hero Section -->
 
-        <section class="pt-28 px-8 md:pt-12 md:px-22 lg:pt-24 lg:px-44 ">
-            <div class='lines'>
+        <!-- About Section with 3D Parallax Scroll Animations -->
+        <section class="about-section pt-28 px-8 md:pt-12 md:px-22 lg:pt-24 lg:px-44 relative overflow-hidden">
+            <!-- Parallax Background Elements -->
+            <div class="parallax-bg-container">
+                <div class="parallax-element parallax-slow floating-orb orb-1"></div>
+                <div class="parallax-element parallax-medium floating-orb orb-2"></div>
+                <div class="parallax-element parallax-fast floating-orb orb-3"></div>
+                <div class="parallax-element parallax-reverse cyber-grid-lines"></div>
+            </div>
+
+            <div class='lines parallax-element parallax-medium'>
                 <div class='light x3'></div>
                 <div class='light x7'></div>
                 <div class='light x8'></div>
             </div>
-            <style>
-                .lines {
-                opacity: 1;
-                transition: opacity 1s ease-in-out;
-                position: relative;
-                z-index: 0;
-                pointer-events: none;
-                }
-                .lines.fade-out {
-                opacity: 0;
-                pointer-events: none;
-                }
-            </style>
-            <script>
-                window.addEventListener('scroll', () => {
-                const lines = document.querySelector('.lines');
-                const scrollPosition = window.scrollY;
-                const opacity = Math.max(0, 1 - (scrollPosition / 500));
-                lines.style.opacity = opacity;
-                if (scrollPosition > 500) {
-                    lines.classList.add('fade-out');
-                } else {
-                    lines.classList.remove('fade-out');
-                }
-                });
-            </script>
-            <div class="Container text-center md:text-start lg:grid-cols-3 grid scale-in initial text-sm md:text-lg" id="about" style="position: relative; z-index: 2;">
-                <div class="left-container" id="left">
-                    <h4 style="color: var(--neon-cyan);" class="text-center md:text-left cyber-font-mono glitch-text" data-text="HOWDY">HOWDY</h4>
+            
+            <div class="Container text-center md:text-start lg:grid-cols-3 grid scale-in initial text-sm md:text-lg" id="about" style="position: relative; z-index: 10;">
+                <div class="left-container scroll-animate fade-in-left" id="left" data-delay="0">
+                    <h4 style="color: var(--neon-cyan);" class="text-center md:text-left cyber-font-mono glitch-text scroll-animate slide-in-up" data-delay="200" data-text="HOWDY">HOWDY</h4>
                     <br>
-                    <h2 id="animated-text" class="text-2xl md:text-3xl lg:text-4xl font-bold w-full cyber-font-primary holo-text">
+                    <h2 id="animated-text" class="text-2xl md:text-3xl lg:text-4xl font-bold w-full cyber-font-primary holo-text scroll-animate fade-in-scale" data-delay="400">
                         I'm a multifaceted developer and artist with my own style.
                     </h2>
                     <br>
-                    <h3 class="text-md md:text-xl cyber-font-secondary">
+                    <h3 class="text-md md:text-xl cyber-font-secondary scroll-animate slide-in-right" data-delay="600">
                         I love stepping beyond the norm and crafting innovative, creative solutions.
                     </h3>
-                    <div class="mt-4">
+                    <div class="mt-4 scroll-animate bounce-in" data-delay="800">
                         <a href="Projects.html" class="cyber-button text-md md:text-xl" style="color: var(--neon-magenta); border-color: var(--neon-magenta);">
                             See My Projects</a>
                     </div>
-                    <section class="pt-12 md:pt-24">
+                    <section class="pt-12 md:pt-24 scroll-animate fade-in-up" data-delay="1000">
                         <div class="tag-list text-md md:text-xl">
-                            <div class="loop-slider " style="--duration:15951ms; --direction:normal;">
+                            <div class="loop-slider" style="--duration:15951ms; --direction:normal;">
                                 <div class="inner">
                                     <div class="tag"><span>#</span> Modeling</div>
                                     <div class="tag"><span>#</span> VFX</div>
@@ -544,14 +667,15 @@
                                 </div>
                             </div>
                             <div class="fade"></div>
+                        </div>
                     </section>
                 </div>
                 <br>
-                <div class="text-left md:text-start " id="right">
-                    <h4 style="color: var(--neon-yellow);" id="about" class="cyber-font-mono glitch-text" data-text="ABOUT ME">ABOUT ME</h4>
+                <div class="text-left md:text-start scroll-animate fade-in-right" id="right" data-delay="300">
+                    <h4 style="color: var(--neon-yellow);" id="about" class="cyber-font-mono glitch-text scroll-animate slide-in-up" data-delay="500" data-text="ABOUT ME">ABOUT ME</h4>
                     <br>
-                    <div class="aboutme text-left text-sm md:text-lg glass-panel p-6" id="aboutme">
-                        <div>
+                    <div class="aboutme text-left text-sm md:text-lg glass-panel p-6 scroll-animate glass-morph-in" id="aboutme" data-delay="700">
+                        <div class="scroll-animate text-reveal" data-delay="900">
                             <span class="cyber-font-secondary">I am a Graduated Bachelor's student at ISIMS, pursuing a degree in Big Data and Data analysis.
                             Alongside my studies, I work as a freelance <i class="wordshighlight">3D modeler</i> and <i
                                 class="wordshighlight">animator</i>, collaborating with a diverse range of clients,
@@ -563,13 +687,13 @@
                             3D animations for event marketing and providing high-quality video editing services.</span>
                         </div>
                         <br>
-                        <div>
+                        <div class="scroll-animate text-reveal" data-delay="1100">
                             In 2024, I completed my work as a member of the <i class="wordshighlight">Virtual Exhibition Space for Technical
                                 Historical Objects</i>, where I collaborated with institutions such as ISIMS, HKA Germany, University Malaysia
                             Pahang, and GUTECH. This project allowed me to contribute to the preservation and presentation of historical
                             artifacts through innovative digital solutions.
                         </div>
-                        <div>
+                        <div class="scroll-animate text-reveal" data-delay="1300">
                             In 2025, I worked with the <i class="wordshighlight">University of Sfax</i> on a large-scale project that
                                 integrates <i class="wordshighlight">artificial intelligence</i>, <i class="wordshighlight">game development</i>,
                                 <i class="wordshighlight">data analysis</i>, and <i class="wordshighlight">virtual reality</i>. I am deeply
@@ -582,6 +706,140 @@
                 </div>
             </div>
         </section>
+
+        <!-- 3D Parallax Scroll Animation Script -->
+        <script>
+        console.log('Loading scroll animations...');
+        
+        // Wait for page to fully load
+        window.addEventListener('load', function() {
+            console.log('Page loaded, initializing animations...');
+            
+            let animatedElements = new Set();
+            
+            // Scroll animation function
+            function checkScrollAnimations() {
+                const elements = document.querySelectorAll('.scroll-animate');
+                console.log('Found scroll-animate elements:', elements.length);
+                
+                elements.forEach((element, index) => {
+                    if (animatedElements.has(element)) return;
+                    
+                    const rect = element.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    
+                    // Trigger when element is 80% visible
+                    if (rect.top < windowHeight * 0.8) {
+                        console.log('Animating element:', element.className);
+                        const delay = parseInt(element.getAttribute('data-delay')) || 0;
+                        
+                        setTimeout(() => {
+                            element.classList.add('animate');
+                            animatedElements.add(element);
+                        }, delay);
+                    }
+                });
+            }
+            
+            // 3D Parallax effects
+            function update3DParallax() {
+                const scrollY = window.pageYOffset;
+                
+                // Floating orbs with 3D transforms
+                const orbs = document.querySelectorAll('.floating-orb');
+                orbs.forEach((orb, index) => {
+                    const speed = (index + 1) * 0.2;
+                    const yPos = scrollY * speed * -0.3;
+                    const rotation = scrollY * speed * 0.1;
+                    const scale = 1 + (scrollY * 0.0001);
+                    
+                    orb.style.transform = `
+                        translate3d(0, ${yPos}px, 0) 
+                        rotateX(${rotation}deg) 
+                        rotateY(${rotation * 1.5}deg) 
+                        scale(${scale})
+                    `;
+                });
+                
+                // Cyber grid lines parallax
+                const gridLines = document.querySelector('.cyber-grid-lines');
+                if (gridLines) {
+                    const yPos = scrollY * 0.1;
+                    const rotation = scrollY * 0.02;
+                    gridLines.style.transform = `
+                        translate3d(0, ${yPos}px, 0) 
+                        rotateZ(${rotation}deg) 
+                        scale(${1 + scrollY * 0.00005})
+                    `;
+                }
+                
+                // Lines with 3D fade effect
+                const lines = document.querySelector('.lines');
+                if (lines) {
+                    const opacity = Math.max(0, 1 - (scrollY / 500));
+                    const rotateX = Math.min(15, scrollY * 0.02);
+                    const translateZ = scrollY * -0.05;
+                    
+                    lines.style.opacity = opacity;
+                    lines.style.transform = `
+                        translate3d(0, 0, ${translateZ}px) 
+                        rotateX(${rotateX}deg)
+                    `;
+                    
+                    if (scrollY > 500) {
+                        lines.classList.add('fade-out');
+                    } else {
+                        lines.classList.remove('fade-out');
+                    }
+                }
+                
+                // About section 3D tilt
+                const aboutSection = document.querySelector('.about-section');
+                if (aboutSection) {
+                    const tiltY = Math.min(2, scrollY * 0.001);
+                    aboutSection.style.transform = `
+                        perspective(1000px) 
+                        rotateX(${tiltY}deg)
+                    `;
+                }
+            }
+            
+            // Mouse parallax effect
+            document.addEventListener('mousemove', function(e) {
+                const mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+                const mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+                
+                const orbs = document.querySelectorAll('.floating-orb');
+                orbs.forEach((orb, index) => {
+                    const intensity = (index + 1) * 5;
+                    const currentTransform = orb.style.transform;
+                    orb.style.transform = currentTransform + ` translate(${mouseX * intensity}px, ${mouseY * intensity}px)`;
+                });
+            });
+            
+            // Throttled scroll handler
+            let ticking = false;
+            function handleScroll() {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        checkScrollAnimations();
+                        update3DParallax();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+            
+            // Event listeners
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            
+            // Initial calls
+            checkScrollAnimations();
+            update3DParallax();
+            
+            console.log('Scroll animations initialized!');
+        });
+        </script>
 
         <section class="relative timeline-section">
             <div class="text-white py-8 relative z-20">
@@ -997,6 +1255,9 @@
                     loadingScreen.style.opacity = '0';
                     setTimeout(() => {
                         loadingScreen.remove();
+                        // Mark and notify that the loading screen is fully gone
+                        window.__loadingFinished = true;
+                        window.dispatchEvent(new Event('cyber-loading-finished'));
                     }, 1000);
                 }, 1500);
             });
