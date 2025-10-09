@@ -346,7 +346,6 @@
 
     .stat-item:nth-child(1) { animation-delay: 2.5s; }
     .stat-item:nth-child(2) { animation-delay: 3s; }
-    .stat-item:nth-child(3) { animation-delay: 3.5s; }
 
     @keyframes statReveal {
       to {
@@ -577,14 +576,18 @@
           updateCounter();
         }
 
-        // Start counters with delays
-        setTimeout(() => {
-          const counters = document.querySelectorAll('.stat-number');
-          counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'));
-            animateCounter(counter, target);
-          });
-        }, 2500);
+        // Start counters with delays - will be called after data loads
+        window.startStatCounters = function() {
+          setTimeout(() => {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+              const target = parseInt(counter.getAttribute('data-target'));
+              if (target > 0) { // Only animate if we have a valid target
+                animateCounter(counter, target);
+              }
+            });
+          }, 2500);
+        };
 
         // Add glow effect on hover for stats
         const statItems = document.querySelectorAll('.stat-item');
@@ -649,10 +652,6 @@
         <div class="stat-item">
           <div class="stat-number cyber-font-primary text-3xl md:text-4xl font-bold text-neon-magenta" data-target="5">0</div>
           <div class="stat-label cyber-font-secondary text-sm text-purple-300">Categories</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number cyber-font-primary text-3xl md:text-4xl font-bold text-neon-yellow" data-target="100">0</div>
-          <div class="stat-label cyber-font-secondary text-sm text-purple-300">Hours</div>
         </div>
       </div>
       
@@ -972,11 +971,56 @@
     return dateB - dateA;
   }
 
+  // Function to calculate dynamic statistics
+  function calculateStatistics(projects) {
+    const stats = {
+      totalProjects: projects.length,
+      totalCategories: 0
+    };
+    
+    // Calculate unique categories
+    const categories = new Set();
+    projects.forEach(project => {
+      if (project.category) {
+        categories.add(project.category.toLowerCase());
+      }
+    });
+    stats.totalCategories = categories.size;
+    
+    return stats;
+  }
+  
+  // Function to update statistics in the UI
+  function updateStatistics(stats) {
+    const projectsElement = document.querySelector('[data-target="50"]');
+    const categoriesElement = document.querySelector('[data-target="5"]');
+    
+    if (projectsElement) {
+      projectsElement.setAttribute('data-target', stats.totalProjects);
+      projectsElement.textContent = '0'; // Reset for animation
+    }
+    if (categoriesElement) {
+      categoriesElement.setAttribute('data-target', stats.totalCategories);
+      categoriesElement.textContent = '0'; // Reset for animation
+    }
+    
+    console.log('Dynamic Statistics:', stats);
+  }
+
   fetch('videos.json')
     .then(response => response.json())
     .then(data => {
       allProjects = data;
       console.log(`Loaded ${allProjects.length} projects`);
+      
+      // Calculate and update dynamic statistics
+      const stats = calculateStatistics(allProjects);
+      updateStatistics(stats);
+      
+      // Start the counter animations after updating the values
+      if (window.startStatCounters) {
+        window.startStatCounters();
+      }
       
       // Sort all projects by date (newest first) initially
       filteredProjects = [...allProjects].sort(sortByDate);
@@ -1134,8 +1178,26 @@
             .sort(sortByDate);
         }
         
+        // Update statistics for filtered projects
+        const filteredStats = calculateStatistics(filteredProjects);
+        updateStatistics(filteredStats);
+        
         renderCarousel(filteredProjects);
         renderGrid(filteredProjects);
+        
+        // Restart counter animations for filtered stats
+        if (window.startStatCounters) {
+          // Clear any existing timeouts and restart immediately for filters
+          setTimeout(() => {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+              const target = parseInt(counter.getAttribute('data-target'));
+              if (target > 0) {
+                animateCounter(counter, target, 1000); // Faster animation for filters
+              }
+            });
+          }, 100);
+        }
       };
     });
     
