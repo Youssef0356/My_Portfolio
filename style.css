@@ -83,6 +83,47 @@ body {
     color: #969CFF;
     font-weight: bold;
 }
+
+/* Custom 3D Transform Styles (Not available in Tailwind) */
+.carousel-wrapper {
+    perspective: 1000px;
+}
+
+@media (min-width: 768px) {
+    .carousel-wrapper {
+        perspective: 1200px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .carousel-wrapper {
+        perspective: 1400px;
+    }
+}
+
+.carousel-track {
+    transform-style: preserve-3d;
+}
+
+.carousel-image {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-image.active {
+    transform: scale(1.15) translateZ(60px);
+}
+
+@media (min-width: 768px) {
+    .carousel-image.active {
+        transform: scale(1.2) translateZ(80px);
+    }
+}
+
+@media (min-width: 1024px) {
+    .carousel-image.active {
+        transform: scale(1.25) translateZ(100px);
+    }
+}
 .tag-list {
   width: 30rem;
   max-width: 90vw;

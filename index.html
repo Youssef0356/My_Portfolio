@@ -21,6 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
     
+    
     <!-- Futuristic 2077 Styles and Components -->
     <link rel="stylesheet" href="src/styles/futuristic-2077.css">
     
@@ -29,6 +30,336 @@
     <!-- Removed all Three.js scripts -->
 
     <style>
+        /* Fix double scroll bars */
+        html, body {
+            overflow-x: hidden;
+        }
+        
+        /* Ensure hero elements are visible */
+        #hero-title, #hero-subtitle, #hero-cta {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* Magical Timeline Animation Styles */
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+            position: relative;
+        }
+
+        .timeline-content {
+            position: relative;
+            background: rgba(20, 12, 32, 0.4);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: rgba(167, 139, 250, 0.6);
+            box-shadow: 0 10px 30px rgba(167, 139, 250, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .timeline-glow-effect {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(167, 139, 250, 0.3), 
+                rgba(236, 72, 153, 0.3), 
+                rgba(59, 130, 246, 0.3), 
+                rgba(167, 139, 250, 0.3));
+            border-radius: 12px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+
+        .timeline-content:hover .timeline-glow-effect {
+            opacity: 1;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .timeline-date {
+            transform: translateX(-20px);
+            opacity: 0;
+            transition: all 0.6s ease 0.2s;
+            padding: 8px 12px;
+            background: rgba(167, 139, 250, 0.1);
+            border-radius: 6px;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-title {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.6s ease 0.4s;
+        }
+
+        .timeline-description {
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.6s ease 0.6s;
+        }
+
+        .timeline-item.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item.animate-in .timeline-date {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .timeline-item.animate-in .timeline-title {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .timeline-item.animate-in .timeline-description {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Keyword Highlighting Styles */
+        .tech-keyword {
+            color: #00d4ff;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+            padding: 2px 4px;
+            border-radius: 3px;
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .creative-keyword {
+            color: #ff6b9d;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(255, 107, 157, 0.3);
+            padding: 2px 4px;
+            border-radius: 3px;
+            background: rgba(255, 107, 157, 0.1);
+        }
+
+        .ai-keyword {
+            color: #7c3aed;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
+            background: linear-gradient(45deg, rgba(124, 58, 237, 0.2), rgba(168, 85, 247, 0.2));
+            padding: 2px 4px;
+            border-radius: 3px;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+        }
+
+        .company-keyword {
+            color: #10b981;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+            padding: 2px 4px;
+            border-radius: 3px;
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .project-keyword {
+            color: #f59e0b;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+            padding: 2px 4px;
+            border-radius: 3px;
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .role-keyword {
+            color: #ef4444;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
+            padding: 2px 4px;
+            border-radius: 3px;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .location-keyword {
+            color: #8b5cf6;
+            font-weight: 500;
+            text-shadow: 0 0 6px rgba(139, 92, 246, 0.3);
+            padding: 2px 4px;
+            border-radius: 3px;
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .data-keyword {
+            color: #06b6d4;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
+            padding: 2px 4px;
+            border-radius: 3px;
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        /* Morphing Timeline Title */
+        .timeline-morphing-title {
+            position: absolute;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            max-width: 300px;
+            will-change: transform, opacity;
+        }
+
+        /* Morphing titles positioned relative to timeline cards */
+        .timeline-morphing-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+            min-width: 200px;
+            max-width: 350px;
+            text-align: center;
+            z-index: 15;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, rgba(20, 12, 32, 0.95), rgba(30, 20, 45, 0.9));
+            border-radius: 12px;
+            border: 2px solid rgba(167, 139, 250, 0.4);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(167, 139, 250, 0.2);
+        }
+
+        /* Left timeline cards - titles appear on TOP */
+        .left-timeline .timeline-morphing-title {
+            top: -80px;
+        }
+
+        /* Right timeline cards - titles appear BELOW */
+        .right-timeline .timeline-morphing-title {
+            bottom: -80px;
+        }
+
+        .morph-title-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: rgba(167, 139, 250, 0.9);
+            text-shadow: 0 0 20px rgba(167, 139, 250, 0.5);
+            letter-spacing: 0.05em;
+            background: linear-gradient(45deg, 
+                rgba(167, 139, 250, 1) 0%, 
+                rgba(236, 72, 153, 0.8) 50%, 
+                rgba(59, 130, 246, 0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.3));
+            line-height: 1.2;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            width: 100%;
+            display: block;
+        }
+
+        .timeline-morphing-title.active {
+            opacity: 1 !important;
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        .timeline-morphing-title.morphing {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .timeline-morphing-title.morphing .morph-title-text {
+            transform: scale(1);
+        }
+
+        /* Hide original timeline titles during morph */
+        .timeline-item.morphing .timeline-title {
+            opacity: 0.3;
+            transform: translateY(20px);
+        }
+
+        /* Responsive adjustments for morphing titles */
+        @media (max-width: 1024px) {
+            .timeline-morphing-title {
+                min-width: 180px;
+                max-width: 300px;
+                padding: 14px 20px;
+            }
+            
+            .left-timeline .timeline-morphing-title {
+                top: -70px;
+            }
+            
+            .right-timeline .timeline-morphing-title {
+                bottom: -70px;
+            }
+            
+            .morph-title-text {
+                font-size: 1.25rem;
+                line-height: 1.3;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline-morphing-title {
+                min-width: 160px;
+                max-width: 260px;
+                padding: 12px 18px;
+            }
+            
+            .left-timeline .timeline-morphing-title {
+                top: -60px;
+            }
+            
+            .right-timeline .timeline-morphing-title {
+                bottom: -60px;
+            }
+            
+            .morph-title-text {
+                font-size: 1rem;
+                line-height: 1.2;
+                letter-spacing: 0.02em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .timeline-morphing-title {
+                min-width: 140px;
+                max-width: 220px;
+                padding: 10px 16px;
+            }
+            
+            .left-timeline .timeline-morphing-title {
+                top: -50px;
+            }
+            
+            .right-timeline .timeline-morphing-title {
+                bottom: -50px;
+            }
+            
+            .morph-title-text {
+                font-size: 0.875rem;
+                line-height: 1.1;
+            }
+        }
+        
         /* Animated Background Particles */
         .animated-bg {
             position: fixed;
@@ -462,13 +793,13 @@
                 <div class="hero-float float-5" style="left:60%;top:25%"></div>
             </div>
             <div class="relative z-10 text-center max-w-6xl mx-auto px-6">
-                <h1 id="hero-title" class="text-6xl md:text-8xl font-bold mb-6 cyber-font-primary holo-text glitch-text will-animate" data-text="Digital Artist">
+                <h1 id="hero-title" class="text-6xl md:text-8xl font-bold mb-6 cyber-font-primary holo-text glitch-text opacity-100" data-text="Digital Artist">
                     Digital Artist
                 </h1>
-                <p id="hero-subtitle" class="text-xl md:text-2xl text-purple-200 mb-8 leading-relaxed cyber-font-secondary will-animate">
+                <p id="hero-subtitle" class="text-xl md:text-2xl text-purple-200 mb-8 leading-relaxed cyber-font-secondary opacity-100">
                     Creating immersive digital worlds through cutting-edge 3D design and visualization
                 </p>
-                <a id="hero-cta" href="#about" class="cyber-button neon-glow will-animate" style="color: var(--neon-cyan); border-color: var(--neon-cyan);">
+                <a id="hero-cta" href="#about" class="cyber-button neon-glow opacity-100" style="color: var(--neon-cyan); border-color: var(--neon-cyan);">
                     See More
                     <span class="material-icons ml-2">expand_more</span>
                 </a>
@@ -843,24 +1174,57 @@
 
         <section class="relative timeline-section">
             <div class="text-white py-8 relative z-20">
-                <div class="container mx-auto flex flex-col items-start md:flex-row my-12 md:my-24">
-                    <div class="flex flex-col w-full sticky md:top-36 lg:w-1/3 mt-2 md:mt-12 px-8 fade-in timeline-sticky-left">
-                        <p class="ml-2 text-purple-300 uppercase tracking-loose text-xs md:text-base">My Journey</p>
-                        <p class="text-2xl md:text-4xl leading-normal md:leading-relaxed mb-2">Milestones in My
-                            Professional
-                            Growth</p>
-                        <p class="text-sm md:text-base text-gray-50 mb-4">
-                            Explore the journey that has shaped my expertise, from my early days in computer science to
-                            collaborative projects with international teams.
-                        </p>
+                <!-- 2-Column Grid Layout -->
+                <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 my-12 md:my-24 px-4 md:px-8">
+                    
+                    <!-- Left Column: Professional Growth & Image Carousel -->
+                    <div class="flex flex-col space-y-6">
+                        <!-- Professional Growth Header -->
+                        <div class="space-y-4">
+                            <p class="text-purple-300 uppercase tracking-loose text-xs md:text-sm">My Journey</p>
+                            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+                                Milestones in My Professional Growth
+                            </h2>
+                            <p class="text-sm md:text-base text-gray-300 leading-relaxed">
+                                Explore the journey that has shaped my expertise, from my early days in computer science to
+                                collaborative projects with international teams.
+                            </p>
+                        </div>
+
+                        <!-- Discover More Button -->
                         <a href="./Projects.html"
-                            class="bg-transparent mr-auto hover:bg-purple-300 text-purple-300 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-purple-300 hover:border-transparent">
+                            class="bg-transparent hover:bg-purple-300 text-purple-300 hover:text-white rounded shadow hover:shadow-lg py-3 px-6 border border-purple-300 hover:border-transparent transition-all duration-300 self-start">
                             Discover More
                         </a>
+                                                
+                        <!-- 3D Image Carousel Container - Positioned at Bottom -->
+                        <div class="mt-auto w-full space-y-4">
+                            <!-- Responsive 3D Carousel -->
+                            <div class="relative w-full h-40 md:h-48 lg:h-52 rounded-2xl overflow-visible bg-transparent cursor-grab transition-all duration-300 ease-out" id="imageCarousel">
+                                <div class="carousel-wrapper relative w-full h-full overflow-visible">
+                                    <div class="carousel-track relative w-full h-full flex items-center justify-center transition-transform duration-500 ease-out" id="carouselTrack">
+                                        <!-- Images will be loaded dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Centered Preview Box -->
+                            <div class="flex justify-center">
+                                <div class="relative w-1/2 aspect-square rounded-xl overflow-hidden bg-gray-900/60 border border-purple-400/30 backdrop-blur-md" id="previewBox">
+                                    <img id="previewImage" src="" alt="Portfolio Preview" class="w-full h-full object-cover transition-transform duration-500 ease-out" />
+                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white">
+                                        <span class="text-sm md:text-base text-purple-300/90 font-medium">1 / 14</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="ml-0 md:ml-12 lg:w-2/3 sticky timeline-sticky-right">
+                    
+                    <!-- Right Column: Timeline -->
+                    <div class="timeline-column relative" style="overflow: visible;">
+                        
                         <div class="container mx-auto w-full h-full">
-                            <div class="relative wrap overflow-hidden p-10 h-full">
+                            <div class="relative wrap p-10 h-full" style="overflow: visible;">
                                 <div class="border-1 md:border-2 border-purple-555 absolute h-full"
                                     style="right: 50%; border: 2px solid; border-radius: 1%; pointer-events: none;"></div>
 
@@ -868,12 +1232,13 @@
                                     style="left: 50%; border: 0px solid; border-radius: 1%; pointer-events: none;"></div>
 
 
-                                <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left timeline-element">
+                                <div class="mb-8 flex justify-between items-center w-full right-timeline timeline-item" data-anime="right">
                                     <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
-                                    <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4">
-                                        <p class="mb-3 text-base text-purple-300">November, 2022 - 2023</p>
-                                        <h4 class="mb-3 font-bold text-lg md:text-2xl">Joining Faculty</h4>
-                                        <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
+                                    <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4 timeline-content">
+                                        <div class="timeline-glow-effect"></div>
+                                        <p class="mb-3 text-base text-purple-300 timeline-date">November, 2022 - 2023</p>
+                                        <h4 class="mb-3 font-bold text-lg md:text-2xl timeline-title">Joining Faculty</h4>
+                                        <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100 timeline-description">
                                             Started my studies in Computer Science at ISIMS, Sfax. Developed two horror
                                             games
                                             and explored 3D modeling in Blender, experimenting with Unreal Engine.
@@ -881,39 +1246,42 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right timeline-element">
+                                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline timeline-item" data-anime="left">
                                     <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
-                                    <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-right md:px-4 md:py-4 mr-2 sm:mr-0">
-                                        <p class="mb-3 text-base text-purple-300">September, 2023</p>
-                                        <h4 class="mb-3 font-bold text-lg md:text-2xl">Joining Google Students Club at
+                                    <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4 mr-2 sm:mr-0 timeline-content">
+                                        <div class="timeline-glow-effect"></div>
+                                        <p class="mb-3 text-base text-purple-300 timeline-date">September, 2023</p>
+                                        <h4 class="mb-3 font-bold text-lg md:text-2xl timeline-title">Joining Google Students Club at
                                             ISIMS
                                         </h4>
-                                        <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
+                                        <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100 timeline-description">
                                             Joined as a game developer and team leader. Led the creation of Cyber Clash
                                             and
                                             Google It, collaborating with Google Developer Group and Google FSS.
                                         </p>
                                     </div>
                                 </div>
-                                <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left timeline-element">
+                                <div class="mb-8 flex justify-between items-center w-full right-timeline timeline-item" data-anime="right">
                                     <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
-                                    <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4">
-                                        <p class="mb-3 text-base text-purple-300">July, 2024</p>
-                                        <h4 class="mb-3 font-bold text-lg md:text-2xl">Internship At Perfaxis</h4>
-                                        <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
+                                    <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4 timeline-content">
+                                        <div class="timeline-glow-effect"></div>
+                                        <p class="mb-3 text-base text-purple-300 timeline-date">July, 2024</p>
+                                        <h4 class="mb-3 font-bold text-lg md:text-2xl timeline-title">Internship At Perfaxis</h4>
+                                        <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100 timeline-description">
                                             I had a summmer internship at PERFAXIS Learning ASP.NET for one month, gaining
                                             valuable backend insights and managed to develop whole system of annual
                                             leave .
                                         </p>
                                     </div>
                                 </div>
-                                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline slide-in-right timeline-element">
+                                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline timeline-item" data-anime="left">
                                     <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
-                                    <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-right md:px-4 md:py-4 mr-2 sm:mr-0">
-                                        <p class="mb-3 text-base text-purple-300">March, 2024 - 2025</p>
-                                        <h4 class="mb-3 font-bold text-lg md:text-2xl">Joining the Virtual Exhibition
+                                    <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4 mr-2 sm:mr-0 timeline-content">
+                                        <div class="timeline-glow-effect"></div>
+                                        <p class="mb-3 text-base text-purple-300 timeline-date">March, 2024 - 2025</p>
+                                        <h4 class="mb-3 font-bold text-lg md:text-2xl timeline-title">Joining the Virtual Exhibition
                                         </h4>
-                                        <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
+                                        <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100 timeline-description">
                                             Contributed to the Virtual Exhibition for Technical Historical Objects,
                                             working
                                             on
@@ -922,14 +1290,31 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="mb-8 flex justify-between items-center w-full right-timeline slide-in-left timeline-element">
+                                <div class="mb-8 flex justify-between items-center w-full right-timeline timeline-item" data-anime="right">
                                     <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
-                                    <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4 mr-2 sm:mr-0">
-                                        <p class="mb-3 text-base text-purple-300">February, 2025 - 2026</p>
-                                        <h4 class="mb-3 font-bold text-lg md:text-2xl">Internship at University of sfax
+                                    <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4 mr-2 sm:mr-0 timeline-content">
+                                        <div class="timeline-glow-effect"></div>
+                                        <p class="mb-3 text-base text-purple-300 timeline-date">February, 2025 - 2026</p>
+                                        <h4 class="mb-3 font-bold text-lg md:text-2xl timeline-title">Internship at University of sfax
                                         </h4>
-                                        <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100">
+                                        <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100 timeline-description">
                                             Started my end-of-study internship at the <i class="wordshighlight">University of Sfax</i>, working on a large-scale project that combines <i class="wordshighlight">virtual reality</i>, <i class="wordshighlight">artificial intelligence</i>, <i class="wordshighlight">game development</i>, and <i class="wordshighlight">data analysis</i>.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline timeline-item" data-anime="left">
+                                    <div class="order-1 w-full sm:w-5/12 md:px-4"></div>
+                                    <div class="order-1 w-full sm:w-5/12 px-1 py-4 text-left md:px-4 md:py-4 mr-2 sm:mr-0 timeline-content">
+                                        <div class="timeline-glow-effect"></div>
+                                        <p class="mb-3 text-base text-purple-300 timeline-date">August, 2025 - Current</p>
+                                        <h4 class="mb-3 font-bold text-lg md:text-2xl timeline-title">Software Development & Multimedia Manager at TDS Company</h4>
+                                        <p class="text-sm md:text-base leading-snug text-gray-50 text-opacity-100 timeline-description">
+                                            <strong class="text-purple-200">Augmented Reality Development:</strong> Design and development of AR applications to support machine maintenance and technical training using <i class="wordshighlight">Vuforia AR</i>.<br><br>
+                                            <strong class="text-purple-200">Artificial Intelligence:</strong> Computer vision and generative AI development based on pretrained models.<br><br>
+                                            <strong class="text-purple-200">Web & Digital Management:</strong> Administration of the company's website, ensuring updated content.<br><br>
+                                            <strong class="text-purple-200">Social Media Management:</strong> Creating and managing social media to enhance brand presence online.<br><br>
+                                            <strong class="text-purple-200">Multimedia Manager:</strong> Graphic design, video editing, photography & filmography for events and products.
                                         </p>
                                     </div>
                                 </div>
@@ -1257,12 +1642,727 @@
                         loadingScreen.remove();
                         // Mark and notify that the loading screen is fully gone
                         window.__loadingFinished = true;
-                        window.dispatchEvent(new Event('cyber-loading-finished'));
                     }, 1000);
-                }, 1500);
+                }, 500);
             });
         });
-    </script>
+        </script>
+
+        <!-- 3D Image Carousel with Preview Box JavaScript -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('imageCarousel');
+            const track = document.getElementById('carouselTrack');
+            const previewImage = document.getElementById('previewImage');
+            const previewCounter = document.querySelector('#previewBox span');
+            
+            if (!carousel || !track || !previewImage) return;
+            
+            // Image paths - update this array with your actual image names
+            const imagePaths = [
+                'Images/My images/1 (1).jpg',
+                'Images/My images/1 (2).jpg',
+                'Images/My images/1 (3).jpg',
+                'Images/My images/1 (4).jpg',
+                'Images/My images/1 (5).jpg',
+                'Images/My images/1 (6).jpg',
+                'Images/My images/1 (7).jpg',
+                'Images/My images/1 (8).jpg',
+                'Images/My images/1 (9).jpg',
+                'Images/My images/1 (10).jpg',
+                'Images/My images/1 (11).jpg',
+                'Images/My images/1 (12).jpg',
+                'Images/My images/1 (13).jpg',
+                'Images/My images/1 (14).jpg'
+            ];
+            
+            let currentIndex = 0;
+            let isHovered = false;
+            let scrollTimeout;
+            let autoRotateInterval;
+            
+            // Create image elements
+            function createImages() {
+                imagePaths.forEach((path, index) => {
+                    const img = document.createElement('img');
+                    img.src = path;
+                    img.alt = `Portfolio image ${index + 1}`;
+                    img.className = 'carousel-image absolute w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-lg object-cover opacity-60 border-2 border-purple-400/20 shadow-lg left-1/2 top-1/2';
+                    
+                    // Responsive margin adjustments
+                    img.style.marginLeft = '-2.5rem'; // -ml-10 equivalent
+                    img.style.marginTop = '-2.5rem';  // -mt-10 equivalent
+                    img.style.transform = `rotateY(${index * (360 / imagePaths.length)}deg) translateZ(250px)`;
+                    
+                    // Adjust translateZ based on screen size
+                    const updateTranslateZ = () => {
+                        const screenWidth = window.innerWidth;
+                        let translateZ = 250;
+                        if (screenWidth >= 1024) translateZ = 300; // lg screens
+                        else if (screenWidth >= 768) translateZ = 275; // md screens
+                        
+                        img.style.transform = `rotateY(${index * (360 / imagePaths.length)}deg) translateZ(${translateZ}px)`;
+                    };
+                    
+                    updateTranslateZ();
+                    window.addEventListener('resize', updateTranslateZ);
+                    
+                    track.appendChild(img);
+                });
+                updateActiveImage();
+                updatePreview(); // Initialize preview
+            }
+            
+            // Update active image and preview
+            function updateActiveImage() {
+                const images = track.querySelectorAll('.carousel-image');
+                images.forEach((img, index) => {
+                    if (index === currentIndex) {
+                        img.classList.remove('opacity-60', 'border-purple-400/20');
+                        img.classList.add('active', 'opacity-100', 'border-purple-400/80', 'shadow-purple-400/40', 'shadow-2xl');
+                        
+                        // Update responsive margins for active image
+                        const screenWidth = window.innerWidth;
+                        if (screenWidth >= 1024) {
+                            img.style.marginLeft = '-3.5rem'; // lg: larger margin
+                            img.style.marginTop = '-3.5rem';
+                        } else if (screenWidth >= 768) {
+                            img.style.marginLeft = '-3rem'; // md: medium margin
+                            img.style.marginTop = '-3rem';
+                        } else {
+                            img.style.marginLeft = '-2.5rem'; // sm: smaller margin
+                            img.style.marginTop = '-2.5rem';
+                        }
+                    } else {
+                        img.classList.remove('active', 'opacity-100', 'border-purple-400/80', 'shadow-purple-400/40', 'shadow-2xl');
+                        img.classList.add('opacity-60', 'border-purple-400/20');
+                        
+                        // Reset margins for inactive images
+                        img.style.marginLeft = '-2.5rem';
+                        img.style.marginTop = '-2.5rem';
+                    }
+                });
+                updatePreview();
+            }
+            
+            // Update preview box
+            function updatePreview() {
+                previewImage.src = imagePaths[currentIndex];
+                previewCounter.textContent = `${currentIndex + 1} / ${imagePaths.length}`;
+                
+                // Add smooth transition effect
+                previewImage.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    previewImage.style.transform = 'scale(1)';
+                }, 200);
+            }
+            
+            // Auto-rotate carousel every 3 seconds
+            function startAutoRotation() {
+                autoRotateInterval = setInterval(() => {
+                    if (!isHovered) {
+                        currentIndex = (currentIndex + 1) % imagePaths.length;
+                        
+                        // Rotate the entire track
+                        const rotation = -(currentIndex * (360 / imagePaths.length));
+                        track.style.transform = `rotateY(${rotation}deg)`;
+                        
+                        updateActiveImage();
+                    }
+                }, 3000);
+            }
+            
+            // Stop auto-rotation
+            function stopAutoRotation() {
+                if (autoRotateInterval) {
+                    clearInterval(autoRotateInterval);
+                    autoRotateInterval = null;
+                }
+            }
+            
+            // Restart auto-rotation
+            function restartAutoRotation() {
+                stopAutoRotation();
+                startAutoRotation();
+            }
+            
+            // Handle scroll within carousel
+            function handleCarouselScroll(e) {
+                if (!isHovered) return;
+                
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const delta = e.deltaY > 0 ? 1 : -1;
+                currentIndex = (currentIndex + delta + imagePaths.length) % imagePaths.length;
+                
+                // Rotate the entire track
+                const rotation = -(currentIndex * (360 / imagePaths.length));
+                track.style.transform = `rotateY(${rotation}deg)`;
+                
+                updateActiveImage();
+                
+                // Restart auto-rotation after manual interaction
+                restartAutoRotation();
+                
+                // Clear existing timeout
+                clearTimeout(scrollTimeout);
+                
+                // Set timeout to re-enable page scroll after carousel interaction ends
+                scrollTimeout = setTimeout(() => {
+                    // Allow page scroll to resume
+                }, 500);
+            }
+            
+            // Mouse enter/leave handlers
+            carousel.addEventListener('mouseenter', () => {
+                isHovered = true;
+                carousel.style.cursor = 'grab';
+                stopAutoRotation(); // Pause auto-rotation on hover
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                isHovered = false;
+                carousel.style.cursor = 'grab';
+                startAutoRotation(); // Resume auto-rotation when not hovering
+            });
+            
+            // Wheel event for scrolling through images
+            carousel.addEventListener('wheel', handleCarouselScroll, { passive: false });
+            
+            // Touch support for mobile
+            let startY = 0;
+            let startX = 0;
+            
+            carousel.addEventListener('touchstart', (e) => {
+                if (!isHovered) return;
+                startY = e.touches[0].clientY;
+                startX = e.touches[0].clientX;
+            });
+            
+            carousel.addEventListener('touchmove', (e) => {
+                if (!isHovered) return;
+                e.preventDefault();
+                
+                const currentY = e.touches[0].clientY;
+                const currentX = e.touches[0].clientX;
+                const deltaY = startY - currentY;
+                const deltaX = startX - currentX;
+                
+                // Use horizontal swipe for image navigation
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
+                    const delta = deltaX > 0 ? 1 : -1;
+                    currentIndex = (currentIndex + delta + imagePaths.length) % imagePaths.length;
+                    
+                    const rotation = -(currentIndex * (360 / imagePaths.length));
+                    track.style.transform = `rotateY(${rotation}deg)`;
+                    
+                    updateActiveImage();
+                    
+                    // Restart auto-rotation after touch interaction
+                    restartAutoRotation();
+                    
+                    startX = currentX;
+                    startY = currentY;
+                }
+            }, { passive: false });
+            
+            // Initialize carousel
+            createImages();
+            
+            // Add some initial animation
+            setTimeout(() => {
+                track.style.transform = 'rotateY(0deg)';
+                // Start auto-rotation after initial setup
+                startAutoRotation();
+            }, 100);
+            
+            // Handle window resize for responsive updates
+            window.addEventListener('resize', () => {
+                updateActiveImage(); // Update margins and positioning
+            });
+        });
+        </script>
+
+        <!-- Magical Timeline Scroll Animations -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let lastScrollY = window.scrollY;
+            let scrollDirection = 'down';
+            
+            // Track scroll direction
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                scrollDirection = currentScrollY > lastScrollY ? 'down' : 'up';
+                lastScrollY = currentScrollY;
+            });
+
+            // Initialize Intersection Observer for timeline animations
+            const timelineObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && scrollDirection === 'down') {
+                        // Show animation when scrolling down and item comes into view
+                        if (!entry.target.classList.contains('animate-in')) {
+                            animateTimelineItem(entry.target);
+                        }
+                    } else if (!entry.isIntersecting && scrollDirection === 'up') {
+                        // Hide animation when scrolling up and item goes out of view
+                        if (entry.target.classList.contains('animate-in')) {
+                            animateTimelineItemOut(entry.target);
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe all timeline items
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                timelineObserver.observe(item);
+            });
+
+            // Magical animation function using Anime.js
+            function animateTimelineItem(item) {
+                const direction = item.dataset.anime;
+                const content = item.querySelector('.timeline-content');
+                const date = item.querySelector('.timeline-date');
+                const title = item.querySelector('.timeline-title');
+                const description = item.querySelector('.timeline-description');
+                const glowEffect = item.querySelector('.timeline-glow-effect');
+
+                // Create timeline animation
+                const tl = anime.timeline({
+                    easing: 'easeOutElastic(1, .8)',
+                    duration: 1200,
+                    complete: () => {
+                        item.classList.add('animate-in');
+                    }
+                });
+
+                // Main container animation with magical entrance
+                tl.add({
+                    targets: item,
+                    opacity: [0, 1],
+                    translateY: direction === 'left' ? [-40, 0] : [-40, 0],
+                    translateX: direction === 'left' ? [60, 0] : [-60, 0],
+                    rotateY: direction === 'left' ? [10, 0] : [-10, 0],
+                    scale: [0.9, 1],
+                    easing: 'easeOutBack(1.4)',
+                    duration: 500
+                });
+
+                // Content background with glow effect
+                tl.add({
+                    targets: content,
+                    scale: [0.98, 1],
+                    opacity: [0.8, 1],
+                    easing: 'easeOutQuint',
+                    duration: 300
+                }, '-=300');
+
+                // Magical glow pulse
+                tl.add({
+                    targets: glowEffect,
+                    opacity: [0, 0.6, 0.3],
+                    scale: [1.05, 1],
+                    easing: 'easeOutSine',
+                    duration: 400
+                }, '-=400');
+
+                // Date animation with bounce
+                tl.add({
+                    targets: date,
+                    opacity: [0, 1],
+                    translateX: direction === 'left' ? [20, 0] : [-20, 0],
+                    rotateZ: [3, 0],
+                    easing: 'easeOutBounce',
+                    duration: 300
+                }, '-=350');
+
+                // Title with elastic effect
+                tl.add({
+                    targets: title,
+                    opacity: [0, 1],
+                    translateY: [25, 0],
+                    scale: [0.95, 1],
+                    easing: 'easeOutElastic(1, .4)',
+                    duration: 400
+                }, '-=250');
+
+                // Description with staggered word animation - appears right after title
+                if (description) {
+                    // First highlight keywords
+                    highlightKeywords(description);
+                    
+                    // Then wrap each text node in word spans while preserving HTML
+                    const walker = document.createTreeWalker(
+                        description,
+                        NodeFilter.SHOW_TEXT,
+                        null,
+                        false
+                    );
+                    
+                    const textNodes = [];
+                    let node;
+                    while (node = walker.nextNode()) {
+                        if (node.textContent.trim()) {
+                            textNodes.push(node);
+                        }
+                    }
+                    
+                    textNodes.forEach(textNode => {
+                        const words = textNode.textContent.split(' ').filter(word => word.trim());
+                        if (words.length > 0) {
+                            const fragment = document.createDocumentFragment();
+                            words.forEach((word, index) => {
+                                const span = document.createElement('span');
+                                span.className = 'word';
+                                span.textContent = word;
+                                fragment.appendChild(span);
+                                if (index < words.length - 1) {
+                                    fragment.appendChild(document.createTextNode(' '));
+                                }
+                            });
+                            textNode.parentNode.replaceChild(fragment, textNode);
+                        }
+                    });
+                    
+                    tl.add({
+                        targets: description.querySelectorAll('.word'),
+                        opacity: [0, 1],
+                        translateY: [20, 0],
+                        rotateX: [90, 0],
+                        easing: 'easeOutQuart',
+                        duration: 300,
+                        delay: anime.stagger(30)
+                    }, '-=200'); // Reduced delay so it appears right after title
+                }
+
+                // Add magical sparkle effect
+                createSparkleEffect(content);
+            }
+
+            // Exit animation when scrolling up
+            function animateTimelineItemOut(item) {
+                const direction = item.dataset.anime;
+                const content = item.querySelector('.timeline-content');
+                const date = item.querySelector('.timeline-date');
+                const title = item.querySelector('.timeline-title');
+                const description = item.querySelector('.timeline-description');
+
+                // Remove animate-in class
+                item.classList.remove('animate-in');
+
+                // Create exit animation
+                anime({
+                    targets: item,
+                    opacity: [1, 0],
+                    translateY: [0, -30],
+                    translateX: direction === 'left' ? [0, -50] : [0, 50],
+                    scale: [1, 0.9],
+                    easing: 'easeInQuart',
+                    duration: 400
+                });
+
+                // Animate content elements out
+                anime({
+                    targets: [date, title],
+                    opacity: [1, 0],
+                    translateY: [0, -20],
+                    easing: 'easeInQuart',
+                    duration: 300,
+                    delay: anime.stagger(50)
+                });
+
+                // Animate description words out
+                if (description && description.querySelectorAll('.word').length > 0) {
+                    anime({
+                        targets: description.querySelectorAll('.word'),
+                        opacity: [1, 0],
+                        translateY: [0, -15],
+                        rotateX: [0, -45],
+                        easing: 'easeInQuart',
+                        duration: 200,
+                        delay: anime.stagger(20, {start: 100})
+                    });
+                }
+            }
+
+            // Highlight important keywords in timeline descriptions
+            function highlightKeywords(element) {
+                const keywords = {
+                    // Technical Skills (order matters - longer phrases first)
+                    'Computer Science': 'tech-keyword',
+                    'Unreal Engine': 'tech-keyword',
+                    'artificial intelligence': 'ai-keyword',
+                    'computer vision': 'ai-keyword',
+                    'generative AI': 'ai-keyword',
+                    'virtual reality': 'tech-keyword',
+                    'game development': 'creative-keyword',
+                    'data analysis': 'data-keyword',
+                    '3D modeling': 'creative-keyword',
+                    'Vuforia AR': 'tech-keyword',
+                    'ASP.NET': 'tech-keyword',
+                    'Blender': 'tech-keyword',
+                    '3D': 'creative-keyword',
+                    'AR': 'tech-keyword',
+                    'VR': 'tech-keyword',
+                    'AI': 'ai-keyword',
+                    
+                    // Companies & Organizations
+                    'University of Sfax': 'company-keyword',
+                    'ISIMS': 'company-keyword',
+                    'Google': 'company-keyword',
+                    'PERFAXIS': 'company-keyword',
+                    'TDS': 'company-keyword',
+                    'Malaysia': 'location-keyword',
+                    'Germany': 'location-keyword',
+                    'Tunisia': 'location-keyword',
+                    'Oman': 'location-keyword',
+                    
+                    // Projects & Achievements
+                    'Virtual Exhibition': 'project-keyword',
+                    'Cyber Clash': 'project-keyword',
+                    'Google It': 'project-keyword',
+                    'horror games': 'project-keyword',
+                    'team leader': 'role-keyword',
+                    'game developer': 'role-keyword',
+                    'Multimedia Manager': 'role-keyword',
+                    'Software Development': 'role-keyword'
+                };
+
+                let html = element.innerHTML;
+                
+                // Apply highlighting for each keyword with proper word boundaries and spacing
+                Object.entries(keywords).forEach(([keyword, className]) => {
+                    // Use more precise regex that preserves spacing
+                    const regex = new RegExp(`(^|\\s)(${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})(\\s|$|[.,!?;:])`, 'gi');
+                    html = html.replace(regex, (match, before, word, after) => {
+                        return `${before}<span class="${className}">${word}</span>${after}`;
+                    });
+                });
+                
+                element.innerHTML = html;
+            }
+
+            // Create sparkle particles effect
+            function createSparkleEffect(container) {
+                for (let i = 0; i < 8; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.style.cssText = `
+                        position: absolute;
+                        width: 4px;
+                        height: 4px;
+                        background: radial-gradient(circle, rgba(167, 139, 250, 0.8) 0%, transparent 70%);
+                        border-radius: 50%;
+                        pointer-events: none;
+                        z-index: 10;
+                    `;
+                    
+                    const rect = container.getBoundingClientRect();
+                    sparkle.style.left = Math.random() * rect.width + 'px';
+                    sparkle.style.top = Math.random() * rect.height + 'px';
+                    
+                    container.appendChild(sparkle);
+
+                    // Animate sparkles
+                    anime({
+                        targets: sparkle,
+                        scale: [0, 1, 0],
+                        opacity: [0, 1, 0],
+                        translateY: [-20, -40],
+                        translateX: [0, (Math.random() - 0.5) * 40],
+                        rotate: [0, 360],
+                        easing: 'easeOutQuart',
+                        duration: 1500,
+                        delay: Math.random() * 500,
+                        complete: () => sparkle.remove()
+                    });
+                }
+            }
+
+            // Add hover animations for enhanced interactivity
+            timelineItems.forEach(item => {
+                const content = item.querySelector('.timeline-content');
+                
+                content.addEventListener('mouseenter', () => {
+                    if (item.classList.contains('animate-in')) {
+                        anime({
+                            targets: content,
+                            scale: 1.02,
+                            rotateY: item.dataset.anime === 'left' ? -2 : 2,
+                            easing: 'easeOutQuart',
+                            duration: 300
+                        });
+                    }
+                });
+
+                content.addEventListener('mouseleave', () => {
+                    anime({
+                        targets: content,
+                        scale: 1,
+                        rotateY: 0,
+                        easing: 'easeOutQuart',
+                        duration: 300
+                    });
+                });
+            });
+
+            // Individual Timeline Title Animation
+            const timelineSection = document.querySelector('.timeline-section');
+            const scrollTimelineItems = document.querySelectorAll('.timeline-item');
+            const morphingTitles = document.querySelectorAll('.timeline-morphing-title');
+            
+            // Check if mobile device
+            const isMobile = window.innerWidth <= 768;
+            const isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
+            
+            if (timelineSection && scrollTimelineItems.length > 0) {
+                let ticking = false;
+                
+                console.log('Individual morphing titles initialized:', morphingTitles.length);
+                
+                function updateIndividualTitles() {
+                    const viewportHeight = window.innerHeight;
+                    
+                    scrollTimelineItems.forEach((item, index) => {
+                        const itemRect = item.getBoundingClientRect();
+                        const morphTitle = item.querySelector('.timeline-morphing-title');
+                        
+                        if (morphTitle) {
+                            // Check if item is in viewport
+                            const isInViewport = itemRect.top < viewportHeight * 0.8 && itemRect.bottom > viewportHeight * 0.2;
+                            
+                            if (isInViewport) {
+                                // Show morphing title
+                                morphTitle.classList.add('active');
+                                
+                                // Trigger animation if not already animated
+                                if (!morphTitle.classList.contains('animated')) {
+                                    morphTitle.classList.add('animated');
+                                    startIndividualMorphEffect(morphTitle, item);
+                                }
+                            } else {
+                                // Hide morphing title when out of view
+                                morphTitle.classList.remove('active', 'animated', 'morphing');
+                            }
+                        }
+                    });
+                    
+                    ticking = false;
+                }
+                
+                function startIndividualMorphEffect(morphTitle, timelineItem) {
+                    const morphText = morphTitle.querySelector('.morph-title-text');
+                    const cardTitle = timelineItem.querySelector('.timeline-title');
+                    
+                    if (morphText && cardTitle) {
+                        // Start morphing animation
+                        morphTitle.classList.add('morphing');
+                        timelineItem.classList.add('morphing');
+                        
+                        // Get positions for animation
+                        const morphTitleRect = morphTitle.getBoundingClientRect();
+                        const cardTitleRect = cardTitle.getBoundingClientRect();
+                        const timelineRect = timelineSection.getBoundingClientRect();
+                        
+                        // Calculate timeline center point (where the bar is)
+                        const timelineCenterX = timelineRect.left + (timelineRect.width / 2);
+                        const timelineCenterY = morphTitleRect.top + (morphTitleRect.height / 2);
+                        
+                        // Calculate distance from timeline center to final position
+                        const startX = timelineCenterX - morphTitleRect.left - (morphTitleRect.width / 2);
+                        const startY = 0; // Stay at same vertical level
+                        
+                        // Determine if this is left or right timeline
+                        const isLeftTimeline = timelineItem.classList.contains('left-timeline');
+                        const isRightTimeline = timelineItem.classList.contains('right-timeline');
+                        
+                        // Set initial position at timeline center with scale(0)
+                        anime.set(morphTitle, {
+                            translateX: startX,
+                            translateY: startY,
+                            scale: 0,
+                            opacity: 0
+                        });
+                        
+                        // Animate from timeline center to final position
+                        const animationDuration = isMobile ? 600 : isTablet ? 700 : 800;
+                        
+                        // First phase: Scale up and move to position
+                        anime({
+                            targets: morphTitle,
+                            translateX: 0,
+                            translateY: 0,
+                            scale: 1,
+                            opacity: 1,
+                            duration: animationDuration,
+                            easing: 'easeOutBack(1.2)',
+                            complete: () => {
+                                // Second phase: Morph text to card title position
+                                const deltaX = cardTitleRect.left - morphTitleRect.left;
+                                const deltaY = cardTitleRect.top - morphTitleRect.top;
+                                
+                                anime({
+                                    targets: morphText,
+                                    translateX: deltaX,
+                                    translateY: deltaY,
+                                    duration: 500,
+                                    easing: 'easeInOutQuad',
+                                    complete: () => {
+                                        // Fade out morphing title
+                                        anime({
+                                            targets: morphText,
+                                            opacity: 0,
+                                            scale: 0.8,
+                                            duration: 300,
+                                            easing: 'easeInQuart',
+                                            complete: () => {
+                                                // Reset morphing title
+                                                morphTitle.classList.remove('morphing');
+                                                timelineItem.classList.remove('morphing');
+                                                
+                                                // Reset for next animation
+                                                anime.set(morphTitle, {
+                                                    translateX: 0,
+                                                    translateY: 0,
+                                                    scale: 1,
+                                                    opacity: 1
+                                                });
+                                                anime.set(morphText, {
+                                                    translateX: 0,
+                                                    translateY: 0,
+                                                    scale: 1,
+                                                    opacity: 1
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }
+                
+                function requestTick() {
+                    if (!ticking) {
+                        requestAnimationFrame(updateIndividualTitles);
+                        ticking = true;
+                    }
+                }
+                
+                // Listen for scroll events
+                window.addEventListener('scroll', requestTick);
+                window.addEventListener('resize', requestTick);
+                
+                // Initial call
+                updateIndividualTitles();
+            }
+        });
+        </script>
+
 </body>
 
 </html>
