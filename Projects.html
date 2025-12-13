@@ -148,30 +148,10 @@
       }
 
       // Animation triggers
-      // Use a small timeout to ensure DOM is ready
+      // Removed initial animation loop to ensure content is immediately visible (per user request).
+      // We only refresh ScrollTrigger to keep things in sync if needed, but no hiding.
       setTimeout(() => {
         ScrollTrigger.refresh();
-
-        // Reset any existing animations or props
-        gsap.killTweensOf(".project-card");
-        gsap.set(".project-card", { opacity: 0, y: 30 }); // Explicit initial state
-
-        gsap.batch(".project-card", {
-          interval: 0.1, // Stagger time between batches
-          batchMax: 4,   // Max items per batch
-          onEnter: batch => gsap.to(batch, {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: "power2.out",
-            overwrite: true,
-            clearProps: "transform,opacity" // Ensure clean state after animation
-          }),
-          // Also animate if they are already in view on load
-          start: "top 95%",
-          once: true
-        });
       }, 100);
     }
 
@@ -213,13 +193,16 @@
         if (filteredProjects.length > 0) renderFeatured(filteredProjects[0]);
 
         // Re-animate
-        gsap.from(".project-card", {
-          opacity: 0,
-          y: 20,
-          duration: 0.4,
-          stagger: 0.05,
-          clearProps: "all"
-        });
+        // Re-animate (Skip for 'all' filter as requested)
+        if (filter !== 'all') {
+          gsap.from(".project-card", {
+            opacity: 0,
+            y: 20,
+            duration: 0.4,
+            stagger: 0.05,
+            clearProps: "all"
+          });
+        }
       });
     });
 
