@@ -1,0 +1,429 @@
+const projectData = [
+    {
+        "category": "animation",
+        "title": "The Marvel of Chemtou: Roman Turbine Engineering",
+        "date": "29 September 2024",
+        "url": "https://www.youtube.com/embed/kjCLt9rzg6A",
+        "description": "Old roman horizontal water turbine 3D animation"
+    },
+    {
+        "category": "animation",
+        "title": "ISIMS: Where the Darkness Lurks",
+        "date": "28 September 2024",
+        "url": "https://www.youtube.com/embed/dWFdxOEMlO0",
+        "description": "A horror CGI showcase of eerie visuals from ISIMS."
+    },
+    {
+        "category": "architecture",
+        "title": "ISIMS 3D Modeling (Part 1)",
+        "date": "20 December 2023",
+        "url": "https://youtube.com/shorts/HTGQwchiAdk",
+        "description": "3D modeling of ISIMS architecture in the first part of the series."
+    },
+    {
+        "category": "videoediting",
+        "title": "Reel for optics store",
+        "date": "7 aout 2025",
+        "url": "https://www.youtube.com/embed/q97fqnwUUi8",
+        "description": "AD Reel Omar Optique "
+    },
+    {
+        "category": "architecture",
+        "title": "ISIMS 3D Modeling (Part 2)",
+        "date": "11 February 2024",
+        "url": "https://www.youtube.com/embed/FQZcbNZDCyE",
+        "description": "Continuing the 3D modeling of ISIMS architecture in Part 2."
+    },
+    {
+        "category": "other",
+        "title": "You and Ai an accessible ai game for everyone",
+        "date": "11 March 2025",
+        "url": "https://www.youtube.com/embed/iNFjHrLZKWY",
+        "description": "Continuing the 3D modeling of ISIMS architecture in Part 2."
+    },
+    {
+        "category": "vfx",
+        "title": "CGI Project for Metal 2000",
+        "date": "21 mai 2025",
+        "url": "https://www.youtube.com/embed/mXQh2WbTVpg",
+        "description": "Continuing the 3D modeling of ISIMS architecture in Part 2."
+    },
+    {
+        "category": "animation",
+        "title": "Motion Graphics Made In Blender And After Effects",
+        "date": "09/02 February 2025",
+        "url": "https://www.youtube.com/embed/rr2oyl4dkcs",
+        "description": "Motion Graphics Made In Blender And After Effects"
+    },
+    {
+        "category": "vfx",
+        "title": "3D Billboard Concept at Mall of Sfax for Redragon",
+        "date": "09 November 2024",
+        "url": "https://www.youtube.com/embed/s98yHjQOcMc",
+        "description": "3D VFX concept for a Redragon billboard at Mall of Sfax."
+    },
+    {
+        "category": "vfx",
+        "title": "My CGI work for the Microsoft Tech Club at ISIMS!",
+        "date": "25 November 2024",
+        "url": "https://www.youtube.com/embed/UenUugAKilQ ",
+        "description": "My CGI work for the Microsoft Tech Club at ISIMS!"
+    },
+    {
+        "category": "vfx",
+        "title": "my CGI Robot Transformation for the Microsoft Tech Club at ISIMS!",
+        "date": "28 November 2024",
+        "url": "https://drive.google.com/file/d/1_nUobmePZNttH0SDYQMwSS5H-OvgPa8S/preview ",
+        "description": "My CGI work for the Microsoft Tech Club at ISIMS!"
+    },
+    {
+        "category": "vfx",
+        "title": "Epic CGI Video for Godzilla at the Mall of Sfax",
+        "date": "01 November 2024",
+        "url": "https://www.youtube.com/embed/PLNVBWqibdY",
+        "description": "An epic CGI video featuring Godzilla at Mall of Sfax."
+    },
+    {
+        "category": "vfx",
+        "title": "Only One Survivor Remaining VFX",
+        "date": "20 january 2025",
+        "url": "https://www.youtube.com/embed/rhlT41RTFt8",
+        "description": "Only One Survivor Remaining VFX"
+    },
+    {
+        "category": "vfx",
+        "title": "Palestine on the Big Screen: A CGI Concept ",
+        "date": "26 January 2025",
+        "url": "https://www.youtube.com/embed/zDFlCQqu-aA",
+        "description": "This concept imagines how large screens could transform spaces into meaningful messages of creativity."
+    },
+    {
+        "category": "videoediting",
+        "title": "Bubble Tea After Effects Edit",
+        "date": "08 November 2024",
+        "url": "https://www.youtube.com/embed/TNHoW8xV6h4",
+        "description": "Creative After Effects edit showcasing bubble tea visuals."
+    },
+    {
+        "category": "architecture",
+        "title": "Mall of Sfax 3D Virtual Tour (Made in Blender)",
+        "date": "18 February 2024",
+        "url": "https://www.youtube.com/embed/zgUSEUWF6J4",
+        "description": "Explore Mall of Sfax with this 3D virtual tour made in Blender."
+    },
+    {
+        "category": "architecture",
+        "title": "Virtual Mall Navigation Prototype (Made in Unreal Engine 5)",
+        "date": "08 October 2024",
+        "url": "https://www.youtube.com/embed/4ZgrvfO4rM4",
+        "description": "Prototype for virtual mall navigation built in Unreal Engine 5."
+    },
+    {
+        "category": "vfx",
+        "title": "BOYCOTT || CGI Video (Made in After Effects)",
+        "date": "24 October 2024",
+        "url": "https://www.youtube.com/embed/airNQ1ifOuk",
+        "description": "CGI video showcasing a boycott theme created in After Effects."
+    },
+    {
+        "category": "architecture",
+        "title": "3D Animation for Building Safety (Made in Blender)",
+        "date": "19 August 2024",
+        "url": "https://www.youtube.com/embed/Bu9neyBcl1U",
+        "description": "A 3D animation focused on building safety, made in Blender."
+    },
+    {
+        "category": "animation",
+        "title": "Old roman vertical water turbine 3D animation",
+        "date": "20 April 2024",
+        "url": "https://www.youtube.com/embed/hE2wCCuV-cQ",
+        "description": "Old roman vertical water turbine 3D animation"
+    },
+    {
+        "category": "vfx",
+        "title": "3D CGI for Flutter Fest Event by Google Developer Club | Faculty of Science Sfax",
+        "date": "10 November 2024",
+        "url": "https://www.youtube.com/embed/qkvAnR-UJLI",
+        "description": "3D CGI video created for Flutter Fest by Google Developer Club."
+    },
+    {
+        "category": "other",
+        "title": "Augmented Reality Portfolio",
+        "date": "10 October 2024",
+        "url": "https://drive.google.com/file/d/1htKwmpIV36fSv3pG-yKNasPNHgugWVij/preview",
+        "description": "An augmented reality portfolio showcasing various projects."
+    },
+    {
+        "category": "vfx",
+        "title": "My 3D VFX work on 'Escape of Atlantis' (Made in Blender - After Effects)",
+        "date": "26 April 2024",
+        "url": "https://www.youtube.com/embed/HzvqDCrWQ6g",
+        "description": "3D VFX work for 'Escape of Atlantis,' created with Blender and After Effects."
+    },
+    {
+        "category": "vfx",
+        "title": "Flutter Fest CGI VFX",
+        "date": "19 April 2024",
+        "url": "https://www.youtube.com/embed/0ESGGLAY5bs",
+        "description": "CGI VFX showcase for the Flutter Fest event."
+    },
+    {
+        "category": "animation",
+        "title": "Intelligent shoes || A 3D work to a client",
+        "date": "23 May 2024",
+        "url": "https://www.youtube.com/embed/XBi5RXO7W4I",
+        "description": "Intelligent shoes || A 3D work to a client"
+    },
+    {
+        "category": "animation",
+        "title": "A logo Animation For ArtiDev IT Company",
+        "date": "19 August 2024",
+        "url": "https://www.youtube.com/embed/WYe2t9A6RGE",
+        "description": "Intelligent shoes || A 3D work to a client"
+    },
+    {
+        "category": "animation",
+        "title": "A hospital where it got invaded by creepy octopus | Made With Blender",
+        "date": "28 February 2023",
+        "url": "https://www.youtube.com/embed/lbWH1xlfekg",
+        "description": "A chilling horror scene in a hospital, featuring creepy octopuses."
+    },
+    {
+        "category": "videoediting",
+        "title": "Ai Day Trailer (video editing)",
+        "date": "29 September 2024",
+        "url": "https://www.youtube.com/embed/25UnTok84cY",
+        "description": "Ai Day Trailer (video editing)"
+    },
+    {
+        "category": "animation",
+        "title": "My DevFest Animation For Explanation Of Large Language Models",
+        "date": "15 December 2023",
+        "url": "https://www.youtube.com/embed/YdlFCVIk-aE",
+        "description": "An animated explanation of large language models for DevFest."
+    },
+    {
+        "category": "animation",
+        "title": "Horror movie footage",
+        "date": "28 February 2023",
+        "url": "https://www.youtube.com/embed/3486FFTVMtU",
+        "description": "Terrifying footage from a horror movie production."
+    },
+    {
+        "category": "architecture",
+        "title": "UTOPIA | level design for VR UE5",
+        "date": "20 December 2023",
+        "url": "https://www.youtube.com/embed/A8V4Vzlt0x8",
+        "description": "Level design for the VR experience 'UTOPIA' created in Unreal Engine 5."
+    },
+    {
+        "category": "game-development",
+        "title": "CyberClash Trailer | Local-Multiplayer Game UE5",
+        "date": "16 November 2023",
+        "url": "https://www.youtube.com/embed/QteKyv1j4WQ",
+        "description": "A trailer for the local-multiplayer game 'CyberClash' in UE5."
+    },
+    {
+        "category": "animation",
+        "title": "My first blender footage [the backrooms]",
+        "date": "05 March 2023",
+        "url": "https://www.youtube.com/embed/fUWk_ideN6Q",
+        "description": "Early Blender footage depicting 'the backrooms.'"
+    },
+    {
+        "category": "architecture",
+        "title": "We brought Mall of Sfax to life in 3D! | Blender 4.0",
+        "date": "10 March 2024",
+        "url": "https://www.youtube.com/embed/GBkqUzn86jw",
+        "description": "3D recreation of Mall of Sfax using Blender 4.0."
+    },
+    {
+        "category": "animation",
+        "title": "A logo motion graphic Animation for TDS Company",
+        "date": "07 07 2025",
+        "url": "https://youtu.be/b3JrnDZtIFY",
+        "description": "A logo motion graphic Animation for TDS Company"
+    },
+    {
+        "category": "animation",
+        "title": "Mon Plaisir  Motion Graphics Showcase ",
+        "date": "20 December 2025",
+        "url": "https://www.youtube.com/embed/q72urc3q03w",
+        "description": "Mon Plaisir  Motion Graphics Showcase "
+    },
+    {
+        "category": "animation",
+        "title": "Artex Channel Motion Graphics Showcase ",
+        "date": "27 August 2025",
+        "url": "https://youtu.be/yM-YiOMrvYc",
+        "description": "Artex Channel Motion Graphics Showcase "
+    },
+    {
+        "category": "vfx",
+        "title": "MonPlaisir 3d VFX with Farhat Hnena ",
+        "date": "08 April 2025",
+        "url": "https://www.youtube.com/embed/PidmFQASpCM",
+        "description": "Mon Plaisir  Motion Graphics Showcase "
+    },
+    {
+        "category": "vfx",
+        "title": "The Story of a Split Identity",
+        "date": "03 february 2025",
+        "url": "https://www.youtube.com/embed/WHcqdBGAp70",
+        "description": "The Story of a Split Identity"
+    },
+    {
+        "category": "game-development",
+        "title": "Asmodea's School Trailer | Horror. Single-Player Game UE5",
+        "date": "13 June 2023",
+        "url": "https://www.youtube.com/embed/8DyhZsLOMEk",
+        "description": "Horror game trailer for 'Asmodea's School' in UE5."
+    },
+    {
+        "category": "videoediting",
+        "title": "Final Day in Tabarka: Showcasing Our Projects! | VES Project Vlogs (part 3)",
+        "date": "28 October 2024",
+        "url": "https://drive.google.com/file/d/1_Lwe9R9brg5gVV4bf8dXE6FuBvjSHr6T/preview ",
+        "description": "Final Day in Tabarka: Showcasing Our Projects! | VES Project Vlogs (part 3)"
+    },
+    {
+        "category": "videoediting",
+        "title": "Chemtou's Visit | VES Project Vlogs (part 2 )",
+        "date": "28 October 2024",
+        "url": "https://drive.google.com/file/d/1wzkInev1lzYL75IPuMU1bnn0ePcO_Hbh/preview ",
+        "description": "Chemtou's Visit | VES Project Vlogs (part 2 )"
+    },
+    {
+        "category": "videoediting",
+        "title": "Unforgettable Moments in Tabarka | VES Project Vlogs (part 1)",
+        "date": "28 October 2024",
+        "url": "https://drive.google.com/file/d/1eVtMOEpkaifpA4fd1HlY9sOE5wmjCrfJ/preview",
+        "description": "Unforgettable Moments in Tabarka | VES Project Vlogs (part 1)"
+    },
+    {
+        "category": "videoediting",
+        "title": "Highlights Video About Oman's Workshop",
+        "date": "22 December 2024",
+        "url": "https://drive.google.com/file/d/1o2vyvvMqHeoC5A1GHEPSPr8DvsPpUEe2/preview",
+        "description": "Highlights Video About Oman's Workshop"
+    },
+    {
+        "category": "animation",
+        "title": "Master Faster Event Animation For The Winners",
+        "date": "20 December 2023",
+        "url": "https://www.youtube.com/embed/LVO6N2b4590",
+        "description": "Celebratory animation for the Master Faster event winners."
+    },
+    {
+        "category": "game-development",
+        "title": "Google It Trailer | Platformer Single-Player Game UE5 (link in description)",
+        "date": "30 September 2023 ",
+        "url": "https://www.youtube.com/embed/7wCCJRx92wk",
+        "description": "Trailer for the single-player platformer 'Google It' in UE5."
+    },
+    {
+        "category": "game-development",
+        "title": "The Night Seeker Trailer | Horror Single-Player Game UE5",
+        "date": "06 April 2023",
+        "url": "https://www.youtube.com/embed/0pT0Y2QxC1w",
+        "description": "Trailer for the horror game 'The Night Seeker' in UE5."
+    },
+    {
+        "category": "game-development",
+        "title": "Hydraulic Turbine Blender 4.0 Cycles",
+        "date": "20 December 2023",
+        "url": "https://www.youtube.com/embed/sR592ggHgh4",
+        "description": "Dev Vlog Of Cyber Clash | The Local-Multiplayer Game That Made In Just One Month"
+    },
+    {
+        "category": "animation",
+        "title": "Dev Vlog Of Cyber Clash | The Local-Multiplayer Game That Made In Just One Month",
+        "date": "17 March 2024",
+        "url": "https://www.youtube.com/embed/O82WF39V3SA",
+        "description": "Dev Vlog Of Cyber Clash | The Local-Multiplayer Game That Made In Just One Month"
+    },
+    {
+        "category": "videoediting",
+        "title": "Flutter Fest Event Trailer || FSS Google Developer Group",
+        "date": "24 February 2024",
+        "url": "https://www.youtube.com/embed/tyvORfe_pG4",
+        "description": "Flutter Fest Event Trailer || FSS Google Developer Group"
+    },
+    {
+        "category": "architecture",
+        "title": "Making an interior design in 3D blender",
+        "date": "14 January 2024",
+        "url": "https://www.youtube.com/embed/-drWWHq5_ZI",
+        "description": "Making an interior design in 3D blender"
+    },
+    {
+        "category": "animation",
+        "title": "Wheel Chair Animation Blender 4.0",
+        "date": "24 March 2024",
+        "url": "https://www.youtube.com/embed/0cKQzPmFa58",
+        "description": "Wheel Chair Animation Blender 4.0"
+    },
+    {
+        "category": "animation",
+        "title": "Goku Transformation vfx || Made with blender",
+        "date": "14 Febriary 2024",
+        "url": "https://www.youtube.com/embed/Q8zHOzRpp58",
+        "description": "Wheel Chair Animation Blender 4.0"
+    },
+    {
+        "category": "vfx",
+        "title": "Mall of sfax Gets a VFX Makeover🌟",
+        "date": "05 March 2023",
+        "url": "https://www.youtube.com/embed/4R2UqvzBoG0",
+        "description": "Wheel Chair Animation Blender 4.0"
+    },
+    {
+        "category": "vfx",
+        "title": "Advertising Exist's New Product",
+        "date": "03 March 2024",
+        "url": "https://www.youtube.com/embed/BbNQl0rltZ8",
+        "description": "Wheel Chair Animation Blender 4.0"
+    },
+    {
+        "category": "animation",
+        "title": "My First Blender Animation [Backrooms]",
+        "date": "05 March 2024",
+        "url": "https://www.youtube.com/embed/fUWk_ideN6Q",
+        "description": "Wheel Chair Animation Blender 4.0"
+    },
+    {
+        "category": "videoediting",
+        "title": "My After Event Video Editing For Game Fest",
+        "date": "01 December 2023",
+        "url": "https://www.youtube.com/embed/Fhe2OVp9ILQ",
+        "description": "My After Event Video Editing For Game Fest"
+    },
+    {
+        "category": "animation",
+        "title": "Mesmerizing product animation I made for the iPhone 12 mini",
+        "date": "12 November 2024",
+        "url": "https://www.youtube.com/embed/MPKd33asddE",
+        "description": "Mesmerizing product animation I made for the iPhone 12 mini"
+    },
+    {
+        "category": "animation",
+        "title": "A logo animation for IGSC using unreal engine 5",
+        "date": "14 January 2024",
+        "url": "https://www.youtube.com/embed/GhIolALXmvA",
+        "description": "A logo animation for IGSC using unreal engine 5"
+    },
+    {
+        "category": "animation",
+        "title": "Master Faster Event Animation As A Story Part 1",
+        "date": "14 January 2024",
+        "url": "https://www.youtube.com/embed/fd5Hqo9g4Ok",
+        "description": "Master Faster Event Animation As A Story "
+    },
+    {
+        "category": "animation",
+        "title": "Flutter Fest Event Animation As A Story Part 2 ",
+        "date": "19 February 2024",
+        "url": "https://www.youtube.com/embed/CGRq-aCh-cE",
+        "description": "Master Faster Event Animation As A Story "
+    }
+];

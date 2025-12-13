@@ -4,1350 +4,340 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Youssef Neji</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Projects | Youssef Neji</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
   <script src="https://kit.fontawesome.com/6234cd1732.js" crossorigin="anonymous"></script>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23a78bfa'%3EY%3C/text%3E%3C/svg%3E">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
-    integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY=" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" />
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Futuristic 2077 Styles -->
-  <link rel="stylesheet" href="src/styles/futuristic-2077.css">
 
-  <style>
-    #left {
-      animation: opacity 1s ease-in-out !important;
-    }
+  <!-- Styles -->
+  <link rel="stylesheet" href="src/styles/main.css">
+  <link rel="stylesheet" href="src/styles/sections.css">
 
-    @keyframes scaleIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.8);
-      }
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23a78bfa'%3EY%3C/text%3E%3C/svg%3E">
 
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .scale-in {
-      animation: scaleIn 0.5s ease forwards;
-    }
-
-    section {
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      color: white;
-    }
-
-    .project-card {
-      transition: transform 0.3s cubic-bezier(.4,2,.3,1), box-shadow 0.3s, border-color 0.3s;
-      box-shadow: 0 4px 32px 0 rgba(150,156,255,0.10), 0 1.5px 8px 0 rgba(150,156,255,0.10);
-      border: 2px solid transparent;
-      background: rgba(20,12,32,0.95);
-      position: relative;
-      overflow: hidden;
-    }
-    .project-card:hover {
-      transform: scale(1.035) translateY(-4px) rotateZ(-0.5deg);
-      box-shadow: 0 8px 40px 0 #969cff44, 0 2px 16px 0 #969cff33;
-      border-color: #969CFF;
-      z-index: 2;
-    }
-    
-    .filter-item.active, .filter-item:active {
-      background: linear-gradient(90deg, #969CFF 60%, #6D28D9 100%) !important;
-      color: #fff !important;
-      transform: scale(1.08);
-      box-shadow: 0 2px 12px #969cff55;
-    }
-
-    @keyframes glowMove {
-      0% { left: 48%; top: 52%; }
-      100% { left: 52%; top: 48%; }
-    }
-    .fade {
-      animation: fadeEffect 1.5s ease-in;
-    }
-    @keyframes fadeEffect {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-    .kenburns {
-      animation: kenburnsZoom 4s ease-in-out forwards;
-      will-change: transform;
-    }
-    @keyframes kenburnsZoom {
-      0% {
-        transform: scale(1) translateY(0px);
-      }
-      100% {
-        transform: scale(1.08) translateY(-10px);
-      }
-    }
-    .slideshow-hero {
-      position: relative;
-      width: 100%;
-      height: 50vh;
-      min-height: 300px;
-      max-height: 60vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #140C20;
-    }
-    .slideshow-hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: 1;
-      opacity: 1;
-      transition: opacity 0.8s;
-    }
-    .slideshow-gradient {
-      position: absolute;
-      left: 0; top: 0; width: 100%; height: 100%;
-      z-index: 2;
-      pointer-events: none;
-      background: linear-gradient(120deg, rgba(150,156,255,0.18) 0%, rgba(109,40,217,0.18) 100%);
-      animation: gradientMove 8s ease-in-out infinite alternate;
-    }
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-    .slideshow-tagline {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 3;
-      color: #fff;
-      font-size: 2rem;
-      font-weight: 700;
-      text-shadow: 0 4px 32px #140C20, 0 1.5px 8px #969cff;
-      opacity: 0;
-      animation: taglineFadeIn 1.2s 0.5s forwards;
-      letter-spacing: 0.04em;
-      text-align: center;
-      padding: 0 1rem;
-    }
-    @keyframes taglineFadeIn {
-      0% { opacity: 0; transform: translate(-50%, -60%); }
-      100% { opacity: 1; transform: translate(-50%, -50%); }
-    }
-    .glow-hero-effect {
-      pointer-events: none;
-    }
-    .glow-hero-blob {
-      width: 420px;
-      height: 90px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 60% 40%, #969cff55 0%, #6D28D9 60%, transparent 100%);
-      filter: blur(32px) brightness(1.2);
-      opacity: 0.7;
-      animation: heroGlowMove 7s ease-in-out infinite alternate, heroGlowColor 12s ease-in-out infinite alternate;
-      transition: transform 0.5s cubic-bezier(.4,2,.3,1);
-      will-change: transform;
-    }
-    @keyframes heroGlowMove {
-      0% { transform: translateY(0) scaleX(1); }
-      50% { transform: translateY(10px) scaleX(1.08); }
-      100% { transform: translateY(-8px) scaleX(0.96); }
-    }
-    @keyframes heroGlowColor {
-      0% { background: radial-gradient(circle at 60% 40%, #969cff55 0%, #6D28D9 60%, transparent 100%); }
-      50% { background: radial-gradient(circle at 40% 60%, #6D28D9 0%, #969cff55 60%, transparent 100%); }
-      100% { background: radial-gradient(circle at 60% 40%, #969cff55 0%, #6D28D9 60%, transparent 100%); }
-    }
-    /* 2077-styled filter buttons */
-    .filter-btn {
-      border: 2px solid var(--neon-cyan);
-      color: var(--neon-cyan);
-      background: transparent;
-      font-family: 'Orbitron', monospace;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-    }
-    .filter-btn.active,
-    .filter-btn:hover {
-      color: var(--cyber-dark-1);
-      background: var(--neon-cyan);
-      box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 12px rgba(0,255,255,0.2);
-    }
-
-    /* ===== FUTURISTIC PROJECTS HEADER STYLES ===== */
-    .projects-hero-section {
-      position: relative;
-      background: radial-gradient(ellipse at center, rgba(150,156,255,0.1) 0%, transparent 70%),
-                  linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
-    }
-
-    /* Floating Geometric Shapes */
-    .floating-shape {
-      position: absolute;
-      opacity: 0.6;
-      animation: floatShape 8s ease-in-out infinite;
-    }
-    
-    .shape-1 {
-      top: 20%;
-      left: 10%;
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(45deg, var(--neon-cyan), transparent);
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      animation-delay: 0s;
-    }
-    
-    .shape-2 {
-      top: 60%;
-      right: 15%;
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(45deg, var(--neon-magenta), transparent);
-      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-      animation-delay: 2s;
-    }
-    
-    .shape-3 {
-      top: 30%;
-      right: 25%;
-      width: 30px;
-      height: 30px;
-      background: linear-gradient(45deg, var(--neon-yellow), transparent);
-      border-radius: 50%;
-      animation-delay: 4s;
-    }
-    
-    .shape-4 {
-      bottom: 25%;
-      left: 20%;
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(45deg, var(--neon-green), transparent);
-      clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%);
-      animation-delay: 6s;
-    }
-
-    @keyframes floatShape {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      25% { transform: translateY(-20px) rotate(90deg); }
-      50% { transform: translateY(-10px) rotate(180deg); }
-      75% { transform: translateY(-30px) rotate(270deg); }
-    }
-
-    /* Cyber Grid Overlay */
-    .cyber-grid-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: 
-        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
-      background-size: 50px 50px;
-      opacity: 0.3;
-      animation: gridPulse 4s ease-in-out infinite;
-    }
-
-    @keyframes gridPulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.6; }
-    }
-
-    /* Scanning Lines */
-    .scan-line {
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
-      opacity: 0.8;
-    }
-    
-    .scan-line-1 {
-      top: 30%;
-      animation: scanMove 3s linear infinite;
-    }
-    
-    .scan-line-2 {
-      bottom: 40%;
-      animation: scanMove 4s linear infinite reverse;
-      background: linear-gradient(90deg, transparent, var(--neon-magenta), transparent);
-    }
-
-    @keyframes scanMove {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    /* Main Title Animations */
-    .projects-main-title {
-      animation: titleReveal 2s ease-out forwards;
-      opacity: 0;
-      transform: translateY(50px);
-    }
-
-    @keyframes titleReveal {
-      0% {
-        opacity: 0;
-        transform: translateY(50px) scale(0.8);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    /* Typewriter Effect */
-    .typewriter-text {
-      border-right: 2px solid var(--neon-cyan);
-      animation: typewriter 4s steps(40) 1s forwards;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-    }
-
-    .typewriter-cursor {
-      animation: blink 1s infinite;
-      color: var(--neon-cyan);
-    }
-
-    @keyframes typewriter {
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-
-    /* Stats Animation */
-    .stat-item {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: statReveal 1s ease-out forwards;
-    }
-
-    .stat-item:nth-child(1) { animation-delay: 2.5s; }
-    .stat-item:nth-child(2) { animation-delay: 3s; }
-
-    @keyframes statReveal {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .stat-number {
-      text-shadow: 0 0 10px currentColor;
-    }
-
-    /* Scroll Indicator */
-    .scroll-indicator {
-      opacity: 0;
-      animation: scrollIndicatorReveal 1s ease-out 4s forwards;
-    }
-
-    .scroll-arrow {
-      width: 20px;
-      height: 20px;
-      border-right: 2px solid var(--neon-cyan);
-      border-bottom: 2px solid var(--neon-cyan);
-      transform: rotate(45deg);
-      margin: 0 auto 10px;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes scrollIndicatorReveal {
-      to { opacity: 1; }
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: rotate(45deg) translateY(0); }
-      40% { transform: rotate(45deg) translateY(-10px); }
-      60% { transform: rotate(45deg) translateY(-5px); }
-    }
-
-    /* 2077 Project Grid Cards */
-    .project-card-2077 {
-      position: relative;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: transform 0.4s cubic-bezier(0.23, 1, 0.320, 1), box-shadow 0.4s ease;
-      box-shadow: var(--glass-shadow);
-    }
-    .project-card-2077:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 30px rgba(0,255,255,0.25);
-    }
-    .project-card-2077 .thumb {
-      position: relative;
-      height: 12rem;
-      overflow: hidden;
-      background: #000;
-    }
-    .project-card-2077 .thumb::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%);
-      pointer-events: none;
-    }
-    .card-scanline {
-      position: absolute;
-      top: 0; left: -100%;
-      width: 60%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0,255,255,0.18), transparent);
-      filter: blur(4px);
-      animation: cardScan 3.2s ease-in-out infinite;
-      pointer-events: none;
-    }
-    @keyframes cardScan {
-      0% { left: -100%; }
-      50% { left: 120%; }
-      100% { left: 120%; }
-    }
-    .corner-accent {
-      position: absolute;
-      width: 22px; height: 22px;
-      border: 2px solid var(--neon-cyan);
-      opacity: 0.6;
-    }
-    .corner-accent.tl { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
-    .corner-accent.br { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
-    .project-card-2077 h4 { font-family: 'Orbitron', monospace; letter-spacing: 0.06em; }
-    .project-card-2077 p { font-family: 'Rajdhani', sans-serif; }
-  </style>
+  <!-- Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
-<body class="cyber-bg-2077">
-  <div id="scroll-animated-bg"></div>
-  <section>
-    <nav class="glass fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full lg:px-64">
-      <a href="index.html" class="p-2 mr-4 inline-flex items-center lg:mr-0">
-        <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
+<body>
+
+  <!-- Background -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow" style="background: radial-gradient(circle, rgba(0, 243, 255, 0.1) 0%, rgba(0,0,0,0) 70%);"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        Youssef <span>Neji</span>
       </a>
 
-      <!-- Mobile Menu Toggle Button -->
-      <button class="text-white inline-flex p-3 rounded lg:hidden ml-auto hover:bg-[#181150] nav-toggler"
-        id="nav-toggle">
+      <button class="nav-toggle" id="navToggle">
         <i class="material-icons">menu</i>
       </button>
 
-      <!-- Desktop Navigation -->
-      <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg"
-        id="desktop-navigation">
-        <a href="index.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-          <span>About</span>
-        </a>
-        <a href="Projects.html"
-          class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-          <span>Videos</span>
-        </a>
-        <a href="Contact.html"
-          class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-          <span>Contact</span>
-        </a>
-        <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
-          class="text-sm px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
-          class="text-sm px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">About</a>
+        <a href="Projects.html" class="nav-link active">Projects</a>
+        <a href="Contact.html" class="nav-link">Contact</a>
+        <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="nav-link"><i
+            class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank" class="nav-link"><i
+            class="fab fa-linkedin-in"></i></a>
       </div>
-
-      <!-- Mobile Navigation -->
-      <div
-        class="glass lg:hidden hidden flex-col items-center text-center w-full text-md sm:text-lg overflow-hidden transition-all duration-300 ease-in-out"
-        id="mobile-navigation">
-        <a href="index.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-          <span>About</span>
-        </a>
-        <a href="Projects.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-          <span>Videos</span>
-        </a>
-        <a href="Contact.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-          <span>Contact</span>
-        </a>
-        <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
-          class="text-sm px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
-          class="text-sm px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-      </div>
-    </nav>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const video = document.querySelector('.rotated-video');
-        video.playbackRate = 2.0;
-      });
-
-      document.addEventListener('DOMContentLoaded', function () {
-        const toggleButton = document.getElementById('nav-toggle');
-        const mobileNav = document.getElementById('mobile-navigation');
-
-        // Add event listener to the toggle button
-        toggleButton.addEventListener('click', function () {
-
-          mobileNav.classList.toggle('hidden');
-        });
-      });
-
-      // Futuristic Projects Header Animations
-      document.addEventListener('DOMContentLoaded', function() {
-        // Typewriter Effect
-        const typewriterText = document.querySelector('.typewriter-text');
-        const messages = [
-          "Innovative Digital Experiences",
-          "Cutting-Edge 3D Creations", 
-          "Interactive Web Solutions",
-          "Immersive Visual Stories"
-        ];
-        let messageIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function typeWriter() {
-          const currentMessage = messages[messageIndex];
-          
-          if (isDeleting) {
-            typewriterText.textContent = currentMessage.substring(0, charIndex - 1);
-            charIndex--;
-          } else {
-            typewriterText.textContent = currentMessage.substring(0, charIndex + 1);
-            charIndex++;
-          }
-
-          let typeSpeed = isDeleting ? 50 : 100;
-
-          if (!isDeleting && charIndex === currentMessage.length) {
-            typeSpeed = 2000; // Pause at end
-            isDeleting = true;
-          } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            messageIndex = (messageIndex + 1) % messages.length;
-            typeSpeed = 500; // Pause before next message
-          }
-
-          setTimeout(typeWriter, typeSpeed);
-        }
-
-        // Start typewriter after initial delay
-        setTimeout(typeWriter, 1500);
-
-        // Animated Number Counters
-        function animateCounter(element, target, duration = 2000) {
-          let start = 0;
-          const increment = target / (duration / 16);
-          
-          function updateCounter() {
-            start += increment;
-            if (start < target) {
-              element.textContent = Math.floor(start);
-              requestAnimationFrame(updateCounter);
-            } else {
-              element.textContent = target;
-            }
-          }
-          updateCounter();
-        }
-
-        // Start counters with delays - will be called after data loads
-        window.startStatCounters = function() {
-          setTimeout(() => {
-            const counters = document.querySelectorAll('.stat-number');
-            counters.forEach(counter => {
-              const target = parseInt(counter.getAttribute('data-target'));
-              if (target > 0) { // Only animate if we have a valid target
-                animateCounter(counter, target);
-              }
-            });
-          }, 2500);
-        };
-
-        // Add glow effect on hover for stats
-        const statItems = document.querySelectorAll('.stat-item');
-        statItems.forEach(item => {
-          item.addEventListener('mouseenter', function() {
-            const number = this.querySelector('.stat-number');
-            number.style.textShadow = '0 0 20px currentColor, 0 0 40px currentColor';
-            number.style.transform = 'scale(1.1)';
-            number.style.transition = 'all 0.3s ease';
-          });
-          
-          item.addEventListener('mouseleave', function() {
-            const number = this.querySelector('.stat-number');
-            number.style.textShadow = '0 0 10px currentColor';
-            number.style.transform = 'scale(1)';
-          });
-        });
-      });
-    </script>
-  </section>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-  <!-- Futuristic Projects Header Section -->
-  <section class="projects-hero-section relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a0a0f] via-[#1a1a2e] to-[#16213e] pt-24">
-    <!-- Animated Background Elements -->
-    <div class="absolute inset-0 pointer-events-none">
-      <!-- Floating geometric shapes -->
-      <div class="floating-shape shape-1"></div>
-      <div class="floating-shape shape-2"></div>
-      <div class="floating-shape shape-3"></div>
-      <div class="floating-shape shape-4"></div>
-      
-      <!-- Grid overlay -->
-      <div class="cyber-grid-overlay"></div>
-      
-      <!-- Scanning lines -->
-      <div class="scan-line scan-line-1"></div>
-      <div class="scan-line scan-line-2"></div>
     </div>
+  </nav>
 
-    <!-- Main Content -->
-    <div class="relative z-10 text-center max-w-6xl mx-auto px-6">
-      <!-- Main Title with Glitch Effect -->
-      <h1 class="projects-main-title cyber-font-primary text-6xl md:text-8xl font-bold mb-6 holo-text glitch-text" data-text="PROJECTS">
-        PROJECTS
-      </h1>
-      
-      <!-- Subtitle with Typewriter Effect -->
-      <div class="projects-subtitle-container mb-8">
-        <p class="projects-subtitle cyber-font-secondary text-xl md:text-2xl text-purple-200 leading-relaxed">
-          <span class="typewriter-text"></span>
-          <span class="typewriter-cursor">|</span>
-        </p>
+  <!-- Projects Content -->
+  <section class="projects-page">
+    <div class="container">
+
+      <div class="hero-content text-center" style="margin: 0 auto 3rem; padding-top: 4rem;">
+        <h1 class="hero-title fade-in">Featured Work</h1>
+        <p class="hero-subtitle fade-in delay-100">Exploring the boundaries of 3D, Interactivity, and Design.</p>
       </div>
-      
-      <!-- Animated Stats -->
-      <div class="projects-stats flex justify-center gap-8 md:gap-12 mb-8">
-        <div class="stat-item">
-          <div class="stat-number cyber-font-primary text-3xl md:text-4xl font-bold text-neon-cyan" data-target="61">0</div>
-          <div class="stat-label cyber-font-secondary text-sm text-purple-300">Projects</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number cyber-font-primary text-3xl md:text-4xl font-bold text-neon-magenta" data-target="7">0</div>
-          <div class="stat-label cyber-font-secondary text-sm text-purple-300">Categories</div>
-        </div>
+
+      <!-- Featured Carousel -->
+      <div class="carousel-section fade-in delay-200" id="featuredCarousel">
+        <!-- Injected via JS -->
       </div>
-      
-      <!-- Scroll Indicator -->
-      <div class="scroll-indicator flex flex-col justify-center items-center col-1 mt-4 text-center">
-        <div class="scroll-arrow"></div>
-        <span class="scroll-text cyber-font-secondary text-md text-purple-400 mt-2">Explore Projects</span>
+
+      <!-- Filters -->
+      <div class="filters-container fade-in delay-200">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="recent">Recent</button>
+        <button class="filter-btn" data-filter="architecture">Architecture</button>
+        <button class="filter-btn" data-filter="game-development">Game Dev</button>
+        <button class="filter-btn" data-filter="vfx">CGI/VFX</button>
+        <button class="filter-btn" data-filter="videoediting">Video Editing</button>
+        <button class="filter-btn" data-filter="animation">Animation</button>
+        <button class="filter-btn" data-filter="other">Other</button>
       </div>
+
+      <!-- Grid -->
+      <div class="projects-grid" id="projectsGrid">
+        <!-- Injected via JS -->
+      </div>
+
     </div>
   </section>
 
-  
-  <!-- Animated particle background (canvas) -->
-  <canvas id="particle-bg" style="position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:-1; pointer-events:none;"></canvas>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container flex space-between" style="flex-wrap: wrap; gap: 2rem;">
+      <div>
+        <h3 style="margin-bottom: 0.5rem; color: #fff;">PORTFOLIO</h3>
+        <p>Youssef Neji &copy; 2025</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">About</a>
+        <a href="Projects.html">Projects</a>
+        <a href="Contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="src/js/particles.js"></script>
+  <script src="src/js/projects-data.js"></script>
+  <script src="src/js/creative.js"></script>
   <script>
-  (function() {
-    const canvas = document.getElementById('particle-bg');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    const particleCount = 38;
-    const colors = ['#969cff44', '#6D28D955', '#fff2', '#969cff33'];
-
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      canvas.style.width = window.innerWidth + 'px';
-      canvas.style.height = window.innerHeight + 'px';
-      createParticles();
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    function random(min, max) { return Math.random() * (max - min) + min; }
-
-    function createParticles() {
-      particles = [];
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: random(0, canvas.width),
-          y: random(0, canvas.height),
-          r: random(16, 38),
-          dx: random(-0.15, 0.15),
-          dy: random(-0.08, 0.08),
-          color: colors[Math.floor(Math.random() * colors.length)],
-          alpha: random(0.18, 0.38)
-        });
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let p of particles) {
-        ctx.save();
-        ctx.globalAlpha = p.alpha;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
-        ctx.fillStyle = p.color;
-        ctx.shadowColor = p.color;
-        ctx.shadowBlur = 18;
-        ctx.fill();
-        ctx.restore();
-        p.x += p.dx;
-        p.y += p.dy;
-        // Wrap around edges
-        if (p.x < -p.r) p.x = canvas.width + p.r;
-        if (p.x > canvas.width + p.r) p.x = -p.r;
-        if (p.y < -p.r) p.y = canvas.height + p.r;
-        if (p.y > canvas.height + p.r) p.y = -p.r;
-      }
-      requestAnimationFrame(animate);
-    }
-    animate();
-  })();
-  </script>
-
-  <!-- Projects Section (Modern Carousel + Grid with Filtering and Arrows) -->
-  <section class="py-24 px-6 relative">
-    <div class="max-w-7xl mx-auto relative">
-      <!-- Cyber grid backdrop -->
-      <div class="cyber-grid absolute inset-0 -z-10"></div>
-      
-      <!-- Filter Bar -->
-      <div class="flex flex-wrap justify-center gap-4 mb-12">
-        <button class="filter-btn px-6 py-2 rounded-md" data-category="all">All</button>
-        <button class="filter-btn px-6 py-2 rounded-md" data-category="recent">Recent</button>
-        <button class="filter-btn px-6 py-2 rounded-md" data-category="architecture">Architecture</button>
-        <button class="filter-btn px-6 py-2 rounded-md" data-category="game-development">Game Development</button>
-        <button class="filter-btn px-6 py-2 rounded-md" data-category="vfx">CGI</button>
-        <button class="filter-btn px-6 py-2 rounded-md" data-category="videoediting">Video Editing</button>
-        <button class="filter-btn px-6 py-2 rounded-md" data-category="animation">Animation</button>
-        <button class="filter-btn px-6 py-2 rounded-md" data-category="other">Other</button>
-      </div>
-      <!-- Carousel Main Project Area (2077 card style) -->
-      <div class="relative mb-16">
-        <button id="carousel-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 cyber-button" style="color: var(--neon-cyan); border-color: var(--neon-cyan);"><span class="material-icons">chevron_left</span></button>
-        <div class="overflow-hidden holo-card" id="project-carousel">
-          <div id="carousel-track" class="flex transition-transform duration-700 ease-out"></div>
-        </div>
-        <button id="carousel-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 cyber-button" style="color: var(--neon-cyan); border-color: var(--neon-cyan);"><span class="material-icons">chevron_right</span></button>
-        <!-- Carousel Navigation Dots -->
-        <div id="carousel-dots" class="flex justify-center mt-8 space-x-2"></div>
-      </div>
-      <!-- Project Grid for Featured Projects -->
-      <div id="project-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16"></div>
-    </div>
-  </section>
-
-  <section class="footer px-6 md:px-16 lg:px-44 py-8 bg-[#140C20]">
-    <footer class="w-full text-white">
-      <div class="mx-auto w-full p-4 md:p-6">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <!-- Logo and Brand Name -->
-          <div class="mb-4 md:mb-0 text-center md:text-left">
-            <a href="index.html" class="flex items-center space-x-2">
-              <span class="self-center font-semibold text-4xl md:text-5xl text-white">Portfolio</span>
-            </a>
-          </div>
-
-          <!-- Links Section -->
-          <div class="grid grid-cols-2 sm:grid-cols-2 gap-8 sm:gap-6 md:gap-12 text-center md:text-left">
-            <!-- My Career -->
-            <div>
-              <h2 class="text-xl md:text-2xl font-semibold uppercase text-white mb-3">My Career</h2>
-              <ul class="text-gray-400">
-                <li class="mb-2">
-                  <a href="Images/Youssef Neji Final Cv.pdf" download="Images/Youssef Neji Final Cv.pdf"
-                    class="text-lg hover:text-purple-300">Download CV</a>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Follow Me -->
-            <div>
-              <h2 class="text-xl md:text-2xl font-semibold uppercase text-purple-white mb-3">Follow Me
-              </h2>
-              <ul class="text-gray-400">
-                <li class="mb-2">
-                  <a href="https://github.com/Youssef0356" class="text-lg hover:text-purple-300">GitHub</a>
-                </li>
-                <li>
-                  <a href="https://www.linkedin.com/in/youssef-neji-a13604279/"
-                    class="text-lg hover:text-purple-300">LinkedIn</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Divider -->
-        <hr class="my-4 border-gray-600" />
-
-        <!-- Bottom Section -->
-        <div class="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
-          <span class="text-sm text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Youssef
-              Neji™</a>. All Rights Reserved.</span>
-          <div class="flex space-x-4 mt-2 sm:mt-0">
-            <!-- Social Icons -->
-            <a href="https://www.facebook.com/youssef.dragonboll/"
-              class="text-gray-400 hover:text-white transition-colors">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 8 19">
-                <path fill-rule="evenodd"
-                  d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
-                  clip-rule="evenodd" />
-              </svg>
-              <span class="sr-only">Facebook</span>
-            </a>
-
-            <a href="https://github.com/Youssef0356" class="text-gray-400 hover:text-white transition-colors">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                  d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
-                  clip-rule="evenodd" />
-              </svg>
-              <span class="sr-only">GitHub</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </section>
-  <script src="index.js">
-
-  </script>
-
-  <div class="glow-bg"></div>
-
-  <script>
-    // Parallax effect for the glow on scroll
-    document.addEventListener('scroll', function () {
-      var blob = document.getElementById('glow-hero-blob');
-      var projectsSection = document.querySelector('.relative.flex.min-h-screen');
-      if (blob && projectsSection) {
-        var rect = projectsSection.getBoundingClientRect();
-        var windowHeight = window.innerHeight;
-        // Only animate if projects section is in view
-        if (rect.top < windowHeight && rect.bottom > 0) {
-          var scrollPercent = Math.min(1, Math.max(0, (windowHeight - rect.top) / (windowHeight + rect.height)));
-          var translateY = 0 + scrollPercent * 40; // move down as you scroll
-          var translateX = 0 + scrollPercent * 30; // move right as you scroll
-          blob.style.transform = `translateY(${translateY}px) translateX(${translateX}px)`;
-        }
-      }
+    // Start Navigation Logic
+    const toggleBtn = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggleBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-open');
     });
-  </script>
 
-  <!-- Enhance project card entrance with AOS: fade-up, slight tilt/scale -->
-  <style>
-    [data-aos="fade-up"] {
-      transform: translateY(40px) scale(0.97) rotateZ(-2deg);
-      opacity: 0;
-      transition-property: transform, opacity;
-    }
-    [data-aos="fade-up"].aos-animate {
-      transform: translateY(0) scale(1.03) rotateZ(0.5deg);
-      opacity: 1;
-      box-shadow: 0 8px 40px 0 #969cff33, 0 2px 16px 0 #969cff22;
-      z-index: 2;
-    }
-  </style>
+    // --- Projects Logic ---
+    let allProjects = [];
+    let filteredProjects = [];
+    let currentIndex = 0;
 
-  <script>
-  let allProjects = [];
-  let filteredProjects = [];
-  let currentProject = 0;
-  let autoSwitchInterval = null;
-  let isCarouselHovered = false;
-
-  // Helper function to parse various date formats from the JSON
-  function parseDate(dateString) {
-    if (!dateString) return new Date(0);
-    
-    try {
-      // Handle different date formats found in the JSON
-      const date = dateString.trim();
-      
-      // Format: "29 September 2024"
-      if (/^\d{1,2}\s+[A-Za-z]+\s+\d{4}$/.test(date)) {
-        return new Date(date);
-      }
-      
-      // Format: "11 March 2025"
-      if (/^\d{1,2}\s+[A-Za-z]+\s+\d{4}$/.test(date)) {
-        return new Date(date);
-      }
-      
-      // Format: "21 mai 2025" (French month)
-      if (/^\d{1,2}\s+[A-Za-z]+\s+\d{4}$/.test(date)) {
-        // Replace French month names with English equivalents
-        const frenchToEnglish = {
-          'janvier': 'January', 'février': 'February', 'mars': 'March', 'avril': 'April',
-          'mai': 'May', 'juin': 'June', 'juillet': 'July', 'août': 'August',
-          'septembre': 'September', 'octobre': 'October', 'novembre': 'November', 'décembre': 'December'
-        };
-        
-        let englishDate = date;
-        for (const [french, english] of Object.entries(frenchToEnglish)) {
-          englishDate = englishDate.replace(new RegExp(french, 'i'), english);
-        }
-        return new Date(englishDate);
-      }
-      
-      // Format: "09/02 February 2025"
-      if (/^\d{2}\/\d{2}\s+[A-Za-z]+\s+\d{4}$/.test(date)) {
-        const parts = date.split(' ');
-        const dayMonth = parts[0].split('/');
-        return new Date(parts[2], getMonthIndex(parts[1]), dayMonth[0]);
-      }
-      
-      // Format: "07 07 2025"
-      if (/^\d{2}\s+\d{2}\s+\d{4}$/.test(date)) {
-        const parts = date.split(' ');
-        return new Date(parts[2], parts[1] - 1, parts[0]);
-      }
-      
-      // Format: "20 january 2025" (lowercase month)
-      if (/^\d{1,2}\s+[a-z]+\s+\d{4}$/.test(date)) {
-        return new Date(date);
-      }
-      
-      // Format: "03 february 2025" (lowercase month)
-      if (/^\d{1,2}\s+[a-z]+\s+\d{4}$/.test(date)) {
-        return new Date(date);
-      }
-      
-      // Format: "14 Febriary 2024" (typo in month name)
-      if (/^\d{1,2}\s+[A-Za-z]+\s+\d{4}$/.test(date)) {
-        const correctedDate = date.replace('Febriary', 'February');
-        return new Date(correctedDate);
-      }
-      
-      // Default fallback
-      const parsedDate = new Date(date);
-      if (isNaN(parsedDate.getTime())) {
-        console.warn(`Could not parse date: "${dateString}"`);
-        return new Date(0);
-      }
-      return parsedDate;
-    } catch (error) {
-      console.error(`Error parsing date "${dateString}":`, error);
-      return new Date(0);
-    }
-  }
-  
-  // Helper function to get month index (0-11)
-  function getMonthIndex(monthName) {
-    const months = {
-      'January': 0, 'February': 1, 'March': 2, 'April': 3, 'May': 4, 'June': 5,
-      'July': 6, 'August': 7, 'September': 8, 'October': 9, 'November': 10, 'December': 11
-    };
-    return months[monthName] || 0;
-  }
-  
-  // Helper function to sort projects by date (newest first)
-  function sortByDate(a, b) {
-    const dateA = parseDate(a.date);
-    const dateB = parseDate(b.date);
-    return dateB - dateA;
-  }
-
-  // Function to calculate dynamic statistics
-  function calculateStatistics(projects) {
-    const stats = {
-      totalProjects: projects.length,
-      totalCategories: 0
-    };
-    
-    // Calculate unique categories
-    const categories = new Set();
-    projects.forEach(project => {
-      if (project.category) {
-        categories.add(project.category.toLowerCase());
-      }
-    });
-    stats.totalCategories = categories.size;
-    
-    return stats;
-  }
-  
-  // Function to update statistics in the UI
-  function updateStatistics(stats) {
-    const projectsElement = document.querySelector('[data-target="50"]');
-    const categoriesElement = document.querySelector('[data-target="5"]');
-    
-    if (projectsElement) {
-      projectsElement.setAttribute('data-target', stats.totalProjects);
-      projectsElement.textContent = '0'; // Reset for animation
-    }
-    if (categoriesElement) {
-      categoriesElement.setAttribute('data-target', stats.totalCategories);
-      categoriesElement.textContent = '0'; // Reset for animation
-    }
-    
-    console.log('Dynamic Statistics:', stats);
-  }
-
-  fetch('videos.json')
-    .then(response => response.json())
-    .then(data => {
+    // Fetch Projects
+    // Fetch Projects with Cache Busting
+    function initProjects(data) {
       allProjects = data;
-      console.log(`Loaded ${allProjects.length} projects`);
-      
-      // Calculate and update dynamic statistics
-      const stats = calculateStatistics(allProjects);
-      updateStatistics(stats);
-      
-      // Start the counter animations after updating the values
-      if (window.startStatCounters) {
-        window.startStatCounters();
+      // Parse dates and sort
+      allProjects.forEach(p => p.parsedDate = parseDate(p.date));
+      allProjects.sort((a, b) => b.parsedDate - a.parsedDate);
+
+      // DEFAULT TO ALL
+      filteredProjects = allProjects;
+
+      // Reset Filter Buttons UI
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('[data-filter="all"]').classList.add('active');
+
+      if (filteredProjects.length > 0) {
+        renderFeatured(filteredProjects[0]);
+        renderGrid(filteredProjects);
+      } else {
+        document.getElementById('projectsGrid').innerHTML = '<p class="text-center w-full col-span-3 text-muted">No projects found.</p>';
       }
-      
-      // Sort all projects by date (newest first) initially
-      filteredProjects = [...allProjects].sort(sortByDate);
-      console.log('Projects sorted by date (newest first):');
-      filteredProjects.slice(0, 5).forEach((p, i) => {
-        console.log(`${i + 1}. ${p.title} - ${p.date} (${parseDate(p.date).toDateString()})`);
-      });
-      
-      renderCarousel(filteredProjects);
-      renderGrid(filteredProjects);
-      setupFilters();
-      setupCarouselArrows();
-      setupAutoSwitch();
-    });
 
-  function normalizeUrl(url) {
-    if (!url) return '';
-    url = url.trim();
-    if (url.includes('youtu.be/')) {
-      const id = url.split('youtu.be/')[1].split(/[?&]/)[0];
-      return `https://www.youtube.com/embed/${id}`;
-    }
-    if (url.includes('watch?v=')) {
-      const id = url.split('watch?v=')[1].split('&')[0];
-      return `https://www.youtube.com/embed/${id}`;
-    }
-    if (url.includes('/view')) {
-      return url.replace('/view', '/preview');
-    }
-    return url;
-  }
+      // Animation triggers
+      // Use a small timeout to ensure DOM is ready
+      setTimeout(() => {
+        ScrollTrigger.refresh();
 
-  function renderCarousel(data) {
-    const track = document.getElementById('carousel-track');
-    const dots = document.getElementById('carousel-dots');
-    if (!track || !dots) return;
-    track.innerHTML = '';
-    dots.innerHTML = '';
-    data.forEach((project, idx) => {
-      // Carousel Card
-      const card = document.createElement('div');
-      card.className = 'w-full flex-shrink-0 px-4';
-      card.innerHTML = `
-        <div class="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500" style="box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
-          <div class="relative h-96 overflow-hidden">
-            ${project.url ?
-              `<iframe class="w-full h-full object-cover bg-black" src="${normalizeUrl(project.url)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>` :
-              `<img src="${project.image || ''}" alt="${project.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />`
-            }
-            <div class="absolute top-4 left-4">
-              <span class="px-3 py-1 bg-purple-600/80 backdrop-blur-sm rounded-full text-sm font-medium">
-                ${project.category || ''}
-              </span>
-            </div>
-          </div>
-          <div class="p-8">
-            <h3 class="text-2xl font-semibold mb-3">${project.title || ''}</h3>
-            <p class="text-purple-200 mb-4 leading-relaxed">${project.description || ''}</p>
-            <div class="text-sm text-purple-300 mb-4">
-              📅 ${project.date || ''}
-            </div>
-            <div class="flex flex-wrap gap-2 mb-6">
-              ${(project.tools || []).map(tool => `<span class="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20">${tool}</span>`).join('')}
-            </div>
-            <div class="flex space-x-4">
-              ${project.link ? `<a href="${project.link}" target="_blank" class="flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg hover:from-purple-500 hover:to-pink-500 transition-all duration-300 text-white font-semibold">View Project</a>` : ''}
-              ${project.github ? `<a href="${project.github}" target="_blank" class="flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-colors border border-white/20 text-white font-semibold">Code</a>` : ''}
-            </div>
-          </div>
-        </div>
-      `;
-      track.appendChild(card);
-      // Dot
-      const dot = document.createElement('button');
-      dot.className = `w-3 h-3 rounded-full transition-all duration-300 ${idx === 0 ? 'bg-purple-400 w-8' : 'bg-white/30 hover:bg-white/50'}`;
-      dot.onclick = () => setCarousel(idx, data.length);
-      dots.appendChild(dot);
-    });
-    setCarousel(0, data.length);
-    setupCarouselHover();
-  }
-  function setCarousel(idx, total) {
-    currentProject = idx;
-    const track = document.getElementById('carousel-track');
-    if (track) track.style.transform = `translateX(-${currentProject * 100}%)`;
-    const dots = document.getElementById('carousel-dots').children;
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].className = `w-3 h-3 rounded-full transition-all duration-300 ${i === idx ? 'bg-purple-400 w-8' : 'bg-white/30 hover:bg-white/50'}`;
+        // Reset any existing animations or props
+        gsap.killTweensOf(".project-card");
+        gsap.set(".project-card", { opacity: 0, y: 30 }); // Explicit initial state
+
+        gsap.batch(".project-card", {
+          interval: 0.1, // Stagger time between batches
+          batchMax: 4,   // Max items per batch
+          onEnter: batch => gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power2.out",
+            overwrite: true,
+            clearProps: "transform,opacity" // Ensure clean state after animation
+          }),
+          // Also animate if they are already in view on load
+          start: "top 95%",
+          once: true
+        });
+      }, 100);
     }
-  }
-  function renderGrid(data) {
-    const grid = document.getElementById('project-grid');
-    if (!grid) return;
-    grid.innerHTML = '';
-    data.forEach((project, index) => {
-      const card = document.createElement('div');
-      card.className = 'project-card-2077 group';
-      card.innerHTML = `
-        <div class="thumb">
-          ${project.url ?
-            `<iframe class="w-full h-full object-cover bg-black" src="${normalizeUrl(project.url)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>` :
-            `<img src="${project.image || ''}" alt="${project.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />`
-          }
-          <div class="card-scanline"></div>
-          <span class="corner-accent tl"></span>
-          <span class="corner-accent br"></span>
-        </div>
-        <div class="p-6">
-          <h4 class="text-xl font-semibold mb-2 holo-text" data-text="${(project.title || '').replace(/"/g,'&quot;')}">${project.title || ''}</h4>
-          <p class="text-purple-200 text-sm mb-4 line-clamp-2">${project.description || ''}</p>
-          <div class="flex justify-between items-center mb-3">
-            <span class="text-xs text-purple-300">${project.category || ''}</span>
-            ${project.url ? `<button onclick="openGridVideo(${index})" class="cyber-button" style="color: var(--neon-magenta); border-color: var(--neon-magenta);">View</button>` : ''}
-          </div>
-          <div class="text-xs text-purple-400 opacity-75">
-            ${project.date ? `📅 ${project.date}` : ''}
-          </div>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
-  }
-  function openGridVideo(idx) {
-    setCarousel(idx, filteredProjects.length);
-    scrollToCarousel();
-  }
-  function scrollToCarousel() {
-    const carousel = document.getElementById('project-carousel');
-    if (carousel) carousel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-  function setupFilters() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-      btn.onclick = () => {
-        filterBtns.forEach(b => b.classList.remove('bg-purple-600', 'text-white'));
-        btn.classList.add('bg-purple-600', 'text-white');
-        const cat = btn.getAttribute('data-category');
-        
-        if (cat === 'all') {
-          filteredProjects = [...allProjects].sort(sortByDate);
-        } else if (cat === 'recent') {
-          // Get videos from the last 6 months
+
+    // Try to load from variable first (works locally), then fetch (works on server if variable missing)
+    if (typeof projectData !== 'undefined') {
+      initProjects(projectData);
+    } else {
+      fetch('videos.json?t=' + new Date().getTime())
+        .then(res => res.json())
+        .then(data => initProjects(data))
+        .catch(err => {
+          console.error("Error loading projects:", err);
+          document.getElementById('projectsGrid').innerHTML = '<p class="text-center w-full col-span-3 text-muted">Error loading projects. Please check console.</p>';
+        });
+    }
+
+    // Filters
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update Active State
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+
+        if (filter === 'all') {
+          filteredProjects = allProjects;
+        } else if (filter === 'recent') {
           const sixMonthsAgo = new Date();
           sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-          console.log('Recent filter: Videos from', sixMonthsAgo.toDateString(), 'and newer');
-          filteredProjects = allProjects.filter(p => {
-            const videoDate = parseDate(p.date);
-            const isRecent = videoDate >= sixMonthsAgo;
-            console.log(`${p.title}: ${p.date} -> ${videoDate.toDateString()} (${isRecent ? 'Recent' : 'Old'})`);
-            return isRecent;
-          }).sort(sortByDate);
-          console.log(`Found ${filteredProjects.length} recent videos`);
+          filteredProjects = allProjects.filter(p => p.parsedDate >= sixMonthsAgo);
         } else {
-          filteredProjects = allProjects.filter(p => (p.category || '').toLowerCase().replace(/\s/g,'-') === cat)
-            .sort(sortByDate);
+          filteredProjects = allProjects.filter(p =>
+            (p.category || '').toLowerCase().replace(/\s/g, '-') === filter
+          );
         }
-        
-        // Update statistics for filtered projects
-        const filteredStats = calculateStatistics(filteredProjects);
-        updateStatistics(filteredStats);
-        
-        renderCarousel(filteredProjects);
+
         renderGrid(filteredProjects);
-        
-        // Restart counter animations for filtered stats
-        if (window.startStatCounters) {
-          // Clear any existing timeouts and restart immediately for filters
-          setTimeout(() => {
-            const counters = document.querySelectorAll('.stat-number');
-            counters.forEach(counter => {
-              const target = parseInt(counter.getAttribute('data-target'));
-              if (target > 0) {
-                animateCounter(counter, target, 1000); // Faster animation for filters
-              }
-            });
-          }, 100);
-        }
-      };
+        if (filteredProjects.length > 0) renderFeatured(filteredProjects[0]);
+
+        // Re-animate
+        gsap.from(".project-card", {
+          opacity: 0,
+          y: 20,
+          duration: 0.4,
+          stagger: 0.05,
+          clearProps: "all"
+        });
+      });
     });
-    
-    // Set initial active state for "All" button
-    const allBtn = document.querySelector('[data-category="all"]');
-    if (allBtn) {
-      allBtn.classList.add('bg-purple-600', 'text-white');
-    }
-  }
-  function setupCarouselArrows() {
-    document.getElementById('carousel-left').onclick = () => {
-      currentProject = (currentProject - 1 + filteredProjects.length) % filteredProjects.length;
-      setCarousel(currentProject, filteredProjects.length);
-      resetAutoSwitch();
-    };
-    document.getElementById('carousel-right').onclick = () => {
-      currentProject = (currentProject + 1) % filteredProjects.length;
-      setCarousel(currentProject, filteredProjects.length);
-      resetAutoSwitch();
-    };
-  }
-  function setupAutoSwitch() {
-    if (autoSwitchInterval) clearInterval(autoSwitchInterval);
-    autoSwitchInterval = setInterval(() => {
-      if (!isCarouselHovered) {
-        currentProject = (currentProject + 1) % filteredProjects.length;
-        setCarousel(currentProject, filteredProjects.length);
+
+    function renderFeatured(project) {
+      const container = document.getElementById('featuredCarousel');
+      if (!project) {
+        container.innerHTML = '<div class="p-8 text-center text-muted">No featured project found.</div>';
+        return;
       }
-    }, 3000);
-  }
-  function resetAutoSwitch() {
-    setupAutoSwitch();
-  }
-  function setupCarouselHover() {
-    const carousel = document.getElementById('project-carousel');
-    if (!carousel) return;
-    carousel.onmouseenter = () => { isCarouselHovered = true; };
-    carousel.onmouseleave = () => { isCarouselHovered = false; };
-  }
+
+      const mediaHtml = project.url
+        ? `<iframe src="${normalizeUrl(project.url)}" frameborder="0" allowfullscreen></iframe>`
+        : `<img src="${project.image || 'Images/placeholder.jpg'}" alt="${project.title}">`;
+
+      container.innerHTML = `
+                <div class="carousel-slide">
+                    <div class="carousel-visual">
+                        ${mediaHtml}
+                    </div>
+                    <div class="carousel-info">
+                        <span class="project-category" style="margin-bottom: 1rem;">${project.category || 'Featured'}</span>
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">${project.title}</h2>
+                        <p style="margin-bottom: 2rem; color: var(--text-muted);">${project.description || ''}</p>
+                        
+                        <div class="project-tools" style="margin-bottom: 2rem;">
+                             ${(project.tools || []).map(t => `<span class="tool-badge">${t}</span>`).join('')}
+                        </div>
+                        
+                        <div class="flex gap-1">
+                             ${project.link ? `<a href="${project.link}" target="_blank" class="btn btn-primary">View Project</a>` : ''}
+                             ${project.github ? `<a href="${project.github}" target="_blank" class="btn btn-outline">Code</a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+    }
+
+    function renderGrid(projects) {
+      const grid = document.getElementById('projectsGrid');
+      grid.innerHTML = '';
+
+      if (projects.length === 0) {
+        grid.innerHTML = '<p class="text-center w-full col-span-3 text-muted">No projects found for this category.</p>';
+        return;
+      }
+
+      projects.forEach((project, idx) => {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        // Add click handler to whole card for better UX
+        card.onclick = () => filterToProject(idx);
+        card.style.cursor = 'pointer';
+
+        let thumbHtml = '';
+        const youtubeId = getYoutubeId(project.url);
+
+        if (youtubeId) {
+          thumbHtml = `<img src="https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg" alt="${project.title}" loading="lazy">
+                         <div class="play-overlay"><i class="fas fa-play"></i></div>`;
+        } else if (project.image) {
+          thumbHtml = `<img src="${project.image}" alt="${project.title}" loading="lazy">`;
+        } else {
+          // Fallback for Drive/Other
+          thumbHtml = `<div class="placeholder-thumb">
+                            <i class="fas fa-video"></i>
+                            <span>View Project</span>
+                         </div>`;
+        }
+
+        card.innerHTML = `
+                    <div class="project-thumb">
+                        ${thumbHtml}
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">${project.category || 'Project'}</div>
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-desc">${project.description || ''}</p>
+                        <div class="project-tools">
+                            ${(project.tools || []).slice(0, 3).map(t => `<span class="tool-badge">${t}</span>`).join('')}
+                            ${(project.tools || []).length > 3 ? `<span class="tool-badge">+${project.tools.length - 3}</span>` : ''}
+                        </div>
+                        <div class="project-links">
+                             <button class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem;">details</button>
+                             ${project.github ? `<a href="${project.github}" target="_blank" style="color:var(--text-dim);" onclick="event.stopPropagation()"><i class="fab fa-github"></i></a>` : ''}
+                        </div>
+                    </div>
+                `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Helper to extract YT ID
+    function getYoutubeId(url) {
+      if (!url) return null;
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : null;
+    }
+
+    // Helper to scroll up and show
+    window.filterToProject = function (indexInFiltered) {
+      const project = filteredProjects[indexInFiltered];
+      renderFeatured(project);
+      document.getElementById('featuredCarousel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function normalizeUrl(url) {
+      if (!url) return '';
+      if (url.includes('youtu.be/')) return `https://www.youtube.com/embed/${url.split('youtu.be/')[1].split(/[?&]/)[0]}`;
+      if (url.includes('watch?v=')) return `https://www.youtube.com/embed/${url.split('watch?v=')[1].split('&')[0]}`;
+      return url;
+    }
+
+    function parseDate(dateStr) {
+      if (!dateStr) return new Date(0);
+      return new Date(dateStr); // Simplified for now, complex regex from old code can be added if needed
+    }
   </script>
-
-  <script>
-// --- Scroll Animated Background ---
-(function() {
-  const bg = document.getElementById('scroll-animated-bg');
-  bg.style.position = 'fixed';
-  bg.style.inset = '0';
-  bg.style.zIndex = '0';
-  bg.style.pointerEvents = 'none';
-  bg.style.overflow = 'hidden';
-
-  // Geometric shapes
-  const geoCount = 8;
-  const geos = [];
-  for (let i = 0; i < geoCount; i++) {
-    const d = document.createElement('div');
-    d.className = 'bg-geo';
-    d.style.position = 'absolute';
-    d.style.opacity = '0.18';
-    d.style.left = (10 + i * 11) + '%';
-    d.style.top = (18 + (i % 3) * 28) + '%';
-    d.style.width = (60 + (i % 3) * 40) + 'px';
-    d.style.height = (60 + (i % 3) * 40) + 'px';
-    d.style.borderRadius = i % 3 === 0 ? '50%' : i % 3 === 1 ? '20%' : '0%';
-    d.style.background = i % 4 === 0
-      ? 'linear-gradient(45deg, rgba(150,156,255,0.28), rgba(109,40,217,0.22))'
-      : i % 4 === 1
-      ? 'linear-gradient(135deg, rgba(236,72,153,0.22), rgba(150,156,255,0.22))'
-      : i % 4 === 2
-      ? 'linear-gradient(225deg, rgba(59,130,246,0.22), rgba(16,185,129,0.22))'
-      : 'linear-gradient(315deg, rgba(245,101,101,0.22), rgba(150,156,255,0.22))';
-    d.style.boxShadow = '0 20px 40px rgba(0,0,0,0.18)';
-    d.style.border = '1px solid rgba(255,255,255,0.08)';
-    d.style.transition = 'transform 0.1s';
-    bg.appendChild(d);
-    geos.push(d);
-  }
-  // Wireframes
-  const wireCount = 5;
-  const wires = [];
-  for (let i = 0; i < wireCount; i++) {
-    const d = document.createElement('div');
-    d.className = 'bg-wire';
-    d.style.position = 'absolute';
-    d.style.left = (20 + i * 16) + '%';
-    d.style.top = (30 + (i % 2) * 40) + '%';
-    d.style.width = (80 + i * 20) + 'px';
-    d.style.height = (80 + i * 20) + 'px';
-    d.style.borderRadius = i % 2 === 0 ? '50%' : '20%';
-    d.style.border = '2px dashed rgba(150,156,255,0.18)';
-    d.style.opacity = '0.18';
-    d.style.transition = 'transform 0.1s';
-    bg.appendChild(d);
-    wires.push(d);
-  }
-  // Floating particles
-  const particleCount = 18;
-  const particles = [];
-  for (let i = 0; i < particleCount; i++) {
-    const d = document.createElement('div');
-    d.className = 'bg-particle';
-    d.style.position = 'absolute';
-    d.style.left = (Math.random() * 100) + '%';
-    d.style.top = (Math.random() * 100) + '%';
-    const size = 6 + Math.random() * 10;
-    d.style.width = d.style.height = size + 'px';
-    d.style.borderRadius = '50%';
-    d.style.background = `radial-gradient(circle, rgba(${139 + Math.random()*100|0},${92 + Math.random()*100|0},246,0.7), transparent)`;
-    d.style.boxShadow = '0 0 20px rgba(150,156,255,0.18)';
-    d.style.opacity = '0.22';
-    d._baseLeft = parseFloat(d.style.left);
-    d._baseTop = parseFloat(d.style.top);
-    d._size = size;
-    d._phase = Math.random() * Math.PI * 2;
-    bg.appendChild(d);
-    particles.push(d);
-  }
-  // Animate on scroll
-  function animateBg() {
-    const scrollY = window.scrollY || window.pageYOffset;
-    geos.forEach((d, i) => {
-      d.style.transform =
-        `perspective(1000px) ` +
-        `rotateX(${scrollY * 0.09 + i * 45}deg) ` +
-        `rotateY(${scrollY * 0.13 + i * 60}deg) ` +
-        `rotateZ(${scrollY * 0.05 + i * 30}deg) ` +
-        `translateZ(${Math.sin(scrollY * 0.01 + i) * 80}px) ` +
-        `translateY(${scrollY * -0.22 + Math.cos(scrollY * 0.008 + i) * 40}px)`;
-    });
-    wires.forEach((d, i) => {
-      d.style.transform =
-        `perspective(1000px) ` +
-        `rotateX(${scrollY * 0.18 + i * 72}deg) ` +
-        `rotateY(${scrollY * 0.22 + i * 72}deg) ` +
-        `translateZ(${scrollY * -0.4 + i * 50}px) ` +
-        `translateY(${scrollY * -0.13}px)`;
-    });
-    const now = Date.now() / 1000;
-    particles.forEach((d, i) => {
-      d.style.transform =
-        `translateY(${Math.sin(now * 0.7 + i) * 18 + scrollY * -(0.08 + (i % 3) * 0.13)}px) ` +
-        `translateX(${Math.sin(scrollY * 0.01 + i) * 18}px) ` +
-        `scale(${1 + Math.sin(now * 0.8 + i) * 0.3})`;
-    });
-    requestAnimationFrame(animateBg);
-  }
-  animateBg();
-})();
-  </script>
-
 </body>
 
 </html>

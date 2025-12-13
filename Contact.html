@@ -2,412 +2,202 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youssef Neji</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/6234cd1732.js" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23a78bfa'%3EY%3C/text%3E%3C/svg%3E">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="src/styles/futuristic-2077.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Youssef Neji</title>
 
-<style>
-    footer{
-        animation : scaleup 1s ease-in-out;
-    }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
 
-    /* Contact Page Specific Styles */
-    .contact-container {
-        min-height: 100vh;
-        background: transparent;
-        position: relative;
-        overflow: hidden;
-    }
+  <!-- Icons -->
+  <script src="https://kit.fontawesome.com/6234cd1732.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    .contact-container::before { display: none; }
+  <!-- Styles -->
+  <link rel="stylesheet" href="src/styles/main.css">
+  <link rel="stylesheet" href="src/styles/sections.css">
 
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23a78bfa'%3EY%3C/text%3E%3C/svg%3E">
 
-    /* use .cyber-input */
-
-    /* use .cyber-button */
-
-    .contact-icon {
-        background: rgba(150, 156, 255, 0.2);
-        border-radius: 50%;
-        transition: all 0.3s ease;
-    }
-
-    .contact-icon:hover {
-        background: rgba(150, 156, 255, 0.3);
-        transform: scale(1.1);
-    }
-
-    .loading-spinner {
-        animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-
-    .fade-in {
-        animation: fadeIn 0.6s ease-out;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
+  <!-- Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 
-<body class="cyber-bg-2077">
-  <section>
-    <nav class="glass fixed z-50 flex items-center text-white font-bold p-5 flex-wrap w-full lg:px-64">
-        <a href="index.html" class="p-2 mr-4 inline-flex items-center lg:mr-0">
-          <span class="text-white font-bold uppercase tracking-wide text-xl">Youssef Neji</span>
-        </a>
-  
-        <!-- Mobile Menu Toggle Button -->
-        <button class="text-white inline-flex p-3 rounded lg:hidden ml-auto hover:bg-[#181150] nav-toggler" id="nav-toggle">
-          <i class="material-icons">menu</i>
-        </button>
-  
-        <!-- Desktop Navigation -->
-        <div class="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center lg:w-auto w-full text-lg" id="desktop-navigation">
-          <a href="index.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-            <span>About</span>
-          </a>
-          <a href="Projects.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-            <span>Videos</span>
-          </a>
-          <a href="Contact.html" class="px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-            <span>Contact</span>
-          </a>
-          <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
-            class="text-sm px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
-            class="text-sm px-3 py-2 rounded items-center justify-center hover:border-b-2 hover:border-white">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
-  
-        <!-- Mobile Navigation -->
-        <div
-          class="glass lg:hidden hidden flex-col items-center text-center w-full text-md sm:text-lg overflow-hidden transition-all duration-300 ease-in-out"
-          id="mobile-navigation">
-          <a href="index.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-            <span>About</span>
-          </a>
-          <a href="Projects.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-            <span>Videos</span>
-          </a>
-          <a href="Contact.html" class="px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-            <span>Contact</span>
-          </a>
-          <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank"
-            class="text-sm px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
-            class="text-sm px-3 py-2 rounded inline-block hover:border-b-2 hover:border-white">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
-      </nav>
-    <!-- Add this script to handle the toggle -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const video = document.querySelector('.rotated-video');
-            video.playbackRate = 2.0; // Set this to your desired speed (e.g., 2.0 for double speed)
-        });
+<body>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            // Get the toggle button and the mobile navigation menu
-            const toggleButton = document.getElementById('nav-toggle');
-            const mobileNav = document.getElementById('mobile-navigation');
+  <!-- Background -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
 
-            // Add event listener to the toggle button
-            toggleButton.addEventListener('click', function () {
-                // Toggle the visibility of the mobile navigation
-                mobileNav.classList.toggle('hidden');
-            });
-        });
-    </script>
-</section>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        Youssef <span>Neji</span>
+      </a>
 
-<!-- Contact Section -->
-<section class="contact-container flex items-center justify-center p-6 pt-24 relative">
-  <div class="cyber-grid absolute inset-0 -z-10"></div>
-  <div class="glass-panel max-w-6xl w-full p-8 fade-in">
-    <div class="grid md:grid-cols-2 gap-12">
-      
-      <!-- Contact Information -->
-      <div class="space-y-8">
-        <div>
-          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 cyber-font-primary holo-text" data-text="Get In Touch">Get In Touch</h2>
-          <p class="text-purple-200 text-lg leading-relaxed">
-            Let's create something amazing together. Reach out and let's start a conversation.
-          </p>
-        </div>
+      <button class="nav-toggle" id="navToggle">
+        <i class="material-icons">menu</i>
+      </button>
 
-        <div class="space-y-6">
-          <div class="flex items-center space-x-4">
-            <div class="contact-icon w-12 h-12 rounded-full flex items-center justify-center">
-              <i class="fas fa-envelope text-purple-400 text-lg"></i>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold">Email</h3>
-              <p class="text-purple-200">nejiyoussef081@gmail.com</p>
-            </div>
-          </div>
-
-          <div class="flex items-center space-x-4">
-            <div class="contact-icon w-12 h-12 rounded-full flex items-center justify-center">
-              <i class="fas fa-phone text-purple-400 text-lg"></i>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold">Phone</h3>
-              <p class="text-purple-200">+216 94730853</p>
-            </div>
-          </div>
-
-          <div class="flex items-center space-x-4">
-            <div class="contact-icon w-12 h-12 rounded-full flex items-center justify-center">
-              <i class="fas fa-map-marker-alt text-purple-400 text-lg"></i>
-            </div>
-            <div>
-              <h3 class="text-white font-semibold">Location</h3>
-              <p class="text-purple-200">Tunisia, Sfax, Saltnia</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Social Links -->
-        <div class="flex space-x-4">
-          <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" 
-             class="contact-icon w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
-            <i class="fab fa-facebook-f text-purple-400"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank"
-             class="contact-icon w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
-            <i class="fab fa-linkedin-in text-purple-400"></i>
-          </a>
-          <a href="https://github.com/Youssef0356" target="_blank"
-             class="contact-icon w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
-            <i class="fab fa-github text-purple-400"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Contact Form -->
-      <div>
-        <form id="contactForm" action="https://formsubmit.co/nejiyoussef081@gmail.com" method="POST" class="space-y-6">
-          <div>
-            <label for="name" class="block text-white font-semibold mb-2">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              class="cyber-input w-full px-4 py-3 rounded-xl text-white placeholder-purple-300"
-              placeholder="Your name"
-            />
-          </div>
-
-          <div>
-            <label for="email" class="block text-white font-semibold mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              class="cyber-input w-full px-4 py-3 rounded-xl text-white placeholder-purple-300"
-              placeholder="your@email.com"
-            />
-          </div>
-
-          <div>
-            <label for="tel" class="block text-white font-semibold mb-2">
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              id="tel"
-              name="tel"
-              class="cyber-input w-full px-4 py-3 rounded-xl text-white placeholder-purple-300"
-              placeholder="Your phone number"
-            />
-          </div>
-
-          <div>
-            <label for="message" class="block text-white font-semibold mb-2">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows="5"
-              class="cyber-input w-full px-4 py-3 rounded-xl text-white placeholder-purple-300 resize-none"
-              placeholder="Tell me about your project..."
-            ></textarea>
-          </div>
-
-          <!-- Hidden fields for FormSubmit configuration -->
-          <input type="hidden" name="_subject" value="New Contact Form Submission - Youssef Neji Portfolio">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://youssef0356.github.io/My_Portfolio/Contact.html">
-
-          <button
-            type="submit"
-            id="submitBtn"
-            class="cyber-button w-full text-white py-3 px-6 rounded-xl font-semibold flex items-center justify-center space-x-2"
-            style="color: var(--neon-cyan); border-color: var(--neon-cyan);"
-          >
-            <i class="fas fa-paper-plane"></i>
-            <span>Send Message</span>
-          </button>
-        </form>
-
-        <!-- Success Message -->
-        <div id="successMessage" class="hidden mt-4 p-4 bg-green-500/20 border border-green-500/30 rounded-xl text-green-300">
-          <i class="fas fa-check-circle mr-2"></i>
-          Message sent successfully! I'll get back to you soon.
-        </div>
-
-        <!-- Error Message -->
-        <div id="errorMessage" class="hidden mt-4 p-4 bg-red-500/20 border border-red-500/30 rounded-xl text-red-300">
-          <i class="fas fa-exclamation-circle mr-2"></i>
-          There was an error sending your message. Please try again.
-        </div>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">About</a>
+        <a href="Projects.html" class="nav-link">Projects</a>
+        <a href="Contact.html" class="nav-link active">Contact</a>
+        <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="nav-link"><i
+            class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank" class="nav-link"><i
+            class="fab fa-linkedin-in"></i></a>
       </div>
     </div>
-  </div>
-</section>
+  </nav>
 
-<!-- Contact Form JavaScript -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const successMessage = document.getElementById('successMessage');
-    const errorMessage = document.getElementById('errorMessage');
+  <!-- Contact Section -->
+  <section class="contact-section"
+    style="padding-top: var(--nav-height); min-height: 100vh; display: flex; align-items: center;">
+    <div class="container mobile-padding-top">
 
-    // Check if we're returning from a successful form submission
+      <div class="grid-2-col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+
+        <!-- Info Column -->
+        <div class="contact-info">
+          <h1 class="hero-title" style="font-size: 3rem; margin-bottom: 2rem;">Get In Touch</h1>
+          <p class="hero-subtitle" style="margin: 0 0 2rem 0; text-align: left;">Let's create something amazing
+            together. Reach out and let's start a conversation.</p>
+
+          <div class="info-items" style="display: flex; flex-direction: column; gap: 2rem;">
+            <div class="info-item flex active-center gap-1">
+              <div class="icon-box"
+                style="width: 50px; height: 50px; background: rgba(167, 139, 250, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h4 style="margin:0; font-size: 1.1rem;">Email</h4>
+                <p style="margin:0; color: var(--text-muted);">nejiyoussef081@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="info-item flex active-center gap-1">
+              <div class="icon-box"
+                style="width: 50px; height: 50px; background: rgba(167, 139, 250, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div>
+                <h4 style="margin:0; font-size: 1.1rem;">Phone</h4>
+                <p style="margin:0; color: var(--text-muted);">+216 94730853</p>
+              </div>
+            </div>
+
+            <div class="info-item flex active-center gap-1">
+              <div class="icon-box"
+                style="width: 50px; height: 50px; background: rgba(167, 139, 250, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <h4 style="margin:0; font-size: 1.1rem;">Location</h4>
+                <p style="margin:0; color: var(--text-muted);">Tunisia, Sfax, Saltnia</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Column -->
+        <div class="contact-form-container glass-card" style="width: 100%;">
+          <form id="contactForm" action="https://formsubmit.co/nejiyoussef081@gmail.com" method="POST">
+            <div class="form-group">
+              <input type="text" id="name" name="name" class="form-input" placeholder=" " required>
+              <label for="name" class="form-label">Name</label>
+            </div>
+
+            <div class="form-group">
+              <input type="email" id="email" name="email" class="form-input" placeholder=" " required>
+              <label for="email" class="form-label">Email</label>
+            </div>
+
+            <div class="form-group">
+              <input type="tel" id="tel" name="tel" class="form-input" placeholder=" ">
+              <label for="tel" class="form-label">Phone</label>
+            </div>
+
+            <div class="form-group">
+              <textarea id="message" name="message" class="form-textarea" rows="5" placeholder=" " required></textarea>
+              <label for="message" class="form-label">Message</label>
+            </div>
+
+            <input type="hidden" name="_subject" value="New Contact Form Submission - Youssef Neji Portfolio">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next"
+              value="https://youssef0356.github.io/My_Portfolio/Contact.html?success=true">
+
+            <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%;">Send Message</button>
+          </form>
+
+          <div id="successMessage" style="display: none; margin-top: 1rem; color: #4ade80; text-align: center;">
+            <i class="fas fa-check-circle"></i> Message sent successfully!
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container flex space-between" style="flex-wrap: wrap; gap: 2rem;">
+      <div>
+        <h3 style="margin-bottom: 0.5rem; color: #fff;">PORTFOLIO</h3>
+        <p>Youssef Neji &copy; 2025</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">About</a>
+        <a href="Projects.html">Projects</a>
+        <a href="Contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Styles for Responsive Grid (inline for specific page tweak) -->
+  <style>
+    @media (max-width: 900px) {
+      .grid-2-col {
+        grid-template-columns: 1fr !important;
+      }
+
+      .mobile-padding-top {
+        padding-top: 2rem;
+      }
+    }
+  </style>
+
+  <!-- Scripts -->
+  <script src="src/js/particles.js"></script>
+  <script src="src/js/creative.js"></script>
+  <script>
+    // Nav Toggle
+    const toggleBtn = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggleBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-open');
+    });
+
+    // Form Success Check
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('success') === 'true') {
-        successMessage.classList.remove('hidden');
-        setTimeout(() => {
-            successMessage.classList.add('hidden');
-        }, 5000);
+      document.getElementById('successMessage').style.display = 'block';
+      history.replaceState(null, '', location.pathname); // Clear URL
     }
 
-    form.addEventListener('submit', function(e) {
-        // Show loading state
-        submitBtn.innerHTML = `
-            <div class="loading-spinner rounded-full h-5 w-5 border-b-2 border-white"></div>
-            <span>Sending...</span>
-        `;
-        submitBtn.disabled = true;
-        
-        // Hide any existing messages
-        successMessage.classList.add('hidden');
-        errorMessage.classList.add('hidden');
-        
-        // Let the form submit naturally to FormSubmit
-        // The form will redirect to the success page or show an error
-    });
-});
-</script>
-
-  <section class="footer px-6 md:px-16 lg:px-44 py-8 ">
-    <footer class="w-full text-white">
-        <div class="mx-auto w-full p-4 md:p-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <!-- Logo and Brand Name -->
-                <div class="mb-4 md:mb-0 text-center md:text-left">
-                    <a href="index.html" class="flex items-center space-x-2">
-                        <span class="self-center font-semibold text-4xl md:text-5xl text-white">Portfolio</span>
-                    </a>
-                </div>
-
-                <!-- Links Section -->
-                <div class="grid grid-cols-2 sm:grid-cols-2 gap-8 sm:gap-6 md:gap-12 text-center md:text-left">
-                    <!-- My Career -->
-                    <div>
-                        <h2 class="text-xl md:text-2xl font-semibold uppercase text-white mb-3">My Career</h2>
-                        <ul class="text-gray-400">
-                            <li class="mb-2">
-                                <a href="Images/Youssef Neji Final Cv.pdf" download="Images/Youssef Neji Final Cv.pdf"
-                                    class="text-lg hover:text-purple-300">Download CV</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Follow Me -->
-                    <div>
-                        <h2 class="text-xl md:text-2xl font-semibold uppercase text-purple-white mb-3">Follow Me
-                        </h2>
-                        <ul class="text-gray-400">
-                            <li class="mb-2">
-                                <a href="https://github.com/Youssef0356"
-                                    class="text-lg hover:text-purple-300">GitHub</a>
-                            </li>
-                            <li>
-                                <a href="https://www.linkedin.com/in/youssef-neji-a13604279/"
-                                    class="text-lg hover:text-purple-300">LinkedIn</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Divider -->
-            <hr class="my-4 border-gray-600" />
-
-            <!-- Bottom Section -->
-            <div class="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
-                <span class="text-sm text-gray-400">© 2023 <a href="https://flowbite.com/"
-                        class="hover:underline">Youssef Neji™</a>. All Rights Reserved.</span>
-                <div class="flex space-x-4 mt-2 sm:mt-0">
-                    <!-- Social Icons -->
-                    <a href="https://www.facebook.com/youssef.dragonboll/"
-                        class="text-gray-400 hover:text-white transition-colors">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 8 19">
-                            <path fill-rule="evenodd"
-                                d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="sr-only">Facebook</span>
-                    </a>
-
-                    <a href="https://github.com/Youssef0356"
-                        class="text-gray-400 hover:text-white transition-colors">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="sr-only">GitHub</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-</section>
-    
+    // Animations
+    gsap.from(".contact-info", { x: -50, opacity: 0, duration: 1, ease: "power2.out" });
+    gsap.from(".contact-form-container", { x: 50, opacity: 0, duration: 1, ease: "power2.out", delay: 0.2 });
+  </script>
 </body>
 
 </html>
