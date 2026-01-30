@@ -163,9 +163,9 @@ class TextScramble {
 // Initialize Logic
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Init Cursor (Only on desktop)
-    if (window.matchMedia("(min-width: 992px)").matches) {
-        new CustomCursor();
-    }
+    // if (window.matchMedia("(min-width: 992px)").matches) {
+    //     new CustomCursor();
+    // }
 
     // 2. Init Tilt
     new TiltEffect('.glass-card');

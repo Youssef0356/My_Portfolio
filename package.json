@@ -19,7 +19,10 @@
   "author": "Youssef Neji",
   "license": "MIT",
   "devDependencies": {
-    "serve": "^14.2.1"
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "serve": "^14.2.1",
+    "tailwindcss": "^4.1.18"
   },
   "engines": {
     "node": ">=14.0.0"

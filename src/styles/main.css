@@ -53,6 +53,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -62,7 +63,13 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
+    /* Fallback */
+    min-height: 100dvh;
+    /* Modern mobile viewport fix */
     position: relative;
+    /* Ensure footer aligns correctly at bottom if needed */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Selection color */
@@ -418,3 +425,8 @@ img {
         display: block;
     }
 }
+
+/* =========================================
+   5. CUSTOM CURSOR (REMOVED)
+   ========================================= */
+/* Cursor styles removed as per user request */
