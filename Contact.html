@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Youssef Neji</title>
+  <meta name="description" content="Get in touch with Youssef Neji for game development, 3D modeling, AR/VR, or CGI VFX projects.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
 
   <!-- Icons -->
@@ -23,15 +24,16 @@
 
   <!-- Favicon -->
   <link rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23a78bfa'%3EY%3C/text%3E%3C/svg%3E">
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23b46a2a'%3EY%3C/text%3E%3C/svg%3E">
 
-  <!-- Animations -->
+  <!-- Theme & Animations -->
+  <script src="src/js/theme.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 
 <body>
 
-  <!-- Background -->
+  <!-- Subtle Editorial Background -->
   <div class="bg-grid"></div>
   <div class="bg-glow"></div>
 
@@ -42,161 +44,166 @@
         Youssef <span>Neji</span>
       </a>
 
-      <button class="nav-toggle" id="navToggle">
-        <i class="material-icons">menu</i>
-      </button>
-
       <div class="nav-links" id="navLinks">
         <a href="index.html" class="nav-link">About</a>
         <a href="Projects.html" class="nav-link">Projects</a>
+
+        <a href="Development.html" class="nav-link">Development</a>
         <a href="Contact.html" class="nav-link active">Contact</a>
-        <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="nav-link"><i
-            class="fab fa-facebook-f"></i></a>
-        <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank" class="nav-link"><i
-            class="fab fa-linkedin-in"></i></a>
+        <div class="nav-social-icons">
+          <a href="https://youssef356.itch.io/" target="_blank" class="nav-link" title="Itch.io Games"><i
+              class="fab fa-itch-io"></i></a>
+          <a href="https://play.google.com/store/apps/developer?id=The356Company" target="_blank" class="nav-link" title="Google Play Store"><i
+              class="fab fa-google-play"></i></a>
+          <a href="https://www.linkedin.com/in/youssef-neji356" target="_blank" class="nav-link" title="LinkedIn"><i
+              class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/youssef0356" target="_blank" class="nav-link" title="GitHub"><i
+              class="fab fa-github"></i></a>
+        </div>
+      </div>
+
+      <div class="nav-right-actions">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Dark Mode" title="Toggle Dark/Light Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+          <i class="material-icons">menu</i>
+        </button>
       </div>
     </div>
   </nav>
 
   <!-- Contact Section -->
-  <section class="contact-section"
-    style="padding-top: var(--nav-height); min-height: 100dvh; display: flex; align-items: center;">
-    <div class="container mobile-padding-top">
-
+  <main class="contact-section" style="padding-top: calc(var(--nav-height) + 3rem); min-height: 85vh; display: flex; align-items: center;">
+    <div class="container">
       <div class="grid-2-col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
 
         <!-- Info Column -->
         <div class="contact-info">
-          <h1 class="hero-title" style="font-size: 3rem; margin-bottom: 2rem;">Get In Touch</h1>
-          <p class="hero-subtitle" style="margin: 0 0 2rem 0; text-align: left;">Let's create something amazing
-            together. Reach out and let's start a conversation.</p>
+          <div class="section-kicker">Let's Connect</div>
+          <h1 class="section-title" style="margin-bottom: 1rem;">Get In Touch</h1>
+          <p class="section-desc" style="margin-bottom: 2.5rem;">
+            Whether you have an upcoming game project, need high-fidelity 3D modeling, want an interactive AR/VR solution, or wish to collaborate, let's start a conversation.
+          </p>
 
-          <div class="info-items" style="display: flex; flex-direction: column; gap: 2rem;">
-            <div class="info-item flex gap-1" style="align-items: center;">
-              <div class="icon-box"
-                style="width: 50px; height: 50px; background: rgba(167, 139, 250, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+          <div class="info-items" style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <div class="info-item flex gap-1 active-center" style="justify-content: flex-start;">
+              <div style="width: 46px; height: 46px; background: var(--accent-subtle); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.1rem;">
                 <i class="fas fa-envelope"></i>
               </div>
               <div>
-                <h4 style="margin:0; font-size: 1.1rem;">Email</h4>
-                <p style="margin:0; color: var(--text-muted);">nejiyoussef081@gmail.com</p>
+                <div style="font-size: 0.82rem; color: var(--text-dim); font-weight: 600; text-transform: uppercase;">Email</div>
+                <a href="mailto:nejiyoussef081@gmail.com" style="color: var(--text-main); font-weight: 600;">nejiyoussef081@gmail.com</a>
               </div>
             </div>
 
-            <div class="info-item flex gap-1" style="align-items: center;">
-              <div class="icon-box"
-                style="width: 50px; height: 50px; background: rgba(167, 139, 250, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+            <div class="info-item flex gap-1 active-center" style="justify-content: flex-start;">
+              <div style="width: 46px; height: 46px; background: var(--accent-subtle); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.1rem;">
                 <i class="fas fa-phone"></i>
               </div>
               <div>
-                <h4 style="margin:0; font-size: 1.1rem;">Phone</h4>
-                <p style="margin:0; color: var(--text-muted);">+216 94730853</p>
+                <div style="font-size: 0.82rem; color: var(--text-dim); font-weight: 600; text-transform: uppercase;">Phone / WhatsApp</div>
+                <span style="color: var(--text-main); font-weight: 600;">+216 94730853</span>
               </div>
             </div>
 
-            <div class="info-item flex gap-1" style="align-items: center;">
-              <div class="icon-box"
-                style="width: 50px; height: 50px; background: rgba(167, 139, 250, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+            <div class="info-item flex gap-1 active-center" style="justify-content: flex-start;">
+              <div style="width: 46px; height: 46px; background: var(--accent-subtle); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.1rem;">
                 <i class="fas fa-map-marker-alt"></i>
               </div>
               <div>
-                <h4 style="margin:0; font-size: 1.1rem;">Location</h4>
-                <p style="margin:0; color: var(--text-muted);">Tunisia, Sfax, Saltnia</p>
+                <div style="font-size: 0.82rem; color: var(--text-dim); font-weight: 600; text-transform: uppercase;">Location</div>
+                <span style="color: var(--text-main); font-weight: 600;">Sfax, Tunisia (Available globally)</span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Form Column -->
-        <div class="contact-form-container glass-card" style="width: 100%;">
+        <div class="glass-card" style="width: 100%;">
+          <h3 style="font-size: 1.35rem; margin-bottom: 1.5rem; color: var(--text-main);">Send a Direct Message</h3>
           <form id="contactForm" action="https://formsubmit.co/nejiyoussef081@gmail.com" method="POST">
             <div class="form-group">
               <input type="text" id="name" name="name" class="form-input" placeholder=" " required>
-              <label for="name" class="form-label">Name</label>
+              <label for="name" class="form-label">Your Name</label>
             </div>
 
             <div class="form-group">
               <input type="email" id="email" name="email" class="form-input" placeholder=" " required>
-              <label for="email" class="form-label">Email</label>
+              <label for="email" class="form-label">Email Address</label>
             </div>
 
             <div class="form-group">
               <input type="tel" id="tel" name="tel" class="form-input" placeholder=" ">
-              <label for="tel" class="form-label">Phone</label>
+              <label for="tel" class="form-label">Phone / WhatsApp (Optional)</label>
             </div>
 
             <div class="form-group">
-              <textarea id="message" name="message" class="form-textarea" rows="5" placeholder=" " required></textarea>
-              <label for="message" class="form-label">Message</label>
+              <textarea id="message" name="message" class="form-textarea" rows="4" placeholder=" " required></textarea>
+              <label for="message" class="form-label">Your Message or Project Details</label>
             </div>
 
-            <input type="hidden" name="_subject" value="New Contact Form Submission - Youssef Neji Portfolio">
+            <input type="hidden" name="_subject" value="New Portfolio Inquiry - Youssef Neji">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next"
-              value="https://youssef0356.github.io/My_Portfolio/Contact.html?success=true">
+            <input type="hidden" name="_next" value="https://youssef0356.github.io/My_Portfolio/Contact.html?success=true">
 
-            <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%;">
+              <i class="fas fa-paper-plane" style="margin-right: 0.5rem; font-size: 0.85rem;"></i> Send Message
+            </button>
           </form>
 
-          <div id="successMessage" style="display: none; margin-top: 1rem; color: #4ade80; text-align: center;">
-            <i class="fas fa-check-circle"></i> Message sent successfully!
+          <div id="successMessage" style="display: none; margin-top: 1.25rem; padding: 0.75rem; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; color: #065f46; text-align: center; font-weight: 500;">
+            <i class="fas fa-check-circle" style="margin-right: 0.4rem;"></i> Thank you! Your message has been sent successfully.
           </div>
         </div>
 
       </div>
     </div>
-  </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container flex space-between" style="flex-wrap: wrap; gap: 2rem;">
+    <div class="container flex space-between active-center" style="flex-wrap: wrap; gap: 2rem;">
       <div>
-        <h3 style="margin-bottom: 0.5rem; color: #fff;">PORTFOLIO</h3>
-        <p>Youssef Neji &copy; 2025</p>
+        <h3 style="margin-bottom: 0.25rem; font-size: 1.15rem; color: var(--text-main);">YOUSSEF NEJI</h3>
+        <p style="margin-bottom: 0; font-size: 0.9rem; color: var(--text-dim);">&copy; 2026 Creative Technologist & 3D Artist.</p>
       </div>
       <div class="footer-links">
         <a href="index.html">About</a>
         <a href="Projects.html">Projects</a>
+
+        <a href="Development.html">Development</a>
         <a href="Contact.html">Contact</a>
       </div>
     </div>
   </footer>
 
-  <!-- Styles for Responsive Grid (inline for specific page tweak) -->
   <style>
     @media (max-width: 900px) {
       .grid-2-col {
         grid-template-columns: 1fr !important;
-      }
-
-      .mobile-padding-top {
-        padding-top: 2rem;
+        gap: 2.5rem !important;
       }
     }
   </style>
 
   <!-- Scripts -->
-  <script src="src/js/particles.js"></script>
   <script src="src/js/creative.js"></script>
   <script>
-    // Nav Toggle
     const toggleBtn = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
-    toggleBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('nav-open');
-    });
+    if (toggleBtn && navLinks) {
+      toggleBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('nav-open');
+      });
+    }
 
-    // Form Success Check
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('success') === 'true') {
       document.getElementById('successMessage').style.display = 'block';
-      history.replaceState(null, '', location.pathname); // Clear URL
+      history.replaceState(null, '', location.pathname);
     }
-
-    // Animations
-    gsap.from(".contact-info", { x: -50, opacity: 0, duration: 1, ease: "power2.out" });
-    gsap.from(".contact-form-container", { x: 50, opacity: 0, duration: 1, ease: "power2.out", delay: 0.2 });
   </script>
 </body>
 

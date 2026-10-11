@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#6366f1" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#b46a2a" stop-opacity="0.8" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+  </defs>
+
+  <!-- Deep Canvas -->
+  <rect width="800" height="450" fill="url(#bgGrad)" />
+
+  <!-- Subtle Blueprint Grid -->
+  <g stroke="rgba(255,255,255,0.06)" stroke-width="1">
+    <line x1="0" y1="75" x2="800" y2="75" />
+    <line x1="0" y1="150" x2="800" y2="150" />
+    <line x1="0" y1="225" x2="800" y2="225" />
+    <line x1="0" y1="300" x2="800" y2="300" />
+    <line x1="0" y1="375" x2="800" y2="375" />
+    <line x1="160" y1="0" x2="160" y2="450" />
+    <line x1="320" y1="0" x2="320" y2="450" />
+    <line x1="480" y1="0" x2="480" y2="450" />
+    <line x1="640" y1="0" x2="640" y2="450" />
+  </g>
+
+  <!-- Browser / Architecture Card -->
+  <g filter="url(#shadow)" transform="translate(60, 45)">
+    <!-- Window frame -->
+    <rect width="680" height="360" rx="14" fill="#0b0f19" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+    
+    <!-- Title bar -->
+    <rect width="680" height="42" rx="14" fill="#111827" />
+    <rect y="38" width="680" height="4" fill="#111827" />
+    
+    <!-- Dots -->
+    <circle cx="24" cy="21" r="5.5" fill="#ef4444" />
+    <circle cx="42" cy="21" r="5.5" fill="#f59e0b" />
+    <circle cx="60" cy="21" r="5.5" fill="#10b981" />
+
+    <!-- Address bar -->
+    <rect x="90" y="10" width="360" height="22" rx="6" fill="#1f2937" />
+    <text x="105" y="25" fill="#94a3b8" font-family="'Plus Jakarta Sans', monospace, sans-serif" font-size="11" font-weight="500">https://portfolio.engine/v2.6/architecture</text>
+
+    <!-- Top Accent Line -->
+    <rect y="41" width="680" height="3" fill="url(#glowGrad)" />
+
+    <!-- Code & Architecture Visualization -->
+    <!-- Left Column: Code Structure -->
+    <g transform="translate(35, 75)" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="13">
+      <text y="20" fill="#38bdf8">&lt;<tspan fill="#ec4899">PortfolioEngine</tspan>&gt;</text>
+      
+      <text x="20" y="48" fill="#94a3b8">// Zero-latency state &amp; multi-theme controller</text>
+      <text x="20" y="74" fill="#818cf8">const <tspan fill="#facc15">engine</tspan> = new Core({</text>
+      <text x="40" y="100" fill="#cbd5e1">theme: <tspan fill="#34d399">'dark'</tspan> | <tspan fill="#34d399">'light'</tspan>,</text>
+      <text x="40" y="126" fill="#cbd5e1">synchronization: <tspan fill="#f59e0b">'fallback-json'</tspan>,</text>
+      <text x="40" y="152" fill="#cbd5e1">animationEngine: <tspan fill="#38bdf8">'GSAP 3.12'</tspan>,</text>
+      <text x="40" y="178" fill="#cbd5e1">crossOriginPolicy: <tspan fill="#a7f3d0">'strict-origin'</tspan></text>
+      <text x="20" y="204" fill="#818cf8">});</text>
+      
+      <text y="234" fill="#38bdf8">&lt;/<tspan fill="#ec4899">PortfolioEngine</tspan>&gt;</text>
+    </g>
+
+    <!-- Right Column: System Status Badges -->
+    <g transform="translate(420, 75)">
+      <!-- Badge 1 -->
+      <rect width="225" height="58" rx="10" fill="#1e293b" stroke="rgba(56,189,248,0.25)" stroke-width="1" />
+      <circle cx="28" cy="29" r="6" fill="#10b981" />
+      <text x="45" y="25" fill="#f8fafc" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700">Live JSON Sync</text>
+      <text x="45" y="44" fill="#94a3b8" font-family="'Plus Jakarta Sans', sans-serif" font-size="11">videos.json · Instant fallback</text>
+
+      <!-- Badge 2 -->
+      <rect y="72" width="225" height="58" rx="10" fill="#1e293b" stroke="rgba(245,158,11,0.25)" stroke-width="1" />
+      <circle cx="28" cy="101" r="6" fill="#f59e0b" />
+      <text x="45" y="97" fill="#f8fafc" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700">Bilingual Theme Engine</text>
+      <text x="45" y="116" fill="#94a3b8" font-family="'Plus Jakarta Sans', sans-serif" font-size="11">Warm Editorial &amp; Obsidian</text>
+
+      <!-- Badge 3 -->
+      <rect y="144" width="225" height="58" rx="10" fill="#1e293b" stroke="rgba(168,85,247,0.25)" stroke-width="1" />
+      <circle cx="28" cy="173" r="6" fill="#a855f7" />
+      <text x="45" y="169" fill="#f8fafc" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700">Strict Embed Security</text>
+      <text x="45" y="188" fill="#94a3b8" font-family="'Plus Jakarta Sans', sans-serif" font-size="11">Protected cross-origin media</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playable Games &amp; Demos | Youssef Neji</title>
+  <meta name="description"
+    content="Playable PC, Web and Android games created by Youssef Neji. Unreal Engine 5 multiplayer shooters, psychological horror, precision platformers, and mobile action games.">
+
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="src/styles/main.css">
+
+  <!-- Theme & GSAP -->
+  <script src="src/js/theme.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* Section-specific Joyful & Stylized Light Theme */
+    body {
+      background-color: #faf9f6;
+      background-image: 
+        radial-gradient(circle at 12% 18%, rgba(254, 215, 170, 0.45), transparent 35%),
+        radial-gradient(circle at 88% 25%, rgba(233, 213, 255, 0.4), transparent 40%),
+        radial-gradient(circle at 50% 75%, rgba(186, 230, 253, 0.35), transparent 45%);
+      background-attachment: fixed;
+    }
+
+    .games-header {
+      padding: calc(var(--nav-height) + 3rem) 0 2.5rem;
+      text-align: center;
+    }
+
+    .joyful-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #fef3c7, #fee2e2);
+      border: 1px solid #fcd34d;
+      color: #b45309;
+      padding: 0.4rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.12);
+      margin-bottom: 1.25rem;
+    }
+
+    .header-title-gradient {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+
+    .header-title-gradient span {
+      background: linear-gradient(135deg, #4f46e5 0%, #db2777 50%, #ea580c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .games-subtitle {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    /* Joyful Filter Pills */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.65rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-pill {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: var(--text-muted);
+      padding: 0.55rem 1.3rem;
+      border-radius: 99px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    }
+
+    .filter-pill:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      color: var(--text-main);
+    }
+
+    .filter-pill.active {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: #ffffff;
+      border-color: #4f46e5;
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+    }
+
+    /* Games Grid */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.25rem;
+      padding-bottom: 5rem;
+      margin-top: 2.5rem;
+    }
+
+    /* Stylized Game Card */
+    .game-card {
+      background: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      position: relative;
+    }
+
+    /* Colorful Top Accent Stripe */
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #6366f1, #ec4899, #f59e0b);
+      z-index: 3;
+    }
+
+    .game-card:hover {
+      transform: translateY(-6px);
+      border-color: #cbd5e1;
+      box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.12), 0 10px 15px -3px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Media Header */
+    .game-media-header {
+      position: relative;
+      height: 230px;
+      background: #0f172a;
+      overflow: hidden;
+    }
+
+    .game-cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .game-card:hover .game-cover-img {
+      transform: scale(1.04);
+    }
+
+    .game-media-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.2) 40%, transparent 100%);
+    }
+
+    .game-badges-top {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 2;
+      flex-wrap: wrap;
+    }
+
+    .joyful-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.28rem 0.65rem;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+
+    .pill-itch {
+      background: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fca5a5;
+    }
+
+    .pill-play {
+      background: #e0f2fe;
+      color: #0284c7;
+      border: 1px solid #7dd3fc;
+    }
+
+    .pill-ue5 {
+      background: #ede9fe;
+      color: #6366f1;
+      border: 1px solid #c4b5fd;
+    }
+
+    .pill-unity {
+      background: #f3e8ff;
+      color: #9333ea;
+      border: 1px solid #d8b4fe;
+    }
+
+    .play-trailer-trigger {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: #ffffff;
+      border: none;
+      border-radius: 99px;
+      padding: 0.45rem 0.95rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+      z-index: 2;
+    }
+
+    .play-trailer-trigger:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 18px rgba(79, 70, 229, 0.5);
+    }
+
+    /* Content Area */
+    .game-content {
+      padding: 1.5rem 1.75rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .game-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 0.35rem;
+    }
+
+    .game-subtitle {
+      font-size: 0.86rem;
+      color: #4f46e5;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .game-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Screenshot Strip */
+    .screenshots-strip {
+      margin-bottom: 1.25rem;
+      background: #f8fafc;
+      padding: 0.75rem;
+      border-radius: 12px;
+      border: 1px solid #f1f5f9;
+    }
+
+    .screenshots-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .screenshots-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.45rem;
+    }
+
+    .screenshot-thumb-btn {
+      background: none;
+      border: 1px solid #e2e8f0;
+      border-radius: 7px;
+      overflow: hidden;
+      cursor: pointer;
+      height: 72px;
+      padding: 0;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .screenshot-thumb-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .screenshot-thumb-btn:hover {
+      border-color: #6366f1;
+      transform: translateY(-2px);
+    }
+
+    .screenshot-thumb-btn:hover img {
+      transform: scale(1.08);
+    }
+
+    /* Tag Pills */
+    .game-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .game-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      color: #475569;
+    }
+
+    /* Actions */
+    .game-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: auto;
+      flex-wrap: wrap;
+    }
+
+    .btn-itch-play {
+      background: #fa5c5c;
+      color: #ffffff !important;
+      border: 1px solid #fa5c5c;
+      box-shadow: 0 3px 10px rgba(250, 92, 92, 0.25);
+    }
+
+    .btn-itch-play:hover {
+      background: #e04b4b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(250, 92, 92, 0.4);
+    }
+
+    .btn-google-play {
+      background: #0284c7;
+      color: #ffffff !important;
+      border: 1px solid #0284c7;
+      box-shadow: 0 3px 10px rgba(2, 132, 199, 0.25);
+    }
+
+    .btn-google-play:hover {
+      background: #0369a1;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.4);
+    }
+
+    .btn-demo-outline {
+      background: var(--bg-card);
+      color: var(--text-main) !important;
+      border: 1px solid var(--border-strong);
+    }
+
+    .btn-demo-outline:hover {
+      background: var(--bg-subtle);
+      border-color: var(--accent);
+      color: var(--accent) !important;
+      transform: translateY(-2px);
+    }
+
+    /* Modal Player & Lightbox */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-dialog {
+      background: #ffffff;
+      border-radius: 18px;
+      width: 100%;
+      max-width: 880px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.35);
+      transform: scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .modal-backdrop.active .modal-dialog {
+      transform: scale(1);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(15, 23, 42, 0.75);
+      color: #ffffff;
+      border: none;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: #ef4444;
+      transform: rotate(90deg);
+    }
+
+    .modal-media-wrapper {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+
+    .modal-media-wrapper iframe,
+    .modal-media-wrapper img {
+      width: 100%;
+      height: 100%;
+      border: none;
+      object-fit: contain;
+    }
+
+    .modal-info {
+      padding: 1.5rem 1.75rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+
+    .modal-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Canvas glow accents -->
+  <div class="bg-glow"></div>
+
+  <!-- Persistent Universal Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Youssef <span>Neji</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">About</a>
+        <a href="Projects.html" class="nav-link">Projects</a>
+
+        <a href="Development.html" class="nav-link">Development</a>
+        <a href="Contact.html" class="nav-link">Contact</a>
+        <div class="nav-social-icons">
+          <a href="https://youssef356.itch.io/" target="_blank" class="nav-link" title="Itch.io Games"><i
+              class="fab fa-itch-io"></i></a>
+          <a href="https://play.google.com/store/apps/developer?id=The356Company" target="_blank" class="nav-link" title="Google Play Store"><i
+              class="fab fa-google-play"></i></a>
+          <a href="https://www.linkedin.com/in/youssef-neji356" target="_blank" class="nav-link" title="LinkedIn"><i
+              class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/youssef0356" target="_blank" class="nav-link" title="GitHub"><i
+              class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="nav-right-actions">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Dark Mode" title="Toggle Dark/Light Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+          <i class="material-icons">menu</i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="games-header">
+    <div class="container">
+      <div class="joyful-badge fade-in">
+        <i class="fas fa-gamepad"></i> Independent Game Studio
+      </div>
+      <h1 class="header-title-gradient fade-in delay-100">
+        Playable <span>Indie Games &amp; Demos</span>
+      </h1>
+      <p class="games-subtitle fade-in delay-200">
+        Multiplayer arena combat, psychological atmospheric horror, reflex platformers in Unreal Engine 5, and mobile action games on Google Play. Watch gameplay trailers or jump in and play!
+      </p>
+
+      <div class="filter-tabs fade-in delay-300">
+        <button class="filter-pill active" data-filter="all"><i class="fas fa-layer-group"></i> All Games</button>
+        <button class="filter-pill" data-filter="pc"><i class="fab fa-itch-io" style="color:#fa5c5c;"></i> PC &amp; Itch.io (4)</button>
+        <button class="filter-pill" data-filter="mobile"><i class="fab fa-google-play" style="color:#0284c7;"></i> Mobile &amp; Android (2)</button>
+        <button class="filter-pill" data-filter="ue5"><i class="fas fa-cube" style="color:#6366f1;"></i> Unreal Engine 5 (4)</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Games Grid -->
+  <main class="container">
+    <div class="games-grid" id="gamesGrid">
+      <!-- Injected via JavaScript -->
+    </div>
+  </main>
+
+  <!-- Lightbox Video & Screenshot Modal -->
+  <div class="modal-backdrop" id="gameModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-media-wrapper" id="modalMediaContainer"></div>
+      <div class="modal-info">
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <p class="modal-desc" id="modalDesc"></p>
+        <div class="modal-actions" id="modalActions"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container flex space-between active-center" style="flex-wrap: wrap; gap: 2rem;">
+      <div>
+        <h3 style="margin-bottom: 0.25rem; font-size: 1.15rem; color: var(--text-main);">YOUSSEF NEJI</h3>
+        <p style="margin-bottom: 0; font-size: 0.9rem; color: var(--text-dim);">&copy; 2026 Creative Technologist &amp; Game Developer.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">About</a>
+        <a href="Projects.html">Projects</a>
+
+        <a href="Development.html">Development</a>
+        <a href="Contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Games Data with official cover art, trailer IDs, and screenshots
+    const games = [
+      {
+        id: "cyber-clash",
+        title: "Cyber Clash",
+        subtitle: "Fast-Paced 3D Local Multiplayer Arena",
+        platform: "pc",
+        engine: "ue5",
+        badge: "Itch.io · PC",
+        badgeClass: "pill-itch",
+        engineBadge: "Unreal Engine 5",
+        cover: "https://img.itch.zone/aW1nLzE0MDQzNTQzLnBuZw==/original/j%2F1BQq.png",
+        trailerId: "QteKyv1j4WQ",
+        playUrl: "https://youssef356.itch.io/cyber-clash",
+        description: "Fast-paced 3D arena multiplayer battle game built in Unreal Engine 5. Compete locally or online, capture flags, and outmaneuver rivals in a vibrant neon cyberpunk arena with tight physics and responsive gunplay.",
+        screenshots: [
+          "https://img.itch.zone/aW1hZ2UvMjM3MTM4Ny8xNDA0MzQwNC5wbmc=/original/FquNm7.png",
+          "https://img.itch.zone/aW1hZ2UvMjM3MTM4Ny8xNDA0MzQ2MC5wbmc=/original/8O%2FbK5.png",
+          "https://img.itch.zone/aW1hZ2UvMjM3MTM4Ny8xNDA0MzQ2Mi5wbmc=/794x1000/nM6sQO.png"
+        ],
+        tags: ["Unreal Engine 5", "Multiplayer", "Arena Shooter", "Netcode", "PC"]
+      },
+      {
+        id: "google-it",
+        title: "Google It!",
+        subtitle: "Precision 2.5D Reflex Platformer",
+        platform: "pc",
+        engine: "ue5",
+        badge: "Itch.io · PC",
+        badgeClass: "pill-itch",
+        engineBadge: "Unreal Engine 5",
+        cover: "https://img.itch.zone/aW1nLzEzNTYwNDc2LnBuZw==/original/AZ1PrQ.png",
+        trailerId: "7wCCJRx92wk",
+        playUrl: "https://youssef356.itch.io/google-it",
+        description: "Precision 2.5D platformer built with Unreal Engine 5 in collaboration with Google Students Club. Navigate pixel-perfect obstacles with tight reflex controls, unforgiving momentum, and challenging checkpoints.",
+        screenshots: [
+          "https://img.itch.zone/aW1nLzEzNTYxODg2LnBuZw==/original/sg%2FbPY.png",
+          "https://img.itch.zone/aW1hZ2UvMjI4ODQ2Ny8xMzU2MTIwOS5wbmc=/794x1000/NsZqe8.png",
+          "https://img.itch.zone/aW1hZ2UvMjI4ODQ2Ny8xMzU2MTIwMi5wbmc=/794x1000/YMy%2BUD.png"
+        ],
+        tags: ["Unreal Engine 5", "Platformer", "Google Students Club", "Physics"]
+      },
+      {
+        id: "asmodeas-school",
+        title: "Asmodea's School",
+        subtitle: "Psychological Survival Horror (1st Person)",
+        platform: "pc",
+        engine: "ue5",
+        badge: "Itch.io · PC",
+        badgeClass: "pill-itch",
+        engineBadge: "Unreal Engine 5",
+        cover: "https://img.itch.zone/aW1nLzEyNDYyMzAzLnBuZw==/original/4BdURT.png",
+        trailerId: "8DyhZsLOMEk",
+        playUrl: "https://youssef356.itch.io/asmodeas-school",
+        description: "Atmospheric psychological first-person horror game developed in Unreal Engine 5. Explore an abandoned haunted academy, evade malevolent supernatural forces, and decipher environmental puzzles under relentless dread.",
+        screenshots: [
+          "https://img.itch.zone/aW1hZ2UvMjExNjM0Mi8xMjQ2MjMxMC5wbmc=/original/pPBxjw.png",
+          "https://img.itch.zone/aW1hZ2UvMjExNjM0Mi8xMjQ2MjMxMy5wbmc=/original/ZzF0as.png",
+          "https://img.itch.zone/aW1hZ2UvMjExNjM0Mi8xMjQ2MjMxMS5wbmc=/794x1000/uX6QE5.png"
+        ],
+        tags: ["Unreal Engine 5", "Survival Horror", "Atmospheric", "Audio Design"]
+      },
+      {
+        id: "nightseeker",
+        title: "The Night Seeker",
+        subtitle: "Deep Forest Survival Horror & Creature AI",
+        platform: "pc",
+        engine: "ue5",
+        badge: "Itch.io · PC",
+        badgeClass: "pill-itch",
+        engineBadge: "Unreal Engine 5",
+        cover: "https://img.itch.zone/aW1nLzExNzg2MTcwLnBuZw==/original/nE5qLe.png",
+        trailerId: null,
+        playUrl: "https://youssef356.itch.io/nightseeker",
+        description: "Survive deep inside a pitch-black forest stalked by an adaptive creature. Features advanced Unreal Engine 5 Lumen lighting, spatial binaural audio, and dynamic AI stalker behaviors that learn from player movements.",
+        screenshots: [
+          "https://img.itch.zone/aW1hZ2UvMjAwNDg1Mi8xMTc4NjIwOC5wbmc=/original/jxWcRS.png",
+          "https://img.itch.zone/aW1hZ2UvMjAwNDg1Mi8xMTc4NjIxMC5wbmc=/347x500/fSBMsv.png",
+          "https://img.itch.zone/aW1hZ2UvMjAwNDg1Mi8xMTc4NjI0Ni5wbmc=/794x1000/HGxE1L.png"
+        ],
+        tags: ["Unreal Engine 5", "AI Creature", "Survival", "Lumen Lighting"]
+      },
+      {
+        id: "battle-cows",
+        title: "Battle Cows",
+        subtitle: "Action Combat & Physics Mobile Brawler",
+        platform: "mobile",
+        engine: "unity",
+        badge: "Google Play · Android",
+        badgeClass: "pill-play",
+        engineBadge: "Unity",
+        cover: "https://play-lh.googleusercontent.com/sD8sLUbRKtbK0CzCfIctP7iL77r29n_W98um2d15KWUiCOqH5vZxxnG78UTClE1CgvlkMwW42cEHPHOp4aBte98=s0-br30",
+        trailerId: null,
+        playUrl: "https://play.google.com/store/apps/details?id=com.the356company.battlecows",
+        githubUrl: "https://github.com/youssef0356/battle_cows",
+        description: "Fast-paced action combat mobile brawler featuring dynamic ragdoll physics, stylized VFX, and responsive touch controls. Choose your cow warrior, enter chaotic arenas, and battle friends on Android.",
+        screenshots: [
+          "https://play-lh.googleusercontent.com/NMAE_obeE_KZRmavSZ3BuYP6F2DUTEwVMiyAer7JEhQ-_oTSpDO-tv8SrqXztlusAHFBwYo9RHwMWWtj3Kt4-Xc",
+          "https://play-lh.googleusercontent.com/haCjMpwXoqbJeotHYbcTPkZ6oJX-ENIEbGMpgoJRd18DcZBVXaVpqtBOQQobCmzUKRX5oycL8Qw",
+          "https://play-lh.googleusercontent.com/ETNfwmYXU_v-fzUI-GNxQ0NnRnQjK17IbN1_n5wr3jpuvnt3snydgKdjKrF58SUm_sNPVcFhmzJdxnXegAT4hDs"
+        ],
+        tags: ["Unity", "Android", "Mobile Touch Controls", "Ragdoll Physics"]
+      },
+      {
+        id: "the-system",
+        title: "The System (الماكينة)",
+        subtitle: "Tactical Social Deduction & Bluffing Card Game",
+        platform: "mobile",
+        engine: "unity",
+        badge: "Google Play & Itch.io",
+        badgeClass: "pill-play",
+        engineBadge: "Unity",
+        cover: "https://play-lh.googleusercontent.com/fnjwQBp96Nk0aLTlhD04rM3WOp_Fi-vUx1rTEcICJMmmK4bCfBJy-TZmGIfeLWji5DwJj6h2kpTW_AJjGVxibw=s0-br30",
+        trailerId: null,
+        playUrl: "https://play.google.com/store/apps/details?id=com.the356company.the_system",
+        itchUrl: "https://the-356-developper.itch.io/the-system",
+        websiteUrl: "https://youssef0356.github.io/The_system-Website/",
+        description: "Strategic bluffing card game for 2–8 players inspired by the classic Tunisian cultural card game 'El Mekina'. Outwit friends with tactical deception, turn-based card combos, and mind games across online and local play.",
+        screenshots: [
+          "https://play-lh.googleusercontent.com/vC4PYyvd-nJ1jmGiPKVXdx3Lbh1x2S85p75pJa91szFJRV6W7KfoVr9zhx-RxvtxsAVSZsuXdIzWcmmBoYGf",
+          "https://play-lh.googleusercontent.com/1SrNtAwg9PFOhgMJPXehacRTeQNhHhG12Pj1zACHNVmfRfEZA3_oOEmLvRNsmYGeGHpas7sCwyR3y8OT",
+          "https://play-lh.googleusercontent.com/Zh2OuXQJcgxc8b7pj7XTBSXKE5C2iFx7mR4KJHRohcWWM4F3AlUTXZ6PzlFI4B70mco9nWMGuUzlyelRprWZ"
+        ],
+        tags: ["Unity", "Multiplayer", "Tunisian Card Game (El Mekina)", "Android", "Itch.io"]
+      },
+      {
+        id: "ar-explorer",
+        title: "AR Explorer: Learn & Build",
+        subtitle: "Interactive Spatial Computing on Google Play",
+        platform: "mobile",
+        engine: "unity",
+        badge: "Google Play · AR",
+        badgeClass: "pill-play",
+        engineBadge: "Unity & ARCore",
+        cover: "https://play-lh.googleusercontent.com/QBKGj8BTl-o1bmLllY3p8FeXgt7b3fmMqEP5FjYT56RmZtgjTez_pgte1y0t_JjvjDZBx546euv8tn3rR_8WYl0=s0-br30",
+        trailerId: "F31XKLtK9uA",
+        playUrl: "https://play.google.com/store/apps/details?id=com.the356company.arexplorer",
+        websiteUrl: "https://youssef0356.github.io/AR_ExplorerWebsite/",
+        description: "Gamified educational augmented reality platform on Google Play. Features plane detection, spatial anchored 3D models, and interactive learning challenges.",
+        screenshots: [
+          "https://play-lh.googleusercontent.com/EbEX3AN4FC4pu3lsElAHCiksluOVU8OgkgtWC43-wmm_aHVq2D65FmEM97bPexilUAvlAY5_4ARH8Tb3RxQ",
+          "https://play-lh.googleusercontent.com/xxHsZyvxStz6Q9ozBMqzupiHeIdBdnELfeS-pXVGR7wXQPVC8uIe-WLS9zfUsFYefXAkvgSyuDorTBAxjiSW",
+          "https://play-lh.googleusercontent.com/j4bN8G-oWDYTL5iUOXOTHs6Rt17yV5ycb4vAYczZiBPnzvGGHfCIHBHegpIIGo828jIFVTSFc3tZHDEcknMA8Jo"
+        ],
+        tags: ["Unity", "Google ARCore", "Augmented Reality", "Spatial Anchoring", "Android"]
+      }
+    ];
+
+    // Render Function
+    function renderGames(filter = 'all') {
+      const grid = document.getElementById('gamesGrid');
+      grid.innerHTML = '';
+
+      const filtered = games.filter(g => {
+        if (filter === 'all') return true;
+        if (filter === 'pc') return g.platform === 'pc';
+        if (filter === 'mobile') return g.platform === 'mobile';
+        if (filter === 'ue5') return g.engine === 'ue5';
+        return true;
+      });
+
+      filtered.forEach((game) => {
+        const card = document.createElement('div');
+        card.className = 'game-card';
+
+        // Screenshots HTML
+        const screenshotsHtml = game.screenshots.map((s, idx) => `
+          <button class="screenshot-thumb-btn" onclick="openScreenshotModal('${s}', '${game.title.replace(/'/g, "\\'")} - Screenshot ${idx + 1}')" title="Expand Screenshot">
+            <img src="${s}" alt="${game.title} screenshot ${idx + 1}" loading="lazy">
+          </button>
+        `).join('');
+
+        // Action Buttons
+        let actionsHtml = '';
+        if (game.trailerId) {
+          actionsHtml += `
+            <button class="btn btn-demo-outline" onclick="openTrailerModal('${game.trailerId}', '${game.title.replace(/'/g, "\\'")}', '${game.description.replace(/'/g, "\\'")}', '${game.playUrl}', '${game.websiteUrl || ''}')">
+              <i class="fas fa-play" style="color:#4f46e5;"></i> Watch ${game.platform === 'mobile' ? 'Showcase' : 'Trailer'}
+            </button>
+          `;
+        }
+
+        if (game.playUrl.includes('itch.io')) {
+          actionsHtml += `
+            <a href="${game.playUrl}" target="_blank" class="btn btn-itch-play">
+              <i class="fab fa-itch-io"></i> Play on Itch.io
+            </a>
+          `;
+        } else if (game.playUrl.includes('play.google')) {
+          actionsHtml += `
+            <a href="${game.playUrl}" target="_blank" class="btn btn-google-play">
+              <i class="fab fa-google-play"></i> Get on Google Play
+            </a>
+          `;
+          if (game.itchUrl) {
+            actionsHtml += `
+              <a href="${game.itchUrl}" target="_blank" class="btn btn-itch-play" style="min-width:auto; padding: 0.75rem 1rem;">
+                <i class="fab fa-itch-io"></i> Itch
+              </a>
+            `;
+          }
+        }
+
+        if (game.websiteUrl) {
+          actionsHtml += `
+            <a href="${game.websiteUrl}" target="_blank" class="btn btn-demo-outline" style="min-width:auto;">
+              <i class="fas fa-globe" style="color:#0284c7;"></i> Website
+            </a>
+          `;
+        }
+
+        if (game.githubUrl) {
+          actionsHtml += `
+            <a href="${game.githubUrl}" target="_blank" class="btn btn-demo-outline" style="min-width:auto;">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          `;
+        }
+
+        card.innerHTML = `
+          <div class="game-media-header">
+            <img src="${game.cover}" alt="${game.title} Cover Art" class="game-cover-img" loading="lazy">
+            <div class="game-media-gradient"></div>
+            <div class="game-badges-top">
+              <span class="joyful-pill ${game.badgeClass}"><i class="${game.platform === 'pc' ? 'fab fa-itch-io' : 'fab fa-google-play'}"></i> ${game.badge}</span>
+              <span class="joyful-pill ${game.engine === 'ue5' ? 'pill-ue5' : 'pill-unity'}">${game.engineBadge}</span>
+            </div>
+            ${game.trailerId ? `
+              <button class="play-trailer-trigger" onclick="openTrailerModal('${game.trailerId}', '${game.title.replace(/'/g, "\\'")}', '${game.description.replace(/'/g, "\\'")}', '${game.playUrl}')">
+                <i class="fas fa-play"></i> Watch Trailer
+              </button>
+            ` : ''}
+          </div>
+
+          <div class="game-content">
+            <h2 class="game-title">${game.title}</h2>
+            <div class="game-subtitle">${game.subtitle}</div>
+            <p class="game-desc">${game.description}</p>
+
+            <div class="screenshots-strip">
+              <div class="screenshots-label"><i class="fas fa-images" style="color:#6366f1;"></i> In-Game Highlights</div>
+              <div class="screenshots-gallery">
+                ${screenshotsHtml}
+              </div>
+            </div>
+
+            <div class="game-tags">
+              ${game.tags.map(t => `<span class="game-tag">${t}</span>`).join('')}
+            </div>
+
+            <div class="game-actions">
+              ${actionsHtml}
+            </div>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      // Stagger entrance
+      gsap.from(".game-card", {
+        opacity: 0,
+        y: 20,
+        duration: 0.4,
+        stagger: 0.08,
+        ease: "power2.out",
+        clearProps: "all"
+      });
+    }
+
+    // Modal Handlers
+    const modal = document.getElementById('gameModal');
+    const modalMedia = document.getElementById('modalMediaContainer');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalActions = document.getElementById('modalActions');
+    const closeBtn = document.getElementById('modalCloseBtn');
+
+    window.openTrailerModal = function(ytId, title, desc, playUrl, websiteUrl = '') {
+      modalMedia.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+      modalTitle.textContent = title;
+      modalDesc.textContent = desc;
+
+      const isItch = playUrl.includes('itch.io');
+      const btnClass = isItch ? 'btn-itch-play' : 'btn-google-play';
+      const btnIcon = isItch ? 'fab fa-itch-io' : 'fab fa-google-play';
+      const btnText = isItch ? 'Play Now on Itch.io' : 'Get on Google Play';
+
+      let actions = `
+        <a href="${playUrl}" target="_blank" class="btn ${btnClass}">
+          <i class="${btnIcon}"></i> ${btnText}
+        </a>
+      `;
+
+      if (websiteUrl) {
+        actions += `
+          <a href="${websiteUrl}" target="_blank" class="btn btn-demo-outline">
+            <i class="fas fa-globe" style="color:#0284c7;"></i> Official Website
+          </a>
+        `;
+      }
+
+      actions += `
+        <a href="https://www.youtube.com/watch?v=${ytId}" target="_blank" class="btn btn-demo-outline">
+          <i class="fab fa-youtube" style="color:#ef4444;"></i> Open on YouTube
+        </a>
+      `;
+
+      modalActions.innerHTML = actions;
+
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.openScreenshotModal = function(imgSrc, title) {
+      modalMedia.innerHTML = `<img src="${imgSrc}" alt="${title}">`;
+      modalTitle.textContent = title;
+      modalDesc.textContent = "High-resolution in-game gameplay visual.";
+      modalActions.innerHTML = `
+        <a href="${imgSrc}" target="_blank" class="btn btn-demo-outline">
+          <i class="fas fa-expand"></i> View Full Resolution
+        </a>
+      `;
+
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    function closeModal() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      modalMedia.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+
+    // Filter Buttons
+    document.querySelectorAll('.filter-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderGames(btn.dataset.filter);
+      });
+    });
+
+    // Mobile Nav Toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('nav-open');
+      });
+    }
+
+    // Initial render
+    renderGames('all');
+  </script>
+</body>
+
+</html>

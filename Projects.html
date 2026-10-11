@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects | Youssef Neji</title>
+  <title>Projects & Work | Youssef Neji</title>
+  <meta name="description" content="Explore Game Development, 3D Modeling, AR/VR applications, CGI VFX, and Creative Tech projects by Youssef Neji.">
 
-  <!-- Fonts -->
+  <!-- Modern Typography: Plus Jakarta Sans & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
 
   <!-- Icons -->
@@ -23,18 +24,19 @@
 
   <!-- Favicon -->
   <link rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23a78bfa'%3EY%3C/text%3E%3C/svg%3E">
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23b46a2a'%3EY%3C/text%3E%3C/svg%3E">
 
-  <!-- Animations -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Theme & Animations -->
+    <script src="src/js/theme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
 
-  <!-- Background -->
+  <!-- Background Canvas -->
   <div class="bg-grid"></div>
-  <div class="bg-glow" style="background: radial-gradient(circle, rgba(0, 243, 255, 0.1) 0%, rgba(0,0,0,0) 70%);"></div>
+  <div class="bg-glow"></div>
 
   <!-- Navigation -->
   <nav class="navbar">
@@ -43,119 +45,228 @@
         Youssef <span>Neji</span>
       </a>
 
-      <button class="nav-toggle" id="navToggle">
-        <i class="material-icons">menu</i>
-      </button>
-
       <div class="nav-links" id="navLinks">
         <a href="index.html" class="nav-link">About</a>
         <a href="Projects.html" class="nav-link active">Projects</a>
+
+        <a href="Development.html" class="nav-link">Development</a>
         <a href="Contact.html" class="nav-link">Contact</a>
-        <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="nav-link"><i
-            class="fab fa-facebook-f"></i></a>
-        <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank" class="nav-link"><i
-            class="fab fa-linkedin-in"></i></a>
+        <div class="nav-social-icons">
+          <a href="https://youssef356.itch.io/" target="_blank" class="nav-link" title="Itch.io Games"><i
+              class="fab fa-itch-io"></i></a>
+          <a href="https://play.google.com/store/apps/developer?id=The356Company" target="_blank" class="nav-link" title="Google Play Store"><i
+              class="fab fa-google-play"></i></a>
+          <a href="https://www.linkedin.com/in/youssef-neji356" target="_blank" class="nav-link" title="LinkedIn"><i
+              class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/youssef0356" target="_blank" class="nav-link" title="GitHub"><i
+              class="fab fa-github"></i></a>
+        </div>
+      </div>
+
+      <div class="nav-right-actions">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Dark Mode" title="Toggle Dark/Light Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+          <i class="material-icons">menu</i>
+        </button>
       </div>
     </div>
   </nav>
 
   <!-- Projects Content -->
-  <section class="projects-page">
+  <main class="projects-page">
     <div class="container">
 
-      <div class="hero-content text-center" style="margin: 0 auto 3rem; padding-top: 4rem;">
-        <h1 class="hero-title fade-in">Featured Work</h1>
-        <p class="hero-subtitle fade-in delay-100">Exploring the boundaries of 3D, Interactivity, and Design.</p>
+      <!-- Header -->
+      <div class="section-header fade-in" style="margin-bottom: 2.5rem;">
+        <div class="section-kicker">Project Archive</div>
+        <h1 class="section-title">Selected Work & Experiments</h1>
+        <p class="section-desc">
+          Games, 3D modeling, commercial VFX, AR/VR applications, and digital tools. Click any project to inspect details without losing your place.
+        </p>
       </div>
 
-      <!-- Featured Carousel -->
-      <div class="carousel-section fade-in delay-200" id="featuredCarousel">
+      <!-- Featured Spotlight (Curated Showcase) -->
+      <div class="featured-showcase-section fade-in delay-100" id="featuredCarousel">
         <!-- Injected via JS -->
       </div>
 
-      <!-- Filters -->
+      <!-- Category Filter Pills -->
       <div class="filters-container fade-in delay-200">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="recent">Recent</button>
-        <button class="filter-btn" data-filter="architecture">Architecture</button>
+        <button class="filter-btn active" data-filter="all">All Projects</button>
         <button class="filter-btn" data-filter="game-development">Game Dev</button>
-        <button class="filter-btn" data-filter="vfx">CGI/VFX</button>
-        <button class="filter-btn" data-filter="videoediting">Video Editing</button>
+        <button class="filter-btn" data-filter="ar-vr">AR / VR</button>
+        <button class="filter-btn" data-filter="architecture">3D Modeling</button>
+        <button class="filter-btn" data-filter="vfx">CGI & VFX</button>
         <button class="filter-btn" data-filter="animation">Animation</button>
-        <button class="filter-btn" data-filter="other">Other</button>
+        <button class="filter-btn" data-filter="videoediting">Video Editing</button>
+        <button class="filter-btn" data-filter="other">Web & Other</button>
       </div>
 
-      <!-- Grid -->
+      <!-- Projects Grid -->
       <div class="projects-grid" id="projectsGrid">
         <!-- Injected via JS -->
       </div>
 
     </div>
-  </section>
+  </main>
+
+  <!-- Lightbox Modal Player (Stays in place, no jump) -->
+  <div class="project-modal-backdrop" id="projectModal" aria-hidden="true">
+    <div class="project-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="project-modal-close" id="modalCloseBtn" aria-label="Close modal">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="project-modal-media" id="modalMediaContainer">
+        <!-- Injected media -->
+      </div>
+      <div class="project-modal-body">
+        <div class="project-modal-category" id="modalCategory"></div>
+        <h2 class="project-modal-title" id="modalTitle"></h2>
+        <p class="project-modal-desc" id="modalDesc"></p>
+        <div class="project-modal-tools" id="modalTools"></div>
+        <div class="project-modal-actions" id="modalActions"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container flex space-between" style="flex-wrap: wrap; gap: 2rem;">
+    <div class="container flex space-between active-center" style="flex-wrap: wrap; gap: 2rem;">
       <div>
-        <h3 style="margin-bottom: 0.5rem; color: #fff;">PORTFOLIO</h3>
-        <p>Youssef Neji &copy; 2025</p>
+        <h3 style="margin-bottom: 0.25rem; font-size: 1.15rem; color: var(--text-main);">YOUSSEF NEJI</h3>
+        <p style="margin-bottom: 0; font-size: 0.9rem; color: var(--text-dim);">&copy; 2026 Creative Technologist & 3D Artist.</p>
       </div>
       <div class="footer-links">
         <a href="index.html">About</a>
         <a href="Projects.html">Projects</a>
+
+        <a href="Development.html">Development</a>
         <a href="Contact.html">Contact</a>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="src/js/particles.js"></script>
   <script src="src/js/projects-data.js"></script>
   <script src="src/js/creative.js"></script>
   <script>
-    // Start Navigation Logic
+    // Navigation Toggle
     const toggleBtn = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
-    toggleBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('nav-open');
-    });
+    if (toggleBtn && navLinks) {
+      toggleBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('nav-open');
+      });
+    }
 
     // --- Projects Logic ---
     let allProjects = [];
     let filteredProjects = [];
-    let currentIndex = 0;
+    let activeFilter = 'all';
+    let currentFeaturedProject = null;
 
-    // Fetch Projects
-    // Fetch Projects with Cache Busting
+    // Helper: Determine if a project is accessible
+    function isProjectAccessible(project) {
+      if (!project) return false;
+      if (project.accessible === false || project.hidden === true || project.disabled === true || project._inaccessible === true) {
+        return false;
+      }
+      return true;
+    }
+
+    // Live Thumbnail Checker for YouTube
+    function verifyProjectAccessibility(project) {
+      return new Promise((resolve) => {
+        if (!isProjectAccessible(project)) {
+          resolve(false);
+          return;
+        }
+
+        const ytId = getYoutubeId(project.url);
+        if (!ytId) {
+          resolve(true);
+          return;
+        }
+
+        const testImg = new Image();
+        let resolved = false;
+
+        testImg.onload = function () {
+          if (resolved) return;
+          resolved = true;
+          // YouTube returns a 120x90 placeholder when video is dead/unavailable
+          if (this.naturalWidth === 120 && this.naturalHeight === 90) {
+            project._inaccessible = true;
+            resolve(false);
+          } else {
+            resolve(true);
+          }
+        };
+
+        testImg.onerror = function () {
+          if (resolved) return;
+          resolved = true;
+          project._inaccessible = true;
+          resolve(false);
+        };
+
+        testImg.src = `https://img.youtube.com/vi/${ytId}/mqdefault.jpg`;
+      });
+    }
+
+    function getFilteredProjects() {
+      const accessibleList = allProjects.filter(isProjectAccessible);
+      if (activeFilter === 'all') {
+        return accessibleList;
+      } else {
+        return accessibleList.filter(p =>
+          (p.category || '').toLowerCase().replace(/\s/g, '-') === activeFilter
+        );
+      }
+    }
+
+    function checkEmptyGrid() {
+      const grid = document.getElementById('projectsGrid');
+      const visibleCards = grid.querySelectorAll('.project-card:not([style*="display: none"])');
+      if (visibleCards.length === 0) {
+        grid.innerHTML = '<p class="text-center w-full col-span-3 text-muted" style="grid-column: 1 / -1; padding: 3rem 0;">No projects found for this category.</p>';
+      }
+    }
+
+    function checkAndRefreshFeatured() {
+      if (!currentFeaturedProject || !isProjectAccessible(currentFeaturedProject)) {
+        const nextValid = filteredProjects.find(isProjectAccessible);
+        renderFeatured(nextValid || null);
+      }
+    }
+
+    // Initialize Projects Data
     function initProjects(data) {
       allProjects = data;
-      // Parse dates and sort
+
+      // Parse dates and sort chronologically
       allProjects.forEach(p => p.parsedDate = parseDate(p.date));
       allProjects.sort((a, b) => b.parsedDate - a.parsedDate);
 
-      // DEFAULT TO ALL
-      filteredProjects = allProjects;
+      // Filter
+      filteredProjects = getFilteredProjects();
 
-      // Reset Filter Buttons UI
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      document.querySelector('[data-filter="all"]').classList.add('active');
+      // Set default featured project (e.g. CyberClash or top project)
+      const spotlightProject = allProjects.find(p => p.title.includes('CyberClash')) || filteredProjects[0];
+      renderFeatured(spotlightProject || null);
+      renderGrid(filteredProjects);
 
-      if (filteredProjects.length > 0) {
-        renderFeatured(filteredProjects[0]);
+      // Background asynchronous validation for inaccessible videos
+      Promise.all(allProjects.map(verifyProjectAccessibility)).then(() => {
+        filteredProjects = getFilteredProjects();
         renderGrid(filteredProjects);
-      } else {
-        document.getElementById('projectsGrid').innerHTML = '<p class="text-center w-full col-span-3 text-muted">No projects found.</p>';
-      }
-
-      // Animation triggers
-      // Removed initial animation loop to ensure content is immediately visible (per user request).
-      // We only refresh ScrollTrigger to keep things in sync if needed, but no hiding.
-      setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 100);
+        checkAndRefreshFeatured();
+      });
     }
 
-    // Try to load from variable first (works locally), then fetch (works on server if variable missing)
+    // Data Loading with fallback
     if (typeof projectData !== 'undefined') {
       initProjects(projectData);
     } else {
@@ -168,157 +279,269 @@
         });
     }
 
-    // Filters
+    // Filter Buttons Click
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        // Update Active State
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        const filter = btn.dataset.filter;
-
-        if (filter === 'all') {
-          filteredProjects = allProjects;
-        } else if (filter === 'recent') {
-          const sixMonthsAgo = new Date();
-          sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-          filteredProjects = allProjects.filter(p => p.parsedDate >= sixMonthsAgo);
-        } else {
-          filteredProjects = allProjects.filter(p =>
-            (p.category || '').toLowerCase().replace(/\s/g, '-') === filter
-          );
-        }
+        activeFilter = btn.dataset.filter;
+        filteredProjects = getFilteredProjects();
 
         renderGrid(filteredProjects);
-        if (filteredProjects.length > 0) renderFeatured(filteredProjects[0]);
 
-        // Re-animate
-        // Re-animate (Skip for 'all' filter as requested)
-        if (filter !== 'all') {
-          gsap.from(".project-card", {
-            opacity: 0,
-            y: 20,
-            duration: 0.4,
-            stagger: 0.05,
-            clearProps: "all"
-          });
-        }
+        // Smooth staggered entrance
+        gsap.from(".project-card", {
+          opacity: 0,
+          y: 15,
+          duration: 0.35,
+          stagger: 0.03,
+          clearProps: "all"
+        });
       });
     });
 
+    // Render Featured Showcase
     function renderFeatured(project) {
+      currentFeaturedProject = project;
       const container = document.getElementById('featuredCarousel');
-      if (!project) {
-        container.innerHTML = '<div class="p-8 text-center text-muted">No featured project found.</div>';
+      if (!container) return;
+
+      if (!project || !isProjectAccessible(project)) {
+        container.style.display = 'none';
         return;
       }
 
+      container.style.display = 'block';
+      const ytId = getYoutubeId(project.url);
       const mediaHtml = project.url
-        ? `<iframe src="${normalizeUrl(project.url)}" frameborder="0" allowfullscreen></iframe>`
+        ? `<iframe src="${normalizeUrl(project.url)}" title="${project.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>`
         : `<img src="${project.image || 'Images/placeholder.jpg'}" alt="${project.title}">`;
 
       container.innerHTML = `
-                <div class="carousel-slide">
-                    <div class="carousel-visual">
-                        ${mediaHtml}
-                    </div>
-                    <div class="carousel-info">
-                        <span class="project-category" style="margin-bottom: 1rem;">${project.category || 'Featured'}</span>
-                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">${project.title}</h2>
-                        <p style="margin-bottom: 2rem; color: var(--text-muted);">${project.description || ''}</p>
-                        
-                        <div class="project-tools" style="margin-bottom: 2rem;">
-                             ${(project.tools || []).map(t => `<span class="tool-badge">${t}</span>`).join('')}
-                        </div>
-                        
-                        <div class="flex gap-1">
-                             ${project.link ? `<a href="${project.link}" target="_blank" class="btn btn-primary">View Project</a>` : ''}
-                             ${project.github ? `<a href="${project.github}" target="_blank" class="btn btn-outline">Code</a>` : ''}
-                        </div>
-                    </div>
-                </div>
-            `;
+        <div class="carousel-slide">
+          <div class="carousel-visual">
+            ${mediaHtml}
+          </div>
+          <div class="carousel-info">
+            <span class="project-category">${project.category || 'Featured'}</span>
+            <h2 style="font-size: 1.75rem; margin-bottom: 0.8rem; color: var(--text-main);">${project.title}</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">${project.description || ''}</p>
+            
+            <div class="project-tools" style="margin-bottom: 1.5rem;">
+              ${(project.tools || []).map(t => `<span class="tool-badge">${t}</span>`).join('')}
+            </div>
+            
+            <div class="flex gap-1" style="flex-wrap: wrap;">
+              <button class="btn btn-primary" onclick="openProjectModalByObj(${JSON.stringify(project).replace(/"/g, '&quot;')})">
+                <i class="fas fa-expand" style="margin-right: 0.4rem;"></i> Inspect Project
+              </button>
+              ${ytId ? `<a href="https://www.youtube.com/watch?v=${ytId}" target="_blank" class="btn btn-outline"><i class="fab fa-youtube" style="margin-right: 0.4rem; color: #ef4444;"></i> Watch on YouTube</a>` : ''}
+              ${project.link ? `<a href="${project.link}" target="_blank" class="btn btn-outline"><i class="fas fa-external-link-alt" style="margin-right: 0.4rem;"></i> Live Demo</a>` : ''}
+              ${project.playstore ? `<a href="${project.playstore}" target="_blank" class="btn btn-outline"><i class="fab fa-google-play" style="margin-right: 0.4rem;"></i> Play Store</a>` : ''}
+            </div>
+          </div>
+        </div>
+      `;
     }
 
+    // Render Grid Cards
     function renderGrid(projects) {
       const grid = document.getElementById('projectsGrid');
       grid.innerHTML = '';
 
-      if (projects.length === 0) {
-        grid.innerHTML = '<p class="text-center w-full col-span-3 text-muted">No projects found for this category.</p>';
+      const visibleProjects = projects.filter(isProjectAccessible);
+
+      if (visibleProjects.length === 0) {
+        checkEmptyGrid();
         return;
       }
 
-      projects.forEach((project, idx) => {
+      visibleProjects.forEach((project) => {
         const card = document.createElement('div');
         card.className = 'project-card';
-        // Add click handler to whole card for better UX
-        card.onclick = () => filterToProject(idx);
-        card.style.cursor = 'pointer';
+        // Non-disruptive click: Opens Modal Lightbox directly!
+        card.onclick = () => openProjectModal(project);
 
         let thumbHtml = '';
         const youtubeId = getYoutubeId(project.url);
 
         if (youtubeId) {
-          thumbHtml = `<img src="https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg" alt="${project.title}" loading="lazy">
-                         <div class="play-overlay"><i class="fas fa-play"></i></div>`;
+          thumbHtml = `<img src="https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg" alt="${project.title}" loading="lazy" class="yt-thumb">
+                       <div class="play-overlay"><i class="fas fa-play"></i></div>`;
         } else if (project.image) {
           thumbHtml = `<img src="${project.image}" alt="${project.title}" loading="lazy">`;
         } else {
-          // Fallback for Drive/Other
           thumbHtml = `<div class="placeholder-thumb">
-                            <i class="fas fa-video"></i>
-                            <span>View Project</span>
-                         </div>`;
+                        <i class="fas fa-laptop-code" style="font-size: 2rem; color: var(--accent);"></i>
+                        <span style="font-size: 0.85rem; font-weight: 600;">View Project</span>
+                      </div>`;
         }
 
+        const actionBadges = [];
+        if (project.playstore) actionBadges.push('<span class="tool-badge" style="background:#e0f2fe; color:#0369a1;"><i class="fab fa-google-play"></i> Play Store</span>');
+        if (project.itchEmbed || (project.link && project.link.includes('itch.io'))) actionBadges.push('<span class="tool-badge" style="background:#fef2f2; color:#ef4444;"><i class="fab fa-itch-io"></i> Itch.io</span>');
+        if (project.link && !project.playstore && !project.link.includes('itch.io')) actionBadges.push('<span class="tool-badge" style="background:#fef3c7; color:#92400e;"><i class="fas fa-globe"></i> Live</span>');
+
         card.innerHTML = `
-                    <div class="project-thumb">
-                        ${thumbHtml}
-                    </div>
-                    <div class="project-content">
-                        <div class="project-category">${project.category || 'Project'}</div>
-                        <h3 class="project-title">${project.title}</h3>
-                        <p class="project-desc">${project.description || ''}</p>
-                        <div class="project-tools">
-                            ${(project.tools || []).slice(0, 3).map(t => `<span class="tool-badge">${t}</span>`).join('')}
-                            ${(project.tools || []).length > 3 ? `<span class="tool-badge">+${project.tools.length - 3}</span>` : ''}
-                        </div>
-                        <div class="project-links">
-                             <button class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem;">details</button>
-                             ${project.github ? `<a href="${project.github}" target="_blank" style="color:var(--text-dim);" onclick="event.stopPropagation()"><i class="fab fa-github"></i></a>` : ''}
-                        </div>
-                    </div>
-                `;
+          <div class="project-thumb">
+            ${thumbHtml}
+          </div>
+          <div class="project-content">
+            <div class="project-category">${project.category || 'Project'}</div>
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-desc">${project.description || ''}</p>
+            
+            <div class="project-tools">
+              ${(project.tools || []).slice(0, 3).map(t => `<span class="tool-badge">${t}</span>`).join('')}
+              ${(project.tools || []).length > 3 ? `<span class="tool-badge">+${project.tools.length - 3}</span>` : ''}
+              ${actionBadges.join('')}
+            </div>
+
+            <div class="project-links">
+              <span class="project-view-btn">
+                <span>View Details</span> <i class="fas fa-arrow-right"></i>
+              </span>
+            </div>
+          </div>
+        `;
+
+        // Real-time fail-safe: hide dead video cards immediately
+        const thumbImg = card.querySelector('img.yt-thumb');
+        if (thumbImg) {
+          thumbImg.onerror = () => {
+            project._inaccessible = true;
+            card.remove();
+            checkAndRefreshFeatured();
+            checkEmptyGrid();
+          };
+          thumbImg.onload = function () {
+            if (this.naturalWidth === 120 && this.naturalHeight === 90) {
+              project._inaccessible = true;
+              card.remove();
+              checkAndRefreshFeatured();
+              checkEmptyGrid();
+            }
+          };
+        }
+
         grid.appendChild(card);
       });
     }
 
-    // Helper to extract YT ID
-    function getYoutubeId(url) {
-      if (!url) return null;
-      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-      const match = url.match(regExp);
-      return (match && match[2].length === 11) ? match[2] : null;
+    // --- LIGHTBOX MODAL PLAYER (NON-DISRUPTIVE) ---
+    const modal = document.getElementById('projectModal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalMediaContainer = document.getElementById('modalMediaContainer');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalTools = document.getElementById('modalTools');
+    const modalActions = document.getElementById('modalActions');
+
+    window.openProjectModalByObj = function (project) {
+      openProjectModal(project);
+    };
+
+    function openProjectModal(project) {
+      if (!project) return;
+
+      modalCategory.textContent = project.category || 'Project';
+      modalTitle.textContent = project.title || 'Untitled Project';
+      modalDesc.textContent = project.description || '';
+
+      // Media injection
+      if (project.url) {
+        modalMediaContainer.innerHTML = `<iframe src="${normalizeUrl(project.url)}" title="${project.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+      } else if (project.image) {
+        modalMediaContainer.innerHTML = `<img src="${project.image}" alt="${project.title}">`;
+      } else {
+        modalMediaContainer.innerHTML = `<div class="placeholder-thumb" style="height: 100%;"><i class="fas fa-gamepad" style="font-size: 3rem; color: var(--accent);"></i></div>`;
+      }
+
+      // Tools tags
+      modalTools.innerHTML = (project.tools || []).map(t => `<span class="tool-badge" style="font-size: 0.85rem; padding: 0.35rem 0.8rem;">${t}</span>`).join('');
+
+      // Action links
+      let actionsHtml = '';
+      if (project.itchEmbed || (project.link && project.link.includes('itch.io'))) {
+        actionsHtml += `<a href="${project.link}" target="_blank" class="btn btn-primary" style="background:#fa5c5c; border-color:#fa5c5c; color:#fff;"><i class="fab fa-itch-io" style="margin-right: 0.5rem;"></i> Play on Itch.io</a>`;
+      }
+      if (project.playstore) {
+        actionsHtml += `<a href="${project.playstore}" target="_blank" class="btn btn-primary"><i class="fab fa-google-play" style="margin-right: 0.5rem;"></i> Google Play Store</a>`;
+      }
+      if (project.link && !project.link.includes('itch.io') && !project.playstore) {
+        actionsHtml += `<a href="${project.link}" target="_blank" class="btn btn-primary"><i class="fas fa-external-link-alt" style="margin-right: 0.5rem;"></i> View Live</a>`;
+      }
+      if (project.website) {
+        actionsHtml += `<a href="${project.website}" target="_blank" class="btn btn-outline"><i class="fas fa-globe" style="margin-right: 0.5rem; color: #0284c7;"></i> Official Website</a>`;
+      }
+      if (project.github) {
+        actionsHtml += `<a href="${project.github}" target="_blank" class="btn btn-outline"><i class="fab fa-github" style="margin-right: 0.5rem;"></i> Source Code</a>`;
+      }
+      if (project.url && (project.url.includes('youtube') || project.url.includes('youtu.be'))) {
+        const ytId = getYoutubeId(project.url);
+        if (ytId) {
+          actionsHtml += `<a href="https://www.youtube.com/watch?v=${ytId}" target="_blank" class="btn btn-outline"><i class="fab fa-youtube" style="margin-right: 0.5rem; color: #ef4444;"></i> Watch on YouTube</a>`;
+        }
+      }
+
+      // Official Itch.io Embed Widget inside modal
+      if (project.itchEmbed) {
+        actionsHtml += `<div style="width: 100%; margin-top: 1.25rem;"><iframe frameborder="0" src="${project.itchEmbed}" width="100%" height="167" style="border:none; border-radius:10px; max-width:552px;"><a href="${project.link}">${project.title}</a></iframe></div>`;
+      }
+
+      modalActions.innerHTML = actionsHtml;
+
+      // Show modal
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
     }
 
-    // Helper to scroll up and show
-    window.filterToProject = function (indexInFiltered) {
-      const project = filteredProjects[indexInFiltered];
-      renderFeatured(project);
-      document.getElementById('featuredCarousel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    function closeProjectModal() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      modalMediaContainer.innerHTML = ''; // Stop video playback
+      document.body.style.overflow = '';
+    }
+
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeProjectModal);
+
+    // Backdrop click close
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeProjectModal();
+      });
+    }
+
+    // Escape key close
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeProjectModal();
+      }
+    });
+
+    // URL & YT Helpers
+    function getYoutubeId(url) {
+      if (!url) return null;
+      const cleanUrl = url.trim();
+      const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|&v=)([^#&?]*).*/;
+      const match = cleanUrl.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : null;
     }
 
     function normalizeUrl(url) {
       if (!url) return '';
-      if (url.includes('youtu.be/')) return `https://www.youtube.com/embed/${url.split('youtu.be/')[1].split(/[?&]/)[0]}`;
-      if (url.includes('watch?v=')) return `https://www.youtube.com/embed/${url.split('watch?v=')[1].split('&')[0]}`;
-      return url;
+      const cleanUrl = url.trim();
+      const ytId = getYoutubeId(cleanUrl);
+      if (ytId) return `https://www.youtube.com/embed/${ytId}?rel=0`;
+      return cleanUrl;
     }
 
     function parseDate(dateStr) {
       if (!dateStr) return new Date(0);
-      return new Date(dateStr); // Simplified for now, complex regex from old code can be added if needed
+      return new Date(dateStr);
     }
   </script>
 </body>

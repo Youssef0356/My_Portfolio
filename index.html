@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youssef Neji | Digital Artist & Developer</title>
+    <title>Youssef Neji | Creative Technologist, Game Developer & 3D Artist</title>
+    <meta name="description" content="Portfolio of Youssef Neji - Game Developer (Unreal Engine 5 / Unity), 3D Artist (Blender), AR/VR Developer (Vuforia), and Creative Technologist.">
 
-    <!-- Fonts -->
+    <!-- Modern Typography: Plus Jakarta Sans & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <!-- Icons -->
@@ -23,16 +24,17 @@
 
     <!-- Favicon -->
     <link rel="icon"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23a78bfa'%3EY%3C/text%3E%3C/svg%3E">
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23b46a2a'%3EY%3C/text%3E%3C/svg%3E">
 
-    <!-- Animations -->
+    <!-- Theme & Animations -->
+    <script src="src/js/theme.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
 
-    <!-- Background Elements -->
+    <!-- Subtle Editorial Background -->
     <div class="bg-grid"></div>
     <div class="bg-glow"></div>
 
@@ -43,18 +45,31 @@
                 Youssef <span>Neji</span>
             </a>
 
-            <button class="nav-toggle" id="navToggle">
-                <i class="material-icons">menu</i>
-            </button>
-
             <div class="nav-links" id="navLinks">
                 <a href="index.html" class="nav-link active">About</a>
                 <a href="Projects.html" class="nav-link">Projects</a>
+
+                <a href="Development.html" class="nav-link">Development</a>
                 <a href="Contact.html" class="nav-link">Contact</a>
-                <a href="https://www.facebook.com/youssef.dragonboll/" target="_blank" class="nav-link"><i
-                        class="fab fa-facebook-f"></i></a>
-                <a href="https://www.linkedin.com/in/youssef-neji-a13604279/" target="_blank" class="nav-link"><i
-                        class="fab fa-linkedin-in"></i></a>
+                <div class="nav-social-icons">
+                    <a href="https://youssef356.itch.io/" target="_blank" class="nav-link" title="Itch.io Games"><i
+                            class="fab fa-itch-io"></i></a>
+                    <a href="https://play.google.com/store/apps/developer?id=The356Company" target="_blank" class="nav-link" title="Google Play Store"><i
+                            class="fab fa-google-play"></i></a>
+                    <a href="https://www.linkedin.com/in/youssef-neji356" target="_blank" class="nav-link" title="LinkedIn"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/youssef0356" target="_blank" class="nav-link" title="GitHub"><i
+                            class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="nav-right-actions">
+                <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Dark Mode" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+                    <i class="material-icons">menu</i>
+                </button>
             </div>
         </div>
     </nav>
@@ -62,217 +77,559 @@
     <!-- Hero Section -->
     <section class="hero-section" id="home">
         <div class="hero-content text-center">
-            <h1 class="hero-title fade-in">Digital Artist</h1>
-            <p class="hero-subtitle fade-in delay-100">
-                Creating immersive digital worlds through cutting-edge 3D design, visualization, and full-stack
-                development.
+            <div class="hero-badge-pill fade-in">
+                <i class="fas fa-cube"></i> Creative Technologist & 3D Artist
+            </div>
+            <h1 class="hero-title fade-in delay-100">
+                Crafting Immersive Games, CGI & <span>Interactive Realities</span>.
+            </h1>
+            <p class="hero-subtitle fade-in delay-200">
+                Bridging game development in Unreal Engine 5, photorealistic 3D modeling in Blender, industrial AR/VR applications, and AI systems into compelling digital experiences.
             </p>
-            <div class="fade-in delay-200">
-                <a href="#about" class="btn btn-primary">Discover More</a>
-                <a href="Projects.html" class="btn btn-outline" style="margin-left: 1rem;">View Work</a>
+
+            <div class="hero-disciplines fade-in delay-200">
+                <span class="discipline-tag">Unreal Engine 5</span>
+                <span class="discipline-tag">Unity & Vuforia AR</span>
+                <span class="discipline-tag">Blender 3D & CGI</span>
+                <span class="discipline-tag">Virtual Reality</span>
+                <span class="discipline-tag">AI & Computer Vision</span>
+                <span class="discipline-tag">Full-Stack Web</span>
             </div>
 
-            <!-- Abstract Shapes -->
-            <div class="hero-shape shape-1"></div>
-            <div class="hero-shape shape-2"></div>
-            <div class="hero-shape shape-3"></div>
+            <div class="hero-actions fade-in delay-300">
+                <a href="Projects.html" class="btn btn-primary">
+                    <i class="fas fa-play" style="font-size: 0.8rem; margin-right: 0.5rem;"></i> View Projects
+                </a>
+                <a href="Development.html" class="btn btn-outline">
+                    <i class="fas fa-code" style="font-size: 0.85rem; margin-right: 0.5rem; color: var(--accent);"></i> Development
+                </a>
+                <a href="#achievements" class="btn btn-outline">
+                    <i class="fas fa-trophy" style="font-size: 0.85rem; margin-right: 0.5rem; color: var(--accent);"></i> Achievements
+                </a>
+                <a href="Youssef Neji.pdf" class="btn btn-outline" download>
+                    <i class="fas fa-download" style="font-size: 0.85rem; margin-right: 0.5rem;"></i> CV
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about-section container" id="about">
-        <div class="about-grid">
-            <div class="about-text glass-card fade-on-scroll">
-                <h2>I'm a multifaceted developer and artist.</h2>
-                <p>I love stepping beyond the norm and crafting innovative, creative solutions. I am a Graduated
-                    Bachelor's student at ISIMS, pursuing a degree in Big Data and Data Analysis.</p>
-                <p>Alongside my studies, I work as a freelance <strong>3D modeler</strong> and
-                    <strong>animator</strong>, collaborating with a diverse range of clients. My expertise encompasses
-                    3D animation, video editing, Augmented Reality, and image editing.
-                </p>
-                <p>I focus on delivering engaging content that helps clients bring their ideas to life through
-                    high-quality visual storytelling.</p>
+    <!-- In-page Section Scroll Pills (homepage only) -->
+    <nav class="section-pill-nav" id="sectionPillNav" aria-label="Page sections">
+      <a href="#capabilities" class="spill" data-target="capabilities">
+        <i class="fas fa-bolt"></i> Capabilities
+      </a>
+      <a href="#achievements" class="spill" data-target="achievements">
+        <i class="fas fa-trophy"></i> Achievements
+      </a>
+      <a href="#journey" class="spill" data-target="journey">
+        <i class="fas fa-route"></i> Journey
+      </a>
+    </nav>
 
-                <div class="skills-tags">
-                    <span class="skill-tag">3D Modeling</span>
-                    <span class="skill-tag">VFX</span>
-                    <span class="skill-tag">Web Development</span>
-                    <span class="skill-tag">ReactJS</span>
-                    <span class="skill-tag">Augmented Reality</span>
-                    <span class="skill-tag">Data Analysis</span>
-                    <span class="skill-tag">Python</span>
+    <!-- Capabilities / Pillars Section -->
+    <section class="capabilities-section" id="capabilities">
+        <div class="container">
+            <div class="section-header fade-on-scroll">
+                <div class="section-kicker">Core Disciplines</div>
+                <h2 class="section-title">What I Create & Deliver</h2>
+                <p class="section-desc">From playable interactive worlds to high-fidelity commercial CGI and cutting-edge extended reality.</p>
+            </div>
+
+            <div class="capabilities-grid">
+                <!-- Pillar 1 -->
+                <div class="capability-card fade-on-scroll">
+                    <div class="capability-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="capability-title">Game Development</h3>
+                    <p class="capability-desc">PC and mobile games built in Unreal Engine 5 & Unity. Gameplay mechanics, netcode, atmospheric horror environments, and level design.</p>
+                    <div class="capability-tags">
+                        <span>UE5</span>
+                        <span>Unity</span>
+                        <span>Blueprints & C#</span>
+                        <span>Physics</span>
+                    </div>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="capability-card fade-on-scroll">
+                    <div class="capability-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3 class="capability-title">3D Art & CGI VFX</h3>
+                    <p class="capability-desc">Hard-surface modeling, architectural visualization, photorealistic Cycles rendering, dynamic camera animation, and VFX post-production.</p>
+                    <div class="capability-tags">
+                        <span>Blender</span>
+                        <span>After Effects</span>
+                        <span>Cycles</span>
+                        <span>Motion Graphics</span>
+                    </div>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="capability-card fade-on-scroll">
+                    <div class="capability-icon">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <h3 class="capability-title">AR & VR Experiences</h3>
+                    <p class="capability-desc">Industrial AR for machine maintenance (Vuforia), interactive VR cultural exhibitions (VES with German & Malaysian institutions), and WebXR.</p>
+                    <div class="capability-tags">
+                        <span>Vuforia AR</span>
+                        <span>VR UE5</span>
+                        <span>Digital Heritage</span>
+                        <span>Unity</span>
+                    </div>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="capability-card fade-on-scroll">
+                    <div class="capability-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="capability-title">Creative Tech & AI</h3>
+                    <p class="capability-desc">Integrating Computer Vision, conversational AI in virtual environments, telemetry analytics in Python, and accessible web platforms (Wa3ini).</p>
+                    <div class="capability-tags">
+                        <span>Python</span>
+                        <span>Computer Vision</span>
+                        <span>React</span>
+                        <span>Tailwind</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements & Awards Showcase Section -->
+    <section class="achievements-section container" id="achievements">
+        <div class="section-header fade-on-scroll">
+            <div class="section-kicker">Recognition & Milestones</div>
+            <h2 class="section-title">Awards & Global Projects</h2>
+            <p class="section-desc">Competitive hackathon wins, international heritage collaborations, and tech community leadership.</p>
+        </div>
+
+        <div class="achievements-grid">
+            <!-- Award 1 -->
+            <div class="achievement-card fade-on-scroll">
+                <div class="achievement-top">
+                    <span class="achievement-badge badge-gold">
+                        <i class="fas fa-medal"></i> 1st Place Winner
+                    </span>
+                    <span class="achievement-org">GDG DevFest Sfax</span>
+                </div>
+                <h3 class="achievement-title">DevFest AI & 3D Animation Competition</h3>
+                <p class="achievement-desc">Created an innovative 3D animated visual breakdown explaining Large Language Models (LLMs) and generative artificial intelligence principles, collaborating in intensive AI workshops.</p>
+                <div class="capability-tags" style="margin-bottom: 1rem;">
+                    <span>Blender 3D</span>
+                    <span>AI Concepts</span>
+                    <span>Motion Design</span>
+                </div>
+                <a href="Projects.html" class="achievement-link">
+                    View in Projects <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Award 2 -->
+            <div class="achievement-card fade-on-scroll">
+                <div class="achievement-top">
+                    <span class="achievement-badge badge-gold">
+                        <i class="fas fa-trophy"></i> 1st Place Winner
+                    </span>
+                    <span class="achievement-org">MTC ISET Ideathon</span>
+                </div>
+                <h3 class="achievement-title">Psychological Problem-Solving Game Concept</h3>
+                <p class="achievement-desc">Designed an award-winning horror game concept addressing real-world psychological and educational challenges through narrative mechanics, accompanied by a full Figma UI/UX prototype.</p>
+                <div class="capability-tags" style="margin-bottom: 1rem;">
+                    <span>Game Design</span>
+                    <span>Storytelling</span>
+                    <span>Figma UI/UX</span>
+                </div>
+                <a href="Projects.html" class="achievement-link">
+                    View in Projects <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Award 3 -->
+            <div class="achievement-card fade-on-scroll">
+                <div class="achievement-top">
+                    <span class="achievement-badge badge-intl">
+                        <i class="fas fa-globe"></i> International Collaboration
+                    </span>
+                    <span class="achievement-org">HKA Germany & Heritage Agency</span>
+                </div>
+                <h3 class="achievement-title">Virtual Exhibition Space (VES) Project</h3>
+                <p class="achievement-desc">Contributed 3D historical reconstructions and AR applications with international teams spanning Germany, Malaysia, Oman, and Tunisia. Conducted a Blender 3D modeling workshop in English for international students.</p>
+                <div class="capability-tags" style="margin-bottom: 1rem;">
+                    <span>Blender</span>
+                    <span>Unreal Engine 5</span>
+                    <span>AR Vuforia</span>
+                    <span>Instructor</span>
+                </div>
+                <a href="Projects.html" class="achievement-link">
+                    View in Projects <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Award 4 -->
+            <div class="achievement-card fade-on-scroll">
+                <div class="achievement-top">
+                    <span class="achievement-badge badge-silver">
+                        <i class="fas fa-award"></i> 4th Place Winner
+                    </span>
+                    <span class="achievement-org">ISGI Sfax Hackathon</span>
+                </div>
+                <h3 class="achievement-title">Wa3ini: Accessibility Platform for Disabilities</h3>
+                <p class="achievement-desc">Engineered an interactive web platform designed to empower and assist individuals with special needs and motor impairments. Developed rapidly in React, Tailwind CSS, and Git.</p>
+                <div class="capability-tags" style="margin-bottom: 1rem;">
+                    <span>React</span>
+                    <span>Tailwind CSS</span>
+                    <span>Web Accessibility</span>
+                </div>
+                <a href="https://wa3ini.netlify.app/" target="_blank" class="achievement-link">
+                    Visit Live Platform <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+
+            <!-- Leadership 5 -->
+            <div class="achievement-card fade-on-scroll">
+                <div class="achievement-top">
+                    <span class="achievement-badge badge-intl">
+                        <i class="fas fa-users"></i> Leadership
+                    </span>
+                    <span class="achievement-org">ISIMS Google Students Club</span>
+                </div>
+                <h3 class="achievement-title">Game Developer Team Leader</h3>
+                <p class="achievement-desc">Led university student development squads creating multiplayer games ("Cyber Clash", "Google It") and co-organized workshops with Google Developer Groups on Flutter, game mechanics, and modern web tech.</p>
+                <div class="capability-tags" style="margin-bottom: 1rem;">
+                    <span>Team Leadership</span>
+                    <span>Unreal Engine 5</span>
+                    <span>Mentorship</span>
+                </div>
+                <a href="Projects.html" class="achievement-link">
+                    Explore Games <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Commercial Releases 6 -->
+            <div class="achievement-card fade-on-scroll">
+                <div class="achievement-top">
+                    <span class="achievement-badge badge-gold">
+                        <i class="fas fa-rocket"></i> Commercial Releases
+                    </span>
+                    <span class="achievement-org">Google Play & Itch.io</span>
+                </div>
+                <h3 class="achievement-title">Published Indie Games & AR Apps</h3>
+                <p class="achievement-desc">Published interactive titles across Google Play Store and Itch.io—including AR Explorer (spatial computing education), The System (social deduction card game), Battle Cows, Cyber Clash, and Asmodea's School.</p>
+                <div class="capability-tags" style="margin-bottom: 1rem;">
+                    <span>Google Play</span>
+                    <span>Itch.io</span>
+                    <span>Unity & UE5</span>
+                    <span>ARCore</span>
+                </div>
+                <div class="flex gap-1" style="margin-top: auto; flex-wrap: wrap;">
+                    <a href="https://play.google.com/store/apps/developer?id=The356Company" target="_blank" class="achievement-link" style="margin-right: 0.5rem;">
+                        <i class="fab fa-google-play"></i> Play Store <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                    </a>
+                    <a href="https://youssef356.itch.io/" target="_blank" class="achievement-link">
+                        <i class="fab fa-itch-io"></i> Itch.io <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Photo Stack Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text fade-on-scroll">
+                    <div class="section-kicker">Background & Philosophy</div>
+                    <h2>Bridging Engineering Logic with Visual Storytelling.</h2>
+                    <p>
+                        I am a multidisciplinary developer and digital artist based in Sfax, Tunisia. Holding a Bachelor's degree in Big Data and Data Analysis from ISIMS, I combine technical software engineering with artistic craft.
+                    </p>
+                    <p>
+                        As an <strong>AR & Software Developer at TDS</strong> (leading the <strong>MX-LAB</strong> industrial maintenance assistant) and former <strong>Multimedia Manager</strong>, I engineer spatial computing tools, build indie games in Unreal Engine 5, and direct commercial 3D CGI and video productions.
+                    </p>
+                    <p>
+                        Whether simulating historical Roman turbines in 3D, writing interactive horror mechanics, or architecting responsive web applications, my goal is always to deliver memorable, intuitive experiences.
+                    </p>
+
+                    <div class="skills-tags">
+                        <span class="skill-tag">Unreal Engine 5</span>
+                        <span class="skill-tag">Unity</span>
+                        <span class="skill-tag">Blender 3D</span>
+                        <span class="skill-tag">Vuforia AR</span>
+                        <span class="skill-tag">Virtual Reality</span>
+                        <span class="skill-tag">React & Tailwind</span>
+                        <span class="skill-tag">Python & Data Analysis</span>
+                        <span class="skill-tag">After Effects VFX</span>
+                    </div>
+                </div>
+
+                <!-- Creative Photo Stack -->
+                <div class="photo-stack-container fade-on-scroll" title="Selected 3D Renders & Visual Artwork">
+                    <div class="photo-stack-item"><img src="Images/My images/1 (2).jpg" alt="3D Visual 1" loading="lazy"></div>
+                    <div class="photo-stack-item"><img src="Images/My images/1 (10).jpg" alt="3D Visual 2" loading="lazy"></div>
+                    <div class="photo-stack-item"><img src="Images/My images/1 (6).jpg" alt="3D Visual 3" loading="lazy"></div>
+                    <div class="photo-stack-item"><img src="Images/My images/1 (14).jpg" alt="3D Visual 4" loading="lazy"></div>
+                    <div class="photo-stack-item"><img src="Images/My images/1 (9).jpg" alt="3D Visual 5" loading="lazy"></div>
+
+                    <!-- Navigation -->
+                    <button class="stack-nav prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+                    <button class="stack-nav next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Career Journey Timeline Section -->
+    <section class="timeline-section container" id="journey">
+        <div class="section-header fade-on-scroll">
+            <div class="section-kicker">Professional Path</div>
+            <h2 class="section-title">My Journey & Experience</h2>
+            <p class="section-desc">A timeline of professional roles, technical achievements, and hands-on production.</p>
+        </div>
+
+        <div class="timeline">
+            <!-- Item 1: Multimedia Manager (Concluded) -->
+            <div class="timeline-item fade-on-scroll">
+                <div class="timeline-marker"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-role">Multimedia Manager</h3>
+                            <span class="timeline-org">TDS — Technology Development Systems</span>
+                        </div>
+                        <span class="timeline-period">Aug 2025 – Oct 2026</span>
+                    </div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Directed digital and web branding, technical photography, and multimedia marketing campaigns for industrial didactic equipment.</li>
+                            <li>Filmed, directed, and edited comprehensive video demonstrations and didactic bench walkthroughs (Automotive AC systems, lighting benches, diesel pre-heat systems).</li>
+                            <li>Produced high-impact 3D commercial motion graphics, graphic design assets, and event coverage across international exhibitions.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <!-- Creative Photo Stack -->
-            <div class="photo-stack-container fade-on-scroll">
-                <div class="photo-stack-item"><img src="Images/My images/1 (2).jpg" alt="Art 1"></div>
-                <div class="photo-stack-item"><img src="Images/My images/1 (10).jpg" alt="Art 2"></div>
-                <!-- Main Center Image -->
-                <div class="photo-stack-item"><img src="Images/My images/1 (6).jpg" alt="Art 3"></div>
-                <div class="photo-stack-item"><img src="Images/My images/1 (14).jpg" alt="Art 4"></div>
-                <div class="photo-stack-item"><img src="Images/My images/1 (9).jpg" alt="Art 5"></div>
-
-                <!-- Navigation -->
-                <button class="stack-nav prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="stack-nav next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lottie Player -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
-    <!-- Timeline Section -->
-    <section class="timeline-section container">
-        <h2 class="text-center fade-on-scroll" style="margin-bottom: 3rem;">My Journey</h2>
-
-        <div class="timeline">
-            <!-- Rocket Animation -->
-            <div class="timeline-rocket">
-                <!-- Using Local Lottie File -->
-                <lottie-player src="src/animations/rocket.json" background="transparent" speed="1"
-                    style="width: 100px; height: 100px;" loop autoplay></lottie-player>
-            </div>
-            <!-- Item 1 -->
+            <!-- Item 2: Software Development & AR (Current) -->
             <div class="timeline-item fade-on-scroll">
                 <div class="timeline-marker"></div>
-                <div class="timeline-content glass-card">
-                    <div class="timeline-date">Nov 2022 - 2023</div>
-                    <h3 class="timeline-title">Joining Faculty</h3>
-                    <p class="timeline-desc">Started Computer Science at ISIMS, Sfax. Developed two horror games and
-                        explored 3D modeling in Blender/Unreal.</p>
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-role">Software & AR Developer (MX-LAB Lead)</h3>
+                            <span class="timeline-org">TDS — Technology Development Systems</span>
+                        </div>
+                        <span class="timeline-period">Aug 2025 – Present</span>
+                    </div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Spearheaded development of <strong>MX-LAB</strong>, an intelligent industrial maintenance assistant combining Augmented Reality (Unity & Vuforia) and Computer Vision to guide technicians and students through machine diagnostics.</li>
+                            <li>Engineered real-time computer vision and generative AI models for component detection and automated fault inspection.</li>
+                            <li>Architected and administered the company's web platforms and modern interactive digital portals.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3: Robotics Instructor -->
+            <div class="timeline-item fade-on-scroll">
+                <div class="timeline-marker"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-role">Robotics & Programming Instructor</h3>
+                            <span class="timeline-org">Cody Space at EIS (International School in Sfax)</span>
+                        </div>
+                        <span class="timeline-period">Jun 2025 – Jul 2025</span>
+                    </div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Taught children aged 6 to 10 the core principles of algorithmic thinking, software logic, and robotics.</li>
+                            <li>Guided students through hands-on robotics builds using <strong>LEGO WeDo</strong> and interactive visual programming in <strong>Scratch</strong>.</li>
+                            <li>Mentored student teams through collaborative STEM challenges, fostering creativity, problem-solving, and engineering curiosity.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <!-- Item 2 -->
             <div class="timeline-item fade-on-scroll">
                 <div class="timeline-marker"></div>
-                <div class="timeline-content glass-card">
-                    <div class="timeline-date">Sep 2023</div>
-                    <h3 class="timeline-title">Google Students Club</h3>
-                    <p class="timeline-desc">Game developer & Team Leader. Created Cyber Clash and Google It,
-                        collaborating with Google Developer Groups.</p>
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-role">VR & AI Application Developer (Internship)</h3>
+                            <span class="timeline-org">University of Sfax</span>
+                        </div>
+                        <span class="timeline-period">Jan 2025 – Jun 2025</span>
+                    </div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Constructed an interactive virtual 3D fair environment in <strong>Unreal Engine 5</strong> with immersive VR capabilities.</li>
+                            <li>Integrated real-time AI chatbots answering student inquiries and established communication between the AI system and VR environment.</li>
+                            <li>Collected user behavioral metrics and telemetry, presenting data visualizations and insights through Python.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <!-- Item 3 -->
             <div class="timeline-item fade-on-scroll">
                 <div class="timeline-marker"></div>
-                <div class="timeline-content glass-card">
-                    <div class="timeline-date">Mar 2024 - 2025</div>
-                    <h3 class="timeline-title">Virtual Exhibition Project</h3>
-                    <p class="timeline-desc">Contributed to the Virtual Exhibition for Technical Historical Objects.
-                        Worked on 3D modeling, AR apps with international teams (Germany, Malaysia, Oman).</p>
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-role">3D & AR Developer Intern (VES Project)</h3>
+                            <span class="timeline-org">Agency for Cultural Heritage Development & HKA University</span>
+                        </div>
+                        <span class="timeline-period">Mar 2024 – Dec 2024</span>
+                    </div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Reconstructed historical 3D cultural artifacts for international virtual exhibition spaces using Blender, Unity, and Unreal Engine 5.</li>
+                            <li>Conducted a Blender 3D modeling workshop in English for international students across Germany, Malaysia, and Oman.</li>
+                            <li>Contributed to custom mobile Augmented Reality apps promoting Tunisian cultural heritage.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <!-- Item 4 -->
             <div class="timeline-item fade-on-scroll">
                 <div class="timeline-marker"></div>
-                <div class="timeline-content glass-card">
-                    <div class="timeline-date">Jul 2024</div>
-                    <h3 class="timeline-title">Internship At Perfaxis</h3>
-                    <p class="timeline-desc">Summer internship learning ASP.NET and developing an annual leave
-                        management system.</p>
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-role">Web Developer Intern</h3>
+                            <span class="timeline-org">Perfaxis</span>
+                        </div>
+                        <span class="timeline-period">Jul 2024</span>
+                    </div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Developed an annual leave request management system in ASP.NET Core, SQL Server, and Tailwind CSS.</li>
+                            <li>Integrated automated SMTP notifications and role-based access control.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <!-- Item 5 -->
             <div class="timeline-item fade-on-scroll">
                 <div class="timeline-marker"></div>
-                <div class="timeline-content glass-card">
-                    <div class="timeline-date">Aug 2025 - Present</div>
-                    <h3 class="timeline-title">Multimedia Manager @ TDS</h3>
-                    <p class="timeline-desc">AR Development (Vuforia), AI Computer Vision, Web Management, and Social
-                        Media/Graphic Design.</p>
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-role">Game Developer Team Leader</h3>
+                            <span class="timeline-org">ISIMS Google Students Club</span>
+                        </div>
+                        <span class="timeline-period">Sep 2023 – 2024</span>
+                    </div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li>Led student game dev squads creating multiplayer game projects in Unreal Engine 5.</li>
+                            <li>Delivered hands-on tech workshops on game mechanics, Flutter, and version control in partnership with Google Developer Groups.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="timeline-item fade-on-scroll">
+                <div class="timeline-marker"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-role">Bachelor's Degree in Big Data & Data Analysis</h3>
+                            <span class="timeline-org">Higher Institute of Computer Science and Multimedia (ISIMS), Sfax</span>
+                        </div>
+                        <span class="timeline-period">2022 – 2026</span>
+                    </div>
+                    <div class="timeline-desc">
+                        <p>Core curriculum covering algorithms, data structures, statistical analysis, computer vision, database architectures, and digital multimedia systems.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Call to Action / Mini Contact -->
+    <!-- Call to Action Section -->
     <section class="contact-section text-center">
         <div class="container fade-on-scroll">
-            <h2>Let's Create Together</h2>
-            <p style="max-width: 600px; margin: 0 auto 2rem;">Ready to bring your vision to life? Let's discuss your
-                next 3D project or web application.</p>
-            <div class="flex active-center gap-1" style="justify-content: center;">
-                <a href="Contact.html" class="btn btn-primary">Get In Touch</a>
-                <a href="Youssef Neji.pdf" class="btn btn-outline" download>Download CV</a>
+            <div class="section-kicker">Get In Touch</div>
+            <h2 class="section-title">Let's Create Together</h2>
+            <p style="max-width: 600px; margin: 0 auto 2.5rem; color: var(--text-muted);">
+                Looking for a 3D artist, game developer, or creative technologist for your next project? Let's talk.
+            </p>
+            <div class="flex active-center gap-1" style="justify-content: center; flex-wrap: wrap;">
+                <a href="Contact.html" class="btn btn-primary">
+                    <i class="fas fa-paper-plane" style="margin-right: 0.5rem; font-size: 0.85rem;"></i> Send a Message
+                </a>
+                <a href="Projects.html" class="btn btn-outline">
+                    <i class="fas fa-th-large" style="margin-right: 0.5rem; font-size: 0.85rem;"></i> Browse All Projects
+                </a>
+                <a href="Youssef Neji.pdf" class="btn btn-outline" download>
+                    <i class="fas fa-file-pdf" style="margin-right: 0.5rem; font-size: 0.85rem;"></i> Download Resume
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container flex space-between" style="flex-wrap: wrap; gap: 2rem;">
+        <div class="container flex space-between active-center" style="flex-wrap: wrap; gap: 2rem;">
             <div>
-                <h3 style="margin-bottom: 0.5rem; color: #fff;">PORTFOLIO</h3>
-                <p>Youssef Neji &copy; 2025</p>
+                <h3 style="margin-bottom: 0.25rem; font-size: 1.15rem; color: var(--text-main);">YOUSSEF NEJI</h3>
+                <p style="margin-bottom: 0; font-size: 0.9rem; color: var(--text-dim);">&copy; 2026 Creative Technologist & 3D Artist. All rights reserved.</p>
             </div>
             <div class="footer-links">
                 <a href="index.html">About</a>
+                <a href="#capabilities">Capabilities</a>
+                <a href="#achievements">Achievements</a>
                 <a href="Projects.html">Projects</a>
+
+                <a href="Development.html">Development</a>
                 <a href="Contact.html">Contact</a>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="src/js/particles.js"></script>
     <script src="src/js/creative.js"></script>
     <script>
         // Mobile Toggle
         const toggleBtn = document.getElementById('navToggle');
         const navLinks = document.getElementById('navLinks');
 
-        toggleBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('nav-open');
-        });
-
-        // GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Staggered Fade In for Scroll
-        const fadeElements = document.querySelectorAll('.fade-on-scroll');
-        fadeElements.forEach(el => {
-            gsap.fromTo(el,
-                { opacity: 0, y: 50 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 85%",
-                    }
-                }
-            );
-        });
-
-        // Add visible class to timeline items
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        timelineItems.forEach((item, index) => {
-            ScrollTrigger.create({
-                trigger: item,
-                start: "top 80%",
-                onEnter: () => item.classList.add('visible')
+        if (toggleBtn && navLinks) {
+            toggleBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('nav-open');
             });
-        });
+        }
 
-        // Rocket Scroll Animation
-        gsap.to(".timeline-rocket", {
-            scrollTrigger: {
-                trigger: ".timeline",
-                start: "top 10%", // Starts when top of timeline hits near top of viewport
-                end: "bottom bottom", // Ends when bottom of timeline hits bottom of viewport
-                scrub: 1, // Smooth scrubbing
-            },
-            y: () => document.querySelector(".timeline").offsetHeight - 50, // Move to bottom
-            ease: "none"
-        });
+        // GSAP Scroll Animations
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const fadeElements = document.querySelectorAll('.fade-on-scroll');
+            fadeElements.forEach(el => {
+                gsap.fromTo(el,
+                    { opacity: 0, y: 35 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.7,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 88%",
+                        }
+                    }
+                );
+            });
+        }
     </script>
 </body>
 
